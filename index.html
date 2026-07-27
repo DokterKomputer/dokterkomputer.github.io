@@ -1,56 +1,237 @@
-<section class="category-section">
-  <div class="category-header">
-    <span class="category-badge">KATEGORI PRODUK</span>
-    <h2>Pilih Spesifikasi Sesuai Kebutuhanmu</h2>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokter Komputer | Spesialis Rakit & Servis PC</title>
+  <style>
+    /* Reset & Base Styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0b0c10;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Container Utama */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Header Kategori */
+    .category-header {
+      margin-bottom: 30px;
+    }
+    .category-badge {
+      background-color: #1f2833;
+      color: #00ff66;
+      border: 1px solid #00ff66;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .category-header h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    /* Grid Layout 4 Kolom */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* Card Item */
+    .category-card {
+      background: #12141c;
+      border: 1px solid #232733;
+      border-radius: 12px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 20px 20px 20px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .category-card:hover {
+      transform: translateY(-8px);
+      border-color: #00ff66;
+      box-shadow: 0 10px 25px rgba(0, 255, 102, 0.15);
+    }
+
+    /* Header Inside Card */
+    .card-title-group h3 {
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .card-title-group .subtitle {
+      color: #8892b0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* Lingkaran Background Gambar PC */
+    .image-wrapper {
+      background: radial-gradient(circle, #252a38 0%, #12141c 70%);
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 25px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed #333a4d;
+      transition: border-color 0.3s ease;
+    }
+    .category-card:hover .image-wrapper {
+      border-color: #00ff66;
+    }
+    .image-wrapper img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .category-card:hover .image-wrapper img {
+      transform: scale(1.1);
+    }
+
+    /* Tagline Tombol Bawah */
+    .tagline {
+      background-color: #ffffff;
+      color: #000000;
+      text-align: center;
+      padding: 10px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+    .category-card:hover .tagline {
+      background-color: #00ff66;
+      color: #000000;
+    }
+
+    /* Floating Floating WhatsApp Button */
+    .wa-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+    }
+    .wa-float:hover {
+      background-color: #1ebd56;
+    }
+
+    /* Responsif untuk Layar Tablet dan HP */
+    @media (max-width: 992px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 576px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Section Kategori Produksi -->
+    <section class="category-section">
+      <div class="category-header">
+        <span class="category-badge">PRODUCT CATEGORY</span>
+        <h2>Pilih Seri PC Sesuai Kebutuhanmu</h2>
+      </div>
+
+      <div class="category-grid">
+        <!-- 1. DK Office Edition -->
+        <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20paket%20DK%20Office%20Edition" class="category-card" target="_blank">
+          <div class="card-title-group">
+            <h3>DK OFFICE EDITION</h3>
+            <p class="subtitle">WORK & PRODUCTIVITY</p>
+          </div>
+          <div class="image-wrapper">
+            <img src="https://via.placeholder.com/150/12141c/FFFFFF?text=PC+Office" alt="DK Office Edition">
+          </div>
+          <div class="tagline">"WORK SMARTER!"</div>
+        </a>
+
+        <!-- 2. DK Gamers Choice -->
+        <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20paket%20DK%20Gamers%20Choice" class="category-card" target="_blank">
+          <div class="card-title-group">
+            <h3>DK GAMERS CHOICE</h3>
+            <p class="subtitle">GAMING PERFORMANCE</p>
+          </div>
+          <div class="image-wrapper">
+            <img src="https://via.placeholder.com/150/12141c/FFFFFF?text=PC+Gaming" alt="DK Gamers Choice">
+          </div>
+          <div class="tagline">"GAME NO LIMITS!"</div>
+        </a>
+
+        <!-- 3. DK Editor PC -->
+        <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20paket%20DK%20Editor%20PC" class="category-card" target="_blank">
+          <div class="card-title-group">
+            <h3>DK EDITOR PC</h3>
+            <p class="subtitle">CREATIVE & RENDERING</p>
+          </div>
+          <div class="image-wrapper">
+            <img src="https://via.placeholder.com/150/12141c/FFFFFF?text=PC+Editor" alt="DK Editor PC">
+          </div>
+          <div class="tagline">"CREATE WITHOUT BOUNDS!"</div>
+        </a>
+
+        <!-- 4. DK Ultimate -->
+        <a href="https://wa.me/628xxxxxxxxxx?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20paket%20DK%20Ultimate" class="category-card" target="_blank">
+          <div class="card-title-group">
+            <h3>DK ULTIMATE</h3>
+            <p class="subtitle">EXTREME PERFORMANCE</p>
+          </div>
+          <div class="image-wrapper">
+            <img src="https://via.placeholder.com/150/12141c/FFFFFF?text=PC+Ultimate" alt="DK Ultimate">
+          </div>
+          <div class="tagline">"THE MAXIMUM POWER!"</div>
+        </a>
+      </div>
+    </section>
   </div>
 
-  <div class="category-grid">
-    <!-- Card 1: DK Office Edition -->
-    <a href="#office" class="category-card">
-      <div class="card-content">
-        <h3>DK OFFICE EDITION</h3>
-        <p class="subtitle">WORK & PRODUCTIVITY</p>
-        <div class="image-wrapper">
-          <img src="path-ke-gambar-pc-office.png" alt="DK Office Edition">
-        </div>
-        <div class="tagline">"WORK SMARTER!"</div>
-      </div>
-    </a>
+  <!-- Tombol WhatsApp Melayang -->
+  <a href="https://wa.me/628xxxxxxxxxx" class="wa-float" target="_blank">
+    💬 Konsultasi WhatsApp
+  </a>
 
-    <!-- Card 2: DK Gamers Choice -->
-    <a href="#gamers" class="category-card">
-      <div class="card-content">
-        <h3>DK GAMERS CHOICE</h3>
-        <p class="subtitle">GAMING PERFORMANCE</p>
-        <div class="image-wrapper">
-          <img src="path-ke-gambar-pc-gaming.png" alt="DK Gamers Choice">
-        </div>
-        <div class="tagline">"GAME NO LIMITS!"</div>
-      </div>
-    </a>
-
-    <!-- Card 3: DK Editor PC -->
-    <a href="#editor" class="category-card">
-      <div class="card-content">
-        <h3>DK EDITOR PC</h3>
-        <p class="subtitle">CREATIVE & RENDERING</p>
-        <div class="image-wrapper">
-          <img src="path-ke-gambar-pc-editor.png" alt="DK Editor PC">
-        </div>
-        <div class="tagline">"CREATE WITHOUT BOUNDS!"</div>
-      </div>
-    </a>
-
-    <!-- Card 4: DK Ultimate -->
-    <a href="#ultimate" class="category-card featured">
-      <div class="card-content">
-        <h3>DK ULTIMATE</h3>
-        <p class="subtitle">EXTREME PERFORMANCE</p>
-        <div class="image-wrapper">
-          <img src="path-ke-gambar-pc-ultimate.png" alt="DK Ultimate">
-        </div>
-        <div class="tagline">"THE MAXIMUM POWER!"</div>
-      </div>
-    </a>
-  </div>
-</section>
+</body>
+</html>
