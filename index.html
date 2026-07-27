@@ -1,428 +1,56 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokter Komputer | Rakit & Service PC Gaming Jakarta & Bekasi</title>
-    
-    <!-- Meta SEO Lokal -->
-    <meta name="description" content="Jasa rakit PC gaming, custom build, dan service laptop/komputer terpercaya di Pondok Gede, Bekasi, dan Jakarta. Garansi resmi & setting Windows teroptimasi.">
-    <meta name="keywords" content="rakit pc bekasi, service pc terdekat, dokter komputer, rakit pc jakarta, pc gaming murah, service laptop jatiwaringin">
+<section class="category-section">
+  <div class="category-header">
+    <span class="category-badge">KATEGORI PRODUK</span>
+    <h2>Pilih Spesifikasi Sesuai Kebutuhanmu</h2>
+  </div>
 
-    <!-- Style / Tampilan -->
-    <style>
-        :root {
-            /* Warna diambil langsung dari tema background logo baru */
-            --bg-main: #050b14;
-            --card-bg: rgba(14, 24, 38, 0.85);
-            --accent-gold: #d4af37;
-            --accent-red: #e62328;
-            --text-main: #ffffff;
-            --text-sub: #8e9bb0;
-            --border-color: #1e2d42;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            /* Background gradient bernuansa dark navy premium seperti pada logo */
-            background: radial-gradient(circle at top center, #0f1d30 0%, #050b14 70%, #020509 100%);
-            background-attachment: fixed;
-            color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 50px;
-        }
-
-        header {
-            text-align: center;
-            padding: 30px 20px 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* STYLING LOGO HEADER */
-        .site-logo {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 10px;
-            filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.6));
-            transition: transform 0.3s ease;
-        }
-
-        .site-logo:hover {
-            transform: scale(1.03);
-        }
-
-        header p {
-            color: var(--text-sub);
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* STYLING MAIN BANNER */
-        .hero-banner {
-            width: 100%;
-            margin-bottom: 40px;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .hero-banner:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-gold);
-        }
-
-        .hero-banner img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-            border-bottom: 2px solid var(--accent-red);
-            display: inline-block;
-            padding-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-gold);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
-        }
-
-        .card-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .card-price {
-            font-size: 1.35rem;
-            color: var(--accent-gold);
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        /* STYLING TOMBOL DETAIL & WA */
-        .btn-detail {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--text-main);
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-        }
-
-        .btn-detail:hover {
-            background-color: var(--accent-red);
-            border-color: var(--accent-red);
-            color: #fff;
-        }
-
-        .btn-wa {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background-color: #25d366;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-
-        .btn-wa:hover {
-            background-color: #1eb956;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: var(--text-sub);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
-
-        /* STYLING POP-UP BANNER */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .popup-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90vh;
-            text-align: center;
-        }
-
-        .popup-content img {
-            max-width: 100%;
-            max-height: 85vh;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--accent-gold);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background: var(--accent-red);
-            color: #fff;
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s;
-        }
-
-        .close-btn:hover {
-            transform: scale(1.1);
-        }
-    </style>
-</head>
-<body>
-
-    <!-- POP-UP PROMO BANNER -->
-    <div class="popup-overlay" id="promoPopup">
-        <div class="popup-content">
-            <button class="close-btn" onclick="closePopup()">&times;</button>
-            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20konsultasi%20rakit%20PC%20/%20laptop" target="_blank">
-                <img src="images/promo.png" alt="Promo Dokter Komputer">
-            </a>
+  <div class="category-grid">
+    <!-- Card 1: DK Office Edition -->
+    <a href="#office" class="category-card">
+      <div class="card-content">
+        <h3>DK OFFICE EDITION</h3>
+        <p class="subtitle">WORK & PRODUCTIVITY</p>
+        <div class="image-wrapper">
+          <img src="path-ke-gambar-pc-office.png" alt="DK Office Edition">
         </div>
-    </div>
+        <div class="tagline">"WORK SMARTER!"</div>
+      </div>
+    </a>
 
-    <header>
-        <!-- LOGO BRAND BARU -->
-        <a href="index.html">
-            <img src="images/logo.png" alt="Dokter Komputer Logo" class="site-logo">
-        </a>
-        <p>Solusi Tepat, Komputer Sehat | Rakit & Service PC Jakarta - Bekasi</p>
-    </header>
-
-    <div class="container">
-        
-        <!-- HERO BANNER (CLEAN YOUR PC) -->
-        <div class="hero-banner">
-            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20jasa%20Clean%20Your%20PC%20(250rb)" target="_blank">
-                <img src="images/banner-clean.png" alt="Banner Clean Your PC Dokter Komputer">
-            </a>
+    <!-- Card 2: DK Gamers Choice -->
+    <a href="#gamers" class="category-card">
+      <div class="card-content">
+        <h3>DK GAMERS CHOICE</h3>
+        <p class="subtitle">GAMING PERFORMANCE</p>
+        <div class="image-wrapper">
+          <img src="path-ke-gambar-pc-gaming.png" alt="DK Gamers Choice">
         </div>
+        <div class="tagline">"GAME NO LIMITS!"</div>
+      </div>
+    </a>
 
-        <div style="text-align: center;">
-            <h2 class="section-title">KATALOG PAKET RAKITAN</h2>
+    <!-- Card 3: DK Editor PC -->
+    <a href="#editor" class="category-card">
+      <div class="card-content">
+        <h3>DK EDITOR PC</h3>
+        <p class="subtitle">CREATIVE & RENDERING</p>
+        <div class="image-wrapper">
+          <img src="path-ke-gambar-pc-editor.png" alt="DK Editor PC">
         </div>
+        <div class="tagline">"CREATE WITHOUT BOUNDS!"</div>
+      </div>
+    </a>
 
-        <div class="catalog-grid">
-            
-            <!-- 1. THE LEGEND'S LAST BATTLE --> 
-            <div class="card"> 
-                <img src="images/legend.png" class="card-img" alt="The Legend's Last Battle Xeon Edition"> 
-                <div class="card-body"> 
-                    <div class="card-title">The Legend's Last Battle (Xeon Edition)</div> 
-                    <div class="card-price">IDR 4.999.999</div> 
-                    
-                    <a href="detail-legend-xeon.html" target="_blank" class="btn-detail">
-                        🔍 Click for detail
-                    </a>
-
-                    <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20The%20Legend's%20Last%20Battle%20(4,9jt)" target="_blank" class="btn-wa"> 
-                        💬 Konsultasi / Pesan via WA 
-                    </a> 
-                </div> 
-            </div>
-
-            <!-- 2. GENSHIN IMPACT READY -->
-            <div class="card">
-                <img src="images/genshin.png" class="card-img" alt="Genshin Impact Ready Build">
-                <div class="card-body">
-                    <div class="card-title">Genshin Impact Ready Build</div>
-                    <div class="card-price">IDR 6.899.000</div>
-                    
-                    <a href="detail-genshin.html" target="_blank" class="btn-detail">
-                        🔍 Click for detail
-                    </a>
-
-                    <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Genshin%20Impact%20Ready%20(6,8jt)" target="_blank" class="btn-wa">
-                        💬 Konsultasi / Pesan via WA
-                    </a>
-                </div>
-            </div>
-
-            <!-- 3. BLACKMYTH WUKONG READY -->
-            <div class="card">
-                <img src="images/wukong.png" class="card-img" alt="Black Myth Wukong Ready Build">
-                <div class="card-body">
-                    <div class="card-title">Black Myth Wukong Ready</div>
-                    <div class="card-price">IDR 8.500.000</div>
-                    
-                    <a href="detail-wukong.html" target="_blank" class="btn-detail">
-                        🔍 Click for detail
-                    </a>
-
-                    <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Wukong%20Ready%20(8,5jt)" target="_blank" class="btn-wa">
-                        💬 Konsultasi / Pesan via WA
-                    </a>
-                </div>
-            </div>
-
-            <!-- 4. GTA VI READY -->
-            <div class="card">
-                <img src="images/gtavi.png" class="card-img" alt="GTA VI Ready Build">
-                <div class="card-body">
-                    <div class="card-title">GTA VI Ready Build</div>
-                    <div class="card-price">IDR 15.500.000</div>
-                    
-                    <a href="detail-gtavi.html" target="_blank" class="btn-detail">
-                        🔍 Click for detail
-                    </a>
-
-                    <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20GTA%20VI%20Ready%20(15,5jt)" target="_blank" class="btn-wa">
-                        💬 Konsultasi / Pesan via WA
-                    </a>
-                </div>
-            </div>
-
-            <!-- 5. ROG ULTIMATE BUILD -->
-            <div class="card">
-                <img src="images/rog.png" class="card-img" alt="ROG Ultimate Build">
-                <div class="card-body">
-                    <div class="card-title">ROG Ultimate Build</div>
-                    <div class="card-price">IDR 45.999.999</div>
-                    
-                    <a href="detail-rog.html" target="_blank" class="btn-detail">
-                        🔍 Click for detail
-                    </a>
-
-                    <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20ROG%20Ultimate%20Build" target="_blank" class="btn-wa">
-                        💬 Konsultasi / Pesan via WA
-                    </a>
-                </div>
-            </div>
-
-            <!-- 6. CREATE WITHOUT LIMITS (YT CREATOR) -->
-            <div class="card">
-                <img src="images/creator.png" class="card-img" alt="Professional YouTube Creator PC">
-                <div class="card-body">
-                    <div class="card-title">Professional Creator PC</div>
-                    <div class="card-price">IDR 58.000.000</div>
-                    
-                    <a href="detail-creator.html" target="_blank" class="btn-detail">
-                        🔍 Click for detail
-                    </a>
-
-                    <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Creator%2058jt" target="_blank" class="btn-wa">
-                        💬 Konsultasi / Pesan via WA
-                    </a>
-                </div>
-            </div>
-
+    <!-- Card 4: DK Ultimate -->
+    <a href="#ultimate" class="category-card featured">
+      <div class="card-content">
+        <h3>DK ULTIMATE</h3>
+        <p class="subtitle">EXTREME PERFORMANCE</p>
+        <div class="image-wrapper">
+          <img src="path-ke-gambar-pc-ultimate.png" alt="DK Ultimate">
         </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Dokter Komputer. Workshop: Jatiwaringin / Pondok Gede, Kota Bekasi.</p>
-    </footer>
-
-    <!-- SCRIPT POP-UP AUTOMATIC -->
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.getElementById('promoPopup').classList.add('active');
-            }, 500);
-        });
-
-        function closePopup() {
-            document.getElementById('promoPopup').classList.remove('active');
-        }
-
-        document.getElementById('promoPopup').addEventListener('click', (e) => {
-            if (e.target.id === 'promoPopup') {
-                closePopup();
-            }
-        });
-    </script>
-
-</body>
-</html>
+        <div class="tagline">"THE MAXIMUM POWER!"</div>
+      </div>
+    </a>
+  </div>
+</section>
