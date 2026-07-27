@@ -3,137 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Parts - The Legend's Last Battle (Xeon Edition)</title>
+    <title>Katalog Paket PC Gaming</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
             background-color: #0f1115;
             color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            padding: 30px 20px;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 40px 20px;
         }
-        h1 { color: #ff2a4b; margin-bottom: 10px; }
-        .price { font-size: 1.5rem; font-weight: bold; color: #ff2a4b; margin-bottom: 20px; }
-        .img-box { text-align: center; margin-bottom: 25px; }
-        .img-box img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid #2a2e37; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #181b20; border-radius: 8px; overflow: hidden; }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #2a2e37; }
+
+        /* 1. CONTAINER CONTAINER UTAMA (GRID 2 KOLOM) */
+        .product-grid {
+            max-width: 1200px; /* Diperlebar agar muat 2 kartu */
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Membagi jadi 2 kolom sama besar */
+            gap: 30px; /* Jarak antar kartu */
+        }
+
+        /* 2. CARD SETIAP PRODUK */
+        .product-card {
+            background: #181b20;
+            border: 1px solid #2a2e37;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        h1 { color: #ff2a4b; font-size: 1.5rem; margin-bottom: 8px; }
+        .price { font-size: 1.4rem; font-weight: bold; color: #ff2a4b; margin-bottom: 20px; }
+        
+        .img-box { text-align: center; margin-bottom: 20px; }
+        .img-box img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #2a2e37; }
+
+        h2 { font-size: 1.1rem; margin-bottom: 12px; color: #ddd; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
+        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #2a2e37; }
         th { background-color: #242831; color: #ff2a4b; }
+
         .btn-wa {
-            display: inline-block;
-            margin-top: 25px;
+            display: block;
+            text-align: center;
             background-color: #25d366;
             color: #fff;
-            padding: 12px 24px;
+            padding: 12px;
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
+            transition: background 0.2s ease;
+        }
+        .btn-wa:hover {
+            background-color: #1ebd56;
+        }
+
+        /* RESPONSIVE: Di HP berubah jadi 1 kolom ke bawah */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>The Legend's Last Battle (Xeon Edition)</h1>
-    <div class="price">IDR 4.999.999</div>
+    <div class="product-grid">
 
-    <div class="img-box">
-        <img src="images/legend.png" alt="Build Detail">
+        <!-- PRODUK 1: Xeon Edition -->
+        <div class="product-card">
+            <div>
+                <h1>The Legend's Last Battle (Xeon Edition)</h1>
+                <div class="price">IDR 4.999.999</div>
+
+                <div class="img-box">
+                    <img src="images/legend.png" alt="Build Detail">
+                </div>
+
+                <h2>Spesifikasi Lengkap Parts:</h2>
+                <table>
+                    <tr><th>Komponen</th><th>Spesifikasi / Detail</th></tr>
+                    <tr><td>Processor</td><td>Intel Xeon E3-1230 v3 (4 Core / 8 Threads)</td></tr>
+                    <tr><td>Motherboard</td><td>H81 Series LGA 1150</td></tr>
+                    <tr><td>RAM</td><td>16GB DDR3 Dual Channel</td></tr>
+                    <tr><td>VGA / GPU</td><td>GTX 1660 6GB</td></tr>
+                    <tr><td>Storage</td><td>SSD 256GB High Speed</td></tr>
+                    <tr><td>Power Supply</td><td>550W 80+ Bronze Certified</td></tr>
+                    <tr><td>Casing</td><td>M-ATX Glass Case + 6 White Fan</td></tr>
+                    <tr><td>OS & Tuning</td><td>Windows 10 Custom (Optimized for Gaming)</td></tr>
+                </table>
+            </div>
+
+            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20The%20Legend's%20Last%20Battle%20(4,9jt)" class="btn-wa" target="_blank">
+                💬 Order / Tanya Build Ini via WA
+            </a>
+        </div>
+
+        <!-- PRODUK 2: Genshin Impact Build -->
+        <div class="product-card">
+            <div>
+                <h1>Genshin Impact Ready Build</h1>
+                <div class="price">IDR 6.899.000</div>
+
+                <div class="img-box">
+                    <img src="images/genshin.png" alt="Genshin Build Detail">
+                </div>
+
+                <h2>Spesifikasi Lengkap Parts:</h2>
+                <table>
+                    <tr><th>Komponen</th><th>Spesifikasi / Detail</th></tr>
+                    <tr><td>Processor</td><td>Ryzen 5 5600GT</td></tr>
+                    <tr><td>Motherboard</td><td>A520 Series</td></tr>
+                    <tr><td>RAM</td><td>16GB DDR4 Dual Channel</td></tr>
+                    <tr><td>Storage</td><td>SSD 256GB</td></tr>
+                    <tr><td>Power Supply</td><td>450W 80+ Bronze Certified</td></tr>
+                    <tr><td>Casing</td><td>Case M-ATX + 3x ARGB Fans</td></tr>
+                    <tr><td>OS & Tuning</td><td>Windows 11 Pro Custom (Optimized for Gaming)</td></tr>
+                </table>
+            </div>
+
+            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Genshin%20Impact%20Ready%20(6,8jt)" class="btn-wa" target="_blank">
+                💬 Order / Tanya Build Ini via WA
+            </a>
+        </div>
+
     </div>
-
-    <h2>Spesifikasi Lengkap Parts:</h2>
-    <table>
-        <tr>
-            <th>Komponen</th>
-            <th>Spesifikasi / Detail</th>
-        </tr>
-        <tr>
-            <td>Processor</td>
-            <td>Intel Xeon E3-1230 v3 (4 Core / 8 Threads)</td>
-        </tr>
-        <tr>
-            <td>Motherboard</td>
-            <td>H81 Series LGA 1150</td>
-        </tr>
-        <tr>
-            <td>RAM</td>
-            <td>16GB DDR3 Dual Channel</td>
-        </tr>
-        <tr>
-            <td>VGA / GPU</td>
-            <td>GTX 1660 6GB</td>
-        </tr>
-        <tr>
-            <td>Storage</td>
-            <td>SSD 256GB High Speed</td>
-        </tr>
-        <tr>
-            <td>Power Supply</td>
-            <td>550W 80+ Bronze Certified</td>
-        </tr>
-        <tr>
-            <td>Casing</td>
-            <td>M-ATX Glass Case + 6 White Fan</td>
-        </tr>
-        <tr>
-            <td>OS & Tuning</td>
-            <td>Windows 10 Custom (Optimized for Gaming)</td>
-        </tr>
-    </table>
-
-    <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20The%20Legend's%20Last%20Battle%20(4,9jt)" class="btn-wa" target="_blank">
-        💬 Order / Tanya Build Ini via WA
-    </a>
-
-</body>
-</html>
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Parts - Genshin Impact Ready Build</title>
-    <style>
-        body { background-color: #0f1115; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 30px 20px; max-width: 800px; margin: 0 auto; }
-        h1 { color: #ff2a4b; margin-bottom: 10px; }
-        .price { font-size: 1.5rem; font-weight: bold; color: #ff2a4b; margin-bottom: 20px; }
-        .img-box { text-align: center; margin-bottom: 25px; }
-        .img-box img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid #2a2e37; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #181b20; border-radius: 8px; overflow: hidden; }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #2a2e37; }
-        th { background-color: #242831; color: #ff2a4b; }
-        .btn-wa { display: inline-block; margin-top: 25px; background-color: #25d366; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; }
-    </style>
-</head>
-<body>
-
-    <h1>Genshin Impact Ready Build</h1>
-    <div class="price">IDR 6.899.000</div>
-
-    <div class="img-box">
-        <img src="images/genshin.png" alt="Genshin Build Detail">
-    </div>
-
-    <h2>Spesifikasi Lengkap Parts:</h2>
-    <table>
-        <tr><th>Komponen</th><th>Spesifikasi / Detail</th></tr>
-        <tr><td>Processor</td><td>Ryzen 5 5600GT</td></tr>
-        <tr><td>Motherboard</td><td>A520 Series</td></tr>
-        <tr><td>RAM</td><td>16GB DDR4 Dual Channel</td></tr>
-        <tr><td>Storage</td><td>SSD 256GB </td></tr>
-        <tr><td>Power Supply</td><td>450W 80+ Bronze Certified</td></tr>
-        <tr><td>Casing</td><td>Case M-ATX + 3x ARGB Fans</td></tr>
-        <tr><td>OS & Tuning</td><td>Windows 11 Pro Custom (Optimized for Gaming)</td></tr>
-    </table>
-
-    <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Genshin%20Impact%20Ready%20(6,8jt)" class="btn-wa" target="_blank">
-        💬 Order / Tanya Build Ini via WA
-    </a>
 
 </body>
 </html>
