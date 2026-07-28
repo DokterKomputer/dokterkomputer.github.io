@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Build Request | Dokter Komputer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at center top, #071f2e 0%, #030a10 70%, #010407 100%);
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(8, 18, 27, 0.9);
+      border: 1px solid #102636;
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    h2 { color: #dfb15b; margin-bottom: 10px; text-align: center; }
+    p.sub { color: #7b93a4; font-size: 0.9rem; text-align: center; margin-bottom: 25px; }
+    
+    /* Login Section */
+    .btn-google {
+      width: 100%;
+      background: #ffffff;
+      color: #333;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background 0.3s;
+    }
+    .btn-google:hover { background: #e6e6e6; }
+
+    /* Form Section */
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #102636;
+    }
+    .user-info img { width: 40px; height: 40px; border-radius: 50%; }
+    
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-size: 0.85rem; color: #dfb15b; margin-bottom: 5px; font-weight: bold; }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      background: #030a10;
+      border: 1px solid #102636;
+      border-radius: 6px;
+      color: #fff;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus { border-color: #dfb15b; outline: none; }
+    
+    .btn-submit {
+      width: 100%;
+      background: #dfb15b;
+      color: #030a10;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn-submit:hover { background: #d9232d; color: #fff; }
+    
+    .hidden { display: none; }
+  </style>
+
+  <!-- Firebase Scripts (Compat Version agar mudah di HTML biasa) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Build Request PC</h2>
+    <p class="sub">Konsultasikan rakitan PC impianmu langsung dengan Dokter Komputer</p>
+
+    <!-- BOX 1: TOMBOL LOGIN (Tampil jika belum login) -->
+    <div id="loginSection">
+      <button class="btn-google" onclick="loginWithGoogle()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18">
+        Masuk dengan Google
+      </button>
+    </div>
+
+    <!-- BOX 2: FORM REQUEST (Tampil setelah berhasil login) -->
+    <div id="formSection" class="hidden">
+      <div class="user-info">
+        <img id="userPhoto" src="" alt="Profile">
+        <div>
+          <strong id="userName" style="display:block; font-size: 0.95rem;">-</strong>
+          <span id="userEmail" style="font-size: 0.8rem; color: #7b93a4;">-</span>
+        </div>
+      </div>
+
+      <form id="buildForm" onsubmit="submitRequest(event)">
+        <div class="form-group">
+          <label>Budget Rakit (Rp)</label>
+          <input type="number" id="budget" placeholder="Contoh: 10000000" required>
+        </div>
+
+        <div class="form-group">
+          <label>Kebutuhan Utama</label>
+          <select id="kebutuhan" required>
+            <option value="Gaming">Gaming</option>
+            <option value="Editing / Rendering">Editing / Rendering</option>
+            <option value="Office / Harian">Office / Harian</option>
+            <option value="Streaming / Live">Streaming / Live</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Nomor WhatsApp (Aktif)</label>
+          <input type="tel" id="whatsapp" placeholder="0812xxxxxxx" required>
+        </div>
+
+        <div class="form-group">
+          <label>Catatan Tambahan / Preferensi Part</label>
+          <textarea id="catatan" rows="3" placeholder="Contoh: Mau pakai casing warna putih & cooler RGB..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSubmit">Kirim Request Rakitan</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+// 1. TEMPELKAN FIREBASE CONFIG MILIKMU DI SINI
+    const firebaseConfig = {
+      apiKey: "AIzaSyADUXscGEoTAMEq04yyfLbEGKvnVsj-KE",
+      authDomain: "dokter-komputer-589e3.firebaseapp.com",
+      projectId: "dokter-komputer-589e3",
+      storageBucket: "dokter-komputer-589e3.firebasestorage.app",
+      messagingSenderId: "1064482639681",
+      appId: "1:1064482639681:web:ce3394ee232f80ede85bc0"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    let currentUser = null;
+
+    // Login Google Popup
+    function loginWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).catch(error => {
+        alert("Gagal Login: " + error.message);
+      });
+    }
+
+    // Pantau Status Login User
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        currentUser = user;
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('formSection').classList.remove('hidden');
+        
+        document.getElementById('userName').textContent = user.displayName;
+        document.getElementById('userEmail').textContent = user.email;
+        document.getElementById('userPhoto').src = user.photoURL;
+      } else {
+        document.getElementById('loginSection').classList.remove('hidden');
+        document.getElementById('formSection').classList.add('hidden');
+      }
+    });
+
+    // Simpan Data Request ke Firebase Firestore
+    function submitRequest(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmit');
+      btn.disabled = true;
+      btn.textContent = "Mengirim...";
+
+      db.collection('build_requests').add({
+        uid: currentUser.uid,
+        nama: currentUser.displayName,
+        email: currentUser.email,
+        whatsapp: document.getElementById('whatsapp').value,
+        budget: document.getElementById('budget').value,
+        kebutuhan: document.getElementById('kebutuhan').value,
+        catatan: document.getElementById('catatan').value,
+        status: "Pending",
+        created_at: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then(() => {
+        alert("Request rakitan berhasil dikirim! Dokter Komputer akan memproses spesifikasimu.");
+        document.getElementById('buildForm').reset();
+        btn.disabled = false;
+        btn.textContent = "Kirim Request Rakitan";
+      })
+      .catch(err => {
+        alert("Gagal menyimpan data: " + err.message);
+        btn.disabled = false;
+        btn.textContent = "Kirim Request Rakitan";
+      });
+    }
+  </script>
+</body>
+</html>
