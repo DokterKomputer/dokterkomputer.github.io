@@ -33,8 +33,9 @@
             font-weight: bold;
             letter-spacing: 1px;
             border-bottom: 1px solid #1f2937;
-            z-index: 99;
-            backdrop-filter: blur(5px);
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            text-transform: uppercase;
         }
 
         /* SLIDER CONTAINER */
@@ -44,8 +45,9 @@
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             width: 100vw;
-            height: 100vh;
-            padding-top: 40px; /* Space untuk banner top */
+            min-height: 100vh;
+            padding-top: 45px;
+            padding-bottom: 60px;
         }
 
         .catalog-slider::-webkit-scrollbar { display: none; }
@@ -55,148 +57,215 @@
         .product-slide {
             flex: 0 0 100vw;
             width: 100vw;
-            height: calc(100vh - 40px);
             scroll-snap-align: center;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
         }
 
-        /* SPLIT LAYOUT CONTAINER */
-        .product-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* 50% Gambar, 50% Info */
-            gap: 30px;
+        .container {
             width: 100%;
-            max-width: 1200px;
-            height: 100%;
-            max-height: 820px;
+            max-width: 1100px;
             background: #0d1117;
             border: 1px solid #1f2937;
             border-radius: 16px;
-            padding: 25px;
+            padding: 30px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            align-items: center;
+            position: relative;
         }
 
-        /* POSTER BANNER (KIRI) */
-        .poster-box {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #05070a;
-            border-radius: 12px;
-            border: 1px solid #1f2937;
-            overflow: hidden;
-            padding: 10px;
+        /* HEADER SECTION */
+        .header {
+            border-bottom: 2px dashed #1f2937;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            text-align: center;
         }
-
-        .poster-box img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-            filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.7));
-            transition: transform 0.3s ease;
-        }
-
-        .poster-box img:hover {
-            transform: scale(1.02);
-        }
-
-        /* INFO & ORDER (KANAN) */
-        .info-box {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            padding: 10px 0;
-        }
-
-        .brand-title {
-            color: #ff2a4b;
+        .brand {
             font-size: 0.85rem;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
         }
 
-        .product-name {
+        .main-title {
             font-size: 2.2rem;
             font-weight: 900;
             color: #ffffff;
-            margin: 5px 0 15px 0;
-            line-height: 1.2;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        .badge-edition {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 4px;
+            margin-top: 8px;
+            letter-spacing: 2px;
         }
 
-        /* HIGHLIGHT SPEC MINI TABLE */
-        .spec-list {
-            background: #161c24;
-            border-radius: 10px;
+        .tagline {
+            color: #8b98a7;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* MAIN CONTENT SPLIT GRID */
+        .main-content-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .left-col, .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* GAMBAR BUILD PC */
+        .build-image-container {
+            text-align: center;
+            background: #07090c;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
             padding: 15px;
-            border-left: 4px solid #ff2a4b;
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .build-image-container img {
+            max-width: 100%;
+            max-height: 420px;
+            object-fit: contain;
+            border-radius: 8px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6));
         }
 
-        .spec-item {
+        .section-title {
+            background: linear-gradient(90deg, #161b22 0%, #0d1117 100%);
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 8px 14px;
+            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+        }
+
+        /* TABLE SPESIFIKASI */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #161b22;
+            vertical-align: top;
+        }
+        td.label {
+            color: #8b98a7;
+            font-weight: bold;
+            width: 32%;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td.val {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* EXTRA INFO CARD (BENCHMARK/FEATURE) */
+        .info-card {
+            background: #11161d;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 18px;
+        }
+        .info-item {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px solid #222934;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #1a222d;
+            padding-bottom: 4px;
+        }
+        .info-label { color: #8b98a7; }
+        .info-val { font-weight: 800; }
+
+        /* ACTION BOX */
+        .action-box {
+            background: linear-gradient(135deg, #161c24 0%, #0d1117 100%);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
         }
 
-        .spec-item:last-child { border-bottom: none; }
-        .spec-label { color: #8b98a7; font-weight: 600; }
-        .spec-val { color: #fff; font-weight: bold; }
-
-        /* PRICE & CTA */
         .price-tag {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            color: #ff2a4b;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+        }
+
+        .action-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        
+        .action-sub {
+            color: #a0aab8;
+            font-size: 0.82rem;
+            margin: 8px 0 15px 0;
         }
 
         .btn-wa {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            display: block;
+            width: 100%;
             background-color: #25d366;
             color: #ffffff;
             font-weight: 800;
-            font-size: 1.1rem;
-            padding: 16px;
-            border-radius: 10px;
+            font-size: 1rem;
+            padding: 14px;
+            border-radius: 8px;
             text-decoration: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            text-align: center;
+            transition: background 0.2s ease;
+        }
+        .btn-wa:hover { background-color: #1ebd56; }
+
+        /* FOOTER FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            text-align: center;
+            font-size: 0.72rem;
+            color: #8b98a7;
+            border-top: 1px solid #161b22;
+            padding-top: 15px;
+            margin-top: 10px;
         }
 
-        .btn-wa:hover {
-            background-color: #1ebd56;
-            transform: translateY(-2px);
-        }
-
-        /* NAVIGATION DOTS */
+        /* DOTS NAVIGATION */
         .slider-dots {
             position: fixed;
-            bottom: 15px;
+            bottom: 12px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
-            background: rgba(13, 17, 23, 0.9);
+            background: rgba(13, 17, 23, 0.95);
             padding: 8px 16px;
             border-radius: 20px;
             border: 1px solid #1f2937;
-            z-index: 99;
+            z-index: 100;
         }
-
         .dot {
             width: 10px;
             height: 10px;
@@ -204,37 +273,57 @@
             background: #2a2e37;
             transition: 0.3s;
         }
-
         .dot.active {
-            background: #ff2a4b;
             width: 26px;
             border-radius: 10px;
         }
 
-        /* RESPONSIVE UNTUK HP / TABLET VERTIKAL */
+        /* ================= COLOR THEMES ================= */
+        /* Theme 1: Legend (Red/Crimson) */
+        .theme-legend .brand { color: #ff2a4b; }
+        .theme-legend .badge-edition { border: 1px solid #ff2a4b; color: #ff2a4b; }
+        .theme-legend .section-title { color: #ff2a4b; border-left: 3px solid #ff2a4b; }
+        .theme-legend .info-val { color: #ff2a4b; }
+        .theme-legend .action-box { border: 1px solid #ff2a4b; }
+        .theme-legend .price-tag { color: #ff2a4b; }
+
+        /* Theme 2: Genshin (Cyan/Blue) */
+        .theme-genshin .brand { color: #00d2ff; }
+        .theme-genshin .badge-edition { border: 1px solid #00d2ff; color: #00d2ff; }
+        .theme-genshin .section-title { color: #00d2ff; border-left: 3px solid #00d2ff; }
+        .theme-genshin .info-val { color: #00d2ff; }
+        .theme-genshin .action-box { border: 1px solid #00d2ff; }
+        .theme-genshin .price-tag { color: #00d2ff; }
+
+        /* Theme 3: GTA VI (Magenta/Neon Pink) */
+        .theme-gtavi .brand { color: #ff007f; }
+        .theme-gtavi .badge-edition { border: 1px solid #ff007f; color: #ff007f; }
+        .theme-gtavi .section-title { color: #ff007f; border-left: 3px solid #ff007f; }
+        .theme-gtavi .info-val { color: #ff007f; }
+        .theme-gtavi .action-box { border: 1px solid #ff007f; }
+        .theme-gtavi .price-tag { color: #ff007f; }
+
+        /* Theme 4: Wukong (Amber/Gold) */
+        .theme-wukong .brand { color: #ffb700; }
+        .theme-wukong .badge-edition { border: 1px solid #ffb700; color: #ffb700; }
+        .theme-wukong .section-title { color: #ffb700; border-left: 3px solid #ffb700; }
+        .theme-wukong .info-val { color: #ffb700; }
+        .theme-wukong .action-box { border: 1px solid #ffb700; }
+        .theme-wukong .price-tag { color: #ffb700; }
+
+        /* Dot Active Colors */
+        .dot[data-slide="0"].active { background: #ff2a4b; }
+        .dot[data-slide="1"].active { background: #00d2ff; }
+        .dot[data-slide="2"].active { background: #ff007f; }
+        .dot[data-slide="3"].active { background: #ffb700; }
+
+        /* RESPONSIVE DESIGN UNTUK HP */
         @media (max-width: 900px) {
-            .catalog-slider {
-                height: auto;
-            }
-            .product-slide {
-                height: auto;
-                padding: 15px;
-                margin-bottom: 40px;
-            }
-            .product-container {
-                grid-template-columns: 1fr; /* Jadi 1 kolom di HP */
-                max-height: none;
-                height: auto;
-            }
-            .poster-box {
-                height: 500px; /* Poster di HP tinggi dan jelas */
-            }
-            .product-name {
-                font-size: 1.6rem;
-            }
-            .price-tag {
-                font-size: 1.8rem;
-            }
+            .main-content-grid { grid-template-columns: 1fr; }
+            .main-title { font-size: 1.6rem; }
+            .price-tag { font-size: 1.8rem; }
+            .container { padding: 18px; }
+            .features { grid-template-columns: repeat(2, 1fr); gap: 12px; }
         }
     </style>
 </head>
@@ -246,111 +335,288 @@
 
     <div class="catalog-slider" id="slider">
 
-        <!-- ================= PRODUK 1 ================= -->
+        <!-- ========================================== -->
+        <!-- PRODUK 1: THE LEGEND'S LAST BATTLE         -->
+        <!-- ========================================== -->
         <div class="product-slide">
-            <div class="product-container">
-                <!-- KIRI: POSTER BESAR -->
-                <div class="poster-box">
-                    <img src="images/legend.png" alt="The Legend's Last Battle Poster">
+            <div class="container theme-legend">
+                <div class="header">
+                    <div class="brand">Dokter Komputer Lab</div>
+                    <h1 class="main-title">THE LEGEND'S LAST BATTLE</h1>
+                    <span class="badge-edition">XEON EDITION • 2026</span>
+                    <p class="tagline">MASIH SANGGUP MENANTANG GAME AAA MODERN • 1080P OPTIMIZED</p>
                 </div>
-                <!-- KANAN: RINGKASAN & ORDER -->
-                <div class="info-box">
-                    <div>
-                        <div class="brand-title">Dokter Komputer Lab</div>
-                        <h1 class="product-name">THE LEGEND'S LAST BATTLE</h1>
-                        
-                        <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Processor</span><span class="spec-val">Intel Xeon E3-1230 v3</span></div>
-                            <div class="spec-item"><span class="spec-label">VGA / GPU</span><span class="spec-val">GTX 1660 6GB</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM</span><span class="spec-val">16GB DDR3 Dual Channel</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val">SSD 256GB High Speed</span></div>
-                            <div class="spec-item"><span class="spec-label">Power Supply</span><span class="spec-val">550W 80+ Bronze</span></div>
+
+                <div class="main-content-grid">
+                    <!-- KOLOM KIRI (GAMBAR & BENCHMARK GAME) -->
+                    <div class="left-col">
+                        <div class="build-image-container">
+                            <img src="images/legend.png" alt="The Legend's Last Battle Build">
+                        </div>
+
+                        <div>
+                            <div class="section-title">TESTED PERFORMANCE @1080P</div>
+                            <div class="info-card">
+                                <div class="info-item"><span class="info-label">Black Myth: Wukong (Medium)</span><span class="info-val">55-65 FPS</span></div>
+                                <div class="info-item"><span class="info-label">Ghost of Tsushima (High)</span><span class="info-val">60-75 FPS</span></div>
+                                <div class="info-item"><span class="info-label">GTA V Enhanced (Very High)</span><span class="info-val">90-120 FPS</span></div>
+                                <div class="info-item"><span class="info-label">Cyberpunk 2077 (Medium)</span><span class="info-val">55-70 FPS</span></div>
+                                <div class="info-item"><span class="info-label">Forza Horizon 5 (Ultra)</span><span class="info-val">70-90 FPS</span></div>
+                                <div class="info-item"><span class="info-label">Valorant (High) / CS2 (Comp)</span><span class="info-val">220+ / 170+ FPS</span></div>
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        <div class="price-tag">IDR 4.999.999</div>
-                        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20The%20Legend's%20Last%20Battle%20(4,9jt)" class="btn-wa" target="_blank">
-                            💬 Order / Konsultasi via WA
-                        </a>
+                    <!-- KOLOM KANAN (FULL SPEK & PRICING) -->
+                    <div class="right-col">
+                        <div>
+                            <div class="section-title">FULL HARDWARE SPECIFICATIONS</div>
+                            <table>
+                                <tr><td class="label">Processor</td><td class="val">Intel Xeon E3-1230 v3 (4 Cores / 8 Threads 3.30GHz)</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">H81 LGA 1150 (Stable & Reliable)</td></tr>
+                                <tr><td class="label">RAM</td><td class="val">16GB DDR3 1600MHz Dual Channel</td></tr>
+                                <tr><td class="label">VGA / GPU</td><td class="val">GeForce GTX 1660 6GB GDDR5 192-Bit</td></tr>
+                                <tr><td class="label">Storage</td><td class="val">SSD 256GB SATA III 6Gb/s</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">Thermaltake TR2 S 550W 80+ Bronze</td></tr>
+                                <tr><td class="label">Case</td><td class="val">Aquarium Clean White + 6 Fan White</td></tr>
+                                <tr><td class="label">OS & Software</td><td class="val">Windows 11 Pro Original + Office 2024 Lifetime</td></tr>
+                            </table>
+                        </div>
+
+                        <div class="action-box">
+                            <div class="price-tag">IDR 4.999.999</div>
+                            <div class="action-title">LEGENDS NEVER DIE, THEY JUST KEEP FIGHTING!</div>
+                            <p class="action-sub">Lolos Burn Test 2 Jam & Stress Test, Thermal Test Aman, Driver Installed, Plug & Play. Garansi 3 Tahun Service!</p>
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20The%20Legend's%20Last%20Battle%20(4,9jt)" class="btn-wa" target="_blank">
+                                💬 Order / Konsultasi via WA
+                            </a>
+                        </div>
                     </div>
+                </div>
+
+                <div class="features">
+                    <div>🔥 Burn Test 2 Hours</div>
+                    <div>🛡️ Garansi 3 Thn Service</div>
+                    <div>💻 Win 11 + Office Lifetime</div>
+                    <div>🎧 Free Support & Consult</div>
                 </div>
             </div>
         </div>
 
-        <!-- ================= PRODUK 2 ================= -->
+        <!-- ========================================== -->
+        <!-- PRODUK 2: GENSHIN IMPACT READY BUILD       -->
+        <!-- ========================================== -->
         <div class="product-slide">
-            <div class="product-container">
-                <!-- KIRI: POSTER BESAR -->
-                <div class="poster-box">
-                    <img src="images/genshin.png" alt="Genshin Impact Ready Poster">
+            <div class="container theme-genshin">
+                <div class="header">
+                    <div class="brand">Dokter Komputer Lab</div>
+                    <h1 class="main-title">GENSHIN IMPACT READY BUILD</h1>
+                    <span class="badge-edition">BUILD SMART • PLAY LIMITLESS</span>
+                    <p class="tagline">GAMING SMOOTH, ADVENTURE ON! • FUTURE UPGRADE READY</p>
                 </div>
-                <!-- KANAN: RINGKASAN & ORDER -->
-                <div class="info-box">
-                    <div>
-                        <div class="brand-title">Dokter Komputer Lab</div>
-                        <h1 class="product-name">GENSHIN IMPACT READY BUILD</h1>
-                        
-                        <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Processor</span><span class="spec-val">AMD Ryzen 5 5600GT</span></div>
-                            <div class="spec-item"><span class="spec-label">Motherboard</span><span class="spec-val">A520 Series</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM</span><span class="spec-val">16GB DDR4 Dual Channel</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val">SSD 256GB High Speed</span></div>
-                            <div class="spec-item"><span class="spec-label">Power Supply</span><span class="spec-val">450W 80+ Bronze</span></div>
+
+                <div class="main-content-grid">
+                    <!-- KOLOM KIRI (GAMBAR & HIGHLIGHT FITUR) -->
+                    <div class="left-col">
+                        <div class="build-image-container">
+                            <img src="images/genshin.png" alt="Genshin Impact Ready Build">
+                        </div>
+
+                        <div>
+                            <div class="section-title">GAME COMPATIBILITY</div>
+                            <div class="info-card">
+                                <div class="info-item"><span class="info-label">Genshin Impact</span><span class="info-val">Smooth 60 FPS Stable</span></div>
+                                <div class="info-item"><span class="info-label">Honkai: Star Rail</span><span class="info-val">Ready & Smooth</span></div>
+                                <div class="info-item"><span class="info-label">Valorant / League of Legends</span><span class="info-val">High FPS Ready</span></div>
+                                <div class="info-item"><span class="info-label">Dota 2 / Roblox</span><span class="info-val">Ready To Play</span></div>
+                                <div class="info-item"><span class="info-label">Power Consumption</span><span class="info-val">Efficiency Low Power</span></div>
+                                <div class="info-item"><span class="info-label">Upgrade Ability</span><span class="info-val">Dedicated GPU Ready</span></div>
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        <div class="price-tag">IDR 6.899.000</div>
-                        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Genshin%20Impact%20Ready%20(6,8jt)" class="btn-wa" target="_blank">
-                            💬 Order / Konsultasi via WA
-                        </a>
+                    <!-- KOLOM KANAN (FULL SPEK & PRICING) -->
+                    <div class="right-col">
+                        <div>
+                            <div class="section-title">FULL HARDWARE SPECIFICATIONS</div>
+                            <table>
+                                <tr><td class="label">Processor</td><td class="val">AMD Ryzen 5 5600GT (6 Core / 12 Thread, Up to 4.6GHz)</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">Colorful Battle AXE A520M-K (Stable Performance)</td></tr>
+                                <tr><td class="label">RAM</td><td class="val">16GB (2x8GB) DDR4 3600MHz T-Force Vulcan Z (Dual Channel)</td></tr>
+                                <tr><td class="label">Storage</td><td class="val">SSD NVMe M.2 256GB High Speed Fast Boot</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">Segotep AN400W 80+ Efficiency (Flat Cable Design)</td></tr>
+                                <tr><td class="label">Casing & Fan</td><td class="val">Paradox Gaming PC Case + Airflow Optimal Fan (Tempered Glass)</td></tr>
+                                <tr><td class="label">OS & Software</td><td class="val">Windows 11 Original + Driver Lengkap + Office Original</td></tr>
+                            </table>
+                        </div>
+
+                        <div class="action-box">
+                            <div class="price-tag">IDR 6.899.000</div>
+                            <div class="action-title">RAKIT RAPI, DINGIN, SIAP PAKAI!</div>
+                            <p class="action-sub">Lolos Full Test & Stress Test. Termasuk Garansi Toko & Garansi Service 3 Tahun. Free Support Install & Konsultasi!</p>
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Genshin%20Impact%20Ready%20(6,8jt)" class="btn-wa" target="_blank">
+                                💬 Order / Konsultasi via WA
+                            </a>
+                        </div>
                     </div>
+                </div>
+
+                <div class="features">
+                    <div>🔧 Rakit Rapi & Profesional</div>
+                    <div>🧪 Full Test & Stress Test</div>
+                    <div>🛡️ Garansi Service 3 Thn</div>
+                    <div>⚡ Low Power Consumption</div>
                 </div>
             </div>
         </div>
 
-        <!-- ================= PRODUK 3 ================= -->
+        <!-- ========================================== -->
+        <!-- PRODUK 3: GTA VI READY BUILD               -->
+        <!-- ========================================== -->
         <div class="product-slide">
-            <div class="product-container">
-                <!-- KIRI: POSTER BESAR -->
-                <div class="poster-box">
-                    <img src="images/gtavi.png" alt="GTA VI Ready Build Poster">
+            <div class="container theme-gtavi">
+                <div class="header">
+                    <div class="brand">Dokter Komputer Lab</div>
+                    <h1 class="main-title">GTA VI READY BUILD</h1>
+                    <span class="badge-edition">NEXT GEN OPEN WORLD • VICE CITY EDITION</span>
+                    <p class="tagline">NEXT LEVEL PERFORMANCE • 1080P HIGH SETTINGS EXPERIENCE</p>
                 </div>
-                <!-- KANAN: RINGKASAN & ORDER -->
-                <div class="info-box">
-                    <div>
-                        <div class="brand-title">Dokter Komputer Lab</div>
-                        <h1 class="product-name">GTA VI READY BUILD</h1>
-                        
-                        <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Processor</span><span class="spec-val">AMD Ryzen 7 5700X</span></div>
-                            <div class="spec-item"><span class="spec-label">VGA / GPU</span><span class="spec-val">RX 6700XT 12GB GDDR6</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM</span><span class="spec-val">16GB (2x8GB) DDR4</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val">NVMe M.2 SSD 1TB</span></div>
-                            <div class="spec-item"><span class="spec-label">Cooling & Case</span><span class="spec-val">360mm AIO + Aquarium Case</span></div>
+
+                <div class="main-content-grid">
+                    <!-- KOLOM KIRI (GAMBAR & HIGHLIGHT ADVANTAGE) -->
+                    <div class="left-col">
+                        <div class="build-image-container">
+                            <img src="images/gtavi.png" alt="GTA VI Ready Build">
+                        </div>
+
+                        <div>
+                            <div class="section-title">PACKAGE HIGHLIGHTS</div>
+                            <div class="info-card">
+                                <div class="info-item"><span class="info-label">Part Condition</span><span class="info-val">100% Parts Baru</span></div>
+                                <div class="info-item"><span class="info-label">Part Guarantee</span><span class="info-val">Semua Parts Bergaransi</span></div>
+                                <div class="info-item"><span class="info-label">System OS</span><span class="info-val">Windows 11 Pro Optimized</span></div>
+                                <div class="info-item"><span class="info-label">Gaming Level</span><span class="info-val">1080p GTA VI Ready</span></div>
+                                <div class="info-item"><span class="info-label">Craftsmanship</span><span class="info-val">Built by Dokter Komputer</span></div>
+                                <div class="info-item"><span class="info-label">Liquid Cooling</span><span class="info-val">360mm ARGB AIO Cooler</span></div>
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        <div class="price-tag">IDR 15.500.000</div>
-                        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20GTA%20VI%20Ready%20(15,5jt)" class="btn-wa" target="_blank">
-                            💬 Order / Konsultasi via WA
-                        </a>
+                    <!-- KOLOM KANAN (FULL SPEK & PRICING) -->
+                    <div class="right-col">
+                        <div>
+                            <div class="section-title">FULL HARDWARE SPECIFICATIONS</div>
+                            <table>
+                                <tr><td class="label">Processor</td><td class="val">AMD Ryzen 7 5700X (8 Core / 16 Thread)</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">MSI B550M-A PRO (AMD B550 / PCIe 4.0)</td></tr>
+                                <tr><td class="label">VGA / GPU</td><td class="val">AMD Radeon RX 6700 XT 12GB GDDR6 192-Bit</td></tr>
+                                <tr><td class="label">Memory</td><td class="val">16GB DDR4 3600MHz Dual Channel</td></tr>
+                                <tr><td class="label">Storage</td><td class="val">NVMe M.2 1TB PCIe 4.0 High Speed</td></tr>
+                                <tr><td class="label">Cooler</td><td class="val">DeepCool LE720 ARGB 360mm AIO Liquid Cooler</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">DeepCool PF550X 550W 80+ Bronze</td></tr>
+                                <tr><td class="label">Case</td><td class="val">Airflow Case O11 Style Design</td></tr>
+                            </table>
+                        </div>
+
+                        <div class="action-box">
+                            <div class="price-tag">Rp 15.500.000</div>
+                            <div class="action-title">SEMUA PARTS BARU & BERGARANSI RESMI!</div>
+                            <p class="action-sub">Termasuk Jasa Rakit Rapi, Cable Management, BIOS Tuning, Setting Windows Optimized. Siap Libas Game Berat!</p>
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20GTA%20VI%20Ready%20(15,5jt)" class="btn-wa" target="_blank">
+                                💬 Order / Konsultasi via WA
+                            </a>
+                        </div>
                     </div>
+                </div>
+
+                <div class="features">
+                    <div>📦 100% Parts Baru</div>
+                    <div>🛡️ Garansi Resmi Reseller</div>
+                    <div>⚙️ Windows 11 Pro Tuned</div>
+                    <div>🎮 1080p High Performance</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PRODUK 4: BLACK MYTH WUKONG READY          -->
+        <!-- ========================================== -->
+        <div class="product-slide">
+            <div class="container theme-wukong">
+                <div class="header">
+                    <div class="brand">Dokter Komputer Lab</div>
+                    <h1 class="main-title">BLACK MYTH WUKONG READY!</h1>
+                    <span class="badge-edition">BUILD SMART • PERFORMANCE MAXIMIZED</span>
+                    <p class="tagline">SIAP TEMPUR DI DUNIA PARA YAOGUAI! • QUALITY ASSURED</p>
+                </div>
+
+                <div class="main-content-grid">
+                    <!-- KOLOM KIRI (GAMBAR & HIGHLIGHT BONUS) -->
+                    <div class="left-col">
+                        <div class="build-image-container">
+                            <img src="images/wukong.png" alt="Black Myth Wukong Ready Build">
+                        </div>
+
+                        <div>
+                            <div class="section-title">BONUS & TESTING REPORT</div>
+                            <div class="info-card">
+                                <div class="info-item"><span class="info-label">Bonus Hardware</span><span class="info-val">2x Gamepad Dual Vibration USB</span></div>
+                                <div class="info-item"><span class="info-label">Software Bundle</span><span class="info-val">Adobe Creative Cloud Resmi (3 Bulan)</span></div>
+                                <div class="info-item"><span class="info-label">Testing Status</span><span class="info-val">Burn Test & Stress Test LOLOS</span></div>
+                                <div class="info-item"><span class="info-label">Game Pre-Installed</span><span class="info-val">Game AAA Terinstal Siap Main</span></div>
+                                <div class="info-item"><span class="info-label">System OS</span><span class="info-val">Windows 11 Atlas OS Optimized</span></div>
+                                <div class="info-item"><span class="info-label">Safety</span><span class="info-val">Packing Aman Sampai Tujuan</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KOLOM KANAN (FULL SPEK & PRICING) -->
+                    <div class="right-col">
+                        <div>
+                            <div class="section-title">FULL HARDWARE SPECIFICATIONS</div>
+                            <table>
+                                <tr><td class="label">Processor</td><td class="val">AMD Ryzen 5 3600 (High Performance 6-Core)</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">Gigabyte B450M K (Ultra Durable)</td></tr>
+                                <tr><td class="label">VGA / GPU</td><td class="val">Radeon RX 6600 8GB GDDR6</td></tr>
+                                <tr><td class="label">RAM</td><td class="val">16GB (2x8GB) DDR4 3600MHz T-Force Delta RGB</td></tr>
+                                <tr><td class="label">Storage</td><td class="val">Kingston A400 480GB SATA III SSD</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">Digital Alliance PBZ550 550W 80+ Bronze Full Modular</td></tr>
+                                <tr><td class="label">Casing</td><td class="val">Inforce Kraken White + 3x Fan ARGB</td></tr>
+                                <tr><td class="label">OS & Software</td><td class="val">Win 11 Atlas OS + Driver Updated + Office Original</td></tr>
+                            </table>
+                        </div>
+
+                        <div class="action-box">
+                            <div class="price-tag">IDR 8.500.000</div>
+                            <div class="action-title">SIAP PAKAI, LANGSUNG COLOK DAN GUNAKAN!</div>
+                            <p class="action-sub">Sudah termasuk 2x Stik Gamepad USB Dual Vibration & Adobe Creative Cloud 3 Bulan. Garansi Toko 1 Bulan & Free Support!</p>
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Black%20Myth%20Wukong%20Ready%20(8,5jt)" class="btn-wa" target="_blank">
+                                💬 Order / Konsultasi via WA
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <div>🎮 Free 2x Gamepad</div>
+                    <div>🎨 Free Adobe CC 3 Bln</div>
+                    <div>🛡️ Garansi Toko 1 Bulan</div>
+                    <div>📦 Packing Aman Sampai Tujuan</div>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- DOTS -->
+    <!-- DOTS NAVIGASI -->
     <div class="slider-dots">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+        <div class="dot" data-slide="2"></div>
+        <div class="dot" data-slide="3"></div>
     </div>
 
+    <!-- JS UNTUK UPDATE DOTS -->
     <script>
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
