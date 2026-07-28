@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Doctor's Choice - Office Edition | Dokter Komputer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d0f12;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 30px 15px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #14171d;
+            border: 1px solid #282d37;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* HEADER SECTION */
+        .header {
+            border-bottom: 2px solid #282d37;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .brand {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #e63946;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .main-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-top: 5px;
+        }
+        .badge-edition {
+            display: inline-block;
+            background-color: #d4a373;
+            color: #000;
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+        .tagline {
+            color: #a0aab8;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        /* GRID CONTENT (SPESIFIKASI & KELENGKAPAN) */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            background-color: #1f242e;
+            color: #d4a373;
+            font-size: 0.9rem;
+            font-weight: 800;
+            padding: 8px 14px;
+            border-left: 4px solid #d4a373;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* TABLE SPESIFIKASI */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #222731;
+            vertical-align: top;
+        }
+        td.label {
+            color: #7d8b9b;
+            font-weight: bold;
+            width: 35%;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        td.val {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* PAKET TERMASUK LIST */
+        .bundle-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .bundle-item {
+            background: #1a1e27;
+            border: 1px solid #282d37;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .bundle-item h4 {
+            font-size: 0.85rem;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        .bundle-item p {
+            font-size: 0.75rem;
+            color: #8b98a7;
+        }
+        .bundle-item .highlight {
+            color: #25d366;
+            font-weight: bold;
+        }
+
+        /* HARGA & ACTION */
+        .price-box {
+            background: linear-gradient(135deg, #1f242e 0%, #15181f 100%);
+            border: 1px solid #333a48;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .price-label {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #d4a373;
+            letter-spacing: 1.5px;
+        }
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 5px 0 15px 0;
+        }
+
+        .btn-wa {
+            display: block;
+            width: 100%;
+            background-color: #25d366;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1rem;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.2s ease;
+        }
+        .btn-wa:hover {
+            background-color: #1ebd56;
+        }
+
+        /* FOOTER FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #7d8b9b;
+            border-top: 1px solid #222731;
+            padding-top: 15px;
+        }
+
+        /* RESPONSIVE DESIGN UNTUK HP */
+        @media (max-width: 650px) {
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+            .bundle-list {
+                grid-template-columns: 1fr;
+            }
+            .features {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .main-title {
+                font-size: 1.8rem;
+            }
+            .price-amount {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="brand">Dokter Komputer</div>
+            <h1 class="main-title">THE DOCTOR'S CHOICE</h1>
+            <span class="badge-edition">OFFICE EDITION</span>
+            <p class="tagline">Everything You Need. One Package. (Siap Pakai, Tinggal Colok!)</p>
+        </div>
+
+        <!-- GRID SPESIFIKASI & KELENGKAPAN -->
+        <div class="specs-grid">
+            
+            <!-- KOLOM SPESIFIKASI PC -->
+            <div>
+                <div class="section-title">SPESIFIKASI PC</div>
+                <table>
+                    <tr>
+                        <td class="label">Processor</td>
+                        <td class="val">Intel Core i3-12100 <br><small style="color:#7d8b9b">(3.3GHz Up To 4.3GHz - Box LGA 1700)</small></td>
+                    </tr>
+                    <tr>
+                        <td class="label">Motherboard</td>
+                        <td class="val">H610M-H V1 (LGA 1700)</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Memory</td>
+                        <td class="val">DDR4 4GB 3200MHz (Dual Channel Ready)</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Storage 1</td>
+                        <td class="val">SSD 256GB SATA III <small style="color:#7d8b9b">(Speed up to 520MB/s)</small></td>
+                    </tr>
+                    <tr>
+                        <td class="label">Storage 2</td>
+                        <td class="val">Seagate 1TB SATA3 (Garansi 1 Thn)</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Power Supply</td>
+                        <td class="val">PCCooler KF450 450W 80+ White</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Casing</td>
+                        <td class="val">Office Case Black</td>
+                    </tr>
+                    <tr>
+                        <td class="label">OS Installed</td>
+                        <td class="val">Windows 11 Trial (Siap Upgrade)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- KOLOM PAKET KELENGKAPAN -->
+            <div>
+                <div class="section-title">PAKET SUDAH TERMASUK</div>
+                <div class="bundle-list">
+                    <div class="bundle-item">
+                        <h4>SAMSUNG 24"</h4>
+                        <p>IPS FHD 120Hz Monitor</p>
+                    </div>
+                    <div class="bundle-item">
+                        <h4>LOGITECH MK295</h4>
+                        <p>Silent Wireless Keyboard & Mouse</p>
+                    </div>
+                    <div class="bundle-item">
+                        <h4>ERGONOMIC CHAIR</h4>
+                        <p class="highlight">Office Mesh Chair</p>
+                    </div>
+                    <div class="bundle-item">
+                        <h4>RAKIT PROFESIONAL</h4>
+                        <p>Instalasi, Driver & System Setup</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PRICING & ORDER ACTION -->
+        <div class="price-box">
+            <div class="price-label">SPECIAL PACKAGE PRICE</div>
+            <div class="price-amount">IDR 9.000.000</div>
+            
+            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Office%20Edition%20(9%20Juta)" class="btn-wa" target="_blank">
+                💬 Order / Tanya Paket Ini via WhatsApp
+            </a>
+        </div>
+
+        <!-- FOOTER JAMINAN -->
+        <div class="features">
+            <div>🛡️ Garansi Komponen Berlaku</div>
+            <div>🎧 After Sales Support</div>
+            <div>✅ Quality Check Sebelum Kirim</div>
+        </div>
+    </div>
+
+</body>
+</html>
