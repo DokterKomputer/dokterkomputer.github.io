@@ -556,6 +556,74 @@
       } 
     }); 
   </script> 
+  
+<!-- Floating Shortcut Request PC Impian -->
+  <a href="build-request.html" class="request-pc-float">
+    <img src="images/icon-build.png" alt="Build Request Icon">
+    <span>Request PC Impian mu Disini</span>
+  </a>
 
+  <style>
+    /* Styling Tombol Melayang Pojok Kanan Atas */
+    .request-pc-float {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      background: rgba(7, 31, 46, 0.85);
+      border: 1px solid #dfb15b;
+      padding: 8px 12px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+      max-width: 110px;
+      text-align: center;
+    }
+
+    .request-pc-float:hover {
+      transform: translateY(3px) scale(1.03);
+      border-color: #d9232d;
+      box-shadow: 0 6px 20px rgba(217, 35, 45, 0.4);
+    }
+
+    .request-pc-float img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 4px;
+    }
+
+    .request-pc-float span {
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.2px;
+    }
+
+    /* Penyesuaian Ukuran di Layar HP */
+    @media (max-width: 576px) {
+      .request-pc-float {
+        top: 15px;
+        right: 12px;
+        padding: 6px 8px;
+        max-width: 95px;
+      }
+      .request-pc-float img {
+        width: 34px;
+        height: 34px;
+      }
+      .request-pc-float span {
+        font-size: 0.62rem;
+      }
+    }
+  </style>
+  
 </body> 
 </html>
