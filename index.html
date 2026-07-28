@@ -1,561 +1,567 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dokter Komputer | Spesialis Rakit & Servis PC</title>
-  <style>
-    /* Reset & Base Styling */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<!DOCTYPE html> 
+<html lang="id"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Dokter Komputer | Spesialis Rakit & Servis PC</title> 
+  <style> 
+    /* Reset & Base Styling */ 
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    } 
     
-    /* Background mengacu gradasi Dokter Komputer */
-    body {
-      background: radial-gradient(circle at center top, #071f2e 0%, #030a10 70%, #010407 100%);
-      background-attachment: fixed;
-      color: #ffffff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+    /* Background mengacu gradasi Dokter Komputer */ 
+    body { 
+      background: radial-gradient(circle at center top, #071f2e 0%, #030a10 70%, #010407 100%); 
+      background-attachment: fixed; 
+      color: #ffffff; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      line-height: 1.6; 
+      min-height: 100vh; 
+    } 
 
-    /* Container Utama */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 30px 20px 50px 20px;
-    }
+    /* Container Utama */ 
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 30px 20px 50px 20px; 
+    } 
 
-    /* ========================================== */
-    /* STYLING HEADER LOGO                        */
-    /* ========================================== */
-    .brand-header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+    /* ========================================== */ 
+    /* STYLING HEADER LOGO                        */ 
+    /* ========================================== */ 
+    .brand-header { 
+      text-align: center; 
+      margin-bottom: 25px; 
+    } 
     
-    .brand-logo {
-      max-width: 180px;
-      height: auto;
-      display: block;
-      margin: 0 auto 15px auto;
-      mix-blend-mode: screen; 
-      filter: drop-shadow(0 0 12px rgba(223, 177, 91, 0.3));
-    }
+    .brand-logo { 
+      max-width: 180px; 
+      height: auto; 
+      display: block; 
+      margin: 0 auto 15px auto; 
+      mix-blend-mode: screen;  
+      filter: drop-shadow(0 0 12px rgba(223, 177, 91, 0.3)); 
+    } 
 
-    /* ========================================== */
-    /* STYLING BANNER CAROUSEL (SLIDER AUTOMATIS) */
-    /* ========================================== */
-    .banner-slider-container {
-      position: relative;
-      width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 40px;
-      border: 1px solid #102636;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      transition: border-color 0.3s ease;
-    }
+    /* ========================================== */ 
+    /* STYLING BANNER CAROUSEL (SLIDER AUTOMATIS) */ 
+    /* ========================================== */ 
+    .banner-slider-container { 
+      position: relative; 
+      width: 100%; 
+      border-radius: 16px; 
+      overflow: hidden; 
+      margin-bottom: 40px; 
+      border: 1px solid #102636; 
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); 
+      transition: border-color 0.3s ease; 
+    } 
 
-    .banner-slider-container:hover {
-      border-color: #dfb15b;
-    }
+    .banner-slider-container:hover { 
+      border-color: #dfb15b; 
+    } 
 
-    .slider-track {
-      display: flex;
-      width: 100%;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    }
+    .slider-track { 
+      display: flex; 
+      width: 100%; 
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+    } 
 
-    .slide-item {
-      min-width: 100%;
-      box-sizing: border-box;
-    }
+    .slide-item { 
+      min-width: 100%; 
+      box-sizing: border-box; 
+    } 
 
-    .slide-item a {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
+    .slide-item a { 
+      display: block; 
+      width: 100%; 
+      height: 100%; 
+    } 
 
-    .slide-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
+    .slide-item img { 
+      width: 100%; 
+      height: auto; 
+      display: block; 
+      object-fit: cover; 
+    } 
 
-    /* Dots Indicator Banner */
-    .slider-dots {
-      position: absolute;
-      bottom: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 10;
-      background: rgba(3, 10, 16, 0.6);
-      padding: 6px 12px;
-      border-radius: 20px;
-      backdrop-filter: blur(4px);
-    }
+    /* Dots Indicator Banner */ 
+    .slider-dots { 
+      position: absolute; 
+      bottom: 12px; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      display: flex; 
+      gap: 8px; 
+      z-index: 10; 
+      background: rgba(3, 10, 16, 0.6); 
+      padding: 6px 12px; 
+      border-radius: 20px; 
+      backdrop-filter: blur(4px); 
+    } 
 
-    .dot-btn {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.4);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+    .dot-btn { 
+      width: 10px; 
+      height: 10px; 
+      border-radius: 50%; 
+      background: rgba(255, 255, 255, 0.4); 
+      border: none; 
+      cursor: pointer; 
+      transition: all 0.3s ease; 
+    } 
 
-    .dot-btn.active {
-      background: #dfb15b;
-      width: 24px;
-      border-radius: 10px;
-    }
+    .dot-btn.active { 
+      background: #dfb15b; 
+      width: 24px; 
+      border-radius: 10px; 
+    } 
 
-    /* Header Kategori */
-    .category-header {
-      margin-bottom: 30px;
-    }
-    .category-badge {
-      background-color: rgba(7, 31, 46, 0.8);
-      color: #dfb15b;
-      border: 1px solid #dfb15b;
-      padding: 6px 14px;
-      font-size: 0.85rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 12px;
-    }
-    .category-header h2 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.5px;
-    }
+    /* Header Kategori */ 
+    .category-header { 
+      margin-bottom: 30px; 
+    } 
+    .category-badge { 
+      background-color: rgba(7, 31, 46, 0.8); 
+      color: #dfb15b; 
+      border: 1px solid #dfb15b; 
+      padding: 6px 14px; 
+      font-size: 0.85rem; 
+      font-weight: bold; 
+      letter-spacing: 1px; 
+      border-radius: 4px; 
+      display: inline-block; 
+      margin-bottom: 12px; 
+    } 
+    .category-header h2 { 
+      font-size: 2rem; 
+      font-weight: 800; 
+      color: #ffffff; 
+      letter-spacing: -0.5px; 
+    } 
 
-    /* Grid Layout 4 Kolom */
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
+    /* Grid Layout 4 Kolom */ 
+    .category-grid { 
+      display: grid; 
+      grid-template-columns: repeat(4, 1fr); 
+      gap: 20px; 
+    } 
 
-    /* Card Item */
-    .category-card {
-      background: rgba(8, 18, 27, 0.75);
-      border: 1px solid #102636;
-      border-radius: 12px;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 24px 20px 20px 20px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-    }
-    .category-card:hover {
-      transform: translateY(-8px);
-      border-color: #d9232d;
-      box-shadow: 0 10px 25px rgba(217, 35, 45, 0.25);
-    }
+    /* Card Item */ 
+    .category-card { 
+      background: rgba(8, 18, 27, 0.75); 
+      border: 1px solid #102636; 
+      border-radius: 12px; 
+      text-decoration: none; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      padding: 24px 20px 20px 20px; 
+      transition: all 0.3s ease; 
+      cursor: pointer; 
+      backdrop-filter: blur(5px); 
+    } 
+    .category-card:hover { 
+      transform: translateY(-8px); 
+      border-color: #d9232d; 
+      box-shadow: 0 10px 25px rgba(217, 35, 45, 0.25); 
+    } 
 
-    /* Header Inside Card */
-    .card-title-group h3 {
-      color: #ffffff;
-      font-size: 1.25rem;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-    .card-title-group .subtitle {
-      color: #7b93a4;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-top: 4px;
-    }
+    /* Header Inside Card */ 
+    .card-title-group h3 { 
+      color: #ffffff; 
+      font-size: 1.25rem; 
+      font-weight: 800; 
+      line-height: 1.2; 
+    } 
+    .card-title-group .subtitle { 
+      color: #7b93a4; 
+      font-size: 0.75rem; 
+      font-weight: 600; 
+      letter-spacing: 1px; 
+      margin-top: 4px; 
+    } 
 
-    /* Lingkaran Background Gambar PC */
-    .image-wrapper {
-      background: radial-gradient(circle, #0e2d42 0%, #05131f 70%);
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin: 25px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px dashed #1c3e56;
-      transition: border-color 0.3s ease;
-    }
-    .category-card:hover .image-wrapper {
-      border-color: #d9232d;
-    }
-    .image-wrapper img {
-      width: 80%;
-      height: 80%;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
-    .category-card:hover .image-wrapper img {
-      transform: scale(1.1);
-    }
+    /* Lingkaran Background Gambar PC */ 
+    .image-wrapper { 
+      background: radial-gradient(circle, #0e2d42 0%, #05131f 70%); 
+      width: 150px; 
+      height: 150px; 
+      border-radius: 50%; 
+      margin: 25px auto; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      border: 1px dashed #1c3e56; 
+      transition: border-color 0.3s ease; 
+    } 
+    .category-card:hover .image-wrapper { 
+      border-color: #d9232d; 
+    } 
+    .image-wrapper img { 
+      width: 80%; 
+      height: 80%; 
+      object-fit: contain; 
+      transition: transform 0.3s ease; 
+    } 
+    .category-card:hover .image-wrapper img { 
+      transform: scale(1.1); 
+    } 
 
-    /* Tagline Tombol Bawah */
-    .tagline {
-      background-color: #dfb15b;
-      color: #030a10;
-      text-align: center;
-      padding: 10px;
-      font-weight: 800;
-      font-size: 0.85rem;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-    }
-    .category-card:hover .tagline {
-      background-color: #d9232d;
-      color: #ffffff;
-    }
+    /* Tagline Tombol Bawah */ 
+    .tagline { 
+      background-color: #dfb15b; 
+      color: #030a10; 
+      text-align: center; 
+      padding: 10px; 
+      font-weight: 800; 
+      font-size: 0.85rem; 
+      border-radius: 6px; 
+      letter-spacing: 0.5px; 
+      transition: all 0.3s ease; 
+    } 
+    .category-card:hover .tagline { 
+      background-color: #d9232d; 
+      color: #ffffff; 
+    } 
 
-    /* Floating WhatsApp Button */
-    .wa-float {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50px;
-      padding: 12px 20px;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 100;
-    }
-    .wa-float:hover {
-      background-color: #1ebd56;
-    }
+    /* Floating WhatsApp Button */ 
+    .wa-float { 
+      position: fixed; 
+      bottom: 25px; 
+      right: 25px; 
+      background-color: #25d366; 
+      color: white; 
+      border-radius: 50px; 
+      padding: 12px 20px; 
+      font-weight: bold; 
+      text-decoration: none; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      z-index: 100; 
+    } 
+    .wa-float:hover { 
+      background-color: #1ebd56; 
+    } 
 
-    /* STYLING MODAL POPUP PROMO */
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(1, 4, 7, 0.88);
-      backdrop-filter: blur(6px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      padding: 15px;
-    }
+    /* STYLING MODAL POPUP PROMO */ 
+    .popup-overlay { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(1, 4, 7, 0.88); 
+      backdrop-filter: blur(6px); 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 1000; 
+      opacity: 0; 
+      visibility: hidden; 
+      transition: all 0.3s ease; 
+      padding: 15px; 
+    } 
 
-    .popup-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
+    .popup-overlay.active { 
+      opacity: 1; 
+      visibility: visible; 
+    } 
 
-    .popup-content {
-      position: relative;
-      max-width: 480px;
-      width: 100%;
-      max-height: 90vh;
-      border-radius: 16px;
-      overflow: visible;
-      transform: scale(0.8);
-      transition: transform 0.3s ease;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    }
+    .popup-content { 
+      position: relative; 
+      max-width: 480px; 
+      width: 100%; 
+      max-height: 90vh; 
+      border-radius: 16px; 
+      overflow: visible; 
+      transform: scale(0.8); 
+      transition: transform 0.3s ease; 
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8); 
+    } 
 
-    .popup-overlay.active .popup-content {
-      transform: scale(1);
-    }
+    .popup-overlay.active .popup-content { 
+      transform: scale(1); 
+    } 
 
-    .popup-content img {
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
-      object-fit: contain;
-      display: block;
-      border-radius: 12px;
-      border: 1px solid #102636;
-    }
+    .popup-content img { 
+      width: 100%; 
+      height: auto; 
+      max-height: 80vh; 
+      object-fit: contain; 
+      display: block; 
+      border-radius: 12px; 
+      border: 1px solid #102636; 
+    } 
 
-    .popup-close {
-      position: absolute;
-      top: -15px;
-      right: -15px;
-      background: #d9232d;
-      color: #ffffff;
-      border: 2px solid #ffffff;
-      font-size: 1.2rem;
-      font-weight: bold;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      transition: background 0.2s ease;
-      z-index: 1001;
-    }
+    .popup-close { 
+      position: absolute; 
+      top: -15px; 
+      right: -15px; 
+      background: #d9232d; 
+      color: #ffffff; 
+      border: 2px solid #ffffff; 
+      font-size: 1.2rem; 
+      font-weight: bold; 
+      width: 36px; 
+      height: 36px; 
+      border-radius: 50%; 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+      transition: background 0.2s ease; 
+      z-index: 1001; 
+    } 
 
-    .popup-close:hover {
-      background: #b01821;
-    }
+    .popup-close:hover { 
+      background: #b01821; 
+    } 
 
-    /* Responsif Layar */
-    @media (max-width: 992px) {
-      .category-grid {
-        grid-template-columns: repeat(2, 1fr);
+    /* Responsif Layar */ 
+    @media (max-width: 992px) { 
+      .category-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+      } 
+    } 
+    @media (max-width: 576px) { 
+      .category-grid { 
+        grid-template-columns: 1fr; 
+      } 
+      .brand-logo { 
+        max-width: 140px; 
+      } 
+
+      .slide-item img {
+        height: 200px;
+        object-fit: cover;
       }
-    }
-    @media (max-width: 576px) {
-      .category-grid {
-        grid-template-columns: 1fr;
-      }
-      .brand-logo {
-        max-width: 140px;
-      }
-      .popup-close {
-        top: 8px;
-        right: 8px;
-      }
-      .slider-dots {
-        bottom: 8px;
-      }
-      .dot-btn {
-        width: 8px;
-        height: 8px;
-      }
-      .dot-btn.active {
-        width: 18px;
-      }
-    }
-  </style>
-</head>
-<body>
 
-  <!-- POPUP PROMO CONTAINER -->
-  <div class="popup-overlay" id="promoPopup">
-    <div class="popup-content">
-      <button class="popup-close" onclick="closePopup()">&times;</button>
-      <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20konsultasi%20mengenai%20laptop/PC" target="_blank">
-        <img src="images/promo.png" alt="Promo Dokter Komputer">
-      </a>
-    </div>
-  </div>
+      .popup-close { 
+        top: 8px; 
+        right: 8px; 
+      } 
+      .slider-dots { 
+        bottom: 8px; 
+      } 
+      .dot-btn { 
+        width: 8px; 
+        height: 8px; 
+      } 
+      .dot-btn.active { 
+        width: 18px; 
+      } 
+    } 
+  </style> 
+</head> 
+<body> 
 
-  <div class="container">
+  <!-- POPUP PROMO CONTAINER --> 
+  <div class="popup-overlay" id="promoPopup"> 
+    <div class="popup-content"> 
+      <button class="popup-close" onclick="closePopup()">&times;</button> 
+      <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20konsultasi%20mengenai%20laptop/PC" target="_blank"> 
+        <img src="images/promo.png" alt="Promo Dokter Komputer"> 
+      </a> 
+    </div> 
+  </div> 
 
-    <!-- 1. BAGIAN LOGO UTAMA -->
-    <header class="brand-header">
-      <img src="images/logo.png" alt="Logo Dokter Komputer" class="brand-logo">
-    </header>
+  <div class="container"> 
 
-    <!-- 2. BAGIAN BANNER SLIDER AUTOMATIS (5 BANNER) -->
-    <div class="banner-slider-container" id="bannerSlider">
-      <div class="slider-track" id="sliderTrack">
+    <!-- 1. BAGIAN LOGO UTAMA --> 
+    <header class="brand-header"> 
+      <img src="images/logo.png" alt="Logo Dokter Komputer" class="brand-logo"> 
+    </header> 
+
+    <!-- 2. BAGIAN BANNER SLIDER AUTOMATIS (5 BANNER) --> 
+    <div class="banner-slider-container" id="bannerSlider"> 
+      <div class="slider-track" id="sliderTrack"> 
         
-        <!-- Slide 1: Clean Your PC -->
-        <div class="slide-item">
-          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20booking%20layanan%20Clean%20PC" target="_blank">
-            <img src="images/banner-clean-pc.png" alt="Banner Dokter Komputer - Clean Your PC">
-          </a>
-        </div>
+        <!-- Slide 1: Titip Jual Part PC --> 
+        <div class="slide-item"> 
+          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20titip%20jual%20part%20PC" target="_blank"> 
+            <img src="images/titipjual.png" alt="Banner Dokter Komputer - Titip Jual Part PC"> 
+          </a> 
+        </div> 
 
-        <!-- Slide 2: Service & Upgrade -->
-        <div class="slide-item">
-          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20service/upgrade%20laptop%20atau%20PC" target="_blank">
-            <img src="images/jasaservice.png" alt="Banner Dokter Komputer - Service & Upgrade">
-          </a>
-        </div>
+        <!-- Slide 2: Clean Your PC --> 
+        <div class="slide-item"> 
+          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20booking%20layanan%20Clean%20PC" target="_blank"> 
+            <img src="images/banner-clean-pc.png" alt="Banner Dokter Komputer - Clean Your PC"> 
+          </a> 
+        </div> 
 
-        <!-- Slide 3: Konsultasi 24 Jam -->
-        <div class="slide-item">
-          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20ingin%20konsultasi%20masalah%20PC/Laptop" target="_blank">
-            <img src="images/konsultasi.png" alt="Banner Dokter Komputer - Konsultasi 24 Jam">
-          </a>
-        </div>
+        <!-- Slide 3: Service & Upgrade --> 
+        <div class="slide-item"> 
+          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20service/upgrade%20laptop%20atau%20PC" target="_blank"> 
+            <img src="images/jasaservice.png" alt="Banner Dokter Komputer - Service & Upgrade"> 
+          </a> 
+        </div> 
 
-        <!-- Slide 4: Build Your Dream PC -->
-        <div class="slide-item">
-          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20rakit%20PC%20impian" target="_blank">
-            <img src="images/dreambuild.png" alt="Banner Dokter Komputer - Build Your Dream PC">
-          </a>
-        </div>
+        <!-- Slide 4: Konsultasi 24 Jam --> 
+        <div class="slide-item"> 
+          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20ingin%20konsultasi%20masalah%20PC/Laptop" target="_blank"> 
+            <img src="images/konsultasi.png" alt="Banner Dokter Komputer - Konsultasi 24 Jam"> 
+          </a> 
+        </div> 
 
-        <!-- Slide 5: TITIP JUAL -->
-        <div class="slide-item">
-          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20titip%20PC%20barang” target="_blank">
-            <img src="images/titipjual.png" alt="Banner Dokter Komputer - TITIP JUAL”>
-          </a>
-        </div>
+        <!-- Slide 5: Build Your Dream PC --> 
+        <div class="slide-item"> 
+          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20rakit%20PC%20impian" target="_blank"> 
+            <img src="images/dreambuild.png" alt="Banner Dokter Komputer - Build Your Dream PC"> 
+          </a> 
+        </div> 
 
-      </div>
+      </div> 
 
-      <!-- Navigation Dots -->
-      <div class="slider-dots" id="sliderDots">
-        <button class="dot-btn active" onclick="goToSlide(0)"></button>
-        <button class="dot-btn" onclick="goToSlide(1)"></button>
-        <button class="dot-btn" onclick="goToSlide(2)"></button>
-        <button class="dot-btn" onclick="goToSlide(3)"></button>
-      </div>
-    </div>
+      <!-- Navigation Dots (5 Dots) --> 
+      <div class="slider-dots" id="sliderDots"> 
+        <button class="dot-btn active" onclick="goToSlide(0)"></button> 
+        <button class="dot-btn" onclick="goToSlide(1)"></button> 
+        <button class="dot-btn" onclick="goToSlide(2)"></button> 
+        <button class="dot-btn" onclick="goToSlide(3)"></button> 
+        <button class="dot-btn" onclick="goToSlide(4)"></button> 
+      </div> 
+    </div> 
 
-    <!-- 3. SECTION KATEGORI PRODUK -->
-    <section class="category-section">
-      <div class="category-header">
-        <span class="category-badge">PRODUCT CATEGORY</span>
-        <h2>Pilih Seri PC Sesuai Kebutuhanmu</h2>
-      </div>
+    <!-- 3. SECTION KATEGORI PRODUK --> 
+    <section class="category-section"> 
+      <div class="category-header"> 
+        <span class="category-badge">PRODUCT CATEGORY</span> 
+        <h2>Pilih Seri PC Sesuai Kebutuhanmu</h2> 
+      </div> 
 
-      <div class="category-grid">
-        <!-- 1. DK Office Edition -->
-        <a href="paketoffice.html" class="category-card" target="_blank">
-          <div class="card-title-group">
-            <h3>DK OFFICE EDITION</h3>
-            <p class="subtitle">SEMUA PEKERJAAN JADI LEBIH MUDAH</p>
-          </div>
-          <div class="image-wrapper">
-            <img src="images/officeff.png" alt="DK Office Edition">
-          </div>
-          <div class="tagline">"LESS WAIT DO MORE!"</div>
-        </a>
+      <div class="category-grid"> 
+        <!-- 1. DK Office Edition --> 
+        <a href="paketoffice.html" class="category-card" target="_blank"> 
+          <div class="card-title-group"> 
+            <h3>DK OFFICE EDITION</h3> 
+            <p class="subtitle">SEMUA PEKERJAAN JADI LEBIH MUDAH</p> 
+          </div> 
+          <div class="image-wrapper"> 
+            <img src="images/officeff.png" alt="DK Office Edition"> 
+          </div> 
+          <div class="tagline">"LESS WAIT DO MORE!"</div> 
+        </a> 
 
-        <!-- 2. DK Gamers Choice -->
-        <a href="paketgamers.html" class="category-card" target="_blank">
-          <div class="card-title-group">
-            <h3>DK GAMERS CHOICE</h3>
-            <p class="subtitle">RACIKAN PARA GAMERS</p>
-          </div>
-          <div class="image-wrapper">
-            <img src="images/gamer.png" alt="DK Gamers Choice">
-          </div>
-          <div class="tagline">"BERMAIN TANPA BATAS"</div>
-        </a>
+        <!-- 2. DK Gamers Choice --> 
+        <a href="paketgamers.html" class="category-card" target="_blank"> 
+          <div class="card-title-group"> 
+            <h3>DK GAMERS CHOICE</h3> 
+            <p class="subtitle">RACIKAN PARA GAMERS</p> 
+          </div> 
+          <div class="image-wrapper"> 
+            <img src="images/gamer.png" alt="DK Gamers Choice"> 
+          </div> 
+          <div class="tagline">"BERMAIN TANPA BATAS"</div> 
+        </a> 
 
-        <!-- 3. DK Editor PC -->
-        <a href="paketeditor.html" class="category-card" target="_blank">
-          <div class="card-title-group">
-            <h3>DK EDITOR PC</h3>
-            <p class="subtitle">UNTUKMU YANG PUNYA IDE TANPA BATAS</p>
-          </div>
-          <div class="image-wrapper">
-            <img src="images/editor.png" alt="DK Editor PC">
-          </div>
-          <div class="tagline">"WUJUDKAN MIMPI MU SEKARANG"</div>
-        </a>
+        <!-- 3. DK Editor PC --> 
+        <a href="paketeditor.html" class="category-card" target="_blank"> 
+          <div class="card-title-group"> 
+            <h3>DK EDITOR PC</h3> 
+            <p class="subtitle">UNTUKMU YANG PUNYA IDE TANPA BATAS</p> 
+          </div> 
+          <div class="image-wrapper"> 
+            <img src="images/editor.png" alt="DK Editor PC"> 
+          </div> 
+          <div class="tagline">"WUJUDKAN MIMPI MU SEKARANG"</div> 
+        </a> 
 
-        <!-- 4. DK Ultimate -->
-        <a href="paketultimate.html" class="category-card" target="_blank">
-          <div class="card-title-group">
-            <h3>DK ULTIMATE</h3>
-            <p class="subtitle">SPEED,PERFORMANCE,QUALITY </p>
-          </div>
-          <div class="image-wrapper">
-            <img src="images/ultimate.png" alt="DK Ultimate">
-          </div>
-          <div class="tagline">"CUSTOM PREMIUM EDITION"</div>
-        </a>
-      </div>
-    </section>
-  </div>
+        <!-- 4. DK Ultimate --> 
+        <a href="paketultimate.html" class="category-card" target="_blank"> 
+          <div class="card-title-group"> 
+            <h3>DK ULTIMATE</h3> 
+            <p class="subtitle">SPEED,PERFORMANCE,QUALITY </p> 
+          </div> 
+          <div class="image-wrapper"> 
+            <img src="images/ultimate.png" alt="DK Ultimate"> 
+          </div> 
+          <div class="tagline">"CUSTOM PREMIUM EDITION"</div> 
+        </a> 
+      </div> 
+    </section> 
+  </div> 
 
-  <!-- Tombol WhatsApp Melayang -->
-  <a href="https://wa.me/6281238070329" class="wa-float" target="_blank">
-    💬 Konsultasi WhatsApp
-  </a>
+  <!-- Tombol WhatsApp Melayang --> 
+  <a href="https://wa.me/6281238070329" class="wa-float" target="_blank"> 
+    💬 Konsultasi WhatsApp 
+  </a> 
 
-  <!-- SCRIPT BANNER SLIDER & POPUP -->
-  <script>
-    /* ------------------------------------------
-       LOGIK CAROUSEL SLIDER BANNER AUTOMATIS
-    ------------------------------------------ */
-    let currentSlide = 0;
-    const totalSlides = 4;
-    const sliderTrack = document.getElementById('sliderTrack');
-    const dots = document.querySelectorAll('.dot-btn');
-    const sliderContainer = document.getElementById('bannerSlider');
-    let slideInterval;
+  <!-- SCRIPT BANNER SLIDER & POPUP --> 
+  <script> 
+    /* ------------------------------------------ 
+       LOGIK CAROUSEL SLIDER BANNER AUTOMATIS 
+    ------------------------------------------ */ 
+    let currentSlide = 0; 
+    const totalSlides = 5; // Diperbarui menjadi 5 banner
+    const sliderTrack = document.getElementById('sliderTrack'); 
+    const dots = document.querySelectorAll('.dot-btn'); 
+    const sliderContainer = document.getElementById('bannerSlider'); 
+    let slideInterval; 
 
-    function updateSlider() {
-      sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-      dots.forEach((dot, index) => {
-        if (index === currentSlide) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
-    }
+    function updateSlider() { 
+      sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`; 
+      dots.forEach((dot, index) => { 
+        if (index === currentSlide) { 
+          dot.classList.add('active'); 
+        } else { 
+          dot.classList.remove('active'); 
+        } 
+      }); 
+    } 
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateSlider();
-    }
+    function nextSlide() { 
+      currentSlide = (currentSlide + 1) % totalSlides; 
+      updateSlider(); 
+    } 
 
-    function goToSlide(index) {
-      currentSlide = index;
-      updateSlider();
-      resetInterval();
-    }
+    function goToSlide(index) { 
+      currentSlide = index; 
+      updateSlider(); 
+      resetInterval(); 
+    } 
 
-    function startInterval() {
-      slideInterval = setInterval(nextSlide, 4000); // Bergeser setiap 4 detik
-    }
+    function startInterval() { 
+      slideInterval = setInterval(nextSlide, 4000); // Bergeser setiap 4 detik 
+    } 
 
-    function resetInterval() {
-      clearInterval(slideInterval);
-      startInterval();
-    }
+    function resetInterval() { 
+      clearInterval(slideInterval); 
+      startInterval(); 
+    } 
 
-    // Jalankan Autoplay
-    startInterval();
+    // Jalankan Autoplay 
+    startInterval(); 
 
-    // Pause saat mouse hover banner agar pengguna nyaman membaca/klik
-    sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
-    sliderContainer.addEventListener('mouseleave', startInterval);
+    // Pause saat mouse hover banner
+    sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval)); 
+    sliderContainer.addEventListener('mouseleave', startInterval); 
 
+    /* ------------------------------------------ 
+       LOGIK MODAL POPUP 
+    ------------------------------------------ */ 
+    window.addEventListener('DOMContentLoaded', () => { 
+      setTimeout(() => { 
+        document.getElementById('promoPopup').classList.add('active'); 
+      }, 500); 
+    }); 
 
-    /* ------------------------------------------
-       LOGIK MODAL POPUP
-    ------------------------------------------ */
-    window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        document.getElementById('promoPopup').classList.add('active');
-      }, 500);
-    });
+    function closePopup() { 
+      document.getElementById('promoPopup').classList.remove('active'); 
+    } 
 
-    function closePopup() {
-      document.getElementById('promoPopup').classList.remove('active');
-    }
+    document.getElementById('promoPopup').addEventListener('click', function(e) { 
+      if (e.target === this) { 
+        closePopup(); 
+      } 
+    }); 
+  </script> 
 
-    document.getElementById('promoPopup').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closePopup();
-      }
-    });
-  </script>
-
-</body>
+</body> 
 </html>
