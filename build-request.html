@@ -3,153 +3,470 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customer Build Request | Dokter Komputer</title>
+  <title>Simulasi Rakit PC | Dokter Komputer</title>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      background: radial-gradient(circle at center top, #071f2e 0%, #030a10 70%, #010407 100%);
-      color: #ffffff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #060a12;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(223, 177, 91, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(13, 110, 253, 0.08) 0px, transparent 50%);
+      color: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      flex-direction: column;
     }
-    .card {
-      background: rgba(8, 18, 27, 0.9);
-      border: 1px solid #102636;
-      border-radius: 16px;
-      padding: 30px;
-      max-width: 500px;
+
+    /* Navbar */
+    header {
       width: 100%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      padding: 16px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(6, 10, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    h2 { color: #dfb15b; margin-bottom: 10px; text-align: center; }
-    p.sub { color: #7b93a4; font-size: 0.9rem; text-align: center; margin-bottom: 25px; }
-    
-    /* Login Section */
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .brand-logo i { color: #dfb15b; font-size: 1.5rem; }
+    .brand-logo span { color: #dfb15b; }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* Login Area Card */
+    .login-card {
+      background: rgba(13, 20, 32, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 40px 20px;
+      text-align: center;
+      max-width: 480px;
+      margin: 60px auto;
+      backdrop-filter: blur(16px);
+    }
+
     .btn-google {
       width: 100%;
       background: #ffffff;
-      color: #333;
+      color: #0f172a;
       border: none;
-      padding: 12px;
+      padding: 14px 20px;
       font-size: 1rem;
-      font-weight: bold;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 25px;
+      transition: all 0.2s;
+    }
+    .btn-google:hover { background: #f1f5f9; transform: translateY(-2px); }
+
+    /* Builder Card Table */
+    .builder-card {
+      background: rgba(13, 20, 32, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .builder-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .user-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #dfb15b; }
+
+    .btn-logout {
+      background: transparent;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Form Spec Grid */
+    .part-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 120px 80px;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .part-label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #dfb15b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-control {
+      background: rgba(6, 10, 18, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
+      padding: 10px 12px;
+      color: #fff;
+      font-size: 0.88rem;
+      font-family: inherit;
+      width: 100%;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #dfb15b;
+    }
+
+    select.form-control option {
+      background: #0d1420;
+      color: #fff;
+    }
+
+    .input-qty { text-align: center; }
+
+    /* Additional Contact Section */
+    .contact-section {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .btn-submit-wa {
+      width: 100%;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: #ffffff;
+      border: none;
+      padding: 16px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      border-radius: 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      transition: background 0.3s;
+      margin-top: 25px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.2);
     }
-    .btn-google:hover { background: #e6e6e6; }
 
-    /* Form Section */
-    .user-info {
+    .btn-submit-wa:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Modal Pop-up */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #102636;
+      z-index: 999;
     }
-    .user-info img { width: 40px; height: 40px; border-radius: 50%; }
-    
-    .form-group { margin-bottom: 15px; }
-    label { display: block; font-size: 0.85rem; color: #dfb15b; margin-bottom: 5px; font-weight: bold; }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      background: #030a10;
-      border: 1px solid #102636;
-      border-radius: 6px;
-      color: #fff;
-      font-family: inherit;
+
+    .modal-content {
+      background: #0d1420;
+      border: 1px solid #dfb15b;
+      border-radius: 20px;
+      padding: 35px;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(223, 177, 91, 0.2);
     }
-    input:focus, select:focus, textarea:focus { border-color: #dfb15b; outline: none; }
-    
-    .btn-submit {
-      width: 100%;
+
+    .modal-icon {
+      font-size: 3.5rem;
+      color: #25D366;
+      margin-bottom: 15px;
+    }
+
+    .btn-close-modal {
       background: #dfb15b;
-      color: #030a10;
+      color: #060a12;
       border: none;
-      padding: 12px;
-      font-size: 1rem;
-      font-weight: bold;
+      padding: 10px 24px;
+      font-weight: 700;
       border-radius: 8px;
+      margin-top: 20px;
       cursor: pointer;
-      margin-top: 10px;
     }
-    .btn-submit:hover { background: #d9232d; color: #fff; }
-    
-    .hidden { display: none; }
+
+    .hidden { display: none !important; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #475569;
+      font-size: 0.85rem;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .part-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
+      .contact-section { grid-template-columns: 1fr; }
+    }
   </style>
 
-  <!-- Firebase Scripts -->
+  <!-- Firebase Compat -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
-  <div class="card">
-    <h2>Build Request PC</h2>
-    <p class="sub">Konsultasikan rakitan PC impianmu langsung dengan Dokter Komputer</p>
+  <header>
+    <a href="#" class="brand-logo">
+      <i class="fa-solid fa-microchip"></i>
+      Dokter <span>Komputer</span>
+    </a>
+    <div style="font-size: 0.85rem; color: #10b981; font-weight: 600;">
+      <i class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> Form Request Build
+    </div>
+  </header>
 
-    <!-- BOX 1: TOMBOL LOGIN -->
-    <div id="loginSection">
+  <div class="container">
+
+    <!-- LOGIN AREA -->
+    <div id="loginSection" class="login-card">
+      <i class="fa-solid fa-sliders" style="font-size: 3rem; color: #dfb15b; margin-bottom: 15px;"></i>
+      <h2 style="color: #fff; margin-bottom: 10px;">Simulasi Rakit PC AMD</h2>
+      <p style="color: #64748b; font-size: 0.9rem;">Silakan masuk menggunakan Google untuk meracik komponen kustom milikmu.</p>
+      
       <button class="btn-google" onclick="loginWithGoogle()">
-        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" alt="Google Logo">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" alt="Google">
         Masuk dengan Google
       </button>
     </div>
 
-    <!-- BOX 2: FORM REQUEST -->
-    <div id="formSection" class="hidden">
-      <div class="user-info">
-        <img id="userPhoto" src="" alt="Profile">
-        <div>
-          <strong id="userName" style="display:block; font-size: 0.95rem;">-</strong>
-          <span id="userEmail" style="font-size: 0.8rem; color: #7b93a4;">-</span>
+    <!-- BUILDER FORM AREA -->
+    <div id="formSection" class="builder-card hidden">
+      
+      <div class="builder-header">
+        <div class="user-profile">
+          <img id="userPhoto" class="user-avatar" src="" alt="User">
+          <div>
+            <h4 id="userName" style="color: #fff; font-size: 0.95rem;">-</h4>
+            <span id="userEmail" style="color: #64748b; font-size: 0.8rem;">-</span>
+          </div>
         </div>
+        <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
       </div>
 
-      <form id="buildForm" onsubmit="submitRequest(event)">
-        <div class="form-group">
-          <label>Budget Rakit (Rp)</label>
-          <input type="number" id="budget" placeholder="Contoh: 10000000" required>
-        </div>
+      <form id="buildForm" onsubmit="submitBuildRequest(event)">
 
-        <div class="form-group">
-          <label>Kebutuhan Utama</label>
-          <select id="kebutuhan" required>
-            <option value="Gaming">Gaming</option>
-            <option value="Editing / Rendering">Editing / Rendering</option>
-            <option value="Office / Harian">Office / Harian</option>
-            <option value="Streaming / Live">Streaming / Live</option>
+        <!-- PROCESSOR -->
+        <div class="part-row">
+          <div class="part-label">Processor</div>
+          <select id="proc_item" class="form-control" onchange="updateMoboOptions()" required>
+            <option value="">-- Pilih Processor AMD Ryzen --</option>
+            <optgroup label="AM4 Series">
+              <option value="AMD Ryzen 3 3200G / 4100">Ryzen 3 Series (AM4)</option>
+              <option value="AMD Ryzen 5 3600 / 5500 / 5600 / 5600G">Ryzen 5 Series (AM4)</option>
+              <option value="AMD Ryzen 7 5700X / 5700X3D / 5800X">Ryzen 7 Series (AM4)</option>
+              <option value="AMD Ryzen 9 5900X / 5950X">Ryzen 9 Series (AM4)</option>
+            </optgroup>
+            <optgroup label="AM5 Series Next-Gen">
+              <option value="AMD Ryzen 5 7500F / 7600 / 7600X / 9600X">Ryzen 5 Series (AM5)</option>
+              <option value="AMD Ryzen 7 7700 / 7800X3D / 9700X">Ryzen 7 Series (AM5)</option>
+              <option value="AMD Ryzen 9 7900X / 7950X / 7950X3D">Ryzen 9 Series (AM5)</option>
+            </optgroup>
           </select>
+          <select id="proc_condition" class="form-control">
+            <option value="New">New</option>
+            <option value="Second">Second</option>
+          </select>
+          <input type="number" id="proc_qty" class="form-control input-qty" value="1" min="1" required>
         </div>
 
-        <div class="form-group">
-          <label>Nomor WhatsApp (Aktif)</label>
-          <input type="tel" id="whatsapp" placeholder="0812xxxxxxx" required>
+        <!-- MOTHERBOARD -->
+        <div class="part-row">
+          <div class="part-label">Motherboard</div>
+          <select id="mobo_item" class="form-control" required>
+            <option value="">-- Pilih Processor Terlebih Dahulu --</option>
+          </select>
+          <select id="mobo_condition" class="form-control">
+            <option value="New">New</option>
+            <option value="Second">Second</option>
+          </select>
+          <input type="number" id="mobo_qty" class="form-control input-qty" value="1" min="1" required>
         </div>
 
-        <div class="form-group">
-          <label>Catatan Tambahan / Preferensi Part</label>
-          <textarea id="catatan" rows="3" placeholder="Contoh: Mau pakai casing warna putih & cooler RGB..."></textarea>
+        <!-- RAM -->
+        <div class="part-row">
+          <div class="part-label">RAM</div>
+          <select id="ram_item" class="form-control" required>
+            <option value="">-- Pilih Kapasitas & Tipe RAM --</option>
+            <option value="8GB DDR4">8 GB DDR4</option>
+            <option value="16GB (2x8GB) DDR4">16 GB DDR4</option>
+            <option value="32GB (2x16GB) DDR4">32 GB DDR4</option>
+            <option value="16GB (2x8GB) DDR5">16 GB DDR5</option>
+            <option value="32GB (2x16GB) DDR5">32 GB DDR5</option>
+            <option value="64GB (2x32GB) DDR5">64 GB DDR5</option>
+          </select>
+          <select id="ram_condition" class="form-control">
+            <option value="New">New</option>
+            <option value="Second">Second</option>
+          </select>
+          <input type="number" id="ram_qty" class="form-control input-qty" value="1" min="1" required>
         </div>
 
-        <button type="submit" class="btn-submit" id="btnSubmit">Kirim Request Rakitan</button>
+        <!-- SSD -->
+        <div class="part-row">
+          <div class="part-label">SSD</div>
+          <select id="ssd_item" class="form-control" required>
+            <option value="">-- Pilih Kapasitas SSD --</option>
+            <option value="128 GB NVMe/SATA">128 GB</option>
+            <option value="256 GB NVMe">256 GB</option>
+            <option value="512 GB NVMe">512 GB</option>
+            <option value="1 TB NVMe">1 TB</option>
+            <option value="2 TB NVMe">2 TB</option>
+            <option value="4 TB NVMe">4 TB</option>
+          </select>
+          <select id="ssd_condition" class="form-control">
+            <option value="New">New</option>
+            <option value="Second">Second</option>
+          </select>
+          <input type="number" id="ssd_qty" class="form-control input-qty" value="1" min="1" required>
+        </div>
+
+        <!-- VGA -->
+        <div class="part-row">
+          <div class="part-label">VGA</div>
+          <input type="text" id="vga_item" class="form-control" placeholder="Ketik Merk/Seri VGA (misal: RTX 4060 / RX 6600)" required>
+          <select id="vga_condition" class="form-control">
+            <option value="New">New</option>
+            <option value="Second">Second</option>
+          </select>
+          <input type="number" id="vga_qty" class="form-control input-qty" value="1" min="1" required>
+        </div>
+
+        <!-- PSU -->
+        <div class="part-row">
+          <div class="part-label">PSU</div>
+          <input type="text" id="psu_item" class="form-control" placeholder="Ketik Merk & Watt PSU (misal: MSI 650W 80+ Bronze)" required>
+          <select id="psu_condition" class="form-control">
+            <option value="New">New</option>
+            <option value="Second">Second</option>
+          </select>
+          <input type="number" id="psu_qty" class="form-control input-qty" value="1" min="1" required>
+        </div>
+
+        <!-- COOLER CPU (Manual + Qty) -->
+        <div class="part-row">
+          <div class="part-label">Cooler CPU</div>
+          <input type="text" id="cooler_item" class="form-control" placeholder="Ketik Cooler (misal: Stock Cooler / Liquid 240mm)" required style="grid-column: span 2;">
+          <input type="number" id="cooler_qty" class="form-control input-qty" value="1" min="1" required>
+        </div>
+
+        <!-- CASING (Manual + Qty) -->
+        <div class="part-row">
+          <div class="part-label">Casing</div>
+          <input type="text" id="casing_item" class="form-control" placeholder="Ketik Tipe Casing (misal: Aquarium Panoramic Black)" required style="grid-column: span 2;">
+          <input type="number" id="casing_qty" class="form-control input-qty" value="1" min="1" required>
+        </div>
+
+        <!-- DATA DIRI -->
+        <div class="contact-section">
+          <div>
+            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Nomor WhatsApp Kontak</label>
+            <input type="tel" id="whatsapp_no" class="form-control" placeholder="0812xxxxxxxx" required>
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Catatan Tambahan (Opsional)</label>
+            <input type="text" id="user_notes" class="form-control" placeholder="Catatan kustomisasi lainnya...">
+          </div>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" class="btn-submit-wa" id="btnSubmit">
+          <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Send Request Build via WhatsApp
+        </button>
+
       </form>
+
+    </div>
+
+  </div>
+
+  <!-- POP-UP MODAL -->
+  <div id="successModal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+      <h3 style="color: #fff; margin-bottom: 12px;">Request Build Terkirim!</h3>
+      <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">
+        Terima kasih, request build Anda sedang diproses. Mohon ditunggu, admin kami akan menghubungi Anda secara langsung.
+      </p>
+      <button class="btn-close-modal" onclick="closeModal()">Selesai</button>
     </div>
   </div>
 
+  <footer>
+    &copy; 2026 Dokter Komputer. Professional Computer Assembly & Optimization.
+  </footer>
+
   <script>
-    // Konfigurasi Firebase Terbaru (Aplikasi 2)
+    // Konfigurasi Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyADUXscGEoTAMEqO4yyfLbEdGKvnVsj-KE",
       authDomain: "dokter-komputer-589e3.firebaseapp.com",
@@ -159,66 +476,126 @@
       appId: "1:1064482639681:web:c86b09afc090f6f7e85bc0"
     };
 
-    // Inisialisasi Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
 
+    // TARGET NOMOR WHATSAPP DOKTER KOMPUTER (Sesuai Kontak Bisnis)
+    const ADMIN_WA_NUMBER = "6285156553818"; // Nomor Admin Dokter Komputer
+
     let currentUser = null;
 
-    // Login Google Popup
+    // Login Google
     function loginWithGoogle() {
       const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider).catch(error => {
-        alert("Gagal Login: " + error.message);
-      });
+      auth.signInWithPopup(provider).catch(error => alert("Gagal Login: " + error.message));
     }
 
-    // Pantau Status Login User
+    function logout() {
+      auth.signOut();
+    }
+
     auth.onAuthStateChanged(user => {
       if (user) {
         currentUser = user;
         document.getElementById('loginSection').classList.add('hidden');
         document.getElementById('formSection').classList.remove('hidden');
-        
         document.getElementById('userName').textContent = user.displayName;
         document.getElementById('userEmail').textContent = user.email;
-        document.getElementById('userPhoto').src = user.photoURL;
+        document.getElementById('userPhoto').src = user.photoURL || 'https://via.placeholder.com/40';
       } else {
+        currentUser = null;
         document.getElementById('loginSection').classList.remove('hidden');
         document.getElementById('formSection').classList.add('hidden');
       }
     });
 
-    // Simpan Data Request ke Firebase Firestore
-    function submitRequest(e) {
-      e.preventDefault();
-      const btn = document.getElementById('btnSubmit');
-      btn.disabled = true;
-      btn.textContent = "Mengirim...";
+    // Dynamic Motherboard Filter
+    function updateMoboOptions() {
+      const procVal = document.getElementById('proc_item').value;
+      const moboSelect = document.getElementById('mobo_item');
+      moboSelect.innerHTML = '';
 
-      db.collection('build_requests').add({
+      if (procVal.includes('(AM4)')) {
+        moboSelect.innerHTML = `
+          <option value="A320 / A520 Chipset">A320 / A520 (Entry AM4)</option>
+          <option value="B450 / B550 Chipset">B450 / B550 (Mainstream AM4)</option>
+          <option value="X570 Chipset">X570 (High-End AM4)</option>
+        `;
+      } else if (procVal.includes('(AM5)')) {
+        moboSelect.innerHTML = `
+          <option value="A620 Chipset">A620 (Entry AM5)</option>
+          <option value="B650 / B650E Chipset">B650 / B650E (Mainstream AM5)</option>
+          <option value="X670 / X670E / X870 Chipset">X670 / X870 (High-End AM5)</option>
+        `;
+      } else {
+        moboSelect.innerHTML = `<option value="">-- Pilih Processor Terlebih Dahulu --</option>`;
+      }
+    }
+
+    // Process & Send Build Request
+    function submitBuildRequest(e) {
+      e.preventDefault();
+
+      const buildData = {
         uid: currentUser.uid,
-        nama: currentUser.displayName,
-        email: currentUser.email,
-        whatsapp: document.getElementById('whatsapp').value,
-        budget: document.getElementById('budget').value,
-        kebutuhan: document.getElementById('kebutuhan').value,
-        catatan: document.getElementById('catatan').value,
-        status: "Pending",
+        customer_nama: currentUser.displayName,
+        customer_email: currentUser.email,
+        customer_wa: document.getElementById('whatsapp_no').value,
+        notes: document.getElementById('user_notes').value,
+        specs: {
+          processor: `${document.getElementById('proc_item').value} [${document.getElementById('proc_condition').value}] (Qty: ${document.getElementById('proc_qty').value})`,
+          motherboard: `${document.getElementById('mobo_item').value} [${document.getElementById('mobo_condition').value}] (Qty: ${document.getElementById('mobo_qty').value})`,
+          ram: `${document.getElementById('ram_item').value} [${document.getElementById('ram_condition').value}] (Qty: ${document.getElementById('ram_qty').value})`,
+          ssd: `${document.getElementById('ssd_item').value} [${document.getElementById('ssd_condition').value}] (Qty: ${document.getElementById('ssd_qty').value})`,
+          vga: `${document.getElementById('vga_item').value} [${document.getElementById('vga_condition').value}] (Qty: ${document.getElementById('vga_qty').value})`,
+          psu: `${document.getElementById('psu_item').value} [${document.getElementById('psu_condition').value}] (Qty: ${document.getElementById('psu_qty').value})`,
+          cooler: `${document.getElementById('cooler_item').value} (Qty: ${document.getElementById('cooler_qty').value})`,
+          casing: `${document.getElementById('casing_item').value} (Qty: ${document.getElementById('casing_qty').value})`
+        },
         created_at: firebase.firestore.FieldValue.serverTimestamp()
-      })
+      };
+
+      // 1. Simpan ke Firestore
+      db.collection('custom_builds').add(buildData)
       .then(() => {
-        alert("Request rakitan berhasil dikirim! Dokter Komputer akan memproses spesifikasimu.");
-        document.getElementById('buildForm').reset();
-        btn.disabled = false;
-        btn.textContent = "Kirim Request Rakitan";
+        // 2. Format Teks WhatsApp
+        const waText = 
+`*REQUEST BUILD PC - DOKTER KOMPUTER*
+----------------------------------------
+*Nama Customer:* ${buildData.customer_nama}
+*Email:* ${buildData.customer_email}
+*WA:* ${buildData.customer_wa}
+
+*SPESIFIKASI RACIKAN:*
+• *Processor:* ${buildData.specs.processor}
+• *Motherboard:* ${buildData.specs.motherboard}
+• *RAM:* ${buildData.specs.ram}
+• *SSD:* ${buildData.specs.ssd}
+• *VGA:* ${buildData.specs.vga}
+• *PSU:* ${buildData.specs.psu}
+• *Cooler CPU:* ${buildData.specs.cooler}
+• *Casing:* ${buildData.specs.casing}
+
+*Catatan:* ${buildData.notes || '-'}
+----------------------------------------
+_Mohon konfirmasi estimasi harga & ketersediaan stoknya min!_`;
+
+        // 3. Buka WhatsApp
+        const waUrl = `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(waText)}`;
+        window.open(waUrl, '_blank');
+
+        // 4. Tampilkan Modal Pop-up
+        document.getElementById('successModal').classList.remove('hidden');
       })
       .catch(err => {
-        alert("Gagal menyimpan data: " + err.message);
-        btn.disabled = false;
-        btn.textContent = "Kirim Request Rakitan";
+        alert("Gagal menyimpan request: " + err.message);
       });
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').classList.add('hidden');
+      document.getElementById('buildForm').reset();
     }
   </script>
 </body>
