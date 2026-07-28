@@ -30,7 +30,7 @@
     }
 
     /* ========================================== */
-    /* STYLING HEADER LOGO & BANNER UTAMA         */
+    /* STYLING HEADER LOGO                        */
     /* ========================================== */
     .brand-header {
       text-align: center;
@@ -42,30 +42,81 @@
       height: auto;
       display: block;
       margin: 0 auto 15px auto;
-      /* Efek blend agar latar putih pada gambar logo menyatu rapi dengan theme gelap */
       mix-blend-mode: screen; 
       filter: drop-shadow(0 0 12px rgba(223, 177, 91, 0.3));
     }
 
-    .main-banner {
+    /* ========================================== */
+    /* STYLING BANNER CAROUSEL (SLIDER AUTOMATIS) */
+    /* ========================================== */
+    .banner-slider-container {
+      position: relative;
       width: 100%;
       border-radius: 16px;
       overflow: hidden;
       margin-bottom: 40px;
       border: 1px solid #102636;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      transition: border-color 0.3s ease;
     }
 
-    .main-banner:hover {
+    .banner-slider-container:hover {
       border-color: #dfb15b;
     }
 
-    .main-banner img {
+    .slider-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .slide-item {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .slide-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide-item img {
       width: 100%;
       height: auto;
       display: block;
       object-fit: cover;
+    }
+
+    /* Dots Indicator Banner */
+    .slider-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+      background: rgba(3, 10, 16, 0.6);
+      padding: 6px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .dot-btn {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot-btn.active {
+      background: #dfb15b;
+      width: 24px;
+      border-radius: 10px;
     }
 
     /* Header Kategori */
@@ -289,6 +340,16 @@
         top: 8px;
         right: 8px;
       }
+      .slider-dots {
+        bottom: 8px;
+      }
+      .dot-btn {
+        width: 8px;
+        height: 8px;
+      }
+      .dot-btn.active {
+        width: 18px;
+      }
     }
   </style>
 </head>
@@ -306,16 +367,52 @@
 
   <div class="container">
 
-    <!-- 1. BAGIAN LOGO UTAMA (PALING ATAS) -->
+    <!-- 1. BAGIAN LOGO UTAMA -->
     <header class="brand-header">
       <img src="images/logo.png" alt="Logo Dokter Komputer" class="brand-logo">
     </header>
 
-    <!-- 2. BAGIAN BANNER PROMO "CLEAN YOUR PC" -->
-    <div class="main-banner">
-      <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20booking%20layanan%20Clean%20PC" target="_blank">
-        <img src="images/banner-clean-pc.png" alt="Banner Dokter Komputer - Clean Your PC">
-      </a>
+    <!-- 2. BAGIAN BANNER SLIDER AUTOMATIS (4 BANNER) -->
+    <div class="banner-slider-container" id="bannerSlider">
+      <div class="slider-track" id="sliderTrack">
+        
+        <!-- Slide 1: Clean Your PC -->
+        <div class="slide-item">
+          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20booking%20layanan%20Clean%20PC" target="_blank">
+            <img src="images/banner-clean-pc.png" alt="Banner Dokter Komputer - Clean Your PC">
+          </a>
+        </div>
+
+        <!-- Slide 2: Service & Upgrade -->
+        <div class="slide-item">
+          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20service/upgrade%20laptop%20atau%20PC" target="_blank">
+            <img src="images/jasaservice.png" alt="Banner Dokter Komputer - Service & Upgrade">
+          </a>
+        </div>
+
+        <!-- Slide 3: Konsultasi 24 Jam -->
+        <div class="slide-item">
+          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20ingin%20konsultasi%20masalah%20PC/Laptop" target="_blank">
+            <img src="images/konsultasi.png" alt="Banner Dokter Komputer - Konsultasi 24 Jam">
+          </a>
+        </div>
+
+        <!-- Slide 4: Build Your Dream PC -->
+        <div class="slide-item">
+          <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20rakit%20PC%20impian" target="_blank">
+            <img src="images/dreambuild.png" alt="Banner Dokter Komputer - Build Your Dream PC">
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Navigation Dots -->
+      <div class="slider-dots" id="sliderDots">
+        <button class="dot-btn active" onclick="goToSlide(0)"></button>
+        <button class="dot-btn" onclick="goToSlide(1)"></button>
+        <button class="dot-btn" onclick="goToSlide(2)"></button>
+        <button class="dot-btn" onclick="goToSlide(3)"></button>
+      </div>
     </div>
 
     <!-- 3. SECTION KATEGORI PRODUK -->
@@ -382,8 +479,60 @@
     💬 Konsultasi WhatsApp
   </a>
 
-  <!-- SCRIPT POPUP -->
+  <!-- SCRIPT BANNER SLIDER & POPUP -->
   <script>
+    /* ------------------------------------------
+       LOGIK CAROUSEL SLIDER BANNER AUTOMATIS
+    ------------------------------------------ */
+    let currentSlide = 0;
+    const totalSlides = 4;
+    const sliderTrack = document.getElementById('sliderTrack');
+    const dots = document.querySelectorAll('.dot-btn');
+    const sliderContainer = document.getElementById('bannerSlider');
+    let slideInterval;
+
+    function updateSlider() {
+      sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, index) => {
+        if (index === currentSlide) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlider();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlider();
+      resetInterval();
+    }
+
+    function startInterval() {
+      slideInterval = setInterval(nextSlide, 4000); // Bergeser setiap 4 detik
+    }
+
+    function resetInterval() {
+      clearInterval(slideInterval);
+      startInterval();
+    }
+
+    // Jalankan Autoplay
+    startInterval();
+
+    // Pause saat mouse hover banner agar pengguna nyaman membaca/klik
+    sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    sliderContainer.addEventListener('mouseleave', startInterval);
+
+
+    /* ------------------------------------------
+       LOGIK MODAL POPUP
+    ------------------------------------------ */
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         document.getElementById('promoPopup').classList.add('active');
