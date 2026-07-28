@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROG Ultimate Build - PROJECT DNA | Dokter Komputer</title>
+    <title>Katalog Project DNA | Dokter Komputer Lab</title>
     <style>
         * {
             box-sizing: border-box;
@@ -21,7 +21,7 @@
 
         .container {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 0 auto 40px auto; /* Ditambahkan margin-bottom agar ada jarak antar katalog */
             background: #0d1117;
             border: 1px solid #1f2937;
             border-radius: 16px;
@@ -41,10 +41,13 @@
         .brand {
             font-size: 0.85rem;
             font-weight: 800;
-            color: #ff2a4b;
             letter-spacing: 3px;
             text-transform: uppercase;
         }
+        /* Warna spesifik brand per varian */
+        .brand-gold { color: #e63946; }
+        .brand-rog { color: #ff2a4b; }
+
         .main-title {
             font-size: 2.3rem;
             font-weight: 900;
@@ -54,8 +57,6 @@
         }
         .badge-edition {
             display: inline-block;
-            border: 1px solid #ff2a4b;
-            color: #ff2a4b;
             font-size: 0.85rem;
             font-weight: 800;
             padding: 4px 16px;
@@ -63,6 +64,15 @@
             margin-top: 10px;
             letter-spacing: 2px;
         }
+        .badge-gold {
+            border: 1px solid #d4af37;
+            color: #d4af37;
+        }
+        .badge-rog {
+            border: 1px solid #ff2a4b;
+            color: #ff2a4b;
+        }
+
         .tagline {
             color: #8b98a7;
             font-size: 0.9rem;
@@ -93,16 +103,22 @@
 
         .section-title {
             background: linear-gradient(90deg, #161b22 0%, #0d1117 100%);
-            color: #ff2a4b;
             font-size: 0.85rem;
             font-weight: 800;
             padding: 8px 14px;
-            border-left: 3px solid #ff2a4b;
             margin-bottom: 15px;
             letter-spacing: 1.5px;
         }
+        .title-gold {
+            color: #d4af37;
+            border-left: 3px solid #d4af37;
+        }
+        .title-rog {
+            color: #ff2a4b;
+            border-left: 3px solid #ff2a4b;
+        }
 
-        /* TABLE SPESIFIKASI ROG */
+        /* TABLE SPESIFIKASI */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -156,15 +172,17 @@
         .report-label { color: #8b98a7; }
         .report-val { font-weight: 800; color: #00ff66; }
 
-        /* HARGA & ACTION BOX */
+        /* ACTION BOX */
         .action-box {
             background: linear-gradient(135deg, #161c24 0%, #0d1117 100%);
-            border: 1px solid #ff2a4b;
             border-radius: 12px;
             padding: 25px;
             text-align: center;
             margin-bottom: 25px;
         }
+        .box-gold { border: 1px solid #d4af37; }
+        .box-rog { border: 1px solid #ff2a4b; }
+
         .price-tag {
             font-size: 2.2rem;
             font-weight: 900;
@@ -172,10 +190,15 @@
             margin-bottom: 5px;
         }
         .action-title {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: 1px;
+        }
+        .action-title-gold {
+            color: #d4af37;
+            font-size: 1.2rem;
+            font-weight: 900;
         }
         .action-sub {
             color: #a0aab8;
@@ -232,26 +255,136 @@
 </head>
 <body>
 
+    <!-- ========================================== -->
+    <!-- KATALOG 1: PROJECT DNA MOST WANTED EDITION -->
+    <!-- ========================================== -->
     <div class="container">
         <!-- HEADER -->
         <div class="header">
-            <div class="brand">Dokter Komputer Lab</div>
+            <div class="brand brand-gold">Dokter Komputer Lab</div>
+            <h1 class="main-title">PROJECT DNA</h1>
+            <span class="badge-edition badge-gold">MOST WANTED EDITION</span>
+            <p class="tagline">EVERY COMPONENT HAS A PURPOSE • BUILD WITH SCIENCE</p>
+        </div>
+
+        <!-- GRID SPESIFIKASI & LAB REPORT -->
+        <div class="specs-grid">
+            <!-- KOLOM SPESIFIKASI PC -->
+            <div>
+                <div class="section-title title-gold">DNA PROFILE (SPECIFICATIONS)</div>
+                <table>
+                    <tr>
+                        <td class="label">CPU</td>
+                        <td class="val">AMD Ryzen 9 9950X3D</td>
+                    </tr>
+                    <tr>
+                        <td class="label">GPU</td>
+                        <td class="val">GeForce RTX 5080 16GB</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Memory</td>
+                        <td class="val">64GB DDR5 6000MHz</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Storage</td>
+                        <td class="val">2TB NVMe M.2 PCIe Gen4</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Motherboard</td>
+                        <td class="val">B650 / B850 Series High-End</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Cooling</td>
+                        <td class="val">AIO Flagship 360 / 420mm Liquid Cooler</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Power Supply</td>
+                        <td class="val">1000W 80+ Gold Certified</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Case</td>
+                        <td class="val">Premium Full Tower (Airflow Optimized)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- KOLOM LAB VERIFIED REPORT -->
+            <div>
+                <div class="section-title title-gold">LAB VERIFIED REPORT</div>
+                <div class="lab-card">
+                    <div class="sample-id">SAMPLE ID: DK-DNA-001</div>
+                    <div class="status-verified">STATUS: VERIFIED ✔</div>
+
+                    <div class="report-item">
+                        <span class="report-label">Gaming Performance</span>
+                        <span class="report-val">100%</span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Rendering Performance</span>
+                        <span class="report-val">100%</span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">AI / Machine Learning</span>
+                        <span class="report-val">100%</span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Thermal Efficiency</span>
+                        <span class="report-val">EXCELLENT</span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Noise Level</span>
+                        <span class="report-val">SILENT</span>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-label">Stress Test</span>
+                        <span class="report-val">PASSED</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRICING & ACTION BOX -->
+        <div class="action-box box-gold">
+            <div class="action-title-gold">BUILT FOR THOSE WHO DEMAND THE BEST</div>
+            <p class="action-sub">Project DNA adalah hasil penelitian, seleksi komponen terbaik, dan rekayasa tanpa kompromi. <br><strong>CUSTOM BUILT UPON REQUEST (BY CONSULTATION ONLY)</strong></p>
+            
+            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20konsultasi%20Build%20Ultimate%20PROJECT%20DNA" class="btn-wa" target="_blank">
+                💬 Konsultasi & Order Project DNA via WA
+            </a>
+        </div>
+
+        <!-- FOOTER FEATURES -->
+        <div class="features">
+            <div>🔬 Rigorous Testing</div>
+            <div>📋 Quality Control</div>
+            <div>🛡️ Stability Certified</div>
+            <div>⚡ Performance Approved</div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- KATALOG 2: ROG ULTIMATE BUILD              -->
+    <!-- ========================================== -->
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="brand brand-rog">Dokter Komputer Lab</div>
             <h1 class="main-title">ROG ULTIMATE BUILD</h1>
-            <span class="badge-edition">PROJECT DNA EDITION</span>
+            <span class="badge-edition badge-rog">PROJECT DNA EDITION</span>
             <p class="tagline">FULL REPUBLIC OF GAMERS SETUP • EXTREME PERFORMANCE</p>
         </div>
 
-        <!-- GAMBAR GAMBAR ROG UTAMA -->
+        <!-- GAMBAR BUILD PC -->
         <div class="build-image-container">
             <img src="images/rog.png" alt="ROG Ultimate Build Detail">
         </div>
 
         <!-- GRID SPESIFIKASI ROG & LAB REPORT -->
         <div class="specs-grid">
-            
             <!-- KOLOM SPESIFIKASI ROG COMPLETE -->
             <div>
-                <div class="section-title">FULL HARDWARE SPECIFICATIONS</div>
+                <div class="section-title title-rog">FULL HARDWARE SPECIFICATIONS</div>
                 <table>
                     <tr>
                         <td class="label">Processor</td>
@@ -310,7 +443,7 @@
 
             <!-- KOLOM LAB VERIFIED REPORT -->
             <div>
-                <div class="section-title">LAB VERIFIED REPORT</div>
+                <div class="section-title title-rog">LAB VERIFIED REPORT</div>
                 <div class="lab-card">
                     <div class="sample-id">SAMPLE ID: DK-ROG-ULTIMATE</div>
                     <div class="status-verified">STATUS: VERIFIED ✔</div>
@@ -341,11 +474,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- HARGA & ACTION BOX -->
-        <div class="action-box">
+        <div class="action-box box-rog">
             <div class="price-tag">IDR 45.999.999</div>
             <div class="action-title">FULL ROG ECOSYSTEM PACKAGE</div>
             <p class="action-sub">Rakit profesional, manajemen kabel rapi, dan sistem sudah di-tuning maksimal. Tinggal colok dan main!</p>
