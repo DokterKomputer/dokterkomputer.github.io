@@ -88,7 +88,7 @@
     .hidden { display: none; }
   </style>
 
-  <!-- Firebase Scripts (Compat Version agar mudah di HTML biasa) -->
+  <!-- Firebase Scripts -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -99,15 +99,15 @@
     <h2>Build Request PC</h2>
     <p class="sub">Konsultasikan rakitan PC impianmu langsung dengan Dokter Komputer</p>
 
-    <!-- BOX 1: TOMBOL LOGIN (Tampil jika belum login) -->
+    <!-- BOX 1: TOMBOL LOGIN -->
     <div id="loginSection">
       <button class="btn-google" onclick="loginWithGoogle()">
-        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" alt="Google Logo">
         Masuk dengan Google
       </button>
     </div>
 
-    <!-- BOX 2: FORM REQUEST (Tampil setelah berhasil login) -->
+    <!-- BOX 2: FORM REQUEST -->
     <div id="formSection" class="hidden">
       <div class="user-info">
         <img id="userPhoto" src="" alt="Profile">
@@ -149,7 +149,7 @@
   </div>
 
   <script>
-// 1. TEMPELKAN FIREBASE CONFIG MILIKMU DI SINI
+    // Konfigurasi Firebase Dokter Komputer
     const firebaseConfig = {
       apiKey: "AIzaSyADUXscGEoTAMEq04yyfLbEGKvnVsj-KE",
       authDomain: "dokter-komputer-589e3.firebaseapp.com",
@@ -159,7 +159,7 @@
       appId: "1:1064482639681:web:ce3394ee232f80ede85bc0"
     };
 
-    // Initialize Firebase
+    // Inisialisasi Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
