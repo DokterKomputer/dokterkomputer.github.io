@@ -336,12 +336,6 @@
       .brand-logo { 
         max-width: 140px; 
       } 
-
-      .slide-item img {
-        height: 200px;
-        object-fit: cover;
-      }
-
       .popup-close { 
         top: 8px; 
         right: 8px; 
@@ -499,7 +493,7 @@
        LOGIK CAROUSEL SLIDER BANNER AUTOMATIS 
     ------------------------------------------ */ 
     let currentSlide = 0; 
-    const totalSlides = 5; // Diperbarui menjadi 5 banner
+    const totalSlides = 5; 
     const sliderTrack = document.getElementById('sliderTrack'); 
     const dots = document.querySelectorAll('.dot-btn'); 
     const sliderContainer = document.getElementById('bannerSlider'); 
@@ -528,7 +522,7 @@
     } 
 
     function startInterval() { 
-      slideInterval = setInterval(nextSlide, 4000); // Bergeser setiap 4 detik 
+      slideInterval = setInterval(nextSlide, 4000); 
     } 
 
     function resetInterval() { 
