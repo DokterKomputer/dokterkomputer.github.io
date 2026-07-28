@@ -323,32 +323,88 @@
       background: #b01821;
     }
 
-    /* Responsif Layar */
+    /* ========================================== */
+    /* RESPONSIVE BREAKPOINTS (TABLET & MOBILE)   */
+    /* ========================================== */
     @media (max-width: 992px) {
       .category-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
     @media (max-width: 576px) {
-      .category-grid {
-        grid-template-columns: 1fr;
+      /* Adjust Container Padding */
+      .container {
+        padding: 15px 12px 40px 12px;
       }
+
       .brand-logo {
-        max-width: 140px;
+        max-width: 130px;
+        margin-bottom: 10px;
       }
-      .popup-close {
-        top: 8px;
-        right: 8px;
+
+      /* Fix Banner Dimension di HP */
+      .banner-slider-container {
+        border-radius: 12px;
+        margin-bottom: 25px;
       }
+
+      .slide-item img {
+        height: 200px; /* Menjaga tinggi banner proporsional di HP */
+        object-fit: cover;
+        object-position: center;
+      }
+
+      /* Slider Dots khusus HP */
       .slider-dots {
         bottom: 8px;
+        padding: 4px 8px;
       }
       .dot-btn {
-        width: 8px;
-        height: 8px;
+        width: 7px;
+        height: 7px;
       }
       .dot-btn.active {
         width: 18px;
+      }
+
+      /* Adjust Typography & Grid Kategori */
+      .category-header h2 {
+        font-size: 1.35rem;
+      }
+      .category-badge {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+      }
+      .category-grid {
+        grid-template-columns: 1fr; /* 1 Kolom Penuh */
+        gap: 15px;
+      }
+      .category-card {
+        padding: 18px 15px 15px 15px;
+      }
+      .card-title-group h3 {
+        font-size: 1.15rem;
+      }
+      .image-wrapper {
+        width: 120px;
+        height: 120px;
+        margin: 15px auto;
+      }
+
+      /* Popup & Floating WA Adjustments */
+      .popup-close {
+        top: -10px;
+        right: -10px;
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+      }
+      .wa-float {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 16px;
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -379,28 +435,41 @@
         <!-- Slide 1: Clean Your PC -->
         <div class="slide-item">
           <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20booking%20layanan%20Clean%20PC" target="_blank">
-            <img src="images/banner-clean-pc.png" alt="Banner Dokter Komputer - Clean Your PC">
+            <picture>
+              <!-- Menyiapkan slot jika nanti buat banner khusus mobile (misal: images/banner-clean-pc-mobile.png) -->
+              <source media="(max-width: 576px)" srcset="images/banner-clean-pc.png">
+              <img src="images/banner-clean-pc.png" alt="Banner Dokter Komputer - Clean Your PC">
+            </picture>
           </a>
         </div>
 
         <!-- Slide 2: Service & Upgrade -->
         <div class="slide-item">
           <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20service/upgrade%20laptop%20atau%20PC" target="_blank">
-            <img src="images/jasaservice.png" alt="Banner Dokter Komputer - Service & Upgrade">
+            <picture>
+              <source media="(max-width: 576px)" srcset="images/jasaservice.png">
+              <img src="images/jasaservice.png" alt="Banner Dokter Komputer - Service & Upgrade">
+            </picture>
           </a>
         </div>
 
         <!-- Slide 3: Konsultasi 24 Jam -->
         <div class="slide-item">
           <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20ingin%20konsultasi%20masalah%20PC/Laptop" target="_blank">
-            <img src="images/konsultasi.png" alt="Banner Dokter Komputer - Konsultasi 24 Jam">
+            <picture>
+              <source media="(max-width: 576px)" srcset="images/konsultasi.png">
+              <img src="images/konsultasi.png" alt="Banner Dokter Komputer - Konsultasi 24 Jam">
+            </picture>
           </a>
         </div>
 
         <!-- Slide 4: Build Your Dream PC -->
         <div class="slide-item">
           <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20rakit%20PC%20impian" target="_blank">
-            <img src="images/dreambuild.png" alt="Banner Dokter Komputer - Build Your Dream PC">
+            <picture>
+              <source media="(max-width: 576px)" srcset="images/dreambuild.png">
+              <img src="images/dreambuild.png" alt="Banner Dokter Komputer - Build Your Dream PC">
+            </picture>
           </a>
         </div>
 
@@ -525,10 +594,9 @@
     // Jalankan Autoplay
     startInterval();
 
-    // Pause saat mouse hover banner agar pengguna nyaman membaca/klik
+    // Pause saat mouse hover banner
     sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
     sliderContainer.addEventListener('mouseleave', startInterval);
-
 
     /* ------------------------------------------
        LOGIK MODAL POPUP
