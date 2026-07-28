@@ -11,18 +11,61 @@
       margin: 0;
       padding: 0;
     }
+    
+    /* Background mengacu gradasi Dokter Komputer */
     body {
-      background-color: #0b0c10;
+      background: radial-gradient(circle at center top, #071f2e 0%, #030a10 70%, #010407 100%);
+      background-attachment: fixed;
       color: #ffffff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
+      min-height: 100vh;
     }
 
     /* Container Utama */
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 30px 20px 50px 20px;
+    }
+
+    /* ========================================== */
+    /* STYLING HEADER LOGO & BANNER UTAMA         */
+    /* ========================================== */
+    .brand-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .brand-logo {
+      max-width: 180px;
+      height: auto;
+      display: block;
+      margin: 0 auto 15px auto;
+      /* Efek blend agar latar putih pada gambar logo menyatu rapi dengan theme gelap */
+      mix-blend-mode: screen; 
+      filter: drop-shadow(0 0 12px rgba(223, 177, 91, 0.3));
+    }
+
+    .main-banner {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      border: 1px solid #102636;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .main-banner:hover {
+      border-color: #dfb15b;
+    }
+
+    .main-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
     }
 
     /* Header Kategori */
@@ -30,9 +73,9 @@
       margin-bottom: 30px;
     }
     .category-badge {
-      background-color: #1f2833;
-      color: #00ff66;
-      border: 1px solid #00ff66;
+      background-color: rgba(7, 31, 46, 0.8);
+      color: #dfb15b;
+      border: 1px solid #dfb15b;
       padding: 6px 14px;
       font-size: 0.85rem;
       font-weight: bold;
@@ -57,8 +100,8 @@
 
     /* Card Item */
     .category-card {
-      background: #12141c;
-      border: 1px solid #232733;
+      background: rgba(8, 18, 27, 0.75);
+      border: 1px solid #102636;
       border-radius: 12px;
       text-decoration: none;
       display: flex;
@@ -67,11 +110,12 @@
       padding: 24px 20px 20px 20px;
       transition: all 0.3s ease;
       cursor: pointer;
+      backdrop-filter: blur(5px);
     }
     .category-card:hover {
       transform: translateY(-8px);
-      border-color: #00ff66;
-      box-shadow: 0 10px 25px rgba(0, 255, 102, 0.15);
+      border-color: #d9232d;
+      box-shadow: 0 10px 25px rgba(217, 35, 45, 0.25);
     }
 
     /* Header Inside Card */
@@ -82,7 +126,7 @@
       line-height: 1.2;
     }
     .card-title-group .subtitle {
-      color: #8892b0;
+      color: #7b93a4;
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 1px;
@@ -91,7 +135,7 @@
 
     /* Lingkaran Background Gambar PC */
     .image-wrapper {
-      background: radial-gradient(circle, #252a38 0%, #12141c 70%);
+      background: radial-gradient(circle, #0e2d42 0%, #05131f 70%);
       width: 150px;
       height: 150px;
       border-radius: 50%;
@@ -99,11 +143,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px dashed #333a4d;
+      border: 1px dashed #1c3e56;
       transition: border-color 0.3s ease;
     }
     .category-card:hover .image-wrapper {
-      border-color: #00ff66;
+      border-color: #d9232d;
     }
     .image-wrapper img {
       width: 80%;
@@ -117,8 +161,8 @@
 
     /* Tagline Tombol Bawah */
     .tagline {
-      background-color: #ffffff;
-      color: #000000;
+      background-color: #dfb15b;
+      color: #030a10;
       text-align: center;
       padding: 10px;
       font-weight: 800;
@@ -128,11 +172,11 @@
       transition: all 0.3s ease;
     }
     .category-card:hover .tagline {
-      background-color: #00ff66;
-      color: #000000;
+      background-color: #d9232d;
+      color: #ffffff;
     }
 
-    /* Floating Floating WhatsApp Button */
+    /* Floating WhatsApp Button */
     .wa-float {
       position: fixed;
       bottom: 25px;
@@ -143,7 +187,7 @@
       padding: 12px 20px;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -153,7 +197,82 @@
       background-color: #1ebd56;
     }
 
-    /* Responsif untuk Layar Tablet dan HP */
+    /* STYLING MODAL POPUP PROMO */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(1, 4, 7, 0.88);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 15px;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-content {
+      position: relative;
+      max-width: 480px;
+      width: 100%;
+      max-height: 90vh;
+      border-radius: 16px;
+      overflow: visible;
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .popup-overlay.active .popup-content {
+      transform: scale(1);
+    }
+
+    .popup-content img {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid #102636;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      background: #d9232d;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      font-size: 1.2rem;
+      font-weight: bold;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: background 0.2s ease;
+      z-index: 1001;
+    }
+
+    .popup-close:hover {
+      background: #b01821;
+    }
+
+    /* Responsif Layar */
     @media (max-width: 992px) {
       .category-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -163,13 +282,43 @@
       .category-grid {
         grid-template-columns: 1fr;
       }
+      .brand-logo {
+        max-width: 140px;
+      }
+      .popup-close {
+        top: 8px;
+        right: 8px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- POPUP PROMO CONTAINER -->
+  <div class="popup-overlay" id="promoPopup">
+    <div class="popup-content">
+      <button class="popup-close" onclick="closePopup()">&times;</button>
+      <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20konsultasi%20mengenai%20laptop/PC" target="_blank">
+        <img src="images/promo.png" alt="Promo Dokter Komputer">
+      </a>
+    </div>
+  </div>
+
   <div class="container">
-    <!-- Section Kategori Produksi -->
+
+    <!-- 1. BAGIAN LOGO UTAMA (PALING ATAS) -->
+    <header class="brand-header">
+      <img src="images/logo.png" alt="Logo Dokter Komputer" class="brand-logo">
+    </header>
+
+    <!-- 2. BAGIAN BANNER PROMO "CLEAN YOUR PC" -->
+    <div class="main-banner">
+      <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20booking%20layanan%20Clean%20PC" target="_blank">
+        <img src="images/banner-clean-pc.png" alt="Banner Dokter Komputer - Clean Your PC">
+      </a>
+    </div>
+
+    <!-- 3. SECTION KATEGORI PRODUK -->
     <section class="category-section">
       <div class="category-header">
         <span class="category-badge">PRODUCT CATEGORY</span>
@@ -232,6 +381,25 @@
   <a href="https://wa.me/6281238070329" class="wa-float" target="_blank">
     💬 Konsultasi WhatsApp
   </a>
+
+  <!-- SCRIPT POPUP -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.getElementById('promoPopup').classList.add('active');
+      }, 500);
+    });
+
+    function closePopup() {
+      document.getElementById('promoPopup').classList.remove('active');
+    }
+
+    document.getElementById('promoPopup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePopup();
+      }
+    });
+  </script>
 
 </body>
 </html>
