@@ -15,26 +15,70 @@
             background-color: #07090c;
             color: #e0e6ed;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            padding: 30px 15px;
+            overflow-x: hidden;
             line-height: 1.5;
         }
 
+        /* TOP NAVIGATION HINT */
+        .swipe-hint {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: rgba(17, 22, 29, 0.95);
+            color: #8b98a7;
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            text-transform: uppercase;
+        }
+
+        /* SLIDER CONTAINER */
+        .catalog-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            width: 100vw;
+            min-height: 100vh;
+            padding-top: 45px;
+            padding-bottom: 60px;
+        }
+
+        .catalog-slider::-webkit-scrollbar { display: none; }
+        .catalog-slider { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* EACH PRODUCT SLIDE */
+        .product-slide {
+            flex: 0 0 100vw;
+            width: 100vw;
+            scroll-snap-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
         .container {
-            max-width: 900px;
-            margin: 0 auto 40px auto;
+            width: 100%;
+            max-width: 1100px;
             background: #0d1117;
             border: 1px solid #1f2937;
             border-radius: 16px;
             padding: 30px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
             position: relative;
-            overflow: hidden;
         }
 
         /* HEADER SECTION */
         .header {
             border-bottom: 2px dashed #1f2937;
-            padding-bottom: 20px;
+            padding-bottom: 15px;
             margin-bottom: 25px;
             text-align: center;
         }
@@ -44,12 +88,11 @@
             letter-spacing: 3px;
             text-transform: uppercase;
         }
-        /* Color Accent Per Variant */
         .brand-creator { color: #00d2ff; }
         .brand-tiktok { color: #fe2c55; }
 
         .main-title {
-            font-size: 2.3rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: 1px;
@@ -61,7 +104,7 @@
             font-weight: 800;
             padding: 4px 16px;
             border-radius: 4px;
-            margin-top: 10px;
+            margin-top: 8px;
             letter-spacing: 2px;
         }
         .badge-creator { border: 1px solid #00d2ff; color: #00d2ff; }
@@ -69,30 +112,43 @@
 
         .tagline {
             color: #8b98a7;
-            font-size: 0.9rem;
-            margin-top: 10px;
+            font-size: 0.85rem;
+            margin-top: 8px;
             letter-spacing: 1px;
+        }
+
+        /* MAIN CONTENT SPLIT GRID */
+        .main-content-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        /* KANAN/KIRI CONTENT BOXES */
+        .left-col, .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         /* GAMBAR BUILD PC */
         .build-image-container {
             text-align: center;
-            margin-bottom: 30px;
+            background: #07090c;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .build-image-container img {
             max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid #1f2937;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        /* GRID SPESIFIKASI & LAB REPORT */
-        .specs-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 25px;
-            margin-bottom: 30px;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6));
         }
 
         .section-title {
@@ -100,7 +156,7 @@
             font-size: 0.85rem;
             font-weight: 800;
             padding: 8px 14px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             letter-spacing: 1.5px;
         }
         .title-creator { color: #00d2ff; border-left: 3px solid #00d2ff; }
@@ -144,9 +200,9 @@
         }
         .status-verified {
             color: #00ff66;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             letter-spacing: 1px;
         }
         .report-item {
@@ -164,9 +220,8 @@
         .action-box {
             background: linear-gradient(135deg, #161c24 0%, #0d1117 100%);
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
-            margin-bottom: 25px;
         }
         .box-creator { border: 1px solid #00d2ff; }
         .box-tiktok { border: 1px solid #fe2c55; }
@@ -174,14 +229,13 @@
         .price-tag {
             font-size: 2.2rem;
             font-weight: 900;
-            color: #ffffff;
             margin-bottom: 5px;
         }
         .price-creator { color: #00d2ff; }
         .price-tiktok { color: #fe2c55; }
 
         .action-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: 1px;
@@ -189,8 +243,8 @@
         
         .action-sub {
             color: #a0aab8;
-            font-size: 0.85rem;
-            margin: 8px 0 20px 0;
+            font-size: 0.82rem;
+            margin: 8px 0 15px 0;
         }
 
         .btn-wa {
@@ -206,11 +260,9 @@
             text-align: center;
             transition: background 0.2s ease;
         }
-        .btn-wa:hover {
-            background-color: #1ebd56;
-        }
+        .btn-wa:hover { background-color: #1ebd56; }
 
-        /* FOOTER LAB NOTES */
+        /* FOOTER FEATURES */
         .features {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -220,155 +272,229 @@
             color: #8b98a7;
             border-top: 1px solid #161b22;
             padding-top: 15px;
+            margin-top: 10px;
         }
 
+        /* DOTS NAVIGATION */
+        .slider-dots {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            background: rgba(13, 17, 23, 0.95);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #1f2937;
+            z-index: 100;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2a2e37;
+            transition: 0.3s;
+        }
+        .dot.active {
+            width: 26px;
+            border-radius: 10px;
+        }
+        .dot-creator.active { background: #00d2ff; }
+        .dot-tiktok.active { background: #fe2c55; }
+
         /* RESPONSIVE DESIGN UNTUK HP */
-        @media (max-width: 650px) {
-            .specs-grid {
+        @media (max-width: 900px) {
+            .main-content-grid {
                 grid-template-columns: 1fr;
             }
+            .main-title { font-size: 1.7rem; }
+            .price-tag { font-size: 1.8rem; }
+            .container { padding: 18px; }
             .features {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
-            }
-            .main-title {
-                font-size: 1.8rem;
-            }
-            .price-tag {
-                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ========================================== -->
-    <!-- KATALOG 1: PROFESSIONAL CREATOR PC         -->
-    <!-- ========================================== -->
-    <div class="container">
-        <div class="header">
-            <div class="brand brand-creator">Dokter Komputer Lab</div>
-            <h1 class="main-title">PROFESSIONAL CREATOR PC</h1>
-            <span class="badge-edition badge-creator">STUDIO WORKSTATION EDITION</span>
-            <p class="tagline">OPTIMIZED FOR EDITING • 3D RENDERING • HEAVY WORKLOAD</p>
-        </div>
+    <div class="swipe-hint">
+        👈 GESER KE SAMPING UNTUK KATALOG LAIN 👉
+    </div>
 
-        <div class="build-image-container">
-            <img src="images/creator.png" alt="Professional Creator PC Build">
-        </div>
+    <div class="catalog-slider" id="slider">
 
-        <div class="specs-grid">
-            <div>
-                <div class="section-title title-creator">FULL HARDWARE SPECIFICATIONS</div>
-                <table>
-                    <tr><td class="label">Processor</td><td class="val">Intel Core i7-14700</td></tr>
-                    <tr><td class="label">Motherboard</td><td class="val">MSI B760 TOMAHAWK WIFI</td></tr>
-                    <tr><td class="label">RAM</td><td class="val">64GB (2x32GB) DDR5</td></tr>
-                    <tr><td class="label">VGA / GPU</td><td class="val">MSI GeForce RTX 5060 Ti 16GB GDDR7</td></tr>
-                    <tr><td class="label">Storage</td><td class="val">2TB NVMe SSD M.2 PCIe Gen4</td></tr>
-                    <tr><td class="label">Power Supply</td><td class="val">MSI MAG A850GL 850W 80+ Gold</td></tr>
-                    <tr><td class="label">Cooler</td><td class="val">MSI MPG CORELIQUID P13</td></tr>
-                    <tr><td class="label">Case & Cable</td><td class="val">LIAN LI O11 & LIAN LI STRIMER CABLE</td></tr>
-                    <tr><td class="label">Fan Case</td><td class="val">DARKFLASH DM8 (8 PCS)</td></tr>
-                    <tr><td class="label">OS & Tuning</td><td class="val">Windows 11 Pro Custom (Optimized for Editing, Rendering & 3D)</td></tr>
-                </table>
-            </div>
+        <!-- ========================================== -->
+        <!-- KATALOG 1: PROFESSIONAL CREATOR PC         -->
+        <!-- ========================================== -->
+        <div class="product-slide">
+            <div class="container">
+                <div class="header">
+                    <div class="brand brand-creator">Dokter Komputer Lab</div>
+                    <h1 class="main-title">PROFESSIONAL CREATOR PC</h1>
+                    <span class="badge-edition badge-creator">STUDIO WORKSTATION EDITION</span>
+                    <p class="tagline">OPTIMIZED FOR EDITING • 3D RENDERING • HEAVY WORKLOAD</p>
+                </div>
 
-            <div>
-                <div class="section-title title-creator">LAB VERIFIED REPORT</div>
-                <div class="lab-card">
-                    <div class="sample-id">SAMPLE ID: DK-CREATOR-01</div>
-                    <div class="status-verified">STATUS: VERIFIED ✔</div>
-                    <div class="report-item"><span class="report-label">4K/8K Video Editing</span><span class="report-val">100%</span></div>
-                    <div class="report-item"><span class="report-label">3D Rendering & VFX</span><span class="report-val">100%</span></div>
-                    <div class="report-item"><span class="report-label">Thermal Efficiency</span><span class="report-val">EXCELLENT</span></div>
-                    <div class="report-item"><span class="report-label">Noise Level</span><span class="report-val">SILENT</span></div>
-                    <div class="report-item"><span class="report-label">Multi-Tasking Workload</span><span class="report-val">STABLE</span></div>
-                    <div class="report-item"><span class="report-label">Stress Test</span><span class="report-val">PASSED</span></div>
+                <div class="main-content-grid">
+                    <!-- KOLOM KIRI (GAMBAR & LAB REPORT) -->
+                    <div class="left-col">
+                        <div class="build-image-container">
+                            <img src="images/creator.png" alt="Professional Creator PC Build">
+                        </div>
+
+                        <div>
+                            <div class="section-title title-creator">LAB VERIFIED REPORT</div>
+                            <div class="lab-card">
+                                <div class="sample-id">SAMPLE ID: DK-CREATOR-01</div>
+                                <div class="status-verified">STATUS: VERIFIED ✔</div>
+                                <div class="report-item"><span class="report-label">4K/8K Video Editing</span><span class="report-val">100%</span></div>
+                                <div class="report-item"><span class="report-label">3D Rendering & VFX</span><span class="report-val">100%</span></div>
+                                <div class="report-item"><span class="report-label">Thermal Efficiency</span><span class="report-val">EXCELLENT</span></div>
+                                <div class="report-item"><span class="report-label">Noise Level</span><span class="report-val">SILENT</span></div>
+                                <div class="report-item"><span class="report-label">Multi-Tasking Workload</span><span class="report-val">STABLE</span></div>
+                                <div class="report-item"><span class="report-label">Stress Test</span><span class="report-val">PASSED</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KOLOM KANAN (FULL SPEK & PRICING) -->
+                    <div class="right-col">
+                        <div>
+                            <div class="section-title title-creator">FULL HARDWARE SPECIFICATIONS</div>
+                            <table>
+                                <tr><td class="label">Processor</td><td class="val">Intel Core i7-14700</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">MSI B760 TOMAHAWK WIFI</td></tr>
+                                <tr><td class="label">RAM</td><td class="val">64GB (2x32GB) DDR5</td></tr>
+                                <tr><td class="label">VGA / GPU</td><td class="val">MSI GeForce RTX 5060 Ti 16GB GDDR7</td></tr>
+                                <tr><td class="label">Storage</td><td class="val">2TB NVMe SSD M.2 PCIe Gen4</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">MSI MAG A850GL 850W 80+ Gold</td></tr>
+                                <tr><td class="label">Cooler</td><td class="val">MSI MPG CORELIQUID P13</td></tr>
+                                <tr><td class="label">Case & Cable</td><td class="val">LIAN LI O11 & LIAN LI STRIMER CABLE</td></tr>
+                                <tr><td class="label">Fan Case</td><td class="val">DARKFLASH DM8 (8 PCS)</td></tr>
+                                <tr><td class="label">OS & Tuning</td><td class="val">Windows 11 Pro Custom (Optimized for Editing, Rendering & 3D)</td></tr>
+                            </table>
+                        </div>
+
+                        <div class="action-box box-creator">
+                            <div class="price-tag price-creator">IDR 58.000.000</div>
+                            <div class="action-title">HIGH-PERFORMANCE CREATOR WORKSTATION</div>
+                            <p class="action-sub">Performa render cepat, visual estetik Lian Li premium, dan racikan hardware paling stabil untuk kebutuhan kerja profesional.</p>
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Creator%2058jt" class="btn-wa" target="_blank">
+                                💬 Order / Tanya Creator PC via WA
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <div>🔬 Rigorous Testing</div>
+                    <div>📋 Quality Control</div>
+                    <div>🛡️ Garansi Resmi</div>
+                    <div>⚡ Full Optimization</div>
                 </div>
             </div>
         </div>
 
-        <div class="action-box box-creator">
-            <div class="price-tag price-creator">IDR 58.000.000</div>
-            <div class="action-title">HIGH-PERFORMANCE CREATOR WORKSTATION</div>
-            <p class="action-sub">Performa render cepat, visual estetik Lian Li premium, dan racikan hardware paling stabil untuk kebutuhan kerja profesional.</p>
-            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Creator%2058jt" class="btn-wa" target="_blank">
-                💬 Order / Tanya Creator PC via WA
-            </a>
-        </div>
+        <!-- ========================================== -->
+        <!-- KATALOG 2: DK TIKTOK STREAMER             -->
+        <!-- ========================================== -->
+        <div class="product-slide">
+            <div class="container">
+                <div class="header">
+                    <div class="brand brand-tiktok">Dokter Komputer Lab</div>
+                    <h1 class="main-title">DK TIKTOK STREAMER</h1>
+                    <span class="badge-edition badge-tiktok">STREAMER & CONTENT CREATOR EDITION</span>
+                    <p class="tagline">SIAP LIVE 1080P • KONTEN LANCAR • BEST VALUE BUILD</p>
+                </div>
 
-        <div class="features">
-            <div>🔬 Rigorous Testing</div>
-            <div>📋 Quality Control</div>
-            <div>🛡️ Garansi Resmi</div>
-            <div>⚡ Full Optimization</div>
-        </div>
-    </div>
+                <div class="main-content-grid">
+                    <!-- KOLOM KIRI (GAMBAR & LAB REPORT) -->
+                    <div class="left-col">
+                        <div class="build-image-container">
+                            <img src="images/tiktok-streamer.png" alt="DK TikTok Streamer PC Build">
+                        </div>
 
+                        <div>
+                            <div class="section-title title-tiktok">LAB VERIFIED REPORT</div>
+                            <div class="lab-card">
+                                <div class="sample-id">SAMPLE ID: DK-STREAMER-01</div>
+                                <div class="status-verified">STATUS: VERIFIED ✔</div>
+                                <div class="report-item"><span class="report-label">Live TikTok 1080p</span><span class="report-val">SMOOTH</span></div>
+                                <div class="report-item"><span class="report-label">OBS Multi-Scene</span><span class="report-val">STABLE</span></div>
+                                <div class="report-item"><span class="report-label">Game + Stream</span><span class="report-val">NO LAG</span></div>
+                                <div class="report-item"><span class="report-label">Thermal Efficiency</span><span class="report-val">GOOD</span></div>
+                                <div class="report-item"><span class="report-label">Multitasking</span><span class="report-val">LANCAR</span></div>
+                                <div class="report-item"><span class="report-label">Stress Test</span><span class="report-val">PASSED</span></div>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- ========================================== -->
-    <!-- KATALOG 2: DK TIKTOK STREAMER             -->
-    <!-- ========================================== -->
-    <div class="container">
-        <div class="header">
-            <div class="brand brand-tiktok">Dokter Komputer Lab</div>
-            <h1 class="main-title">DK TIKTOK STREAMER</h1>
-            <span class="badge-edition badge-tiktok">STREAMER & CONTENT CREATOR EDITION</span>
-            <p class="tagline">SIAP LIVE 1080P • KONTEN LANCAR • BEST VALUE BUILD</p>
-        </div>
+                    <!-- KOLOM KANAN (FULL SPEK & PRICING) -->
+                    <div class="right-col">
+                        <div>
+                            <div class="section-title title-tiktok">FULL HARDWARE SPECIFICATIONS</div>
+                            <table>
+                                <tr><td class="label">Processor</td><td class="val">AMD Ryzen 5 5600</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">B550 Brand Ternama</td></tr>
+                                <tr><td class="label">RAM</td><td class="val">16GB (2x8GB) DDR4</td></tr>
+                                <tr><td class="label">VGA / GPU</td><td class="val">GeForce RTX 5050 8GB GDDR6</td></tr>
+                                <tr><td class="label">Storage</td><td class="val">NVMe M.2 512GB</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">650W 80+ Bronze</td></tr>
+                                <tr><td class="label">Case</td><td class="val">White Case + RGB Fan</td></tr>
+                                <tr><td class="label">Cooler</td><td class="val">Tower Cooler White Edition</td></tr>
+                                <tr><td class="label">OS & Tuning</td><td class="val">Windows & OBS Studio Setting Optimal for Live Stream</td></tr>
+                            </table>
+                        </div>
 
-        <div class="build-image-container">
-            <img src="images/tiktok-streamer.png" alt="DK TikTok Streamer PC Build">
-        </div>
+                        <div class="action-box box-tiktok">
+                            <div class="price-tag price-tiktok">Rp 14.499.999</div>
+                            <div class="action-title">BEST VALUE PC UNTUK STREAMER PEMULA!</div>
+                            <p class="action-sub">Sudah termasuk Install OS & Driver, Burn Test, Cable Management Rapi, dan Update BIOS/XMP. Tinggal colok & langsung Live!</p>
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20DK%20TikTok%20Streamer%20(14,4jt)" class="btn-wa" target="_blank">
+                                💬 Order / Tanya DK TikTok Streamer via WA
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="specs-grid">
-            <div>
-                <div class="section-title title-tiktok">FULL HARDWARE SPECIFICATIONS</div>
-                <table>
-                    <tr><td class="label">Processor</td><td class="val">AMD Ryzen 5 5600</td></tr>
-                    <tr><td class="label">Motherboard</td><td class="val">B550 Brand Ternama</td></tr>
-                    <tr><td class="label">RAM</td><td class="val">16GB (2x8GB) DDR4</td></tr>
-                    <tr><td class="label">VGA / GPU</td><td class="val">GeForce RTX 5050 8GB GDDR6</td></tr>
-                    <tr><td class="label">Storage</td><td class="val">NVMe M.2 512GB</td></tr>
-                    <tr><td class="label">Power Supply</td><td class="val">650W 80+ Bronze</td></tr>
-                    <tr><td class="label">Case</td><td class="val">White Case + RGB Fan</td></tr>
-                    <tr><td class="label">Cooler</td><td class="val">Tower Cooler White Edition</td></tr>
-                    <tr><td class="label">OS & Tuning</td><td class="val">Windows & OBS Studio Setting Optimal for Live Stream</td></tr>
-                </table>
-            </div>
-
-            <div>
-                <div class="section-title title-tiktok">LAB VERIFIED REPORT</div>
-                <div class="lab-card">
-                    <div class="sample-id">SAMPLE ID: DK-STREAMER-01</div>
-                    <div class="status-verified">STATUS: VERIFIED ✔</div>
-                    <div class="report-item"><span class="report-label">Live TikTok 1080p</span><span class="report-val">SMOOTH</span></div>
-                    <div class="report-item"><span class="report-label">OBS Multi-Scene</span><span class="report-val">STABLE</span></div>
-                    <div class="report-item"><span class="report-label">Game + Stream</span><span class="report-val">NO LAG</span></div>
-                    <div class="report-item"><span class="report-label">Thermal Efficiency</span><span class="report-val">GOOD</span></div>
-                    <div class="report-item"><span class="report-label">Multitasking</span><span class="report-val">LANCAR</span></div>
-                    <div class="report-item"><span class="report-label">Stress Test</span><span class="report-val">PASSED</span></div>
+                <div class="features">
+                    <div>🔧 Rakit Profesional</div>
+                    <div>📋 Garansi Rakit 1 Thn</div>
+                    <div>🛡️ Packing Aman</div>
+                    <div>⚡ Ready To Stream</div>
                 </div>
             </div>
         </div>
 
-        <div class="action-box box-tiktok">
-            <div class="price-tag price-tiktok">Rp 14.499.999</div>
-            <div class="action-title">BEST VALUE PC UNTUK STREAMER PEMULA!</div>
-            <p class="action-sub">Sudah termasuk Install OS & Driver, Burn Test, Cable Management Rapi, dan Update BIOS/XMP. Tinggal colok & langsung Live!</p>
-            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20DK%20TikTok%20Streamer%20(14,4jt)" class="btn-wa" target="_blank">
-                💬 Order / Tanya DK TikTok Streamer via WA
-            </a>
-        </div>
-
-        <div class="features">
-            <div>🔧 Rakit Profesional</div>
-            <div>📋 Garansi Rakit 1 Thn</div>
-            <div>🛡️ Packing Aman</div>
-            <div>⚡ Ready To Stream</div>
-        </div>
     </div>
 
+    <!-- DOTS NAVIGASI -->
+    <div class="slider-dots">
+        <div class="dot dot-creator active"></div>
+        <div class="dot dot-tiktok"></div>
+    </div>
+
+    <!-- JS UNTUK UPDATE DOTS -->
+    <script>
+        const slider = document.getElementById('slider');
+        const dots = document.querySelectorAll('.dot');
+
+        slider.addEventListener('scroll', () => {
+            const scrollPosition = slider.scrollLeft;
+            const slideWidth = window.innerWidth;
+            const activeIndex = Math.round(scrollPosition / slideWidth);
+
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
