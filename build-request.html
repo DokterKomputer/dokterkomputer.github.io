@@ -321,15 +321,15 @@
           <select id="proc_item" class="form-control" onchange="updateMoboOptions()" required>
             <option value="">-- Pilih Processor AMD Ryzen --</option>
             <optgroup label="AM4 Series">
-              <option value="AMD Ryzen 3 3200G / 4100">Ryzen 3 Series (AM4)</option>
-              <option value="AMD Ryzen 5 3600 / 5500 / 5600 / 5600G">Ryzen 5 Series (AM4)</option>
-              <option value="AMD Ryzen 7 5700X / 5700X3D / 5800X">Ryzen 7 Series (AM4)</option>
-              <option value="AMD Ryzen 9 5900X / 5950X">Ryzen 9 Series (AM4)</option>
+              <option value="AM4|AMD Ryzen 3 3200G / 4100">Ryzen 3 Series (AM4)</option>
+              <option value="AM4|AMD Ryzen 5 3600 / 5500 / 5600 / 5600G">Ryzen 5 Series (AM4)</option>
+              <option value="AM4|AMD Ryzen 7 5700X / 5700X3D / 5800X">Ryzen 7 Series (AM4)</option>
+              <option value="AM4|AMD Ryzen 9 5900X / 5950X">Ryzen 9 Series (AM4)</option>
             </optgroup>
             <optgroup label="AM5 Series Next-Gen">
-              <option value="AMD Ryzen 5 7500F / 7600 / 7600X / 9600X">Ryzen 5 Series (AM5)</option>
-              <option value="AMD Ryzen 7 7700 / 7800X3D / 9700X">Ryzen 7 Series (AM5)</option>
-              <option value="AMD Ryzen 9 7900X / 7950X / 7950X3D">Ryzen 9 Series (AM5)</option>
+              <option value="AM5|AMD Ryzen 5 7500F / 7600 / 7600X / 9600X">Ryzen 5 Series (AM5)</option>
+              <option value="AM5|AMD Ryzen 7 7700 / 7800X3D / 9700X">Ryzen 7 Series (AM5)</option>
+              <option value="AM5|AMD Ryzen 9 7900X / 7950X / 7950X3D">Ryzen 9 Series (AM5)</option>
             </optgroup>
           </select>
           <select id="proc_condition" class="form-control">
@@ -342,7 +342,7 @@
         <!-- MOTHERBOARD -->
         <div class="part-row">
           <div class="part-label">Motherboard</div>
-          <select id="mobo_item" class="form-control" required>
+          <select id="mobo_item" class="form-control" required disabled>
             <option value="">-- Pilih Processor Terlebih Dahulu --</option>
           </select>
           <select id="mobo_condition" class="form-control">
@@ -412,14 +412,14 @@
           <input type="number" id="psu_qty" class="form-control input-qty" value="1" min="1" required>
         </div>
 
-        <!-- COOLER CPU (Manual + Qty) -->
+        <!-- COOLER CPU -->
         <div class="part-row">
           <div class="part-label">Cooler CPU</div>
           <input type="text" id="cooler_item" class="form-control" placeholder="Ketik Cooler (misal: Stock Cooler / Liquid 240mm)" required style="grid-column: span 2;">
           <input type="number" id="cooler_qty" class="form-control input-qty" value="1" min="1" required>
         </div>
 
-        <!-- CASING (Manual + Qty) -->
+        <!-- CASING -->
         <div class="part-row">
           <div class="part-label">Casing</div>
           <input type="text" id="casing_item" class="form-control" placeholder="Ketik Tipe Casing (misal: Aquarium Panoramic Black)" required style="grid-column: span 2;">
@@ -510,32 +510,48 @@
       }
     });
 
-    // Dynamic Motherboard Filter
+    // Dynamic Motherboard Filter (Diperbaiki)
     function updateMoboOptions() {
-      const procVal = document.getElementById('proc_item').value;
+      const rawVal = document.getElementById('proc_item').value;
       const moboSelect = document.getElementById('mobo_item');
+      
       moboSelect.innerHTML = '';
 
-      if (procVal.includes('(AM4)')) {
+      if (!rawVal) {
+        moboSelect.innerHTML = `<option value="">-- Pilih Processor Terlebih Dahulu --</option>`;
+        moboSelect.disabled = true;
+        return;
+      }
+
+      // Deteksi Socket berdasarkan prefix AM4| atau AM5|
+      const socket = rawVal.split('|')[0];
+
+      if (socket === 'AM4') {
         moboSelect.innerHTML = `
+          <option value="">-- Pilih Motherboard AM4 --</option>
           <option value="A320 / A520 Chipset">A320 / A520 (Entry AM4)</option>
           <option value="B450 / B550 Chipset">B450 / B550 (Mainstream AM4)</option>
           <option value="X570 Chipset">X570 (High-End AM4)</option>
         `;
-      } else if (procVal.includes('(AM5)')) {
+        moboSelect.disabled = false;
+      } else if (socket === 'AM5') {
         moboSelect.innerHTML = `
+          <option value="">-- Pilih Motherboard AM5 --</option>
           <option value="A620 Chipset">A620 (Entry AM5)</option>
           <option value="B650 / B650E Chipset">B650 / B650E (Mainstream AM5)</option>
           <option value="X670 / X670E / X870 Chipset">X670 / X870 (High-End AM5)</option>
         `;
-      } else {
-        moboSelect.innerHTML = `<option value="">-- Pilih Processor Terlebih Dahulu --</option>`;
+        moboSelect.disabled = false;
       }
     }
 
     // Process & Send Build Request
     function submitBuildRequest(e) {
       e.preventDefault();
+
+      // Memisahkan tag socket dari nama processor agar bersih saat disimpan
+      const rawProc = document.getElementById('proc_item').value;
+      const cleanProcName = rawProc.includes('|') ? rawProc.split('|')[1] : rawProc;
 
       const buildData = {
         uid: currentUser.uid,
@@ -544,7 +560,7 @@
         customer_wa: document.getElementById('whatsapp_no').value,
         notes: document.getElementById('user_notes').value,
         specs: {
-          processor: `${document.getElementById('proc_item').value} [${document.getElementById('proc_condition').value}] (Qty: ${document.getElementById('proc_qty').value})`,
+          processor: `${cleanProcName} [${document.getElementById('proc_condition').value}] (Qty: ${document.getElementById('proc_qty').value})`,
           motherboard: `${document.getElementById('mobo_item').value} [${document.getElementById('mobo_condition').value}] (Qty: ${document.getElementById('mobo_qty').value})`,
           ram: `${document.getElementById('ram_item').value} [${document.getElementById('ram_condition').value}] (Qty: ${document.getElementById('ram_qty').value})`,
           ssd: `${document.getElementById('ssd_item').value} [${document.getElementById('ssd_condition').value}] (Qty: ${document.getElementById('ssd_qty').value})`,
@@ -596,6 +612,8 @@ _Mohon konfirmasi estimasi harga & ketersediaan stoknya min!_`;
     function closeModal() {
       document.getElementById('successModal').classList.add('hidden');
       document.getElementById('buildForm').reset();
+      document.getElementById('mobo_item').disabled = true;
+      document.getElementById('mobo_item').innerHTML = `<option value="">-- Pilih Processor Terlebih Dahulu --</option>`;
     }
   </script>
 </body>
