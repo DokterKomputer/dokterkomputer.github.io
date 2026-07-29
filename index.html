@@ -3,7 +3,7 @@
 <head> 
   <meta charset="UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>Dokter Komputer | Spesialis Rakit & Servis PC</title> 
+  <title>Dokter Komputer | Spesialis Rakit & Servis PC / Laptop</title> 
   <style> 
     /* Reset & Base Styling */ 
     * { 
@@ -12,7 +12,7 @@
       padding: 0; 
     } 
     
-    /* Background mengacu gradasi Dokter Komputer */ 
+    /* Background Dokter Komputer */ 
     body { 
       background: radial-gradient(circle at center top, #071f2e 0%, #030a10 70%, #010407 100%); 
       background-attachment: fixed; 
@@ -150,8 +150,12 @@
     } 
 
     /* Header Kategori */ 
+    .category-section {
+      margin-bottom: 50px;
+    }
+
     .category-header { 
-      margin-bottom: 30px; 
+      margin-bottom: 25px; 
     } 
     .category-badge { 
       background-color: rgba(7, 31, 46, 0.8); 
@@ -163,19 +167,25 @@
       letter-spacing: 1px; 
       border-radius: 4px; 
       display: inline-block; 
-      margin-bottom: 12px; 
+      margin-bottom: 10px; 
     } 
     .category-header h2 { 
-      font-size: 2rem; 
+      font-size: 1.8rem; 
       font-weight: 800; 
       color: #ffffff; 
       letter-spacing: -0.5px; 
     } 
 
-    /* Grid Layout 4 Kolom */ 
-    .category-grid { 
+    /* Grid Layout 4 Kolom (PC) & 3 Kolom (Laptop) */ 
+    .category-grid-4 { 
       display: grid; 
       grid-template-columns: repeat(4, 1fr); 
+      gap: 20px; 
+    } 
+
+    .category-grid-3 { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); 
       gap: 20px; 
     } 
 
@@ -202,7 +212,7 @@
     /* Header Inside Card */ 
     .card-title-group h3 { 
       color: #ffffff; 
-      font-size: 1.25rem; 
+      font-size: 1.2rem; 
       font-weight: 800; 
       line-height: 1.2; 
     } 
@@ -214,13 +224,13 @@
       margin-top: 4px; 
     } 
 
-    /* Lingkaran Background Gambar PC */ 
+    /* Lingkaran Background Gambar */ 
     .image-wrapper { 
       background: radial-gradient(circle, #0e2d42 0%, #05131f 70%); 
-      width: 150px; 
-      height: 150px; 
+      width: 140px; 
+      height: 140px; 
       border-radius: 50%; 
-      margin: 25px auto; 
+      margin: 20px auto; 
       display: flex; 
       align-items: center; 
       justify-content: center; 
@@ -278,11 +288,11 @@
       background-color: #1ebd56; 
     } 
 
-    /* PERBAIKAN: FLOATING BUTTONS DI KANAN ATAS & UKURAN LEBIH BESAR */
+    /* FLOATING SIDE BUTTONS (Pojok Kanan Atas) */
     .floating-side-buttons {
       position: fixed;
       right: 25px;
-      top: 25px; /* Pindah ke Atas Kanan Layar */
+      top: 25px;
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -290,7 +300,7 @@
     }
 
     .floating-btn {
-      width: 72px; /* Ukuran diperbesar dari 56px ke 72px */
+      width: 72px;
       height: 72px;
       background: rgba(8, 18, 27, 0.9);
       border: 2px solid #dfb15b;
@@ -394,39 +404,19 @@
       background: #b01821; 
     } 
 
-    /* Responsif Layar HP */ 
+    /* Responsif Layar HP & Tablet */ 
     @media (max-width: 992px) { 
-      .category-grid { 
+      .category-grid-4, .category-grid-3 { 
         grid-template-columns: repeat(2, 1fr); 
       } 
     } 
     @media (max-width: 576px) { 
-      .category-grid { 
+      .category-grid-4, .category-grid-3 { 
         grid-template-columns: 1fr; 
       } 
       .brand-logo { 
         max-width: 140px; 
       } 
-      .popup-close { 
-        top: 8px; 
-        right: 8px; 
-      } 
-      .slider-dots { 
-        bottom: 8px; 
-      } 
-      .dot-btn { 
-        width: 8px; 
-        height: 8px; 
-      } 
-      .dot-btn.active { 
-        width: 18px; 
-      } 
-      .slider-arrow {
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
-      }
-      /* Penyesuaian di layar HP agar tidak menutupi header logo */
       .floating-side-buttons {
         right: 15px;
         top: 15px;
@@ -442,7 +432,7 @@
 </head> 
 <body> 
 
-  <!-- FLOATING SIDE BUTTONS (Pojok Kanan Atas) -->
+  <!-- FLOATING SIDE BUTTONS -->
   <div class="floating-side-buttons">
     <a href="dk2ndpartslist.html" class="floating-btn" title="DK Second Parts">
       <img src="images/dk2ndparts.png" alt="DK Second Parts">
@@ -464,12 +454,12 @@
 
   <div class="container"> 
 
-    <!-- 1. BAGIAN LOGO UTAMA --> 
+    <!-- LOGO UTAMA --> 
     <header class="brand-header"> 
       <img src="images/logo.png" alt="Logo Dokter Komputer" class="brand-logo"> 
     </header> 
 
-    <!-- 2. BAGIAN BANNER SLIDER AUTOMATIS & MANUAL --> 
+    <!-- BANNER SLIDER AUTOMATIS & MANUAL --> 
     <div class="banner-slider-container" id="bannerSlider"> 
       <button class="slider-arrow prev" onclick="prevSlide()">&#10094;</button>
       <button class="slider-arrow next" onclick="nextSlide()">&#10095;</button>
@@ -511,14 +501,14 @@
       </div> 
     </div> 
 
-    <!-- 3. SECTION KATEGORI PRODUK --> 
+    <!-- 1. SECTION KATEGORI PC --> 
     <section class="category-section"> 
       <div class="category-header"> 
-        <span class="category-badge">PRODUCT CATEGORY</span> 
+        <span class="category-badge">PC DESKTOP CATEGORY</span> 
         <h2>Pilih Seri PC Sesuai Kebutuhanmu</h2> 
       </div> 
 
-      <div class="category-grid"> 
+      <div class="category-grid-4"> 
         <a href="paketoffice.html" class="category-card" target="_blank"> 
           <div class="card-title-group"> 
             <h3>DK OFFICE EDITION</h3> 
@@ -555,7 +545,7 @@
         <a href="paketultimate.html" class="category-card" target="_blank"> 
           <div class="card-title-group"> 
             <h3>DK ULTIMATE</h3> 
-            <p class="subtitle">SPEED,PERFORMANCE,QUALITY </p> 
+            <p class="subtitle">SPEED, PERFORMANCE, QUALITY</p> 
           </div> 
           <div class="image-wrapper"> 
             <img src="images/ultimate.png" alt="DK Ultimate"> 
@@ -564,6 +554,50 @@
         </a> 
       </div> 
     </section> 
+
+    <!-- 2. SECTION KATEGORI LAPTOP (YANG BARU DITAMBAHKAN) --> 
+    <section class="category-section"> 
+      <div class="category-header"> 
+        <span class="category-badge">LAPTOP CATEGORY</span> 
+        <h2>Pilih Seri Laptop Sesuai Kebutuhanmu</h2> 
+      </div> 
+
+      <div class="category-grid-3"> 
+        <a href="laptop-pelajar.html" class="category-card" target="_blank"> 
+          <div class="card-title-group"> 
+            <h3>PELAJAR / MAHASISWA</h3> 
+            <p class="subtitle">HEMAT, RINGAN & RELIABLE</p> 
+          </div> 
+          <div class="image-wrapper"> 
+            <img src="images/laptop-student.png" alt="Laptop Pelajar Mahasiswa"> 
+          </div> 
+          <div class="tagline">"TUGAS KELAR TANPA LAG"</div> 
+        </a> 
+
+        <a href="laptop-gaming.html" class="category-card" target="_blank"> 
+          <div class="card-title-group"> 
+            <h3>GAMING & HEAVY PERFORMANCE</h3> 
+            <p class="subtitle">PERFORMA MAKSIMAL DI MANA SAJA</p> 
+          </div> 
+          <div class="image-wrapper"> 
+            <img src="images/laptop-gaming.png" alt="Laptop Gaming"> 
+          </div> 
+          <div class="tagline">"MAIN GAME KANAN RATA"</div> 
+        </a> 
+
+        <a href="laptop-bisnis.html" class="category-card" target="_blank"> 
+          <div class="card-title-group"> 
+            <h3>BISNIS & WORKSTATION</h3> 
+            <p class="subtitle">ELEGAN, TAHAN LAMA & NGEBUT</p> 
+          </div> 
+          <div class="image-wrapper"> 
+            <img src="images/laptop-business.png" alt="Laptop Bisnis"> 
+          </div> 
+          <div class="tagline">"PRODUKTIVITAS TANPA BATAS"</div> 
+        </a> 
+      </div> 
+    </section> 
+
   </div> 
 
   <!-- FLOATING WHATSAPP BUTTON --> 
