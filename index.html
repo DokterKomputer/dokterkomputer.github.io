@@ -29,9 +29,7 @@
       padding: 30px 20px 50px 20px; 
     } 
 
-    /* ========================================== */ 
-    /* STYLING HEADER LOGO                        */ 
-    /* ========================================== */ 
+    /* STYLING HEADER LOGO */ 
     .brand-header { 
       text-align: center; 
       margin-bottom: 25px; 
@@ -46,9 +44,7 @@
       filter: drop-shadow(0 0 12px rgba(223, 177, 91, 0.3)); 
     } 
 
-    /* ========================================== */ 
-    /* STYLING BANNER CAROUSEL (AUTOMATIS & MANUAL)*/ 
-    /* ========================================== */ 
+    /* STYLING BANNER CAROUSEL */ 
     .banner-slider-container { 
       position: relative; 
       width: 100%; 
@@ -282,90 +278,44 @@
       background-color: #1ebd56; 
     } 
 
-    /* Floating Shortcut Request PC Impian (Kanan Atas) */
-    .request-pc-float {
+    /* Floating Side Buttons Vertikal di Kanan */
+    .floating-side-buttons {
       position: fixed;
-      top: 20px;
       right: 20px;
-      z-index: 999;
+      bottom: 85px; /* Posisinya tepat di atas tombol WhatsApp */
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      background: rgba(7, 31, 46, 0.85);
-      border: 1px solid #dfb15b;
-      padding: 8px 12px;
-      border-radius: 12px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-      transition: all 0.3s ease;
-      max-width: 110px;
-      text-align: center;
+      gap: 12px;
+      z-index: 9999;
     }
 
-    .request-pc-float:hover {
-      transform: translateY(3px) scale(1.03);
-      border-color: #d9232d;
-      box-shadow: 0 6px 20px rgba(217, 35, 45, 0.4);
-    }
-
-    .request-pc-float img {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 4px;
-    }
-
-    .request-pc-float span {
-      color: #ffffff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: 0.2px;
-    }
-
-    /* Floating Shortcut DK Second Parts (Kiri Atas) */
-    .dk-2ndparts-float {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 999;
+    .floating-btn {
+      width: 56px;
+      height: 56px;
+      background: rgba(8, 18, 27, 0.9);
+      border: 2px solid #dfb15b;
+      border-radius: 50%;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-decoration: none;
-      background: rgba(7, 31, 46, 0.85);
-      border: 1px solid #dfb15b;
-      padding: 8px 12px;
-      border-radius: 12px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       transition: all 0.3s ease;
-      max-width: 110px;
-      text-align: center;
+      overflow: hidden;
+      padding: 8px;
+      text-decoration: none;
     }
 
-    .dk-2ndparts-float:hover {
-      transform: translateY(3px) scale(1.03);
+    .floating-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
       border-color: #d9232d;
       box-shadow: 0 6px 20px rgba(217, 35, 45, 0.4);
-    }
-
-    .dk-2ndparts-float img {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 4px;
-    }
-
-    .dk-2ndparts-float span {
-      color: #ffffff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: 0.2px;
     }
 
     /* STYLING MODAL POPUP PROMO */ 
@@ -380,7 +330,7 @@
       display: flex; 
       justify-content: center; 
       align-items: center; 
-      z-index: 1000; 
+      z-index: 10000; 
       opacity: 0; 
       visibility: hidden; 
       transition: all 0.3s ease; 
@@ -436,14 +386,14 @@
       justify-content: center; 
       box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
       transition: background 0.2s ease; 
-      z-index: 1001; 
+      z-index: 10001; 
     } 
 
     .popup-close:hover { 
       background: #b01821; 
     } 
 
-    /* Responsif Layar */ 
+    /* Responsif Layar HP */ 
     @media (max-width: 992px) { 
       .category-grid { 
         grid-template-columns: repeat(2, 1fr); 
@@ -475,37 +425,18 @@
         height: 32px;
         font-size: 0.9rem;
       }
-      .request-pc-float, .dk-2ndparts-float {
-        top: 15px;
-        padding: 6px 8px;
-        max-width: 95px;
+      .floating-side-buttons {
+        right: 12px;
+        bottom: 75px;
       }
-      .request-pc-float { right: 12px; }
-      .dk-2ndparts-float { left: 12px; }
-      
-      .request-pc-float img, .dk-2ndparts-float img {
-        width: 34px;
-        height: 34px;
-      }
-      .request-pc-float span, .dk-2ndparts-float span {
-        font-size: 0.62rem;
+      .floating-btn {
+        width: 50px;
+        height: 50px;
       }
     } 
   </style> 
 </head> 
 <body> 
-
-  <!-- Floating Shortcut DK Second Parts (Pojok Kiri Atas) -->
-  <a href="dk2ndpartslist.html" class="dk-2ndparts-float">
-    <img src="images/dk2ndparts.png" alt="DK Second Parts Icon">
-    <span>DK Second Parts</span>
-  </a>
-
-  <!-- Floating Shortcut Request PC Impian (Pojok Kanan Atas) -->
-  <a href="build-request.html" class="request-pc-float">
-    <img src="images/icon-build.png" alt="Build Request Icon">
-    <span>Request PC Impian mu Disini</span>
-  </a>
 
   <!-- POPUP PROMO CONTAINER --> 
   <div class="popup-overlay" id="promoPopup"> 
@@ -526,50 +457,37 @@
 
     <!-- 2. BAGIAN BANNER SLIDER AUTOMATIS & MANUAL --> 
     <div class="banner-slider-container" id="bannerSlider"> 
-      <!-- Tombol Navigasi Kiri & Kanan -->
       <button class="slider-arrow prev" onclick="prevSlide()">&#10094;</button>
       <button class="slider-arrow next" onclick="nextSlide()">&#10095;</button>
 
       <div class="slider-track" id="sliderTrack"> 
-        
-        <!-- Slide 1: Titip Jual Part PC --> 
         <div class="slide-item"> 
           <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20titip%20jual%20part%20PC" target="_blank"> 
             <img src="images/titipjual.png" alt="Banner Dokter Komputer - Titip Jual Part PC"> 
           </a> 
         </div> 
-
-        <!-- Slide 2: Clean Your PC --> 
         <div class="slide-item"> 
           <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20booking%20layanan%20Clean%20PC" target="_blank"> 
             <img src="images/banner-clean-pc.png" alt="Banner Dokter Komputer - Clean Your PC"> 
           </a> 
         </div> 
-
-        <!-- Slide 3: Service & Upgrade --> 
         <div class="slide-item"> 
           <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20service/upgrade%20laptop%20atau%20PC" target="_blank"> 
             <img src="images/jasaservice.png" alt="Banner Dokter Komputer - Service & Upgrade"> 
           </a> 
         </div> 
-
-        <!-- Slide 4: Konsultasi 24 Jam --> 
         <div class="slide-item"> 
           <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20ingin%20konsultasi%20masalah%20PC/Laptop" target="_blank"> 
             <img src="images/konsultasi.png" alt="Banner Dokter Komputer - Konsultasi 24 Jam"> 
           </a> 
         </div> 
-
-        <!-- Slide 5: Build Your Dream PC --> 
         <div class="slide-item"> 
           <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20rakit%20PC%20impian" target="_blank"> 
             <img src="images/dreambuild.png" alt="Banner Dokter Komputer - Build Your Dream PC"> 
           </a> 
         </div> 
-
       </div> 
 
-      <!-- Navigation Dots (5 Dots) --> 
       <div class="slider-dots" id="sliderDots"> 
         <button class="dot-btn active" onclick="goToSlide(0)"></button> 
         <button class="dot-btn" onclick="goToSlide(1)"></button> 
@@ -587,7 +505,6 @@
       </div> 
 
       <div class="category-grid"> 
-        <!-- 1. DK Office Edition --> 
         <a href="paketoffice.html" class="category-card" target="_blank"> 
           <div class="card-title-group"> 
             <h3>DK OFFICE EDITION</h3> 
@@ -599,7 +516,6 @@
           <div class="tagline">"LESS WAIT DO MORE!"</div> 
         </a> 
 
-        <!-- 2. DK Gamers Choice --> 
         <a href="paketgamers.html" class="category-card" target="_blank"> 
           <div class="card-title-group"> 
             <h3>DK GAMERS CHOICE</h3> 
@@ -611,7 +527,6 @@
           <div class="tagline">"BERMAIN TANPA BATAS"</div> 
         </a> 
 
-        <!-- 3. DK Editor PC --> 
         <a href="paketeditor.html" class="category-card" target="_blank"> 
           <div class="card-title-group"> 
             <h3>DK EDITOR PC</h3> 
@@ -623,7 +538,6 @@
           <div class="tagline">"WUJUDKAN MIMPI MU SEKARANG"</div> 
         </a> 
 
-        <!-- 4. DK Ultimate --> 
         <a href="paketultimate.html" class="category-card" target="_blank"> 
           <div class="card-title-group"> 
             <h3>DK ULTIMATE</h3> 
@@ -638,16 +552,23 @@
     </section> 
   </div> 
 
-  <!-- Tombol WhatsApp Melayang --> 
+  <!-- FLOATING SIDE BUTTONS (Vertikal Pojok Kanan) -->
+  <div class="floating-side-buttons">
+    <a href="dk2ndpartslist.html" class="floating-btn" title="DK Second Parts">
+      <img src="images/dk2ndparts.png" alt="DK Second Parts">
+    </a>
+    <a href="build-request.html" class="floating-btn" title="Request PC Impian">
+      <img src="images/icon-build.png" alt="Request PC Impian">
+    </a>
+  </div>
+
+  <!-- FLOATING WHATSAPP BUTTON --> 
   <a href="https://wa.me/6281238070329" class="wa-float" target="_blank"> 
     💬 Konsultasi WhatsApp 
   </a> 
 
   <!-- SCRIPT BANNER SLIDER & POPUP --> 
   <script> 
-    /* ------------------------------------------ 
-       LOGIKA BANNER SLIDER (AUTOMATIS & MANUAL) 
-    ------------------------------------------ */ 
     let currentSlide = 0; 
     const totalSlides = 5; 
     const sliderTrack = document.getElementById('sliderTrack'); 
@@ -696,14 +617,11 @@
       startInterval(); 
     } 
 
-    // Jalankan Autoplay 
     startInterval(); 
 
-    // Pause saat mouse hover banner 
     sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval)); 
     sliderContainer.addEventListener('mouseleave', startInterval); 
 
-    /* FITUR SWIPE / DRAG MANUAL UNTUK BANNER (TOUCH & MOUSE) */
     let startX = 0;
     let isDragging = false;
 
@@ -732,7 +650,7 @@
     });
 
     function handleGesture(start, end) {
-      const threshold = 40; // Sensitivitas geser
+      const threshold = 40;
       if (start - end > threshold) {
         nextSlide();
       } else if (end - start > threshold) {
@@ -740,9 +658,6 @@
       }
     }
 
-    /* ------------------------------------------ 
-       LOGIKA MODAL POPUP 
-    ------------------------------------------ */ 
     window.addEventListener('DOMContentLoaded', () => { 
       setTimeout(() => { 
         document.getElementById('promoPopup').classList.add('active'); 
@@ -759,6 +674,5 @@
       } 
     }); 
   </script> 
-  
 </body> 
 </html>
