@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DK Second Parts List | Dokter Komputer</title>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: #060a12;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(223, 177, 91, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(13, 110, 253, 0.08) 0px, transparent 50%);
+      color: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    header {
+      width: 100%;
+      padding: 16px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(6, 10, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .brand-logo i { color: #dfb15b; font-size: 1.5rem; }
+    .brand-logo span { color: #dfb15b; }
+
+    .container {
+      max-width: 1050px;
+      margin: 30px auto;
+      padding: 0 20px;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* Login Area Card */
+    .login-card {
+      background: rgba(13, 20, 32, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 40px 20px;
+      text-align: center;
+      max-width: 480px;
+      margin: 60px auto;
+      backdrop-filter: blur(16px);
+    }
+
+    .btn-google {
+      width: 100%;
+      background: #ffffff;
+      color: #0f172a;
+      border: none;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 25px;
+      transition: all 0.2s;
+    }
+    .btn-google:hover { background: #f1f5f9; transform: translateY(-2px); }
+
+    /* Main Table Card */
+    .builder-card {
+      background: rgba(13, 20, 32, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .builder-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .user-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #dfb15b; }
+
+    .btn-logout {
+      background: transparent;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Grid Table Headers & Rows */
+    .table-header {
+      display: grid;
+      grid-template-columns: 140px 140px 1fr 90px 160px;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(223, 177, 91, 0.3);
+      font-weight: 700;
+      color: #dfb15b;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .part-row {
+      display: grid;
+      grid-template-columns: 140px 140px 1fr 90px 160px;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .form-control {
+      background: rgba(6, 10, 18, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #fff;
+      font-size: 0.88rem;
+      font-family: inherit;
+      width: 100%;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #dfb15b;
+    }
+
+    select.form-control option {
+      background: #0d1420;
+      color: #fff;
+    }
+
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+
+    /* Total Summary Box */
+    .total-box {
+      margin-top: 25px;
+      padding: 20px;
+      background: rgba(223, 177, 91, 0.05);
+      border: 1px solid rgba(223, 177, 91, 0.2);
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #dfb15b;
+    }
+
+    .total-amount {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #25D366;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .btn-submit-wa {
+      width: 100%;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: #ffffff;
+      border: none;
+      padding: 16px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 25px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.2);
+    }
+
+    .btn-submit-wa:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Modal Pop-up */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: #0d1420;
+      border: 1px solid #dfb15b;
+      border-radius: 20px;
+      padding: 35px;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(223, 177, 91, 0.2);
+    }
+
+    .modal-icon {
+      font-size: 3.5rem;
+      color: #25D366;
+      margin-bottom: 15px;
+    }
+
+    .btn-close-modal {
+      background: #dfb15b;
+      color: #060a12;
+      border: none;
+      padding: 10px 24px;
+      font-weight: 700;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .hidden { display: none !important; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #475569;
+      font-size: 0.85rem;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .table-header { display: none; }
+      .part-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+      }
+      .contact-section { grid-template-columns: 1fr; }
+      .total-box { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+
+  <!-- Firebase Compat -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="brand-logo">
+      <i class="fa-solid fa-microchip"></i>
+      Dokter <span>Komputer</span>
+    </a>
+    <div style="font-size: 0.85rem; color: #dfb15b; font-weight: 600;">
+      <i class="fa-solid fa-boxes-stacked" style="font-size: 0.8rem;"></i> DK Second Parts List
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- LOGIN AREA -->
+    <div id="loginSection" class="login-card">
+      <i class="fa-solid fa-layer-group" style="font-size: 3rem; color: #dfb15b; margin-bottom: 15px;"></i>
+      <h2 style="color: #fff; margin-bottom: 10px;">DK Second Parts List</h2>
+      <p style="color: #64748b; font-size: 0.9rem;">Masuk menggunakan Google untuk memilih atau merekap daftar komponen second.</p>
+      
+      <button class="btn-google" onclick="loginWithGoogle()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" alt="Google">
+        Masuk dengan Google
+      </button>
+    </div>
+
+    <!-- MAIN PARTS FORM AREA -->
+    <div id="formSection" class="builder-card hidden">
+      
+      <div class="builder-header">
+        <div class="user-profile">
+          <img id="userPhoto" class="user-avatar" src="" alt="User">
+          <div>
+            <h4 id="userName" style="color: #fff; font-size: 0.95rem;">-</h4>
+            <span id="userEmail" style="color: #64748b; font-size: 0.8rem;">-</span>
+          </div>
+        </div>
+        <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+      </div>
+
+      <form id="secondPartsForm" onsubmit="submitPartsList(event)">
+
+        <!-- Header Tabel -->
+        <div class="table-header">
+          <div>Jenis Parts</div>
+          <div>Brand</div>
+          <div>Seri / Model</div>
+          <div class="text-center">Qty</div>
+          <div class="text-right">Harga (Rp)</div>
+        </div>
+
+        <!-- ROW 1: PROCESSOR -->
+        <div class="part-row">
+          <select class="form-control part-jenis" disabled>
+            <option value="Processor" selected>Processor</option>
+          </select>
+          <input type="text" class="form-control part-brand" placeholder="misal: AMD / Intel">
+          <input type="text" class="form-control part-seri" placeholder="misal: Ryzen 5 5600X / i5 12400F">
+          <input type="number" class="form-control part-qty text-center" value="0" min="0" oninput="calculateTotal()">
+          <input type="number" class="form-control part-price text-right" placeholder="0" min="0" step="1000" oninput="calculateTotal()">
+        </div>
+
+        <!-- ROW 2: MOTHERBOARD -->
+        <div class="part-row">
+          <select class="form-control part-jenis" disabled>
+            <option value="Motherboard" selected>Motherboard</option>
+          </select>
+          <input type="text" class="form-control part-brand" placeholder="misal: ASUS / MSI / ASRock">
+          <input type="text" class="form-control part-seri" placeholder="misal: B550M Pro4 / B660M-A">
+          <input type="number" class="form-control part-qty text-center" value="0" min="0" oninput="calculateTotal()">
+          <input type="number" class="form-control part-price text-right" placeholder="0" min="0" step="1000" oninput="calculateTotal()">
+        </div>
+
+        <!-- ROW 3: RAM -->
+        <div class="part-row">
+          <select class="form-control part-jenis" disabled>
+            <option value="RAM" selected>RAM</option>
+          </select>
+          <input type="text" class="form-control part-brand" placeholder="misal: Corsair / Kingston / Team">
+          <input type="text" class="form-control part-seri" placeholder="misal: Vengeance LPX 16GB (2x8) DDR4 3200">
+          <input type="number" class="form-control part-qty text-center" value="0" min="0" oninput="calculateTotal()">
+          <input type="number" class="form-control part-price text-right" placeholder="0" min="0" step="1000" oninput="calculateTotal()">
+        </div>
+
+        <!-- ROW 4: STORAGE -->
+        <div class="part-row">
+          <select class="form-control part-jenis" disabled>
+            <option value="Storage" selected>Storage</option>
+          </select>
+          <input type="text" class="form-control part-brand" placeholder="misal: Samsung / ADATA / WD">
+          <input type="text" class="form-control part-seri" placeholder="misal: NVMe SX8200 Pro 512GB">
+          <input type="number" class="form-control part-qty text-center" value="0" min="0" oninput="calculateTotal()">
+          <input type="number" class="form-control part-price text-right" placeholder="0" min="0" step="1000" oninput="calculateTotal()">
+        </div>
+
+        <!-- ROW 5: VGA -->
+        <div class="part-row">
+          <select class="form-control part-jenis" disabled>
+            <option value="VGA" selected>VGA</option>
+          </select>
+          <input type="text" class="form-control part-brand" placeholder="misal: Gigabyte / Zotac / Sapphire">
+          <input type="text" class="form-control part-seri" placeholder="misal: RTX 3060 12GB / RX 6600 8GB">
+          <input type="number" class="form-control part-qty text-center" value="0" min="0" oninput="calculateTotal()">
+          <input type="number" class="form-control part-price text-right" placeholder="0" min="0" step="1000" oninput="calculateTotal()">
+        </div>
+
+        <!-- TOTAL HARGA REALTIME -->
+        <div class="total-box">
+          <div class="total-title">Total Estimasi Harga Parts Second:</div>
+          <div class="total-amount" id="grandTotalDisplay">Rp 0</div>
+        </div>
+
+        <!-- DATA KONTAK -->
+        <div class="contact-section">
+          <div>
+            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Nomor WhatsApp</label>
+            <input type="tel" id="whatsapp_no" class="form-control" placeholder="0812xxxxxxxx" required>
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Catatan Tambahan (Opsional)</label>
+            <input type="text" id="user_notes" class="form-control" placeholder="Keterangan kelengkapan / garansi...">
+          </div>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" class="btn-submit-wa">
+          <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Kirim List Second via WhatsApp
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- POP-UP MODAL -->
+  <div id="successModal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+      <h3 style="color: #fff; margin-bottom: 12px;">Data List Second Terkirim!</h3>
+      <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">
+        List komponen second berhasil dikalkulasi dan dikirim. Admin Dokter Komputer akan segera mengecek pesanan/ketersediaan kamu.
+      </p>
+      <button class="btn-close-modal" onclick="closeModal()">Selesai</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Dokter Komputer. Professional Computer Assembly & Optimization.
+  </footer>
+
+  <script>
+    // Konfigurasi Firebase Project (dokter-komputer2026)
+    const firebaseConfig = {
+      apiKey: "AIzaSyABrpNZU5F1OqpEZnR12D4hP1mZEQrth8I",
+      authDomain: "dokter-komputer2026.firebaseapp.com",
+      projectId: "dokter-komputer2026",
+      storageBucket: "dokter-komputer2026.firebasestorage.app",
+      messagingSenderId: "604068073909",
+      appId: "1:604068073909:web:837fd2948138c2d01609fc"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // TARGET NOMOR WHATSAPP DOKTER KOMPUTER
+    const ADMIN_WA_NUMBER = "6285156553818"; 
+
+    let currentUser = null;
+
+    function loginWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).catch(error => alert("Gagal Login: " + error.message));
+    }
+
+    function logout() {
+      auth.signOut();
+    }
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        currentUser = user;
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('formSection').classList.remove('hidden');
+        document.getElementById('userName').textContent = user.displayName;
+        document.getElementById('userEmail').textContent = user.email;
+        document.getElementById('userPhoto').src = user.photoURL || 'https://via.placeholder.com/40';
+      } else {
+        currentUser = null;
+        document.getElementById('loginSection').classList.remove('hidden');
+        document.getElementById('formSection').classList.add('hidden');
+      }
+    });
+
+    // Hitung Total Realtime (Qty * Price)
+    function calculateTotal() {
+      let total = 0;
+      const rows = document.querySelectorAll('.part-row');
+
+      rows.forEach(row => {
+        const qty = parseFloat(row.querySelector('.part-qty').value) || 0;
+        const price = parseFloat(row.querySelector('.part-price').value) || 0;
+        total += (qty * price);
+      });
+
+      document.getElementById('grandTotalDisplay').textContent = "Rp " + total.toLocaleString('id-ID');
+      return total;
+    }
+
+    // Submit ke Firebase & WhatsApp
+    function submitPartsList(e) {
+      e.preventDefault();
+
+      const rows = document.querySelectorAll('.part-row');
+      let partsData = [];
+      let waDetailsText = "";
+      const grandTotal = calculateTotal();
+
+      rows.forEach(row => {
+        const jenis = row.querySelector('.part-jenis').value;
+        const brand = row.querySelector('.part-brand').value.trim();
+        const seri = row.querySelector('.part-seri').value.trim();
+        const qty = parseInt(row.querySelector('.part-qty').value) || 0;
+        const price = parseFloat(row.querySelector('.part-price').value) || 0;
+        const subtotal = qty * price;
+
+        if (qty > 0 || brand !== "" || seri !== "") {
+          partsData.push({ jenis, brand, seri, qty, price, subtotal });
+          
+          waDetailsText += `• *${jenis}:* ${brand} ${seri} (Qty: ${qty}) - Rp ${price.toLocaleString('id-ID')} /pcs\n`;
+        }
+      });
+
+      if (partsData.length === 0) {
+        alert("Silakan isi minimal satu komponen beserta Brand, Seri, Qty, dan Harganya.");
+        return;
+      }
+
+      const payload = {
+        uid: currentUser.uid,
+        customer_nama: currentUser.displayName,
+        customer_email: currentUser.email,
+        customer_wa: document.getElementById('whatsapp_no').value,
+        notes: document.getElementById('user_notes').value,
+        parts: partsData,
+        grand_total: grandTotal,
+        created_at: firebase.firestore.FieldValue.serverTimestamp()
+      };
+
+      // 1. Simpan ke Firestore (Collection: second_parts_list)
+      db.collection('second_parts_list').add(payload)
+      .then(() => {
+        // 2. Format Teks WhatsApp
+        const waText = 
+`*DK SECOND PARTS LIST - DOKTER KOMPUTER*
+----------------------------------------
+*Nama:* ${payload.customer_nama}
+*Email:* ${payload.customer_email}
+*WA:* ${payload.customer_wa}
+
+*DAFTAR PARTS SECOND:*
+${waDetailsText}
+----------------------------------------
+*TOTAL HARGA:* Rp ${grandTotal.toLocaleString('id-ID')}
+*Catatan:* ${payload.notes || '-'}
+----------------------------------------
+_Mohon dicek kembali ketersediaan stok & kondisi garansinya min!_`;
+
+        // 3. Kirim via WhatsApp
+        const waUrl = `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(waText)}`;
+        window.open(waUrl, '_blank');
+
+        // 4. Modal Pop-up
+        document.getElementById('successModal').classList.remove('hidden');
+      })
+      .catch(err => {
+        alert("Gagal menyimpan data: " + err.message);
+      });
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').classList.add('hidden');
+      document.getElementById('secondPartsForm').reset();
+      calculateTotal();
+    }
+  </script>
+</body>
+</html>
