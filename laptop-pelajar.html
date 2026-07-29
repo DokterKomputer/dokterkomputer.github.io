@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laptop Pelajar & Mahasiswa Terbaik | Dokter Komputer</title>
+  <style>
+    /* Reset & Base Styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at center top, #071f2e 0%, #030a10 70%, #010407 100%);
+      background-attachment: fixed;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px 60px 20px;
+    }
+
+    /* Header Navigasi Atas */
+    .nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #102636;
+      padding-bottom: 15px;
+    }
+
+    .back-btn {
+      color: #dfb15b;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      color: #d9232d;
+    }
+
+    .brand-logo-small {
+      max-width: 120px;
+      height: auto;
+      mix-blend-mode: screen;
+    }
+
+    /* Page Title Section */
+    .page-title-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .badge-category {
+      background-color: rgba(7, 31, 46, 0.8);
+      color: #dfb15b;
+      border: 1px solid #dfb15b;
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .page-title-section h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .page-title-section p {
+      color: #7b93a4;
+      font-size: 0.95rem;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Section Sub-Header (Tiering) */
+    .tier-divider {
+      color: #dfb15b;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 40px 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-left: 4px solid #dfb15b;
+      padding-left: 12px;
+    }
+
+    /* Grid Layout Laptop */
+    .laptop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Laptop Card Styling */
+    .laptop-card {
+      background: rgba(8, 18, 27, 0.85);
+      border: 1px solid #102636;
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      position: relative;
+      backdrop-filter: blur(5px);
+    }
+
+    .laptop-card:hover {
+      transform: translateY(-6px);
+      border-color: #dfb15b;
+      box-shadow: 0 10px 25px rgba(223, 177, 91, 0.15);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #0e2d42;
+      color: #7b93a4;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid #1c3e56;
+    }
+
+    .laptop-image {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      margin: 15px 0;
+      transition: transform 0.3s ease;
+    }
+
+    .laptop-card:hover .laptop-image {
+      transform: scale(1.05);
+    }
+
+    .laptop-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .laptop-specs {
+      list-style: none;
+      margin-bottom: 18px;
+      font-size: 0.82rem;
+      color: #a2b7c6;
+    }
+
+    .laptop-specs li {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .laptop-specs li::before {
+      content: "•";
+      color: #dfb15b;
+      font-weight: bold;
+    }
+
+    .dk-note {
+      background: rgba(7, 31, 46, 0.6);
+      border-left: 3px solid #dfb15b;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      color: #c0d1dd;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .btn-wa-ask {
+      display: block;
+      width: 100%;
+      background-color: #25d366;
+      color: #ffffff;
+      text-align: center;
+      padding: 10px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-wa-ask:hover {
+      background-color: #1ebd56;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    /* Responsif Layar */
+    @media (max-width: 992px) {
+      .laptop-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .laptop-grid {
+        grid-template-columns: 1fr;
+      }
+      .page-title-section h1 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Navigasi Atas -->
+    <nav class="nav-header">
+      <a href="index.html" class="back-btn">
+        &#10094; Kembali ke Beranda
+      </a>
+      <img src="images/logo.png" alt="Dokter Komputer Logo" class="brand-logo-small">
+    </nav>
+
+    <!-- Header Judul -->
+    <header class="page-title-section">
+      <span class="badge-category">RECOMMENDED LAPTOP</span>
+      <h1>Lini Laptop Pelajar & Mahasiswa</h1>
+      <p>12 Pilihan Laptop Kurasi Dokter Komputer dengan Performa Terbaik, Daya Tahan Tinggi, dan Value for Money di 2026.</p>
+    </header>
+
+    <!-- TIER 1: ENTRY & BUDGET FRIENDLY -->
+    <div class="tier-divider">
+      <span>1. Kelas Budget & Hemat (Untuk Tugas Harian & Kuliah)</span>
+    </div>
+
+    <div class="laptop-grid">
+      
+      <!-- Laptop 1 -->
+      <div class="laptop-card">
+        <span class="card-badge">Value King</span>
+        <img src="images/laptop-advan-workplus.png" alt="Advan Workplus" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">Advan Workplus</h3>
+          <ul class="laptop-specs">
+            <li>Proc: AMD Ryzen 5 6600H / Ryzen 7 7735HS</li>
+            <li>RAM: 16GB LPDDR5 | SSD: 512GB NVMe</li>
+            <li>Layar: 14" FHD+ IPS 16:10</li>
+          </ul>
+          <div class="dk-note">"Raja performa murah. Cocok untuk mahasiswa yang butuh komputasi kencang budget terbatas."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20laptop%20Advan%20Workplus" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+      <!-- Laptop 2 -->
+      <div class="laptop-card">
+        <span class="card-badge">Daily Work</span>
+        <img src="images/laptop-acer-aspire.png" alt="Acer Aspire 14" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">Acer Aspire 14 / Lite 14</h3>
+          <ul class="laptop-specs">
+            <li>Proc: Intel Core i3-1305U / Ryzen 3 7320U</li>
+            <li>RAM: 8GB / 16GB | SSD: 512GB NVMe</li>
+            <li>Layar: 14" FHD IPS</li>
+          </ul>
+          <div class="dk-note">"Andal untuk ngetik skripsi, Zoom, dan tugas sekolah harian. Perawatan servis sangat mudah."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20laptop%20Acer%20Aspire%2014" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+      <!-- Laptop 3 -->
+      <div class="laptop-card">
+        <span class="card-badge">Comfort Typing</span>
+        <img src="images/laptop-lenovo-ideapad3.png" alt="Lenovo IdeaPad Slim 3" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">Lenovo IdeaPad Slim 3</h3>
+          <ul class="laptop-specs">
+            <li>Proc: AMD Ryzen 5 7520U / Intel i3-N305</li>
+            <li>RAM: 8GB / 16GB | SSD: 512GB NVMe</li>
+            <li>Layar: 14" FHD Anti-Glare</li>
+          </ul>
+          <div class="dk-note">"Keyboard paling nyaman untuk ngetik lama. Ketahanan bodi Lenovo yang terkenal awet."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20laptop%20Lenovo%20IdeaPad%20Slim%203" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+      <!-- Laptop 4 -->
+      <div class="laptop-card">
+        <span class="card-badge">Military Grade</span>
+        <img src="images/laptop-asus-vivobook-go.png" alt="ASUS Vivobook Go 14" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">ASUS Vivobook Go 14</h3>
+          <ul class="laptop-specs">
+            <li>Proc: AMD Ryzen 3 7320U / Ryzen 5 7520U</li>
+            <li>RAM: 8GB / 16GB | SSD: 512GB NVMe</li>
+            <li>Layar: 14" FHD US Military Grade</li>
+          </ul>
+          <div class="dk-note">"Lolos uji ketahanan standar militer. Tahan banting buat mahasiswa aktif dengan mobilitas tinggi."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20laptop%20ASUS%20Vivobook%20Go%2014" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+    </div>
+
+    <!-- TIER 2: MID-RANGE & ENTERTAINMENT -->
+    <div class="tier-divider">
+      <span>2. Kelas Menengah (Multitasking Kencang & Layar Mantap)</span>
+    </div>
+
+    <div class="laptop-grid">
+
+      <!-- Laptop 5 -->
+      <div class="laptop-card">
+        <span class="card-badge">Clean Design</span>
+        <img src="images/laptop-hp-14s.png" alt="HP Laptop 14" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">HP Laptop 14s / 14</h3>
+          <ul class="laptop-specs">
+            <li>Proc: AMD Ryzen 5 7530U / Intel i5-1335U</li>
+            <li>RAM: 16GB DDR4 | SSD: 512GB NVMe</li>
+            <li>Layar: 14" FHD Micro-Edge</li>
+          </ul>
+          <div class="dk-note">"Desain minimalis dan stylish. Pas untuk tugas kuliah sekaligus editing foto/video ringan."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20laptop%20HP%2014s" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+      <!-- Laptop 6 -->
+      <div class="laptop-card">
+        <span class="card-badge">Best Display</span>
+        <img src="images/laptop-lenovo-ideapad-slim5.png" alt="Lenovo IdeaPad Slim 5 OLED" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">Lenovo IdeaPad Slim 5 OLED</h3>
+          <ul class="laptop-specs">
+            <li>Proc: AMD Ryzen 7 7730U / Intel i5-13420H</li>
+            <li>RAM: 16GB | SSD: 512GB / 1TB</li>
+            <li>Layar: 14" OLED 100% DCI-P3</li>
+          </ul>
+          <div class="dk-note">"Layar OLED super tajam & akurat. Pilihan tepat untuk mahasiswa DKV atau yang hobi nonton film."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20laptop%20Lenovo%20IdeaPad%20Slim%205%20OLED" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+      <!-- Laptop 7 -->
+      <div class="laptop-card">
+        <span class="card-badge">H-Series Power</span>
+        <img src="images/laptop-asus-vivobook-14x.png" alt="ASUS Vivobook 14X OLED" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">ASUS Vivobook 14X OLED</h3>
+          <ul class="laptop-specs">
+            <li>Proc: Intel Core i5-13500H / Ryzen 5 7530U</li>
+            <li>RAM: 16GB | SSD: 512GB NVMe</li>
+            <li>Layar: 14" OLED 2.8K 90Hz</li>
+          </ul>
+          <div class="dk-note">"Menggabungkan prosesor kelas performa (Seri H) dengan visual visual jernih kelas atas."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20laptop%20ASUS%20Vivobook%2014X%20OLED" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+      <!-- Laptop 8 -->
+      <div class="laptop-card">
+        <span class="card-badge">AI Ready 2026</span>
+        <img src="images/laptop-acer-swift-go.png" alt="Acer Swift Go 14" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">Acer Swift Go 14</h3>
+          <ul class="laptop-specs">
+            <li>Proc: Intel Core Ultra 5 125H / Ryzen 5 8640U</li>
+            <li>RAM: 16GB LPDDR5X | SSD: 512GB NVMe</li>
+            <li>Layar: 14" OLED / IPS 100% sRGB</li>
+          </ul>
+          <div class="dk-note">"Sudah dibekali NPU untuk pemrosesan AI 2026. Bodi tipis full aluminium & port komplit."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20laptop%20Acer%20Swift%20Go%2014" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+    </div>
+
+    <!-- TIER 3: HIGH END & FLAGSHIP -->
+    <div class="tier-divider">
+      <span>3. Kelas Premium / High-End (Durabilitas & Performa Tanpa Kompromi)</span>
+    </div>
+
+    <div class="laptop-grid">
+
+      <!-- Laptop 9 -->
+      <div class="laptop-card">
+        <span class="card-badge">Long Battery King</span>
+        <img src="images/laptop-macbook-air.png" alt="Apple MacBook Air M2/M3" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">Apple MacBook Air 13" (M2 / M3)</h3>
+          <ul class="laptop-specs">
+            <li>Proc: Apple Silicon M2 / M3 Chip</li>
+            <li>RAM: 8GB / 16GB Unified | SSD: 256GB / 512GB</li>
+            <li>Layar: 13.6" Liquid Retina</li>
+          </ul>
+          <div class="dk-note">"Baterai tahan seharian tanpa bawa charger. Sangat ringan dan awet hingga bertahun-tahun."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20MacBook%20Air%20M2/M3" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+      <!-- Laptop 10 -->
+      <div class="laptop-card">
+        <span class="card-badge">Ultra Lightweight</span>
+        <img src="images/laptop-asus-zenbook14.png" alt="ASUS Zenbook 14 OLED" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">ASUS Zenbook 14 OLED</h3>
+          <ul class="laptop-specs">
+            <li>Proc: Intel Core Ultra 7 155H / Ryzen 7 8840HS</li>
+            <li>RAM: 16GB / 32GB | SSD: 1TB NVMe</li>
+            <li>Layar: 14" 3K OLED Touch/Non-Touch</li>
+          </ul>
+          <div class="dk-note">"Super ringan (sekitar 1.2 kg), bodi tipis nan kokoh, dan daya tahan baterai luar biasa."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20ASUS%20Zenbook%2014%20OLED" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+      <!-- Laptop 11 -->
+      <div class="laptop-card">
+        <span class="card-badge">Flexibility & Power</span>
+        <img src="images/laptop-lenovo-yoga-slim7.png" alt="Lenovo Yoga Slim 7i" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">Lenovo Yoga Slim 7i / Pro 7</h3>
+          <ul class="laptop-specs">
+            <li>Proc: Intel Core Ultra 7 / AMD Ryzen 7 8000</li>
+            <li>RAM: 16GB / 32GB | SSD: 1TB NVMe</li>
+            <li>Layar: 14.5" 2.5K 90Hz PureSight</li>
+          </ul>
+          <div class="dk-note">"Build quality kelas atas dengan speaker jernih. Tangguh untuk pengolahan data & rekayasa berat."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20Lenovo%20Yoga%20Slim%207i" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+      <!-- Laptop 12 -->
+      <div class="laptop-card">
+        <span class="card-badge">Premium Prestige</span>
+        <img src="images/laptop-dell-xps13.png" alt="Dell XPS 13" class="laptop-image">
+        <div>
+          <h3 class="laptop-title">Dell XPS 13 / Inspiron Premium</h3>
+          <ul class="laptop-specs">
+            <li>Proc: Intel Core Ultra 7</li>
+            <li>RAM: 16GB / 32GB | SSD: 512GB / 1TB</li>
+            <li>Layar: 13.4" InfinityEdge Display</li>
+          </ul>
+          <div class="dk-note">"Konstruksi material CNC Aluminium paling presisi untuk mahasiswa yang mengutamakan durabilitas tertinggi."</div>
+        </div>
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya%20stok/harga%20Dell%20XPS%2013" target="_blank" class="btn-wa-ask">
+          💬 Tanya Stok & Harga
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
