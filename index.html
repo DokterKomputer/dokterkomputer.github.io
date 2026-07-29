@@ -47,7 +47,7 @@
     } 
 
     /* ========================================== */ 
-    /* STYLING BANNER CAROUSEL (SLIDER AUTOMATIS) */ 
+    /* STYLING BANNER CAROUSEL (AUTOMATIS & MANUAL)*/ 
     /* ========================================== */ 
     .banner-slider-container { 
       position: relative; 
@@ -58,6 +58,8 @@
       border: 1px solid #102636; 
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); 
       transition: border-color 0.3s ease; 
+      touch-action: pan-y;
+      user-select: none;
     } 
 
     .banner-slider-container:hover { 
@@ -86,7 +88,39 @@
       height: auto; 
       display: block; 
       object-fit: cover; 
+      pointer-events: none;
     } 
+
+    /* Tombol Navigasi Manual Panah Kiri/Kanan */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(3, 10, 16, 0.6);
+      color: #dfb15b;
+      border: 1px solid #dfb15b;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      z-index: 12;
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+    }
+
+    .slider-arrow:hover {
+      background: #dfb15b;
+      color: #030a10;
+      box-shadow: 0 0 12px rgba(223, 177, 91, 0.6);
+    }
+
+    .slider-arrow.prev { left: 15px; }
+    .slider-arrow.next { right: 15px; }
 
     /* Dots Indicator Banner */ 
     .slider-dots { 
@@ -248,6 +282,92 @@
       background-color: #1ebd56; 
     } 
 
+    /* Floating Shortcut Request PC Impian (Kanan Atas) */
+    .request-pc-float {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      background: rgba(7, 31, 46, 0.85);
+      border: 1px solid #dfb15b;
+      padding: 8px 12px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+      max-width: 110px;
+      text-align: center;
+    }
+
+    .request-pc-float:hover {
+      transform: translateY(3px) scale(1.03);
+      border-color: #d9232d;
+      box-shadow: 0 6px 20px rgba(217, 35, 45, 0.4);
+    }
+
+    .request-pc-float img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 4px;
+    }
+
+    .request-pc-float span {
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.2px;
+    }
+
+    /* Floating Shortcut DK Second Parts (Kiri Atas) */
+    .dk-2ndparts-float {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      background: rgba(7, 31, 46, 0.85);
+      border: 1px solid #dfb15b;
+      padding: 8px 12px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+      max-width: 110px;
+      text-align: center;
+    }
+
+    .dk-2ndparts-float:hover {
+      transform: translateY(3px) scale(1.03);
+      border-color: #d9232d;
+      box-shadow: 0 6px 20px rgba(217, 35, 45, 0.4);
+    }
+
+    .dk-2ndparts-float img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 4px;
+    }
+
+    .dk-2ndparts-float span {
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.2px;
+    }
+
     /* STYLING MODAL POPUP PROMO */ 
     .popup-overlay { 
       position: fixed; 
@@ -350,10 +470,42 @@
       .dot-btn.active { 
         width: 18px; 
       } 
+      .slider-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+      }
+      .request-pc-float, .dk-2ndparts-float {
+        top: 15px;
+        padding: 6px 8px;
+        max-width: 95px;
+      }
+      .request-pc-float { right: 12px; }
+      .dk-2ndparts-float { left: 12px; }
+      
+      .request-pc-float img, .dk-2ndparts-float img {
+        width: 34px;
+        height: 34px;
+      }
+      .request-pc-float span, .dk-2ndparts-float span {
+        font-size: 0.62rem;
+      }
     } 
   </style> 
 </head> 
 <body> 
+
+  <!-- Floating Shortcut DK Second Parts (Pojok Kiri Atas) -->
+  <a href="dk2ndpartslist.html" class="dk-2ndparts-float">
+    <img src="images/dk2ndparts.png" alt="DK Second Parts Icon">
+    <span>DK Second Parts</span>
+  </a>
+
+  <!-- Floating Shortcut Request PC Impian (Pojok Kanan Atas) -->
+  <a href="build-request.html" class="request-pc-float">
+    <img src="images/icon-build.png" alt="Build Request Icon">
+    <span>Request PC Impian mu Disini</span>
+  </a>
 
   <!-- POPUP PROMO CONTAINER --> 
   <div class="popup-overlay" id="promoPopup"> 
@@ -372,8 +524,12 @@
       <img src="images/logo.png" alt="Logo Dokter Komputer" class="brand-logo"> 
     </header> 
 
-    <!-- 2. BAGIAN BANNER SLIDER AUTOMATIS (5 BANNER) --> 
+    <!-- 2. BAGIAN BANNER SLIDER AUTOMATIS & MANUAL --> 
     <div class="banner-slider-container" id="bannerSlider"> 
+      <!-- Tombol Navigasi Kiri & Kanan -->
+      <button class="slider-arrow prev" onclick="prevSlide()">&#10094;</button>
+      <button class="slider-arrow next" onclick="nextSlide()">&#10095;</button>
+
       <div class="slider-track" id="sliderTrack"> 
         
         <!-- Slide 1: Titip Jual Part PC --> 
@@ -490,7 +646,7 @@
   <!-- SCRIPT BANNER SLIDER & POPUP --> 
   <script> 
     /* ------------------------------------------ 
-       LOGIK CAROUSEL SLIDER BANNER AUTOMATIS 
+       LOGIKA BANNER SLIDER (AUTOMATIS & MANUAL) 
     ------------------------------------------ */ 
     let currentSlide = 0; 
     const totalSlides = 5; 
@@ -513,6 +669,13 @@
     function nextSlide() { 
       currentSlide = (currentSlide + 1) % totalSlides; 
       updateSlider(); 
+      resetInterval();
+    } 
+
+    function prevSlide() { 
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; 
+      updateSlider(); 
+      resetInterval();
     } 
 
     function goToSlide(index) { 
@@ -522,7 +685,10 @@
     } 
 
     function startInterval() { 
-      slideInterval = setInterval(nextSlide, 4000); 
+      slideInterval = setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+      }, 4000); 
     } 
 
     function resetInterval() { 
@@ -533,12 +699,49 @@
     // Jalankan Autoplay 
     startInterval(); 
 
-    // Pause saat mouse hover banner
+    // Pause saat mouse hover banner 
     sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval)); 
     sliderContainer.addEventListener('mouseleave', startInterval); 
 
+    /* FITUR SWIPE / DRAG MANUAL UNTUK BANNER (TOUCH & MOUSE) */
+    let startX = 0;
+    let isDragging = false;
+
+    sliderContainer.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
+
+    sliderContainer.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      let endX = e.changedTouches[0].clientX;
+      handleGesture(startX, endX);
+      isDragging = false;
+    }, { passive: true });
+
+    sliderContainer.addEventListener('mousedown', (e) => {
+      startX = e.clientX;
+      isDragging = true;
+    });
+
+    sliderContainer.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      let endX = e.clientX;
+      handleGesture(startX, endX);
+      isDragging = false;
+    });
+
+    function handleGesture(start, end) {
+      const threshold = 40; // Sensitivitas geser
+      if (start - end > threshold) {
+        nextSlide();
+      } else if (end - start > threshold) {
+        prevSlide();
+      }
+    }
+
     /* ------------------------------------------ 
-       LOGIK MODAL POPUP 
+       LOGIKA MODAL POPUP 
     ------------------------------------------ */ 
     window.addEventListener('DOMContentLoaded', () => { 
       setTimeout(() => { 
@@ -556,74 +759,6 @@
       } 
     }); 
   </script> 
-  
-<!-- Floating Shortcut Request PC Impian -->
-  <a href="build-request.html" class="request-pc-float">
-    <img src="images/icon-build.png" alt="Build Request Icon">
-    <span>Request PC Impian mu Disini</span>
-  </a>
-
-  <style>
-    /* Styling Tombol Melayang Pojok Kanan Atas */
-    .request-pc-float {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      background: rgba(7, 31, 46, 0.85);
-      border: 1px solid #dfb15b;
-      padding: 8px 12px;
-      border-radius: 12px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-      transition: all 0.3s ease;
-      max-width: 110px;
-      text-align: center;
-    }
-
-    .request-pc-float:hover {
-      transform: translateY(3px) scale(1.03);
-      border-color: #d9232d;
-      box-shadow: 0 6px 20px rgba(217, 35, 45, 0.4);
-    }
-
-    .request-pc-float img {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 4px;
-    }
-
-    .request-pc-float span {
-      color: #ffffff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: 0.2px;
-    }
-
-    /* Penyesuaian Ukuran di Layar HP */
-    @media (max-width: 576px) {
-      .request-pc-float {
-        top: 15px;
-        right: 12px;
-        padding: 6px 8px;
-        max-width: 95px;
-      }
-      .request-pc-float img {
-        width: 34px;
-        height: 34px;
-      }
-      .request-pc-float span {
-        font-size: 0.62rem;
-      }
-    }
-  </style>
   
 </body> 
 </html>
