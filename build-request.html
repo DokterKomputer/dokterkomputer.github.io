@@ -165,7 +165,7 @@
       border-color: #dfb15b;
     }
 
-    select.form-control option {
+    select.form-control option, select.form-control optgroup {
       background: #0d1420;
       color: #fff;
     }
@@ -318,7 +318,7 @@
         <!-- PROCESSOR -->
         <div class="part-row">
           <div class="part-label">Processor</div>
-          <select id="proc_item" class="form-control" onchange="updateMoboOptions()" required>
+          <select id="proc_item" class="form-control" onchange="onProcessorChange()" required>
             <option value="">-- Pilih Processor AMD Ryzen --</option>
             <optgroup label="AM4 Series">
               <option value="AM4|AMD Ryzen 3 3200G / 4100">Ryzen 3 Series (AM4)</option>
@@ -357,12 +357,16 @@
           <div class="part-label">RAM</div>
           <select id="ram_item" class="form-control" required>
             <option value="">-- Pilih Kapasitas & Tipe RAM --</option>
-            <option value="8GB DDR4">8 GB DDR4</option>
-            <option value="16GB (2x8GB) DDR4">16 GB DDR4</option>
-            <option value="32GB (2x16GB) DDR4">32 GB DDR4</option>
-            <option value="16GB (2x8GB) DDR5">16 GB DDR5</option>
-            <option value="32GB (2x16GB) DDR5">32 GB DDR5</option>
-            <option value="64GB (2x32GB) DDR5">64 GB DDR5</option>
+            <!-- DDR4 Options -->
+            <option value="8GB DDR4" data-type="ddr4">8 GB DDR4</option>
+            <option value="16GB (2x8GB) DDR4" data-type="ddr4">16 GB DDR4</option>
+            <option value="32GB (2x16GB) DDR4" data-type="ddr4">32 GB DDR4</option>
+            <option value="64GB (2x32GB) DDR4" data-type="ddr4">64 GB DDR4</option>
+            <!-- DDR5 Options -->
+            <option value="8GB DDR5" data-type="ddr5">8 GB DDR5</option>
+            <option value="16GB (2x8GB) DDR5" data-type="ddr5">16 GB DDR5</option>
+            <option value="32GB (2x16GB) DDR5" data-type="ddr5">32 GB DDR5</option>
+            <option value="64GB (2x32GB) DDR5" data-type="ddr5">64 GB DDR5</option>
           </select>
           <select id="ram_condition" class="form-control">
             <option value="New">New</option>
@@ -393,7 +397,39 @@
         <!-- VGA -->
         <div class="part-row">
           <div class="part-label">VGA</div>
-          <input type="text" id="vga_item" class="form-control" placeholder="Ketik Merk/Seri VGA (misal: RTX 4060 / RX 6600)" required>
+          <select id="vga_item" class="form-control" required>
+            <option value="">-- Pilih Seri VGA / Graphic Card --</option>
+            <option value="Tanpa VGA (iGPU / Integrated)">Tanpa VGA (Pakai iGPU / Integrated)</option>
+
+            <optgroup label="NVIDIA GeForce">
+              <option value="NVIDIA GTX 1650 4GB">NVIDIA GTX 1650 4GB</option>
+              <option value="NVIDIA GTX 1660 Super 6GB">NVIDIA GTX 1660 Super 6GB</option>
+              <option value="NVIDIA RTX 3050 6GB / 8GB">NVIDIA RTX 3050 6GB / 8GB</option>
+              <option value="NVIDIA RTX 3060 12GB">NVIDIA RTX 3060 12GB</option>
+              <option value="NVIDIA RTX 4060 8GB">NVIDIA RTX 4060 8GB</option>
+              <option value="NVIDIA RTX 4060 Ti 8GB / 16GB">NVIDIA RTX 4060 Ti 8GB / 16GB</option>
+              <option value="NVIDIA RTX 4070 / 4070 Super">NVIDIA RTX 4070 / 4070 Super</option>
+              <option value="NVIDIA RTX 4070 Ti Super / 4080 Super">NVIDIA RTX 4070 Ti Super / 4080 Super</option>
+              <option value="NVIDIA RTX 5060">NVIDIA RTX 5060</option>
+              <option value="NVIDIA RTX 5070 / 5070 Ti">NVIDIA RTX 5070 / 5070 Ti</option>
+              <option value="NVIDIA RTX 5080 / 5090">NVIDIA RTX 5080 / 5090</option>
+            </optgroup>
+
+            <optgroup label="AMD Radeon">
+              <option value="AMD Radeon RX 580 8GB">AMD Radeon RX 580 8GB</option>
+              <option value="AMD Radeon RX 6600 8GB">AMD Radeon RX 6600 8GB</option>
+              <option value="AMD Radeon RX 6700 XT / 6750 XT">AMD Radeon RX 6700 XT / 6750 XT</option>
+              <option value="AMD Radeon RX 7600 8GB / 7600 XT 16GB">AMD Radeon RX 7600 / 7600 XT</option>
+              <option value="AMD Radeon RX 7700 XT / 7800 XT">AMD Radeon RX 7700 XT / 7800 XT</option>
+              <option value="AMD Radeon RX 7900 GRE / 7900 XT / XTX">AMD Radeon RX 7900 GRE / XT / XTX</option>
+            </optgroup>
+
+            <optgroup label="Intel Arc">
+              <option value="Intel Arc A580 8GB">Intel Arc A580 8GB</option>
+              <option value="Intel Arc A750 / A770 16GB">Intel Arc A750 / A770 16GB</option>
+              <option value="Intel Arc B570 / B580 (Battlemage)">Intel Arc B570 / B580 (Battlemage)</option>
+            </optgroup>
+          </select>
           <select id="vga_condition" class="form-control">
             <option value="New">New</option>
             <option value="Second">Second</option>
@@ -404,7 +440,15 @@
         <!-- PSU -->
         <div class="part-row">
           <div class="part-label">PSU</div>
-          <input type="text" id="psu_item" class="form-control" placeholder="Ketik Merk & Watt PSU (misal: MSI 650W 80+ Bronze)" required>
+          <select id="psu_item" class="form-control" required>
+            <option value="">-- Pilih Daya PSU (Power Supply) --</option>
+            <option value="450W 80+ Certified">450W 80+</option>
+            <option value="550W 80+ Certified">550W 80+</option>
+            <option value="650W 80+ Certified">650W 80+</option>
+            <option value="750W 80+ Certified">750W 80+</option>
+            <option value="850W 80+ Certified">850W 80+</option>
+            <option value="1000W 80+ Certified">1000W 80+</option>
+          </select>
           <select id="psu_condition" class="form-control">
             <option value="New">New</option>
             <option value="Second">Second</option>
@@ -510,16 +554,18 @@
       }
     });
 
-    // Dynamic Motherboard Filter (Diperbaiki)
-    function updateMoboOptions() {
+    // Handler Terpadu saat Processor Berubah (Update Motherboard & Filter RAM)
+    function onProcessorChange() {
       const rawVal = document.getElementById('proc_item').value;
       const moboSelect = document.getElementById('mobo_item');
+      const ramSelect = document.getElementById('ram_item');
       
       moboSelect.innerHTML = '';
 
       if (!rawVal) {
         moboSelect.innerHTML = `<option value="">-- Pilih Processor Terlebih Dahulu --</option>`;
         moboSelect.disabled = true;
+        filterRamOptions('');
         return;
       }
 
@@ -534,6 +580,7 @@
           <option value="X570 Chipset">X570 (High-End AM4)</option>
         `;
         moboSelect.disabled = false;
+        filterRamOptions('AM4');
       } else if (socket === 'AM5') {
         moboSelect.innerHTML = `
           <option value="">-- Pilih Motherboard AM5 --</option>
@@ -542,6 +589,49 @@
           <option value="X670 / X670E / X870 Chipset">X670 / X870 (High-End AM5)</option>
         `;
         moboSelect.disabled = false;
+        filterRamOptions('AM5');
+      }
+    }
+
+    // Filter RAM Otomatis berdasarkan Socket Processor
+    function filterRamOptions(socket) {
+      const ramSelect = document.getElementById('ram_item');
+      const options = ramSelect.querySelectorAll('option');
+
+      let currentSelectedValid = false;
+
+      options.forEach(opt => {
+        const type = opt.getAttribute('data-type');
+        if (!type) return; // Skip placeholder
+
+        if (socket === 'AM4') {
+          if (type === 'ddr4') {
+            opt.hidden = false;
+            opt.disabled = false;
+          } else {
+            opt.hidden = true;
+            opt.disabled = true;
+          }
+        } else if (socket === 'AM5') {
+          if (type === 'ddr5') {
+            opt.hidden = false;
+            opt.disabled = false;
+          } else {
+            opt.hidden = true;
+            opt.disabled = true;
+          }
+        } else {
+          opt.hidden = false;
+          opt.disabled = false;
+        }
+
+        if (opt.selected && !opt.disabled) {
+          currentSelectedValid = true;
+        }
+      });
+
+      if (!currentSelectedValid) {
+        ramSelect.value = '';
       }
     }
 
@@ -614,6 +704,7 @@ _Mohon konfirmasi estimasi harga & ketersediaan stoknya min!_`;
       document.getElementById('buildForm').reset();
       document.getElementById('mobo_item').disabled = true;
       document.getElementById('mobo_item').innerHTML = `<option value="">-- Pilih Processor Terlebih Dahulu --</option>`;
+      filterRamOptions('');
     }
   </script>
 </body>
