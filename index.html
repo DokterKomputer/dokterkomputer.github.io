@@ -278,31 +278,32 @@
       background-color: #1ebd56; 
     } 
 
-    /* Floating Side Buttons Vertikal di Kanan */
+    /* PERBAIKAN: FLOATING BUTTONS DI KANAN ATAS & UKURAN LEBIH BESAR */
     .floating-side-buttons {
       position: fixed;
-      right: 20px;
-      bottom: 85px; /* Posisinya tepat di atas tombol WhatsApp */
+      right: 25px;
+      top: 25px; /* Pindah ke Atas Kanan Layar */
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 15px;
       z-index: 9999;
     }
 
     .floating-btn {
-      width: 56px;
-      height: 56px;
+      width: 72px; /* Ukuran diperbesar dari 56px ke 72px */
+      height: 72px;
       background: rgba(8, 18, 27, 0.9);
       border: 2px solid #dfb15b;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
       transition: all 0.3s ease;
       overflow: hidden;
-      padding: 8px;
+      padding: 10px;
       text-decoration: none;
+      backdrop-filter: blur(6px);
     }
 
     .floating-btn img {
@@ -313,9 +314,9 @@
     }
 
     .floating-btn:hover {
-      transform: scale(1.1);
+      transform: scale(1.12);
       border-color: #d9232d;
-      box-shadow: 0 6px 20px rgba(217, 35, 45, 0.4);
+      box-shadow: 0 8px 25px rgba(217, 35, 45, 0.5);
     }
 
     /* STYLING MODAL POPUP PROMO */ 
@@ -425,18 +426,31 @@
         height: 32px;
         font-size: 0.9rem;
       }
+      /* Penyesuaian di layar HP agar tidak menutupi header logo */
       .floating-side-buttons {
-        right: 12px;
-        bottom: 75px;
+        right: 15px;
+        top: 15px;
+        gap: 10px;
       }
       .floating-btn {
-        width: 50px;
-        height: 50px;
+        width: 58px;
+        height: 58px;
+        padding: 8px;
       }
     } 
   </style> 
 </head> 
 <body> 
+
+  <!-- FLOATING SIDE BUTTONS (Pojok Kanan Atas) -->
+  <div class="floating-side-buttons">
+    <a href="dk2ndpartslist.html" class="floating-btn" title="DK Second Parts">
+      <img src="images/dk2ndparts.png" alt="DK Second Parts">
+    </a>
+    <a href="build-request.html" class="floating-btn" title="Request PC Impian">
+      <img src="images/icon-build.png" alt="Request PC Impian">
+    </a>
+  </div>
 
   <!-- POPUP PROMO CONTAINER --> 
   <div class="popup-overlay" id="promoPopup"> 
@@ -551,16 +565,6 @@
       </div> 
     </section> 
   </div> 
-
-  <!-- FLOATING SIDE BUTTONS (Vertikal Pojok Kanan) -->
-  <div class="floating-side-buttons">
-    <a href="dk2ndpartslist.html" class="floating-btn" title="DK Second Parts">
-      <img src="images/dk2ndparts.png" alt="DK Second Parts">
-    </a>
-    <a href="build-request.html" class="floating-btn" title="Request PC Impian">
-      <img src="images/icon-build.png" alt="Request PC Impian">
-    </a>
-  </div>
 
   <!-- FLOATING WHATSAPP BUTTON --> 
   <a href="https://wa.me/6281238070329" class="wa-float" target="_blank"> 
