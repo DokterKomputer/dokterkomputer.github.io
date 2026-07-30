@@ -292,6 +292,31 @@ html_content = """<!DOCTYPE html>
             background: var(--bg-card-hover);
         }
 
+        /* Image Box Container */
+        .card-img-wrapper {
+            width: 100%;
+            height: 200px;
+            background: rgba(11, 15, 25, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .laptop-card:hover .card-img-wrapper img {
+            transform: scale(1.05);
+        }
+
         .card-top {
             margin-bottom: 16px;
         }
@@ -622,6 +647,9 @@ html_content = """<!DOCTYPE html>
             <div class="laptop-grid">
                 <!-- Laptop 1: ASUS ExpertBook B1 (B1402) -->
                 <div class="laptop-card" data-tier="entry" data-name="asus expertbook b1 b1402 intel i3 i5 i7">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80" alt="ASUS ExpertBook B1 (B1402)">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-entry">Entry Business</span>
@@ -631,12 +659,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Laptop bisnis entry-level ultra-durable dengan port I/O super lengkap untuk fleksibilitas kerja harian.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i3-1215U / i5-1335U / i7-1355U</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">8GB / 16GB DDR4 (Upgradable to 40GB)</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB M.2 NVMe™ PCIe® 4.0 SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" FHD (1920 x 1080) Anti-Glare, 250 nits</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® UHD / Iris® Xe Graphics</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Military Grade MIL-STD 810H, Webcam Shield, LAN RJ45</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core i3-1215U / i5-1235U / i7-1255U</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 16 GB DDR4 3200 MHz (Expandable)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 512 GB / 1 TB M.2 NVMe PCIe 4.0 SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" FHD (1920 x 1080) Anti-glare, 250 nits</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel UHD / Intel Iris Xe Graphics</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">MIL-STD 810H, Wi-Fi 6 + BT 5.2, RJ45 LAN</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -662,6 +690,9 @@ html_content = """<!DOCTYPE html>
 
                 <!-- Laptop 2: Lenovo ThinkBook 14 Gen 7 -->
                 <div class="laptop-card" data-tier="entry" data-name="lenovo thinkbook 14 gen 7 ryzen intel">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&auto=format&fit=crop&q=80" alt="Lenovo ThinkBook 14 Gen 7">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-entry">Entry Business</span>
@@ -671,12 +702,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Perpaduan gaya modern konsumen dan durabilitas kelas komersial perusahaan.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 5 / AMD Ryzen™ 5 7535U / 7 7730U</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB DDR5 5600MHz (Dual SODIMM slot)</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB SSD PCIe 4.0 (Dual M.2 Slot)</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA (1920x1200) IPS 16:10, 300 nits Anti-Glare</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Graphics / AMD Radeon™ 680M</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Fingerprint Reader, Smart Power, Bodi Aluminium Dual-Tone</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core Ultra 5 125H/7 155H / AMD Ryzen 5/7</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 32 GB DDR5 5600 MHz (2x SODIMM)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 1 TB M.2 PCIe 4.0 SSD (Dual M.2 Slot)</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA (1920 x 1200) IPS 16:10, 300 nits</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Graphics / Arc / AMD Radeon Graphics</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Thunderbolt 4 / USB4, MIL-STD 810H, Fingerprint</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -702,6 +733,9 @@ html_content = """<!DOCTYPE html>
 
                 <!-- Laptop 3: HP ProBook 440 G11 -->
                 <div class="laptop-card" data-tier="entry" data-name="hp probook 440 g11 intel core ultra">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80" alt="HP ProBook 440 G11">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-entry">Entry Business</span>
@@ -711,12 +745,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Laptop korporat andal yang didukung AI chip dan keamanan hardware tingkat tinggi.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 5 125U / Ultra 7 155U</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB / 32GB DDR5 5600MHz (2x SODIMM)</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB PCIe NVMe SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA (1920x1200) IPS Anti-Glare 300 nits</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Graphics Integrated</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">HP Wolf Security Pro Edition, Keyboard Spill-Resistant</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core Ultra 5 125U / Ultra 7 155U (AI Boost)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 32 GB DDR5 5600 MHz (2x SODIMM)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 1 TB M.2 PCIe 4.0 NVMe TLC SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA (1920 x 1200) IPS Anti-glare 300 nits</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Graphics Integrated</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">HP Wolf Pro Security, Spill-resistant keyboard</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -742,6 +776,9 @@ html_content = """<!DOCTYPE html>
 
                 <!-- Laptop 4: Dell Vostro 3530 -->
                 <div class="laptop-card" data-tier="entry" data-name="dell vostro 3530 intel core i5 i7 120hz">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&auto=format&fit=crop&q=80" alt="Dell Vostro 3530">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-entry">Entry Business</span>
@@ -751,12 +788,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Layar lega 15.6" 120Hz dengan Numpad penuh untuk kebutuhan operasional data & kantor.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i5-1335U / i7-1355U</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">8GB / 16GB DDR4 3200MHz</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB M.2 PCIe NVMe SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">15.6" FHD (1920x1080) 120Hz Anti-Glare WVA</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Iris Xe Graphics / NVIDIA GeForce MX550 2GB</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">TPM 2.0 Hardware, Dell ExpressCharge, Full Keyboard Numpad</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core i5-1335U / i7-1355U (13th Gen)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 16 GB DDR4 2666 / 3200 MHz</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 512 GB / 1 TB M.2 PCIe NVMe SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">15.6" FHD (1920 x 1080) 120Hz Anti-glare</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Iris Xe / NVIDIA GeForce MX550 2GB</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Hardware TPM 2.0, Full Keyboard Numpad</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -794,6 +831,9 @@ html_content = """<!DOCTYPE html>
             <div class="laptop-grid">
                 <!-- Laptop 5: Lenovo ThinkPad L14 Gen 5 -->
                 <div class="laptop-card" data-tier="mid" data-name="lenovo thinkpad l14 gen 5 intel core ultra trackpoint">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6?w=600&auto=format&fit=crop&q=80" alt="Lenovo ThinkPad L14 Gen 5">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-mid">Mid-Tier Pro</span>
@@ -803,12 +843,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Pintu masuk ke ekosistem ThinkPad murni dengan kenyamanan mengetik standar industri terbaik.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 5 125U / Ultra 7 155U (vPro®)</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB / 32GB DDR5 5600MHz (2x SODIMM Slots)</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB PCIe Gen 4 NVMe Opal2 SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA (1920x1200) IPS 16:10, 400 nits, PWM-Free</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Graphics Integrated</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">TrackPoint Red Dot, Keyboard Ergonomis, MIL-STD 810H</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core Ultra 5 125U / Ultra 7 155U / AMD PRO</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 64 GB DDR5 5600 MHz (2x SODIMM)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 2 TB M.2 2280 PCIe 4.0 NVMe SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA (1920 x 1200) IPS 16:10, 300/400 nits</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Graphics / AMD Radeon Graphics</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Iconic TrackPoint, Spill-resistant, Thunderbolt 4</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -834,6 +874,9 @@ html_content = """<!DOCTYPE html>
 
                 <!-- Laptop 6: ASUS ExpertBook B5 (B5402) -->
                 <div class="laptop-card" data-tier="mid" data-name="asus expertbook b5 b5402 dual ssd raid intel">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format&fit=crop&q=80" alt="ASUS ExpertBook B5 (B5402)">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-mid">Mid-Tier Pro</span>
@@ -843,12 +886,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Laptop bisnis tipis nan kokoh dengan fitur keamanan ganda Dual SSD RAID support.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i5-1340P / i7-1360P / i7-1370P vPro®</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB DDR4 / DDR5 (Expandable up to 40GB)</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB NVMe PCIe 4.0 (Dual SSD Support RAID 0/1)</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" FHD (1920x1080) IPS 400 nits 100% sRGB</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Iris Xe Graphics</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Dual Thunderbolt 4, NumberPad 2.0 LED, IR Camera</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core i5-1340P / i7-1360P (vPro)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 40 GB DDR5 4800 MHz</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Dual M.2 NVMe PCIe 4.0 SSD (RAID 0/1 Support)</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" FHD (1920 x 1080) IPS, 400 nits, 100% sRGB</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Iris Xe / Intel Arc A350M 2GB</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">2x Thunderbolt 4, MIL-STD 810H, ~1.25 kg</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -872,8 +915,11 @@ html_content = """<!DOCTYPE html>
                     </div>
                 </div>
 
-                <!-- Laptop 7: Acer TravelMate P6 (TMP614-53 / 14 AI) -->
-                <div class="laptop-card" data-tier="mid" data-name="acer travelmate p6 tmp614 oled intel core ultra">
+                <!-- Laptop 7: Acer TravelMate P6 -->
+                <div class="laptop-card" data-tier="mid" data-name="acer travelmate p6 oled intel core ultra">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&auto=format&fit=crop&q=80" alt="Acer TravelMate P6">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-mid">Mid-Tier Pro</span>
@@ -883,12 +929,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Laptop mobilitas tinggi dengan layar OLED jernih dan pengisian daya ultra cepat.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 7 268V / Core i7-1355U (EVO)</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">32GB LPDDR5X Memory</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">1TB M.2 PCIe Gen4 NVMe SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" 2.8K (2880x1800) OLED / WUXGA Touch, 100% DCI-P3</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Arc™ 140V GPU / Iris Xe</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Acer UserSensing, Fast Charging (80% in 1 hr), Privacy Panel</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core i5-1335U / i7-1355U (vPro Essentials)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 32 GB LPDDR5X (Onboard)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 1 TB M.2 PCIe 4.0 NVMe SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA / OLED 2.8K (2880 x 1800) 100% DCI-P3</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Iris Xe Graphics</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Fast Charging (80% in 1 hr), PrivacyPanel, ~1.10 kg</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -914,6 +960,9 @@ html_content = """<!DOCTYPE html>
 
                 <!-- Laptop 8: Dell Latitude 5440 -->
                 <div class="laptop-card" data-tier="mid" data-name="dell latitude 5440 intel vpro core i5 i7">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80" alt="Dell Latitude 5440">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-mid">Mid-Tier Pro</span>
@@ -923,12 +972,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Standar emas laptop enterprise korporat dengan platform Intel vPro® terintegrasi.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i5-1345U vPro® / i7-1365U vPro®</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB / 32GB DDR5 4800MHz (Upgradable)</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB PCIe NVMe Class 35/40 SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" FHD (1920x1080) Anti-Glare IPS 300 nits</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Iris® Xe Graphics Integrated</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Intel vPro Enterprise, ExpressSign-in, Dell Optimizer AI</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core i5-1345U / i7-1365U vPro (13th Gen)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 64 GB DDR5 4800 MHz (2x SODIMM)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 1 TB M.2 PCIe NVMe Class 40 SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" FHD (1920 x 1080) IPS, Anti-glare, 250/400 nits</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Iris Xe / NVIDIA GeForce MX550 2GB</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Intel vPro Enterprise, Dell Optimizer AI</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -966,6 +1015,9 @@ html_content = """<!DOCTYPE html>
             <div class="laptop-grid">
                 <!-- Laptop 9: Lenovo ThinkPad X1 Carbon Gen 12 -->
                 <div class="laptop-card" data-tier="high" data-name="lenovo thinkpad x1 carbon gen 12 core ultra 7 oled">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80" alt="Lenovo ThinkPad X1 Carbon Gen 12">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-high">High-End Eksekutif</span>
@@ -975,12 +1027,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Flagship laptop bisnis nomor 1 di dunia dengan konstruksi serat karbon ultra-ringan.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 7 155H / Ultra 7 165H vPro®</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">32GB / 64GB LPDDR5X 7500MHz Soldered</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">1TB / 2TB PCIe Gen 4x4 Performance SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" 2.8K (2880x1800) OLED 120Hz 400 nits HDR True Black</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Arc™ Graphics Integrated</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Computer Vision Human Presence, Bobot 1.09 kg, Haptic Trackpad</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core Ultra 5 125H / Ultra 7 155H / 165H</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 64 GB LPDDR5X 7500 MHz (Onboard)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 2 TB M.2 2280 PCIe 4.0 NVMe SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" 2.8K (2880 x 1800) OLED 120Hz 100% DCI-P3</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Arc Graphics Integrated</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Carbon Fiber + Magnesium, Wi-Fi 7, ~1.09 kg</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -1006,6 +1058,9 @@ html_content = """<!DOCTYPE html>
 
                 <!-- Laptop 10: Apple MacBook Pro 14" M3 Pro -->
                 <div class="laptop-card" data-tier="high" data-name="apple macbook pro 14 m3 pro 18gb 36gb xdr">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80" alt="Apple MacBook Pro 14 M3 Pro">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-high">High-End Eksekutif</span>
@@ -1016,11 +1071,11 @@ html_content = """<!DOCTYPE html>
 
                         <div class="spec-list">
                             <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Apple M3 Pro Chip (11-Core / 12-Core CPU)</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">18GB / 36GB Unified Memory</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB / 2TB High-Speed SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.2" Liquid Retina XDR (3024x1964) 120Hz ProMotion 1600 nits</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">14-Core / 18-Core GPU dengan Hardware Ray Tracing</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Baterai hingga 18 Jam, Spatial Audio 6-Speaker, HDMI 2.1 & SDXC</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">18 GB / 36 GB Unified Memory</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512 GB / 1 TB / 2 TB / 4 TB SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.2" Liquid Retina XDR 120Hz ProMotion</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">14-Core / 18-Core GPU (Ray Tracing)</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Up to 18 hrs battery, HDMI 8K, MagSafe 3</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -1046,6 +1101,9 @@ html_content = """<!DOCTYPE html>
 
                 <!-- Laptop 11: HP Dragonfly G4 -->
                 <div class="laptop-card" data-tier="high" data-name="hp dragonfly g4 intel i7 vpro sure view 1000 nits">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&auto=format&fit=crop&q=80" alt="HP Dragonfly G4">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-high">High-End Eksekutif</span>
@@ -1055,12 +1113,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Karya seni teknologi dengan layar rasio 3:2 ekstra produktif dan audio konferensi berbasis AI.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i7-1355U / i7-1365U vPro®</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB / 32GB LPDDR5 6400MHz</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">1TB PCIe Gen 4x4 NVMe TLC SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">13.5" WUXGA+ (1920x1280) 3:2 IPS 1000 nits HP Sure View Reflect</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Iris® Xe Graphics Integrated</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Bobot 0.99 kg Ultra Light, 5MP Auto Frame Cam, AI Noise Cancel</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core i5-1335U / i7-1365U vPro (13th Gen)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 32 GB LPDDR5 6400 MHz (Onboard)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 2 TB PCIe 4.0 NVMe TLC M.2 SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">13.5" WUXGA+ 1000 nits Sure View / OLED 3K2K</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Iris Xe Graphics</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Hybrid Magnesium Chassis, 5MP AI Cam, ~0.99 kg</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -1086,6 +1144,9 @@ html_content = """<!DOCTYPE html>
 
                 <!-- Laptop 12: ASUS ExpertBook B9 OLED (B9403) -->
                 <div class="laptop-card" data-tier="high" data-name="asus expertbook b9 oled b9403 990gram ultra light intel">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format&fit=crop&q=80" alt="ASUS ExpertBook B9 OLED (B9403)">
+                    </div>
                     <div class="card-top">
                         <div class="card-header-meta">
                             <span class="tier-badge tag-high">High-End Eksekutif</span>
@@ -1095,12 +1156,12 @@ html_content = """<!DOCTYPE html>
                         <p class="laptop-subtitle">Laptop bisnis OLED paling ringan di bumi (hanya 990g) berbahan Magnesium-Lithium.</p>
 
                         <div class="spec-list">
-                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 7 155H / i7-1355U vPro®</span></div>
-                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">32GB LPDDR5X 7500MHz Dual Channel</span></div>
-                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">1TB / 2TB M.2 NVMe PCIe 4.0 SSD</span></div>
-                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" 2.8K (2880x1800) OLED 16:10 90Hz 400 nits 100% DCI-P3</span></div>
-                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Arc™ Graphics Integrated</span></div>
-                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Bobot 990g, Smart Cooling Dust Defender, NFC, MIL-STD 810H</span></div>
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel Core i7-1355U / i7-1370P vPro (13th Gen)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">Up to 32 GB LPDDR5X 7500 MHz (Onboard)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">Up to 2 TB M.2 NVMe PCIe 4.0 SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" 2.8K (2880 x 1800) OLED 90Hz 100% DCI-P3</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel Iris Xe Graphics</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Magnesium-Lithium Alloy, NFC Login, ~990 gram</span></div>
                         </div>
 
                         <div class="alasan-dk">
@@ -1152,202 +1213,201 @@ html_content = """<!DOCTYPE html>
                 tier: "Entry Business",
                 desc: "Laptop tangguh tingkat pemula untuk UMKM dan staf operasional dengan perlindungan fisik canggih.",
                 specs: {
-                    "Prosesor": "Intel® Core™ i3-1215U / i5-1335U / i7-1355U",
+                    "Prosesor": "Intel Core i3-1215U / i5-1235U / i7-1255U",
                     "Sistem Operasi": "Windows 11 Pro / Windows 11 Home",
-                    "Memori RAM": "8GB / 16GB DDR4 3200MHz (1x Soldered + 1x SODIMM, up to 40GB)",
-                    "Penyimpanan": "512GB M.2 NVMe PCIe 4.0 SSD (Upgradable)",
-                    "Layar": "14.0\" FHD (1920 x 1080) 16:9, Anti-Glare LCD, 250 nits",
-                    "Port I/O": "1x USB 2.0, 1x USB 3.2 Gen 1 Type-A, 2x USB 3.2 Gen 2 Type-C (PD & DP), 1x HDMI 1.4, 1x RJ45 Gigabit Ethernet, Audio Jack",
-                    "Keamanan": "Webcam Privacy Shield, Kensington Lock, TPM 2.0, Optional Fingerprint",
-                    "Sertifikasi Durabilitas": "MIL-STD 810H US Military Standard",
-                    "Baterai & Bobot": "42WHrs 3-cell Li-ion, 1.49 kg"
+                    "Memori RAM": "Up to 16 GB DDR4 3200 MHz (1x SO-DIMM slot, expandable)",
+                    "Penyimpanan": "Up to 512 GB / 1 TB M.2 NVMe PCIe 4.0 SSD",
+                    "Layar": "14.0\" FHD (1920 x 1080) 16:9, Anti-glare, 250 nits",
+                    "Port I/O": "1x USB 2.0 Type-A, 1x USB 3.2 Gen 1 Type-A, 1x USB 3.2 Gen 1 Type-C (PD), 1x USB 3.2 Gen 2 Type-C (DP & PD), 1x HDMI 1.4, 1x RJ45 Ethernet, Audio Jack",
+                    "Keamanan": "Webcam Privacy Shield, Kensington Lock, Hardware TPM 2.0",
+                    "Sertifikasi Durabilitas": "MIL-STD 810H Military-grade toughness",
+                    "Baterai & Bobot": "42 Whrs, 3-Cell Li-ion, ~1.49 kg"
                 },
-                potensiDK: "Sangat mudah di-upgrade RAM hingga 40GB. Sangat direkomendasikan untuk armada sales, staf lapangan, atau usaha yang membutuhkan ketahanan port fisik jangka panjang."
+                potensiDK: "Laptop bisnis murah tapi punya perlindungan port lengkap dan daya tahan banting standar industri."
             },
             'thinkbook-14-g7': {
                 title: "Lenovo ThinkBook 14 Gen 7",
                 tier: "Entry Business",
                 desc: "Keseimbangan sempurna antara gaya ramping ala laptop modern dan fungsionalitas bisnis enterprise.",
                 specs: {
-                    "Prosesor": "Intel® Core™ Ultra 5 125U / AMD Ryzen™ 5 7535U / Ryzen™ 7 7730U",
+                    "Prosesor": "Intel Core Ultra 5 125H / Core Ultra 7 155H (atau AMD Ryzen 5 7535U / Ryzen 7 7735U)",
                     "Sistem Operasi": "Windows 11 Pro",
-                    "Memori RAM": "16GB DDR5 5600MHz (2x SODIMM Slots, Upgradable to 64GB)",
-                    "Penyimpanan": "512GB / 1TB SSD M.2 2240 PCIe 4.0 (Dual M.2 SSD Slot)",
-                    "Layar": "14.0\" WUXGA (1920x1200) IPS, 300 nits, Anti-Glare, 16:10 aspect ratio",
-                    "Port I/O": "1x Thunderbolt 4 / USB4, 1x USB-C 3.2 Gen 2, 2x USB 3.2 Gen 1, HDMI 2.1, RJ45 LAN, SD Card Reader",
-                    "Keamanan": "Fingerprint Reader di Tombol Power, ThinkShutter Camera, Firmware TPM 2.0",
+                    "Memori RAM": "Up to 32 GB DDR5 5600 MHz (2x SO-DIMM slots)",
+                    "Penyimpanan": "Up to 1 TB M.2 2280 PCIe 4.0 NVMe SSD (Dual M.2 SSD slot)",
+                    "Layar": "14.0\" WUXGA (1920 x 1200) IPS, 16:10, Anti-glare, 300 nits, 100% sRGB",
+                    "Port I/O": "1x Thunderbolt 4 / USB4 40Gbps, 1x USB-C 3.2 Gen 2, 2x USB 3.2 Gen 1 Type-A, 1x HDMI 2.1, 1x SD Card Reader, 1x RJ45 Ethernet",
+                    "Keamanan": "Match-on-Chip Fingerprint Reader, Privacy Camera Shutter",
                     "Sertifikasi Durabilitas": "MIL-STD 810H Passed",
-                    "Baterai & Bobot": "47Wh / 60Wh Battery, 1.38 kg"
+                    "Baterai & Bobot": "47 Whrs / 60 Whrs; ~1.38 kg"
                 },
-                potensiDK: "Memiliki 2 slot SODIMM RAM dan 2 slot SSD M.2 NVMe. Salah satu laptop paling gampang di-upgrade di kelas harga under 12 jutaan."
+                potensiDK: "Menjembatani harga laptop konsumen biasa dengan fitur keamanan & durabilitas kelas komersial."
             },
             'hp-probook-440-g11': {
                 title: "HP ProBook 440 G11",
                 tier: "Entry Business",
                 desc: "Laptop korporat standar dunia dengan arsitektur AI terbaru dan keamanan HP Wolf Security.",
                 specs: {
-                    "Prosesor": "Intel® Core™ Ultra 5 125U / Core™ Ultra 7 155U",
+                    "Prosesor": "Intel Core Ultra 5 125U / Ultra 7 155U (dengan Intel AI Boost)",
                     "Sistem Operasi": "Windows 11 Pro 64-bit",
-                    "Memori RAM": "16GB / 32GB DDR5-5600MHz (2x SODIMM Slots)",
-                    "Penyimpanan": "512GB / 1TB PCIe NVMe M.2 SSD",
-                    "Layar": "14.0\" WUXGA (1920x1200) IPS Anti-Glare 300 nits 45% NTSC",
-                    "Port I/O": "2x USB Type-C 20Gbps (USB Power Delivery, DisplayPort 1.4), 2x USB Type-A 5Gbps, HDMI 2.1, RJ45, Headphone/mic combo",
-                    "Keamanan": "HP Wolf Security for Business, HP Sure Start Gen7, Camera Shutter",
-                    "Fitur Tambahan": "Keyboard DuraKeys Tahan Tumpahan Air, AI Noise Suppression",
-                    "Baterai & Bobot": "56Wh Long Life Polymer, 1.39 kg"
+                    "Memori RAM": "Up to 32 GB DDR5 5600 MHz (2x SO-DIMM slots)",
+                    "Penyimpanan": "Up to 1 TB M.2 PCIe 4.0 NVMe TLC SSD",
+                    "Layar": "14.0\" WUXGA (1920 x 1200) IPS, Anti-glare, 300 nits",
+                    "Port I/O": "2x USB Type-C 20Gbps (PD, DP 1.4), 2x USB Type-A 5Gbps, 1x HDMI 2.1, 1x RJ45 Ethernet, 3.5mm Combo Jack",
+                    "Keamanan": "HP Wolf Pro Security Edition, IR Camera Privacy Shutter",
+                    "Fitur Tambahan": "Spill-resistant keyboard bawaan HP",
+                    "Baterai & Bobot": "56 Whrs Long Life Li-ion; ~1.39 kg"
                 },
-                potensiDK: "Fitur keamanan hardware HP Wolf Security mencegah serangan virus malware level BIOS. Sangat pas untuk kantor yang mengutamakan privasi data klien."
+                potensiDK: "Dilengkapi proteksi keamanan hardware HP Wolf Security bawaan dan keyboard tahan tumpahan air ringan."
             },
             'dell-vostro-3530': {
                 title: "Dell Vostro 3530",
                 tier: "Entry Business",
                 desc: "Laptop bisnis layar besar 15.6 inci dengan refresh rate 120Hz untuk kenyamanan mata bekerja seharian.",
                 specs: {
-                    "Prosesor": "Intel® Core™ i5-1335U / i7-1355U (10 Cores, up to 5.0 GHz)",
-                    "Sistem Operasi": "Windows 11 Pro / Ubuntu Linux",
-                    "Memori RAM": "8GB / 16GB DDR4 3200MHz (2x SODIMM Slot)",
-                    "Penyimpanan": "512GB M.2 PCIe NVMe SSD",
-                    "Layar": "15.6\" Full HD (1920x1080) 120Hz, Anti-Glare, Wide Viewing Angle",
-                    "Grafis": "Intel® Iris Xe Graphics / Optional NVIDIA GeForce MX550 2GB GDDR6",
-                    "Port I/O": "1x USB 3.2 Gen 1 Type-C, 1x USB 3.2 Gen 1 Type-A, 1x USB 2.0, HDMI 1.4, RJ45, SD Card Slot",
-                    "Fitur Tambahan": "Dell ExpressCharge (80% dalam 60 menit), Numeric Keypad Utuh",
-                    "Baterai & Bobot": "54Wh 4-Cell Battery, 1.66 kg"
+                    "Prosesor": "Intel Core i5-1335U / i7-1355U (13th Gen)",
+                    "Sistem Operasi": "Windows 11 Pro",
+                    "Memori RAM": "Up to 16 GB DDR4 2666 MHz / 3200 MHz (2x SO-DIMM slots)",
+                    "Penyimpanan": "Up to 512 GB / 1 TB M.2 PCIe NVMe SSD",
+                    "Layar": "15.6\" FHD (1920 x 1080) 120Hz, Anti-glare, 250 nits",
+                    "Grafis": "Intel Iris Xe Graphics / NVIDIA GeForce MX550 (2GB GDDR6)",
+                    "Port I/O": "1x USB 3.2 Gen 1 Type-C, 1x USB 3.2 Gen 1 Type-A, 1x USB 2.0, HDMI 1.4, SD Card Reader, RJ45 Ethernet",
+                    "Fitur Tambahan": "Hardware TPM 2.0, Wedge-shaped Lock Slot",
+                    "Baterai & Bobot": "41 Whrs / 54 Whrs; ~1.66 kg"
                 },
-                potensiDK: "Layar 120Hz sangat nyaman untuk input spreadsheet panjang. Layar lega plus Numpad angka fisik membuat pengerjaan akuntansi/keuangan jauh lebih cepat."
+                potensiDK: "Pilihan ideal untuk armada kantor/operasional perusahaan kecil-menengah dengan ekosistem software Dell yang stabil."
             },
             'thinkpad-l14-g5': {
                 title: "Lenovo ThinkPad L14 Gen 5",
                 tier: "Mid-Tier Pro",
                 desc: "Workhorse sejati untuk profesional yang membutuhkan kenyamanan keyboard legendaris dan keandalan tinggi.",
                 specs: {
-                    "Prosesor": "Intel® Core™ Ultra 5 125U / Ultra 7 155U (Opsional vPro®)",
+                    "Prosesor": "Intel Core Ultra 5 125U / Ultra 7 155U (atau AMD Ryzen 5 PRO 7535U / Ryzen 7 PRO 7730U)",
                     "Sistem Operasi": "Windows 11 Pro",
-                    "Memori RAM": "16GB / 32GB DDR5 5600MHz (2x SODIMM Dual Channel)",
-                    "Penyimpanan": "512GB / 1TB PCIe NVMe Gen 4 M.2 SSD (Opal2 Encrypted)",
-                    "Layar": "14.0\" WUXGA (1920x1200) IPS 16:10, 400 nits Anti-Glare, Low Power",
-                    "Port I/O": "1x Thunderbolt™ 4, 1x USB-C 20Gbps, 3x USB-A 3.2, HDMI 2.1, RJ45 Gigabit Ethernet, Nano-SIM, Smart Card Reader",
-                    "Navigasi": "Classic Red TrackPoint + Mylar Touchpad",
-                    "Sertifikasi": "MIL-STD 810H Standard, TCO Certified",
-                    "Baterai & Bobot": "57Wh Battery dengan Fast Charging, 1.40 kg"
+                    "Memori RAM": "Up to 64 GB DDR5 5600 MHz (2x SO-DIMM slots, fully upgradable)",
+                    "Penyimpanan": "Up to 2 TB M.2 2280 PCIe 4.0 NVMe SSD",
+                    "Layar": "14.0\" WUXGA (1920 x 1200) IPS, 16:10, Anti-glare, 300 / 400 nits",
+                    "Port I/O": "1x Thunderbolt 4 / USB4, 1x USB-C 3.2 Gen 2, 3x USB 3.2 Gen 1 Type-A, 1x HDMI 2.1, MicroSD Card Reader, RJ45",
+                    "Navigasi": "Iconic TrackPoint + Spill-resistant keyboard",
+                    "Sertifikasi": "Discrete TPM 2.0, Glance by Mirametrix",
+                    "Baterai & Bobot": "46.5 Whrs / 57 Whrs; ~1.40 kg"
                 },
-                potensiDK: "Keyboard paling enak diketik di dunia bisnis. Kemudahan servis modul internal sangat memuaskan, cocok untuk investasi inventaris IT perusahaan tahan 5+ tahun."
+                potensiDK: "Gerbang masuk seri ThinkPad yang terkenal dengan keyboard paling ergonomis dan daya tahan pemakaian bertahun-tahun."
             },
             'asus-b5402': {
                 title: "ASUS ExpertBook B5 (B5402)",
                 tier: "Mid-Tier Pro",
                 desc: "Laptop bisnis presisi tinggi dengan durabilitas aluminium-magnesium alloy dan RAID SSD security.",
                 specs: {
-                    "Prosesor": "Intel® Core™ i5-1340P / i7-1360P / i7-1370P vPro®",
+                    "Prosesor": "Intel Core i5-1340P / i7-1360P (13th Gen vPro Platform)",
                     "Sistem Operasi": "Windows 11 Pro",
-                    "Memori RAM": "16GB DDR5 Onboard + 1 Slot SODIMM (Up to 40GB)",
-                    "Penyimpanan": "512GB / 1TB PCIe 4.0 NVMe SSD (Mendukung Dual SSD RAID 0 & RAID 1)",
-                    "Layar": "14.0\" Full HD (1920x1080) IPS 400 nits, 100% sRGB, Anti-Glare",
-                    "Port I/O": "2x Thunderbolt™ 4 USB-C, 1x USB 3.2 Gen 2 Type-A, 1x USB 2.0, HDMI 2.1, MicroSD Card Reader, RJ45",
-                    "Keamanan": "IR Camera Windows Hello Face Unlock, Fingerprint sensor, TPM 2.0",
-                    "Touchpad": "ASUS NumberPad 2.0 (Numpad LED pada Touchpad)",
-                    "Baterai & Bobot": "63WHrs 3-cell Li-ion, 1.25 kg"
+                    "Memori RAM": "Up to 40 GB DDR5 4800 MHz (8GB/16GB Onboard + 1x SO-DIMM)",
+                    "Penyimpanan": "Dual M.2 NVMe PCIe 4.0 SSD (Up to 2x 2 TB) Dukungan RAID 0 / RAID 1",
+                    "Layar": "14.0\" FHD (1920 x 1080) IPS, Anti-glare, 400 nits, 100% sRGB",
+                    "Port I/O": "2x Thunderbolt 4, 1x USB 3.2 Gen 2 Type-A, 1x USB 2.0, HDMI 2.1, MicroSD Card Reader, RJ45",
+                    "Keamanan": "MIL-STD 810H, IR Camera Windows Hello, Fingerprint Sensor",
+                    "Baterai & Bobot": "63 Whrs; ~1.25 kg"
                 },
-                potensiDK: "Support Dual SSD dengan konfigurasi RAID 1 (Mirroring). Jika salah satu SSD rusak, data dokumen perusahaan tetap 100% aman disalin otomatis di SSD kedua."
+                potensiDK: "Bobot sangat ringan dengan opsi dual SSD RAID untuk keamanan data ekstra ganda."
             },
             'acer-travelmate-p6': {
-                title: "Acer TravelMate P6 (TMP614 / 14 AI)",
+                title: "Acer TravelMate P6",
                 tier: "Mid-Tier Pro",
                 desc: "Laptop ultralight bisnis premium untuk profesional eksekutif yang bermobilitas tinggi.",
                 specs: {
-                    "Prosesor": "Intel® Core™ Ultra 7 268V / Core™ i7-1355U",
+                    "Prosesor": "Intel Core i5-1335U / i7-1355U (vPro Essentials)",
                     "Sistem Operasi": "Windows 11 Pro",
-                    "Memori RAM": "32GB LPDDR5X Memory",
-                    "Penyimpanan": "1TB PCIe Gen 4x4 NVMe SSD",
-                    "Layar": "14.0\" 2.8K (2880x1800) OLED 16:10 / WUXGA IPS Touch, 100% DCI-P3",
-                    "Grafis": "Intel® Arc™ 140V GPU / Intel Iris Xe",
-                    "Fitur AI": "Acer PurifiedVoice 2.0 AI Noise Cancellation, UserSensing Proximity Sensor",
-                    "Daya Tahan": "Baterai tahan hingga 13,5 jam, Pengisian 80% dalam 1 jam",
-                    "Baterai & Bobot": "65Wh Lithium-Ion, 1.10 kg"
+                    "Memori RAM": "Up to 32 GB LPDDR5X (Onboard)",
+                    "Penyimpanan": "Up to 1 TB M.2 PCIe 4.0 NVMe SSD",
+                    "Layar": "14.0\" WUXGA (1920 x 1200) IPS / OLED 2.8K (2880 x 1800), 100% DCI-P3",
+                    "Grafis": "Intel Iris Xe Graphics",
+                    "Port I/O": "2x Thunderbolt 4, 1x USB 3.2 Gen 1 Type-A, 1x HDMI 2.0, MicroSD Card Reader, Smart Card Reader",
+                    "Fitur AI": "Acer PrivacyPanel, IR Face Recognition, User Sensing technology",
+                    "Baterai & Bobot": "65 Whrs (Fast Charging 80% dalam 1 jam); ~1.10 kg"
                 },
-                potensiDK: "Sensor Acer UserSensing otomatis mengunci layar laptop saat Anda melangkah menjauh dari meja kerja. Privasi rapat & file sensitif terjaga sempurna."
+                potensiDK: "Sistem pengamanan privasi lengkap dan pengisian daya cepat (fast charging) untuk profesional yang sering perjalanan dinas."
             },
             'dell-latitude-5440': {
                 title: "Dell Latitude 5440",
                 tier: "Mid-Tier Pro",
                 desc: "Laptop korporat papan atas dengan sistem manajemen jarak jauh vPro dan efisiensi termal canggih.",
                 specs: {
-                    "Prosesor": "Intel® Core™ i5-1345U vPro® / i7-1365U vPro®",
-                    "Sistem Operasi": "Windows 11 Pro Enterprise Ready",
-                    "Memori RAM": "16GB / 32GB DDR5 4800MHz (2x SODIMM Slots)",
-                    "Penyimpanan": "512GB / 1TB PCIe NVMe SSD Class 40",
-                    "Layar": "14.0\" FHD (1920x1080) Anti-Glare, IPS, 300 nits, ComfortView Plus",
-                    "Port I/O": "2x Thunderbolt™ 4 with Power Delivery & DisplayPort, 2x USB 3.2 Gen 1, HDMI 2.0, RJ45, SmartCard Reader",
-                    "Fitur AI": "Dell Optimizer (AI Penyesuaian Performa & Suara Rapat Auto-Tune)",
-                    "Baterai & Bobot": "54Wh Battery ExpressCharge Boost, 1.36 kg"
+                    "Prosesor": "Intel Core i5-1345U / i7-1365U vPro (13th Gen)",
+                    "Sistem Operasi": "Windows 11 Pro",
+                    "Memori RAM": "Up to 64 GB DDR5 4800 MHz (2x SO-DIMM slots)",
+                    "Penyimpanan": "Up to 1 TB M.2 PCIe NVMe Class 40 SSD",
+                    "Layar": "14.0\" FHD (1920 x 1080) IPS, Anti-glare, 250 nits / 400 nits Super Low Power",
+                    "Port I/O": "2x Thunderbolt 4, 2x USB 3.2 Gen 1 Type-A, 1x HDMI 2.0, 1x RJ45 Ethernet, SmartCard Reader",
+                    "Fitur AI": "Intel vPro Enterprise, Dell Optimizer for AI management",
+                    "Baterai & Bobot": "42 Whrs / 54 Whrs ExpressCharge; ~1.39 kg"
                 },
-                potensiDK: "Fitur Intel vPro memungkinkan tim IT kantor untuk meremote, mengupdate BIOS, dan membenahi OS komputer secara jarak jauh tanpa perlu membawa fisik laptop."
+                potensiDK: "Mendukung Intel vPro untuk manajemen IT jarak jauh bagi eksekutif perusahaan."
             },
             'thinkpad-x1-g12': {
                 title: "Lenovo ThinkPad X1 Carbon Gen 12",
                 tier: "High-End Eksekutif",
                 desc: "Mahakarya laptop bisnis dunia. Bodi serat karbon ringan, performa NPU AI gahar, dan privasi tanpa tanding.",
                 specs: {
-                    "Prosesor": "Intel® Core™ Ultra 7 155H / Ultra 7 165H vPro® (16 Cores, 22 Threads)",
+                    "Prosesor": "Intel Core Ultra 5 125H / Ultra 7 155H / Ultra 7 165H (Intel Evo / vPro)",
                     "Sistem Operasi": "Windows 11 Pro 64-bit",
-                    "Memori RAM": "32GB / 64GB LPDDR5X 7500MHz (Soldered Dual Channel)",
-                    "Penyimpanan": "1TB / 2TB SSD M.2 2280 PCIe 4.0x4 Performance NVMe Opal 2.0",
-                    "Layar": "14.0\" 2.8K (2880x1800) OLED, 120Hz, 400 nits, 100% DCI-P3, DisplayHDR 500, EyeSafe",
-                    "Grafis": "Intel® Arc™ Graphics Integrated",
-                    "Kamera": "8MP Computer Vision Camera dengan Privacy Shutter & MIPI",
-                    "Bodi & Bahan": "Carbon Fiber Top Cover + Recycled Magnesium Alloy Bottom",
-                    "Baterai & Bobot": "57Wh Battery, Super Light 1.09 kg"
+                    "Memori RAM": "Up to 64 GB LPDDR5X 7500 MHz (Dual Channel, Onboard)",
+                    "Penyimpanan": "Up to 2 TB M.2 2280 PCIe 4.0 NVMe Performance SSD",
+                    "Layar": "14.0\" 2.8K (2880 x 1800) OLED, 120Hz, HDR True Black 500, 100% DCI-P3",
+                    "Grafis": "Intel Arc Graphics integrated",
+                    "Port I/O": "2x Thunderbolt 4, 2x USB 3.2 Gen 1 Type-A, 1x HDMI 2.1, 3.5mm Headphone Jack, Optional Nano-SIM",
+                    "Material": "Carbon Fiber (Top Cover) + Recycled Magnesium (Bottom Cover)",
+                    "Baterai & Bobot": "57 Whrs; ~1.09 kg"
                 },
-                potensiDK: "Laptop paling prestisius di kalangan Board of Directors & CEO. Keyboard haptic touchpad terbaru plus layar OLED 2.8K yang paling memanjakan mata."
+                potensiDK: "Raja laptop bisnis dunia. Bodi serat karbon yang ringan namun sangat tangguh, serta privasi visual tingkat tinggi."
             },
             'macbook-pro-14-m3': {
                 title: "Apple MacBook Pro 14\" M3 Pro",
                 tier: "High-End Eksekutif",
                 desc: "Laptop tanpa kompromi untuk pimpinan, pengembang perangkat lunak, dan profesional industri kreatif.",
                 specs: {
-                    "Chipset / CPU": "Apple M3 Pro (11-Core CPU / 14-Core GPU atau 12-Core CPU / 18-Core GPU)",
-                    "Sistem Operasi": "macOS Sequoia / Sonoma",
-                    "Memori": "18GB / 36GB Unified Memory (Bandwidth 150GB/s)",
-                    "Penyimpanan": "512GB / 1TB / 2TB Ultrafast NVMe SSD",
-                    "Layar": "14.2\" Liquid Retina XDR (3024x1964) 120Hz ProMotion, 1000 nits sustained, 1600 nits peak HDR",
-                    "Port I/O": "3x Thunderbolt 4 (USB-C), HDMI 2.1, SDXC Card Slot, MagSafe 3 Charging Port, 3.5mm Headphone Jack",
-                    "Audio": "High-fidelity 6-speaker sound system dengan force-cancelling woofers, Spatial Audio",
-                    "Baterai & Bobot": "70Wh Lithium-Polymer, Tahan hingga 18 Jam Video Streaming, 1.61 kg"
+                    "Prosesor": "Apple M3 Pro Chip (11-Core atau 12-Core CPU dengan 14-Core atau 18-Core GPU)",
+                    "Sistem Operasi": "macOS",
+                    "Memori": "18 GB / 36 GB Unified Memory (Up to 150 GB/s bandwidth)",
+                    "Penyimpanan": "512 GB / 1 TB / 2 TB / 4 TB NVMe SS-equivalent SSD",
+                    "Layar": "14.2\" Liquid Retina XDR display (3024 x 1964), 120Hz ProMotion, 1,000 nits sustained",
+                    "Port I/O": "3x Thunderbolt 4, 1x HDMI Port (Up to 8K), 1x SDXC Card Slot, 1x MagSafe 3 Charging Port",
+                    "Audio": "6-speaker sound system dengan force-cancelling woofers",
+                    "Baterai & Bobot": "72.4 Whr Lithium-polymer (hingga 18 jam video playback); ~1.61 kg"
                 },
-                potensiDK: "Daya tahan baterai terbaik di industri (hingga 18+ jam nyata). Efisiensi energi tiada tanding tanpa penurunan performa saat dicabut dari charger."
+                potensiDK: "Standar untuk CEO, Creator, dan Lead Developer. Baterai tahan hingga 18+ jam dengan layar paling tajam."
             },
             'hp-dragonfly-g4': {
                 title: "HP Dragonfly G4",
                 tier: "High-End Eksekutif",
-                desc: "Laptop eksekutif ultra-ringan berwarna Slate Blue yang memancarkan aura kemewahan kelas atas.",
+                desc: "Laptop eksekutif ultra-ringan yang memancarkan aura kemewahan kelas atas.",
                 specs: {
-                    "Prosesor": "Intel® Core™ i7-1355U / i7-1365U vPro®",
+                    "Prosesor": "Intel Core i5-1335U / i7-1365U vPro (13th Gen)",
                     "Sistem Operasi": "Windows 11 Pro Enterprise",
-                    "Memori RAM": "16GB / 32GB LPDDR5 6400MHz",
-                    "Penyimpanan": "1TB PCIe Gen 4x4 NVMe SSD",
-                    "Layar": "13.5\" WUXGA+ (1920x1280) 3:2 IPS 1000 nits HP Sure View Reflect Privacy",
-                    "Kamera & Audio": "5MP Camera dengan Auto Frame, B&O Quad Speakers, 4 Microphones AI Noise Cancelling",
-                    "Material Bodi": "Magnesium-Lithium Alloy CNC Premium",
-                    "Port I/O": "2x Thunderbolt™ 4, 1x USB 3.2 Gen 1, HDMI 2.0, Nano SIM slot",
-                    "Baterai & Bobot": "68Wh Battery, Ringan Luar Biasa 0.99 kg"
+                    "Memori RAM": "Up to 32 GB LPDDR5 6400 MHz (Onboard)",
+                    "Penyimpanan": "Up to 2 TB PCIe 4.0 NVMe TLC M.2 SSD",
+                    "Layar": "13.5\" WUXGA+ (1920 x 1280) BrightView IPS, 1000 nits, HP Sure View Reflect / OLED 3K2K",
+                    "Port I/O": "2x Thunderbolt 4, 1x USB Type-A 5Gbps, 1x HDMI 2.1, 1x Nano SIM slot",
+                    "Fitur Kamera": "5MP Camera with AI Auto Framing, Quad-array Microphones",
+                    "Material": "Hybrid Magnesium Chassis",
+                    "Baterai & Bobot": "68 Whrs Long Life Li-ion; ~0.99 kg"
                 },
-                potensiDK: "Layar rasio 3:2 memberi vertikal ruang lebih luas untuk membaca dokumen. Fitur HP Sure View membuat layar langsung buram jika diintip dari samping."
+                potensiDK: "Tampilan amat sangat elegan, mikrofon noise-cancelling berbasis AI terbaik untuk conference call penting."
             },
             'asus-b9403': {
                 title: "ASUS ExpertBook B9 OLED (B9403)",
                 tier: "High-End Eksekutif",
                 desc: "Laptop bisnis OLED paling ringan di dunia, dirancang khusus untuk petinggi perusahaan yang sering traveling.",
                 specs: {
-                    "Prosesor": "Intel® Core™ Ultra 7 155H / Core™ i7-1355U vPro®",
+                    "Prosesor": "Intel Core i7-1355U / i7-1370P vPro (13th Gen)",
                     "Sistem Operasi": "Windows 11 Pro",
-                    "Memori RAM": "32GB LPDDR5X 7500MHz Dual Channel",
-                    "Penyimpanan": "1TB / 2TB PCIe 4.0 x4 M.2 NVMe SSD",
-                    "Layar": "14.0\" 2.8K (2880x1800) OLED 16:10, 90Hz, 400 nits, 100% DCI-P3, VESA Certified Display HDR True Black 500",
-                    "Port I/O": "2x Thunderbolt™ 4 (Supports display/power), 1x USB 3.2 Gen 2 Type-A, HDMI 2.1, Micro HDMI (to RJ45), 3.5mm Combo Audio",
-                    "Sistem Pendingin": "Smart Dual Fan Dust-Defender (Membersihkan debu secara otomatis)",
-                    "Fitur Tambahan": "NFC Log-in, NumberPad LED Touchpad, MIL-STD 810H Tested",
-                    "Baterai & Bobot": "63WHrs 3-cell Li-ion, Ultra-light 990 gram"
+                    "Memori RAM": "Up to 32 GB LPDDR5X 7500 MHz (Onboard)",
+                    "Penyimpanan": "Up to 2 TB M.2 NVMe PCIe 4.0 Performance SSD",
+                    "Layar": "14.0\" 2.8K (2880 x 1800) OLED, 16:10, 90Hz, 400 nits, 100% DCI-P3",
+                    "Port I/O": "2x Thunderbolt 4, 1x USB 3.2 Gen 2 Type-A, 1x HDMI 2.1, 1x Micro HDMI (to RJ45), Audio Jack",
+                    "Material": "Premium Magnesium-Lithium Alloy Chassis, MIL-STD 810H",
+                    "Fitur Keamanan": "NFC Login, Smart Card Reader, Fingerprint",
+                    "Baterai & Bobot": "63 Whrs Li-ion; ~990 gram (0.99 kg)"
                 },
-                potensiDK: "Berat di bawah 1 kg (990 gram) namun dengan layar OLED 2.8K. Kipas pendingin memiliki teknologi Dust Defender yang meniup keluar debu agar tidak menumpuk di dalam."
+                potensiDK: "Laptop bisnis OLED ter ringan di dunia. Memberikan kenyamanan maksimal tanpa membebani tas kerja eksekutif."
             }
         };
 
@@ -1437,10 +1497,3 @@ html_content = """<!DOCTYPE html>
     </script>
 </body>
 </html>
-"""
-
-output_path = "laptop-bisnis.html"
-with open(output_path, "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print(f"Successfully generated {output_path} with total size of {len(html_content)} bytes.")
