@@ -1,0 +1,1446 @@
+import os
+
+html_content = """<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Laptop Bisnis & Profesional - Dokter Komputer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1c263c;
+            --border-color: #2a364f;
+            --primary: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.25);
+            --secondary: #818cf8;
+            --accent-gold: #fbbf24;
+            --accent-green: #34d399;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Navigation */
+        header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0284c7, #38bdf8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .brand-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-wa-header {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-wa-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+        }
+
+        /* Hero Banner */
+        .hero {
+            padding: 50px 0 30px 0;
+            text-align: center;
+            background: radial-gradient(circle at top center, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto 30px auto;
+            font-size: 16px;
+        }
+
+        /* Controls Section */
+        .controls-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 36px;
+            background: var(--bg-card);
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            border-color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #0f172a;
+            border-color: var(--primary);
+            font-weight: 700;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 260px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: rgba(11, 15, 25, 0.7);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 16px 10px 40px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Section Title */
+        .category-header {
+            margin: 40px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .category-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-tag {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .tag-entry { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .tag-mid { background: rgba(129, 140, 248, 0.15); color: #818cf8; border: 1px solid rgba(129, 140, 248, 0.3); }
+        .tag-high { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+
+        /* Grid & Cards */
+        .laptop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .laptop-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .laptop-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--primary-glow);
+            background: var(--bg-card-hover);
+        }
+
+        .card-top {
+            margin-bottom: 16px;
+        }
+
+        .card-header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .tier-badge {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .laptop-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .laptop-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            min-height: 38px;
+        }
+
+        /* Spec Table Grid */
+        .spec-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            background: rgba(11, 15, 25, 0.5);
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .spec-label {
+            color: var(--text-dim);
+            font-weight: 600;
+            min-width: 80px;
+            flex-shrink: 0;
+        }
+
+        .spec-val {
+            color: var(--text-main);
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        /* Alasan Dokter Komputer Box */
+        .alasan-dk {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(129, 140, 248, 0.05));
+            border-left: 3px solid var(--primary);
+            padding: 12px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        .alasan-dk-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .alasan-dk-text {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.45;
+        }
+
+        /* Price & Actions */
+        .card-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .price-tag {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-label {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .price-amount {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+        }
+
+        .btn-wa {
+            background: #16a34a;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .btn-wa:hover {
+            background: #15803d;
+        }
+
+        .btn-detail {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-detail:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Modal Details */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-main);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .modal-badge {
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .modal-section {
+            margin-top: 20px;
+        }
+
+        .modal-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 4px;
+        }
+
+        .modal-specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .modal-specs-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .modal-specs-table td:first-child {
+            color: var(--text-dim);
+            font-weight: 600;
+            width: 35%;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        footer strong {
+            color: var(--text-main);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .controls-bar { flex-direction: column; align-items: stretch; }
+            .search-box { min-width: 100%; }
+            .laptop-grid { grid-template-columns: 1fr; }
+            .nav-wrapper { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .btn-wa-header { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="brand-logo">
+                <div class="logo-icon">DK</div>
+                <div>
+                    <div class="brand-title">DOKTER KOMPUTER</div>
+                    <div class="brand-subtitle">Business & Executive Laptop Catalog</div>
+                </div>
+            </a>
+            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20ingin%20konsultasi%20laptop%20bisnis%20dan%20kantor" target="_blank" class="btn-wa-header">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 2c-5.514 0-9.998 4.486-9.998 10 0 1.958.563 3.842 1.628 5.463L2 22l4.685-1.558a9.96 9.96 0 005.346 1.558c5.514 0 9.998-4.486 9.998-10s-4.484-10-9.998-10zm5.82 14.157c-.244.688-1.22 1.258-2.023 1.417-.552.109-1.272.198-3.695-.798-3.094-1.274-5.081-4.408-5.237-4.613-.153-.205-1.252-1.666-1.252-3.18 0-1.515.792-2.26 1.071-2.56.279-.3.608-.374.811-.374.203 0 .407.002.585.011.191.009.447-.072.699.533.259.623.886 2.164.963 2.321.077.157.128.341.025.545-.102.205-.153.332-.305.512-.153.18-.322.402-.46.539-.153.153-.313.32-.134.627.179.307.794 1.311 1.704 2.122 1.171 1.042 2.16 1.365 2.467 1.518.307.153.486.128.665-.077.179-.205.766-.895.971-1.202.205-.307.409-.256.69-.153.282.102 1.787.842 2.094.996.307.153.512.23.588.358.077.128.077.742-.167 1.43z"/></svg>
+                Konsultasi Pengadaan / Servis
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">💻 Katalog Resmi Laptop Bisnis & Kerja</div>
+            <h1>Rekomendasi Laptop Bisnis & Profesional</h1>
+            <p>Pilihan laptop kerja dengan keamanan tingkat tinggi, durabilitas standar militer (MIL-STD 810H), keyboard paling nyaman, dan performa stabil yang telah dikurasi langsung oleh <strong>Dokter Komputer</strong>.</p>
+        </section>
+
+        <!-- Filter & Search Controls -->
+        <div class="controls-bar">
+            <div class="filter-tabs">
+                <button class="tab-btn active" onclick="filterCategory('all', this)">Semua Tier</button>
+                <button class="tab-btn" onclick="filterCategory('entry', this)">1. Entry Business</button>
+                <button class="tab-btn" onclick="filterCategory('mid', this)">2. Mid-Tier Pro</button>
+                <button class="tab-btn" onclick="filterCategory('high', this)">3. High-End & Eksekutif</button>
+            </div>
+            <div class="search-box">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <input type="text" id="searchInput" placeholder="Cari tipe, spesifikasi, merk..." onkeyup="searchLaptops()">
+            </div>
+        </div>
+
+        <!-- CATEGORY 1: ENTRY BUSINESS -->
+        <div class="category-block" data-category="entry">
+            <div class="category-header">
+                <div class="category-title">
+                    1. Entry Business
+                    <span class="category-tag tag-entry">Ekonomis & Tahan Banting</span>
+                </div>
+            </div>
+
+            <div class="laptop-grid">
+                <!-- Laptop 1: ASUS ExpertBook B1 (B1402) -->
+                <div class="laptop-card" data-tier="entry" data-name="asus expertbook b1 b1402 intel i3 i5 i7">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-entry">Entry Business</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14 Inch</span>
+                        </div>
+                        <h3 class="laptop-title">ASUS ExpertBook B1 (B1402)</h3>
+                        <p class="laptop-subtitle">Laptop bisnis entry-level ultra-durable dengan port I/O super lengkap untuk fleksibilitas kerja harian.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i3-1215U / i5-1335U / i7-1355U</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">8GB / 16GB DDR4 (Upgradable to 40GB)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB M.2 NVMe™ PCIe® 4.0 SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" FHD (1920 x 1080) Anti-Glare, 250 nits</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® UHD / Iris® Xe Graphics</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Military Grade MIL-STD 810H, Webcam Shield, LAN RJ45</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Laptop bisnis murah tapi punya perlindungan port lengkap dan daya tahan banting standar industri.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 7.500.000 - Rp 12.800.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20ASUS%20ExpertBook%20B1%20(B1402)" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('asus-b1402')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 2: Lenovo ThinkBook 14 Gen 7 -->
+                <div class="laptop-card" data-tier="entry" data-name="lenovo thinkbook 14 gen 7 ryzen intel">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-entry">Entry Business</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14 Inch 16:10</span>
+                        </div>
+                        <h3 class="laptop-title">Lenovo ThinkBook 14 Gen 7</h3>
+                        <p class="laptop-subtitle">Perpaduan gaya modern konsumen dan durabilitas kelas komersial perusahaan.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 5 / AMD Ryzen™ 5 7535U / 7 7730U</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB DDR5 5600MHz (Dual SODIMM slot)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB SSD PCIe 4.0 (Dual M.2 Slot)</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA (1920x1200) IPS 16:10, 300 nits Anti-Glare</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Graphics / AMD Radeon™ 680M</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Fingerprint Reader, Smart Power, Bodi Aluminium Dual-Tone</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Menjembatani harga laptop konsumen biasa dengan fitur keamanan & durabilitas kelas komersial.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 9.200.000 - Rp 13.900.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Lenovo%20ThinkBook%2014%20Gen%207" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('thinkbook-14-g7')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 3: HP ProBook 440 G11 -->
+                <div class="laptop-card" data-tier="entry" data-name="hp probook 440 g11 intel core ultra">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-entry">Entry Business</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14 Inch</span>
+                        </div>
+                        <h3 class="laptop-title">HP ProBook 440 G11</h3>
+                        <p class="laptop-subtitle">Laptop korporat andal yang didukung AI chip dan keamanan hardware tingkat tinggi.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 5 125U / Ultra 7 155U</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB / 32GB DDR5 5600MHz (2x SODIMM)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB PCIe NVMe SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA (1920x1200) IPS Anti-Glare 300 nits</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Graphics Integrated</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">HP Wolf Security Pro Edition, Keyboard Spill-Resistant</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Dilengkapi proteksi keamanan hardware HP Wolf Security bawaan dan keyboard tahan tumpahan air ringan.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 12.500.000 - Rp 18.500.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20HP%20ProBook%20440%20G11" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('hp-probook-440-g11')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 4: Dell Vostro 3530 -->
+                <div class="laptop-card" data-tier="entry" data-name="dell vostro 3530 intel core i5 i7 120hz">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-entry">Entry Business</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">15.6 Inch 120Hz</span>
+                        </div>
+                        <h3 class="laptop-title">Dell Vostro 3530</h3>
+                        <p class="laptop-subtitle">Layar lega 15.6" 120Hz dengan Numpad penuh untuk kebutuhan operasional data & kantor.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i5-1335U / i7-1355U</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">8GB / 16GB DDR4 3200MHz</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB M.2 PCIe NVMe SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">15.6" FHD (1920x1080) 120Hz Anti-Glare WVA</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Iris Xe Graphics / NVIDIA GeForce MX550 2GB</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">TPM 2.0 Hardware, Dell ExpressCharge, Full Keyboard Numpad</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Pilihan ideal untuk armada kantor/operasional perusahaan kecil-menengah dengan ekosistem software Dell yang stabil.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 8.700.000 - Rp 13.500.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Dell%20Vostro%203530" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('dell-vostro-3530')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY 2: MID-TIER PROFESSIONAL -->
+        <div class="category-block" data-category="mid">
+            <div class="category-header">
+                <div class="category-title">
+                    2. Mid-Tier Professional
+                    <span class="category-tag tag-mid">Performa Ekstra & Durabilitas Legendaris</span>
+                </div>
+            </div>
+
+            <div class="laptop-grid">
+                <!-- Laptop 5: Lenovo ThinkPad L14 Gen 5 -->
+                <div class="laptop-card" data-tier="mid" data-name="lenovo thinkpad l14 gen 5 intel core ultra trackpoint">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-mid">Mid-Tier Pro</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14 Inch ThinkPad</span>
+                        </div>
+                        <h3 class="laptop-title">Lenovo ThinkPad L14 Gen 5</h3>
+                        <p class="laptop-subtitle">Pintu masuk ke ekosistem ThinkPad murni dengan kenyamanan mengetik standar industri terbaik.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 5 125U / Ultra 7 155U (vPro®)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB / 32GB DDR5 5600MHz (2x SODIMM Slots)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB PCIe Gen 4 NVMe Opal2 SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" WUXGA (1920x1200) IPS 16:10, 400 nits, PWM-Free</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Graphics Integrated</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">TrackPoint Red Dot, Keyboard Ergonomis, MIL-STD 810H</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Gerbang masuk seri ThinkPad yang terkenal dengan keyboard paling ergonomis dan daya tahan pemakaian bertahun-tahun.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 15.800.000 - Rp 22.000.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Lenovo%20ThinkPad%20L14%20Gen%205" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('thinkpad-l14-g5')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 6: ASUS ExpertBook B5 (B5402) -->
+                <div class="laptop-card" data-tier="mid" data-name="asus expertbook b5 b5402 dual ssd raid intel">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-mid">Mid-Tier Pro</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14 Inch Light</span>
+                        </div>
+                        <h3 class="laptop-title">ASUS ExpertBook B5 (B5402)</h3>
+                        <p class="laptop-subtitle">Laptop bisnis tipis nan kokoh dengan fitur keamanan ganda Dual SSD RAID support.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i5-1340P / i7-1360P / i7-1370P vPro®</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB DDR4 / DDR5 (Expandable up to 40GB)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB NVMe PCIe 4.0 (Dual SSD Support RAID 0/1)</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" FHD (1920x1080) IPS 400 nits 100% sRGB</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Iris Xe Graphics</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Dual Thunderbolt 4, NumberPad 2.0 LED, IR Camera</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Bobot sangat ringan dengan opsi dual SSD RAID untuk keamanan data ekstra ganda.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 16.500.000 - Rp 23.500.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20ASUS%20ExpertBook%20B5%20(B5402)" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('asus-b5402')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 7: Acer TravelMate P6 (TMP614-53 / 14 AI) -->
+                <div class="laptop-card" data-tier="mid" data-name="acer travelmate p6 tmp614 oled intel core ultra">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-mid">Mid-Tier Pro</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14 Inch Ultra Light</span>
+                        </div>
+                        <h3 class="laptop-title">Acer TravelMate P6</h3>
+                        <p class="laptop-subtitle">Laptop mobilitas tinggi dengan layar OLED jernih dan pengisian daya ultra cepat.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 7 268V / Core i7-1355U (EVO)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">32GB LPDDR5X Memory</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">1TB M.2 PCIe Gen4 NVMe SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" 2.8K (2880x1800) OLED / WUXGA Touch, 100% DCI-P3</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Arc™ 140V GPU / Iris Xe</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Acer UserSensing, Fast Charging (80% in 1 hr), Privacy Panel</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Sistem pengamanan privasi lengkap dan pengisian daya cepat (fast charging) untuk profesional yang sering perjalanan dinas.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 17.500.000 - Rp 24.000.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Acer%20TravelMate%20P6" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('acer-travelmate-p6')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 8: Dell Latitude 5440 -->
+                <div class="laptop-card" data-tier="mid" data-name="dell latitude 5440 intel vpro core i5 i7">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-mid">Mid-Tier Pro</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14 Inch Enterprise</span>
+                        </div>
+                        <h3 class="laptop-title">Dell Latitude 5440</h3>
+                        <p class="laptop-subtitle">Standar emas laptop enterprise korporat dengan platform Intel vPro® terintegrasi.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i5-1345U vPro® / i7-1365U vPro®</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB / 32GB DDR5 4800MHz (Upgradable)</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB PCIe NVMe Class 35/40 SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" FHD (1920x1080) Anti-Glare IPS 300 nits</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Iris® Xe Graphics Integrated</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Intel vPro Enterprise, ExpressSign-in, Dell Optimizer AI</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Mendukung Intel vPro untuk manajemen IT jarak jauh bagi eksekutif perusahaan.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 18.000.000 - Rp 25.500.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Dell%20Latitude%205440" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('dell-latitude-5440')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY 3: HIGH-END & EKSEKUTIF LEVEL -->
+        <div class="category-block" data-category="high">
+            <div class="category-header">
+                <div class="category-title">
+                    3. High-End & Eksekutif Level
+                    <span class="category-tag tag-high">Kemewahan, Privasi & Performa Puncak</span>
+                </div>
+            </div>
+
+            <div class="laptop-grid">
+                <!-- Laptop 9: Lenovo ThinkPad X1 Carbon Gen 12 -->
+                <div class="laptop-card" data-tier="high" data-name="lenovo thinkpad x1 carbon gen 12 core ultra 7 oled">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-high">High-End Eksekutif</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14" Carbon Fiber</span>
+                        </div>
+                        <h3 class="laptop-title">Lenovo ThinkPad X1 Carbon Gen 12</h3>
+                        <p class="laptop-subtitle">Flagship laptop bisnis nomor 1 di dunia dengan konstruksi serat karbon ultra-ringan.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 7 155H / Ultra 7 165H vPro®</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">32GB / 64GB LPDDR5X 7500MHz Soldered</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">1TB / 2TB PCIe Gen 4x4 Performance SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" 2.8K (2880x1800) OLED 120Hz 400 nits HDR True Black</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Arc™ Graphics Integrated</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Computer Vision Human Presence, Bobot 1.09 kg, Haptic Trackpad</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Raja laptop bisnis dunia. Bodi serat karbon yang ringan namun sangat tangguh, serta privasi visual tingkat tinggi.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 34.000.000 - Rp 46.000.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20ThinkPad%20X1%20Carbon%20Gen%2012" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('thinkpad-x1-g12')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 10: Apple MacBook Pro 14" M3 Pro -->
+                <div class="laptop-card" data-tier="high" data-name="apple macbook pro 14 m3 pro 18gb 36gb xdr">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-high">High-End Eksekutif</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14.2" Liquid Retina XDR</span>
+                        </div>
+                        <h3 class="laptop-title">Apple MacBook Pro 14" M3 Pro</h3>
+                        <p class="laptop-subtitle">Standar emas workstation portabel untuk eksekutif, lead developer, dan profesional kreatif.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Apple M3 Pro Chip (11-Core / 12-Core CPU)</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">18GB / 36GB Unified Memory</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">512GB / 1TB / 2TB High-Speed SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.2" Liquid Retina XDR (3024x1964) 120Hz ProMotion 1600 nits</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">14-Core / 18-Core GPU dengan Hardware Ray Tracing</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Baterai hingga 18 Jam, Spatial Audio 6-Speaker, HDMI 2.1 & SDXC</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Standar untuk CEO, Creator, dan Lead Developer. Baterai tahan hingga 18+ jam dengan layar paling tajam.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 31.500.000 - Rp 42.000.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20MacBook%20Pro%2014%20M3%20Pro" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('macbook-pro-14-m3')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 11: HP Dragonfly G4 -->
+                <div class="laptop-card" data-tier="high" data-name="hp dragonfly g4 intel i7 vpro sure view 1000 nits">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-high">High-End Eksekutif</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">13.5" 3:2 Ratio</span>
+                        </div>
+                        <h3 class="laptop-title">HP Dragonfly G4</h3>
+                        <p class="laptop-subtitle">Karya seni teknologi dengan layar rasio 3:2 ekstra produktif dan audio konferensi berbasis AI.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ i7-1355U / i7-1365U vPro®</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">16GB / 32GB LPDDR5 6400MHz</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">1TB PCIe Gen 4x4 NVMe TLC SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">13.5" WUXGA+ (1920x1280) 3:2 IPS 1000 nits HP Sure View Reflect</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Iris® Xe Graphics Integrated</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Bobot 0.99 kg Ultra Light, 5MP Auto Frame Cam, AI Noise Cancel</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Tampilan amat sangat elegan, mikrofon noise-cancelling berbasis AI terbaik untuk conference call penting.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 29.500.000 - Rp 38.000.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20HP%20Dragonfly%20G4" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('hp-dragonfly-g4')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 12: ASUS ExpertBook B9 OLED (B9403) -->
+                <div class="laptop-card" data-tier="high" data-name="asus expertbook b9 oled b9403 990gram ultra light intel">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="tier-badge tag-high">High-End Eksekutif</span>
+                            <span style="font-size: 11px; color: var(--text-dim);">14" OLED 990 gram</span>
+                        </div>
+                        <h3 class="laptop-title">ASUS ExpertBook B9 OLED (B9403)</h3>
+                        <p class="laptop-subtitle">Laptop bisnis OLED paling ringan di bumi (hanya 990g) berbahan Magnesium-Lithium.</p>
+
+                        <div class="spec-list">
+                            <div class="spec-item"><span class="spec-label">Prosesor:</span><span class="spec-val">Intel® Core™ Ultra 7 155H / i7-1355U vPro®</span></div>
+                            <div class="spec-item"><span class="spec-label">RAM:</span><span class="spec-val">32GB LPDDR5X 7500MHz Dual Channel</span></div>
+                            <div class="spec-item"><span class="spec-label">Storage:</span><span class="spec-val">1TB / 2TB M.2 NVMe PCIe 4.0 SSD</span></div>
+                            <div class="spec-item"><span class="spec-label">Layar:</span><span class="spec-val">14.0" 2.8K (2880x1800) OLED 16:10 90Hz 400 nits 100% DCI-P3</span></div>
+                            <div class="spec-item"><span class="spec-label">Grafis:</span><span class="spec-val">Intel® Arc™ Graphics Integrated</span></div>
+                            <div class="spec-item"><span class="spec-label">Fitur Kunci:</span><span class="spec-val">Bobot 990g, Smart Cooling Dust Defender, NFC, MIL-STD 810H</span></div>
+                        </div>
+
+                        <div class="alasan-dk">
+                            <div class="alasan-dk-header">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 10h2v4h-2zm0 5h2v2h-2z"/></svg>
+                                Alasan DK (Dokter Komputer)
+                            </div>
+                            <div class="alasan-dk-text">Laptop bisnis OLED ter ringan di dunia. Memberikan kenyamanan maksimal tanpa membebani tas kerja eksekutif.</div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="price-tag">
+                            <span class="price-label">Estimasi Harga:</span>
+                            <span class="price-amount">Rp 32.000.000 - Rp 41.500.000</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20ASUS%20ExpertBook%20B9%20OLED%20(B9403)" target="_blank" class="btn-wa">Pesan via WA</a>
+                            <button class="btn-detail" onclick="openModal('asus-b9403')">Detail</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Technical Detail -->
+    <div class="modal-overlay" id="specModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Dokter Komputer</strong> &copy; 2026. Spesialis Servis, Pengadaan & Konsultasi IT Laptop / PC Bisnis & Korporat.</p>
+            <p style="margin-top: 6px; font-size: 13px;">Semua unit laptop yang direkomendasikan telah melalui uji durabilitas hardware dan pengujian keamanan dari Dokter Komputer.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Modal Data Details
+        const laptopDetails = {
+            'asus-b1402': {
+                title: "ASUS ExpertBook B1 (B1402)",
+                tier: "Entry Business",
+                desc: "Laptop tangguh tingkat pemula untuk UMKM dan staf operasional dengan perlindungan fisik canggih.",
+                specs: {
+                    "Prosesor": "Intel® Core™ i3-1215U / i5-1335U / i7-1355U",
+                    "Sistem Operasi": "Windows 11 Pro / Windows 11 Home",
+                    "Memori RAM": "8GB / 16GB DDR4 3200MHz (1x Soldered + 1x SODIMM, up to 40GB)",
+                    "Penyimpanan": "512GB M.2 NVMe PCIe 4.0 SSD (Upgradable)",
+                    "Layar": "14.0\" FHD (1920 x 1080) 16:9, Anti-Glare LCD, 250 nits",
+                    "Port I/O": "1x USB 2.0, 1x USB 3.2 Gen 1 Type-A, 2x USB 3.2 Gen 2 Type-C (PD & DP), 1x HDMI 1.4, 1x RJ45 Gigabit Ethernet, Audio Jack",
+                    "Keamanan": "Webcam Privacy Shield, Kensington Lock, TPM 2.0, Optional Fingerprint",
+                    "Sertifikasi Durabilitas": "MIL-STD 810H US Military Standard",
+                    "Baterai & Bobot": "42WHrs 3-cell Li-ion, 1.49 kg"
+                },
+                potensiDK: "Sangat mudah di-upgrade RAM hingga 40GB. Sangat direkomendasikan untuk armada sales, staf lapangan, atau usaha yang membutuhkan ketahanan port fisik jangka panjang."
+            },
+            'thinkbook-14-g7': {
+                title: "Lenovo ThinkBook 14 Gen 7",
+                tier: "Entry Business",
+                desc: "Keseimbangan sempurna antara gaya ramping ala laptop modern dan fungsionalitas bisnis enterprise.",
+                specs: {
+                    "Prosesor": "Intel® Core™ Ultra 5 125U / AMD Ryzen™ 5 7535U / Ryzen™ 7 7730U",
+                    "Sistem Operasi": "Windows 11 Pro",
+                    "Memori RAM": "16GB DDR5 5600MHz (2x SODIMM Slots, Upgradable to 64GB)",
+                    "Penyimpanan": "512GB / 1TB SSD M.2 2240 PCIe 4.0 (Dual M.2 SSD Slot)",
+                    "Layar": "14.0\" WUXGA (1920x1200) IPS, 300 nits, Anti-Glare, 16:10 aspect ratio",
+                    "Port I/O": "1x Thunderbolt 4 / USB4, 1x USB-C 3.2 Gen 2, 2x USB 3.2 Gen 1, HDMI 2.1, RJ45 LAN, SD Card Reader",
+                    "Keamanan": "Fingerprint Reader di Tombol Power, ThinkShutter Camera, Firmware TPM 2.0",
+                    "Sertifikasi Durabilitas": "MIL-STD 810H Passed",
+                    "Baterai & Bobot": "47Wh / 60Wh Battery, 1.38 kg"
+                },
+                potensiDK: "Memiliki 2 slot SODIMM RAM dan 2 slot SSD M.2 NVMe. Salah satu laptop paling gampang di-upgrade di kelas harga under 12 jutaan."
+            },
+            'hp-probook-440-g11': {
+                title: "HP ProBook 440 G11",
+                tier: "Entry Business",
+                desc: "Laptop korporat standar dunia dengan arsitektur AI terbaru dan keamanan HP Wolf Security.",
+                specs: {
+                    "Prosesor": "Intel® Core™ Ultra 5 125U / Core™ Ultra 7 155U",
+                    "Sistem Operasi": "Windows 11 Pro 64-bit",
+                    "Memori RAM": "16GB / 32GB DDR5-5600MHz (2x SODIMM Slots)",
+                    "Penyimpanan": "512GB / 1TB PCIe NVMe M.2 SSD",
+                    "Layar": "14.0\" WUXGA (1920x1200) IPS Anti-Glare 300 nits 45% NTSC",
+                    "Port I/O": "2x USB Type-C 20Gbps (USB Power Delivery, DisplayPort 1.4), 2x USB Type-A 5Gbps, HDMI 2.1, RJ45, Headphone/mic combo",
+                    "Keamanan": "HP Wolf Security for Business, HP Sure Start Gen7, Camera Shutter",
+                    "Fitur Tambahan": "Keyboard DuraKeys Tahan Tumpahan Air, AI Noise Suppression",
+                    "Baterai & Bobot": "56Wh Long Life Polymer, 1.39 kg"
+                },
+                potensiDK: "Fitur keamanan hardware HP Wolf Security mencegah serangan virus malware level BIOS. Sangat pas untuk kantor yang mengutamakan privasi data klien."
+            },
+            'dell-vostro-3530': {
+                title: "Dell Vostro 3530",
+                tier: "Entry Business",
+                desc: "Laptop bisnis layar besar 15.6 inci dengan refresh rate 120Hz untuk kenyamanan mata bekerja seharian.",
+                specs: {
+                    "Prosesor": "Intel® Core™ i5-1335U / i7-1355U (10 Cores, up to 5.0 GHz)",
+                    "Sistem Operasi": "Windows 11 Pro / Ubuntu Linux",
+                    "Memori RAM": "8GB / 16GB DDR4 3200MHz (2x SODIMM Slot)",
+                    "Penyimpanan": "512GB M.2 PCIe NVMe SSD",
+                    "Layar": "15.6\" Full HD (1920x1080) 120Hz, Anti-Glare, Wide Viewing Angle",
+                    "Grafis": "Intel® Iris Xe Graphics / Optional NVIDIA GeForce MX550 2GB GDDR6",
+                    "Port I/O": "1x USB 3.2 Gen 1 Type-C, 1x USB 3.2 Gen 1 Type-A, 1x USB 2.0, HDMI 1.4, RJ45, SD Card Slot",
+                    "Fitur Tambahan": "Dell ExpressCharge (80% dalam 60 menit), Numeric Keypad Utuh",
+                    "Baterai & Bobot": "54Wh 4-Cell Battery, 1.66 kg"
+                },
+                potensiDK: "Layar 120Hz sangat nyaman untuk input spreadsheet panjang. Layar lega plus Numpad angka fisik membuat pengerjaan akuntansi/keuangan jauh lebih cepat."
+            },
+            'thinkpad-l14-g5': {
+                title: "Lenovo ThinkPad L14 Gen 5",
+                tier: "Mid-Tier Pro",
+                desc: "Workhorse sejati untuk profesional yang membutuhkan kenyamanan keyboard legendaris dan keandalan tinggi.",
+                specs: {
+                    "Prosesor": "Intel® Core™ Ultra 5 125U / Ultra 7 155U (Opsional vPro®)",
+                    "Sistem Operasi": "Windows 11 Pro",
+                    "Memori RAM": "16GB / 32GB DDR5 5600MHz (2x SODIMM Dual Channel)",
+                    "Penyimpanan": "512GB / 1TB PCIe NVMe Gen 4 M.2 SSD (Opal2 Encrypted)",
+                    "Layar": "14.0\" WUXGA (1920x1200) IPS 16:10, 400 nits Anti-Glare, Low Power",
+                    "Port I/O": "1x Thunderbolt™ 4, 1x USB-C 20Gbps, 3x USB-A 3.2, HDMI 2.1, RJ45 Gigabit Ethernet, Nano-SIM, Smart Card Reader",
+                    "Navigasi": "Classic Red TrackPoint + Mylar Touchpad",
+                    "Sertifikasi": "MIL-STD 810H Standard, TCO Certified",
+                    "Baterai & Bobot": "57Wh Battery dengan Fast Charging, 1.40 kg"
+                },
+                potensiDK: "Keyboard paling enak diketik di dunia bisnis. Kemudahan servis modul internal sangat memuaskan, cocok untuk investasi inventaris IT perusahaan tahan 5+ tahun."
+            },
+            'asus-b5402': {
+                title: "ASUS ExpertBook B5 (B5402)",
+                tier: "Mid-Tier Pro",
+                desc: "Laptop bisnis presisi tinggi dengan durabilitas aluminium-magnesium alloy dan RAID SSD security.",
+                specs: {
+                    "Prosesor": "Intel® Core™ i5-1340P / i7-1360P / i7-1370P vPro®",
+                    "Sistem Operasi": "Windows 11 Pro",
+                    "Memori RAM": "16GB DDR5 Onboard + 1 Slot SODIMM (Up to 40GB)",
+                    "Penyimpanan": "512GB / 1TB PCIe 4.0 NVMe SSD (Mendukung Dual SSD RAID 0 & RAID 1)",
+                    "Layar": "14.0\" Full HD (1920x1080) IPS 400 nits, 100% sRGB, Anti-Glare",
+                    "Port I/O": "2x Thunderbolt™ 4 USB-C, 1x USB 3.2 Gen 2 Type-A, 1x USB 2.0, HDMI 2.1, MicroSD Card Reader, RJ45",
+                    "Keamanan": "IR Camera Windows Hello Face Unlock, Fingerprint sensor, TPM 2.0",
+                    "Touchpad": "ASUS NumberPad 2.0 (Numpad LED pada Touchpad)",
+                    "Baterai & Bobot": "63WHrs 3-cell Li-ion, 1.25 kg"
+                },
+                potensiDK: "Support Dual SSD dengan konfigurasi RAID 1 (Mirroring). Jika salah satu SSD rusak, data dokumen perusahaan tetap 100% aman disalin otomatis di SSD kedua."
+            },
+            'acer-travelmate-p6': {
+                title: "Acer TravelMate P6 (TMP614 / 14 AI)",
+                tier: "Mid-Tier Pro",
+                desc: "Laptop ultralight bisnis premium untuk profesional eksekutif yang bermobilitas tinggi.",
+                specs: {
+                    "Prosesor": "Intel® Core™ Ultra 7 268V / Core™ i7-1355U",
+                    "Sistem Operasi": "Windows 11 Pro",
+                    "Memori RAM": "32GB LPDDR5X Memory",
+                    "Penyimpanan": "1TB PCIe Gen 4x4 NVMe SSD",
+                    "Layar": "14.0\" 2.8K (2880x1800) OLED 16:10 / WUXGA IPS Touch, 100% DCI-P3",
+                    "Grafis": "Intel® Arc™ 140V GPU / Intel Iris Xe",
+                    "Fitur AI": "Acer PurifiedVoice 2.0 AI Noise Cancellation, UserSensing Proximity Sensor",
+                    "Daya Tahan": "Baterai tahan hingga 13,5 jam, Pengisian 80% dalam 1 jam",
+                    "Baterai & Bobot": "65Wh Lithium-Ion, 1.10 kg"
+                },
+                potensiDK: "Sensor Acer UserSensing otomatis mengunci layar laptop saat Anda melangkah menjauh dari meja kerja. Privasi rapat & file sensitif terjaga sempurna."
+            },
+            'dell-latitude-5440': {
+                title: "Dell Latitude 5440",
+                tier: "Mid-Tier Pro",
+                desc: "Laptop korporat papan atas dengan sistem manajemen jarak jauh vPro dan efisiensi termal canggih.",
+                specs: {
+                    "Prosesor": "Intel® Core™ i5-1345U vPro® / i7-1365U vPro®",
+                    "Sistem Operasi": "Windows 11 Pro Enterprise Ready",
+                    "Memori RAM": "16GB / 32GB DDR5 4800MHz (2x SODIMM Slots)",
+                    "Penyimpanan": "512GB / 1TB PCIe NVMe SSD Class 40",
+                    "Layar": "14.0\" FHD (1920x1080) Anti-Glare, IPS, 300 nits, ComfortView Plus",
+                    "Port I/O": "2x Thunderbolt™ 4 with Power Delivery & DisplayPort, 2x USB 3.2 Gen 1, HDMI 2.0, RJ45, SmartCard Reader",
+                    "Fitur AI": "Dell Optimizer (AI Penyesuaian Performa & Suara Rapat Auto-Tune)",
+                    "Baterai & Bobot": "54Wh Battery ExpressCharge Boost, 1.36 kg"
+                },
+                potensiDK: "Fitur Intel vPro memungkinkan tim IT kantor untuk meremote, mengupdate BIOS, dan membenahi OS komputer secara jarak jauh tanpa perlu membawa fisik laptop."
+            },
+            'thinkpad-x1-g12': {
+                title: "Lenovo ThinkPad X1 Carbon Gen 12",
+                tier: "High-End Eksekutif",
+                desc: "Mahakarya laptop bisnis dunia. Bodi serat karbon ringan, performa NPU AI gahar, dan privasi tanpa tanding.",
+                specs: {
+                    "Prosesor": "Intel® Core™ Ultra 7 155H / Ultra 7 165H vPro® (16 Cores, 22 Threads)",
+                    "Sistem Operasi": "Windows 11 Pro 64-bit",
+                    "Memori RAM": "32GB / 64GB LPDDR5X 7500MHz (Soldered Dual Channel)",
+                    "Penyimpanan": "1TB / 2TB SSD M.2 2280 PCIe 4.0x4 Performance NVMe Opal 2.0",
+                    "Layar": "14.0\" 2.8K (2880x1800) OLED, 120Hz, 400 nits, 100% DCI-P3, DisplayHDR 500, EyeSafe",
+                    "Grafis": "Intel® Arc™ Graphics Integrated",
+                    "Kamera": "8MP Computer Vision Camera dengan Privacy Shutter & MIPI",
+                    "Bodi & Bahan": "Carbon Fiber Top Cover + Recycled Magnesium Alloy Bottom",
+                    "Baterai & Bobot": "57Wh Battery, Super Light 1.09 kg"
+                },
+                potensiDK: "Laptop paling prestisius di kalangan Board of Directors & CEO. Keyboard haptic touchpad terbaru plus layar OLED 2.8K yang paling memanjakan mata."
+            },
+            'macbook-pro-14-m3': {
+                title: "Apple MacBook Pro 14\" M3 Pro",
+                tier: "High-End Eksekutif",
+                desc: "Laptop tanpa kompromi untuk pimpinan, pengembang perangkat lunak, dan profesional industri kreatif.",
+                specs: {
+                    "Chipset / CPU": "Apple M3 Pro (11-Core CPU / 14-Core GPU atau 12-Core CPU / 18-Core GPU)",
+                    "Sistem Operasi": "macOS Sequoia / Sonoma",
+                    "Memori": "18GB / 36GB Unified Memory (Bandwidth 150GB/s)",
+                    "Penyimpanan": "512GB / 1TB / 2TB Ultrafast NVMe SSD",
+                    "Layar": "14.2\" Liquid Retina XDR (3024x1964) 120Hz ProMotion, 1000 nits sustained, 1600 nits peak HDR",
+                    "Port I/O": "3x Thunderbolt 4 (USB-C), HDMI 2.1, SDXC Card Slot, MagSafe 3 Charging Port, 3.5mm Headphone Jack",
+                    "Audio": "High-fidelity 6-speaker sound system dengan force-cancelling woofers, Spatial Audio",
+                    "Baterai & Bobot": "70Wh Lithium-Polymer, Tahan hingga 18 Jam Video Streaming, 1.61 kg"
+                },
+                potensiDK: "Daya tahan baterai terbaik di industri (hingga 18+ jam nyata). Efisiensi energi tiada tanding tanpa penurunan performa saat dicabut dari charger."
+            },
+            'hp-dragonfly-g4': {
+                title: "HP Dragonfly G4",
+                tier: "High-End Eksekutif",
+                desc: "Laptop eksekutif ultra-ringan berwarna Slate Blue yang memancarkan aura kemewahan kelas atas.",
+                specs: {
+                    "Prosesor": "Intel® Core™ i7-1355U / i7-1365U vPro®",
+                    "Sistem Operasi": "Windows 11 Pro Enterprise",
+                    "Memori RAM": "16GB / 32GB LPDDR5 6400MHz",
+                    "Penyimpanan": "1TB PCIe Gen 4x4 NVMe SSD",
+                    "Layar": "13.5\" WUXGA+ (1920x1280) 3:2 IPS 1000 nits HP Sure View Reflect Privacy",
+                    "Kamera & Audio": "5MP Camera dengan Auto Frame, B&O Quad Speakers, 4 Microphones AI Noise Cancelling",
+                    "Material Bodi": "Magnesium-Lithium Alloy CNC Premium",
+                    "Port I/O": "2x Thunderbolt™ 4, 1x USB 3.2 Gen 1, HDMI 2.0, Nano SIM slot",
+                    "Baterai & Bobot": "68Wh Battery, Ringan Luar Biasa 0.99 kg"
+                },
+                potensiDK: "Layar rasio 3:2 memberi vertikal ruang lebih luas untuk membaca dokumen. Fitur HP Sure View membuat layar langsung buram jika diintip dari samping."
+            },
+            'asus-b9403': {
+                title: "ASUS ExpertBook B9 OLED (B9403)",
+                tier: "High-End Eksekutif",
+                desc: "Laptop bisnis OLED paling ringan di dunia, dirancang khusus untuk petinggi perusahaan yang sering traveling.",
+                specs: {
+                    "Prosesor": "Intel® Core™ Ultra 7 155H / Core™ i7-1355U vPro®",
+                    "Sistem Operasi": "Windows 11 Pro",
+                    "Memori RAM": "32GB LPDDR5X 7500MHz Dual Channel",
+                    "Penyimpanan": "1TB / 2TB PCIe 4.0 x4 M.2 NVMe SSD",
+                    "Layar": "14.0\" 2.8K (2880x1800) OLED 16:10, 90Hz, 400 nits, 100% DCI-P3, VESA Certified Display HDR True Black 500",
+                    "Port I/O": "2x Thunderbolt™ 4 (Supports display/power), 1x USB 3.2 Gen 2 Type-A, HDMI 2.1, Micro HDMI (to RJ45), 3.5mm Combo Audio",
+                    "Sistem Pendingin": "Smart Dual Fan Dust-Defender (Membersihkan debu secara otomatis)",
+                    "Fitur Tambahan": "NFC Log-in, NumberPad LED Touchpad, MIL-STD 810H Tested",
+                    "Baterai & Bobot": "63WHrs 3-cell Li-ion, Ultra-light 990 gram"
+                },
+                potensiDK: "Berat di bawah 1 kg (990 gram) namun dengan layar OLED 2.8K. Kipas pendingin memiliki teknologi Dust Defender yang meniup keluar debu agar tidak menumpuk di dalam."
+            }
+        };
+
+        // Open Modal Function
+        function openModal(key) {
+            const data = laptopDetails[key];
+            if (!data) return;
+
+            let specRows = '';
+            for (const [k, v] of Object.entries(data.specs)) {
+                specRows += `<tr><td>${k}</td><td>${v}</td></tr>`;
+            }
+
+            const content = `
+                <div class="modal-badge tag-entry">${data.tier}</div>
+                <h2 class="modal-title">${data.title}</h2>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">${data.desc}</p>
+                
+                <div class="modal-section">
+                    <div class="modal-section-title">Spesifikasi Detail Hardware</div>
+                    <table class="modal-specs-table">
+                        ${specRows}
+                    </table>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">Catatan Potensi & Upgrade Dokter Komputer</div>
+                    <div style="background: rgba(56, 189, 248, 0.08); border-left: 3px solid var(--primary); padding: 12px; border-radius: 6px; font-size: 13.5px; color: #cbd5e1;">
+                        ${data.potensiDK}
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px; display: flex; gap: 12px;">
+                    <a href="https://wa.me/6281234567890?text=Halo%20Dokter%20Komputer,%20saya%20ingin%20tanya%20detail%20stok%20dan%20harga%20${encodeURIComponent(data.title)}" target="_blank" class="btn-wa" style="flex: 1; padding: 12px;">
+                        Tanyakan Stok & Penawaran WA
+                    </a>
+                </div>
+            `;
+
+            document.getElementById('modalContent').innerHTML = content;
+            document.getElementById('specModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('specModal').style.display = 'none';
+        }
+
+        // Close Modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('specModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Filter Category
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const blocks = document.querySelectorAll('.category-block');
+            blocks.forEach(block => {
+                if (cat === 'all' || block.getAttribute('data-category') === cat) {
+                    block.style.display = 'block';
+                } else {
+                    block.style.display = 'none';
+                }
+            });
+        }
+
+        // Search Filter
+        function searchLaptops() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.laptop-card');
+
+            cards.forEach(card => {
+                const nameData = card.getAttribute('data-name').toLowerCase();
+                const cardText = card.innerText.toLowerCase();
+
+                if (nameData.includes(query) || cardText.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+"""
+
+output_path = "laptop-bisnis.html"
+with open(output_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"Successfully generated {output_path} with total size of {len(html_content)} bytes.")
