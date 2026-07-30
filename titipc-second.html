@@ -33,12 +33,12 @@
             font-weight: bold;
             letter-spacing: 1px;
             border-bottom: 1px solid #1f2937;
-            z-index: 100;
+            z-index: 90;
             backdrop-filter: blur(8px);
             text-transform: uppercase;
         }
 
-        /* MAIN HORIZONTAL SLIDER */
+        /* MAIN HORIZONTAL SLIDER (ANTAR PAKET TITIPAN) */
         .catalog-slider {
             display: flex;
             overflow-x: auto;
@@ -75,7 +75,7 @@
             position: relative;
         }
 
-        /* BADGE STATUS (AVAILABLE / SOLD) - EDITABLE & DYNAMIC */
+        /* BADGE STATUS (AVAILABLE / SOLD) */
         .status-badge {
             position: absolute;
             top: 20px;
@@ -89,7 +89,6 @@
             z-index: 10;
         }
         
-        /* State Available */
         .status-badge.available {
             background: rgba(56, 239, 125, 0.15);
             color: #38ef7d;
@@ -97,7 +96,6 @@
             box-shadow: 0 0 10px rgba(56, 239, 125, 0.3);
         }
 
-        /* State Sold (Kalau sudah laku, ganti class di HTML jadi status-badge sold) */
         .status-badge.sold {
             background: rgba(255, 42, 75, 0.15);
             color: #ff2a4b;
@@ -105,7 +103,6 @@
             box-shadow: 0 0 10px rgba(255, 42, 75, 0.3);
         }
 
-        /* TAMPILAN JIKA TERJUAL (SOLDOUT OVERLAY STYLES) */
         .container.is-sold {
             opacity: 0.75;
             filter: grayscale(40%);
@@ -116,7 +113,7 @@
             border-bottom: 2px dashed #1f2937;
             padding-bottom: 15px;
             margin-bottom: 25px;
-            padding-right: 120px; /* Space for status badge */
+            padding-right: 120px;
         }
 
         .consign-tag {
@@ -155,7 +152,7 @@
             gap: 20px;
         }
 
-        /* IMAGE SLIDER AREA */
+        /* IMAGE SLIDER AREA DENGAN TOMBOL NAVIGASI MANUALLY */
         .build-image-wrapper {
             position: relative;
             background: #07090c;
@@ -185,6 +182,7 @@
             align-items: center;
             justify-content: center;
             padding: 10px;
+            cursor: pointer; /* Indikator bahwa gambar bisa di-klik */
         }
 
         .img-slide img {
@@ -192,7 +190,39 @@
             max-height: 100%;
             object-fit: contain;
             border-radius: 8px;
+            transition: transform 0.2s ease;
         }
+
+        .img-slide:hover img {
+            transform: scale(1.02); /* Efek zoom tipis pas ditunjuk mouse */
+        }
+
+        /* MANUAL NAV BUTTONS (PANAH KIRI & KANAN) */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(13, 17, 23, 0.75);
+            color: #ffffff;
+            border: 1px solid #1f2937;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1rem;
+            user-select: none;
+            transition: 0.2s;
+        }
+        .nav-btn:hover {
+            background: #38ef7d;
+            color: #000;
+        }
+        .nav-btn.prev { left: 10px; }
+        .nav-btn.next { right: 10px; }
 
         .img-hint-badge {
             position: absolute;
@@ -205,6 +235,7 @@
             border-radius: 4px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 5;
+            pointer-events: none;
         }
 
         .img-dots {
@@ -218,6 +249,7 @@
             background: rgba(0,0,0,0.6);
             padding: 4px 10px;
             border-radius: 12px;
+            pointer-events: none;
         }
 
         .img-dot {
@@ -256,7 +288,6 @@
             padding-right: 5px;
         }
 
-        /* Custom Scrollbar for Spec Table */
         .spec-table-wrapper::-webkit-scrollbar { width: 4px; }
         .spec-table-wrapper::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
 
@@ -280,10 +311,6 @@
         td.val {
             color: #ffffff;
             font-weight: 500;
-        }
-        td.val ul {
-            list-style-type: disc;
-            margin-left: 15px;
         }
 
         /* KONDISI & CATATAN BOX */
@@ -362,7 +389,7 @@
             padding: 8px 16px;
             border-radius: 20px;
             border: 1px solid #1f2937;
-            z-index: 100;
+            z-index: 90;
         }
         .dot {
             width: 10px;
@@ -375,6 +402,52 @@
             width: 26px;
             border-radius: 10px;
             background: #38ef7d;
+        }
+
+        /* ======================================================= */
+        /* FULLSCREEN LIGHTBOX (POPUP GAMBAR)                      */
+        /* ======================================================= */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.9);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+            transition: 0.2s;
+        }
+
+        .lightbox-close:hover {
+            color: #ff2a4b;
         }
 
         /* RESPONSIVE DESAIN HP */
@@ -392,7 +465,7 @@
 <body>
 
     <div class="swipe-hint">
-        👈 GESER KE KIRI UNTUK LIHAT UNIT TITIPAN LAINNYA 👉
+        👈 GESER UNTUK UNTUK LIHAT UNIT LAIN • KLIK FOTO UNTUK FULLSCREEN 👉
     </div>
 
     <div class="catalog-slider" id="mainSlider">
@@ -401,13 +474,8 @@
         <!-- UNIT TITIPAN 1 (DATA USER)                              -->
         <!-- ======================================================= -->
         <div class="product-slide">
-            <!-- CATATAN EDIT STATUS: 
-                 - Kalau Masih Ada: pakaikan class "container" & status-badge pake class "available"
-                 - Kalau Sudah Laku: pakaikan class "container is-sold" & status-badge pake class "sold"
-            -->
             <div class="container">
                 
-                <!-- BADGE STATUS (Ubah tulisan & class sesuai ketersediaan) -->
                 <div class="status-badge available">AVAILABLE</div>
 
                 <div class="header">
@@ -418,17 +486,21 @@
 
                 <div class="main-content-grid">
                     
-                    <!-- LEFT COLUMN: FOTO SLIDER & KONDISI -->
                     <div class="left-col">
-                        <!-- GALERI FOTO SLIDE -->
+                        <!-- GALERI FOTO SLIDE MANUAL + KLIK FULLSCREEN -->
                         <div class="build-image-wrapper">
                             <span class="img-hint-badge">📷 1/3 Foto</span>
+                            
+                            <!-- Tombol Panah Geser Manual -->
+                            <div class="nav-btn prev" onclick="moveManualSlide(this, -1)">❮</div>
+                            <div class="nav-btn next" onclick="moveManualSlide(this, 1)">❯</div>
+
                             <div class="img-slider">
-                                <!-- Ganti src sesuai nama file foto unit titipan -->
-                                <div class="img-slide"><img src="images/titipan1-1.png" alt="Setup Full View"></div>
-                                <div class="img-slide"><img src="images/titipan1-2.png" alt="PC Rig Detail"></div>
-                                <div class="img-slide"><img src="images/titipan1-3.png" alt="Dual Monitor & Peripherals"></div>
+                                <div class="img-slide"><img src="images/titipan1-1.png" alt="Setup Full View" onclick="openLightbox(this.src)"></div>
+                                <div class="img-slide"><img src="images/titipan1-2.png" alt="PC Rig Detail" onclick="openLightbox(this.src)"></div>
+                                <div class="img-slide"><img src="images/titipan1-3.png" alt="Dual Monitor & Peripherals" onclick="openLightbox(this.src)"></div>
                             </div>
+
                             <div class="img-dots">
                                 <div class="img-dot active"></div>
                                 <div class="img-dot"></div>
@@ -456,7 +528,6 @@
                         </div>
                     </div>
 
-                    <!-- RIGHT COLUMN: DETAIL SPEK & PRICING -->
                     <div class="right-col">
                         <div>
                             <div class="section-title">SPESIFIKASI RIG & GEAR LENGKAP</div>
@@ -522,82 +593,17 @@
                             </div>
                         </div>
 
-                        <!-- ACTION / PRICING BOX -->
                         <div class="action-box">
                             <div class="price-label">Harga Titipan (Nego Tipis / All-In)</div>
-                            <!-- ISI HARGA YANG DISEPAKATI DENGAN OWNER UNIT -->
                             <div class="price-tag">Rp [Isi Harga]</div>
                             
-                            <!-- JIKA MASIH AVAILABLE -->
                             <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Unit%20Titipan%201%20Set%20Setup%20Gaming%20Streaming%20Ryzen%205%207600%20RTX%204070%20Super" class="btn-wa" target="_blank">
                                 💬 Hubungi Dokter Komputer / Nego
                             </a>
-
-                            <!-- JIKA SUDAH SOLD (Tinggal hilangkan komen di bawah dan hapus tombol WA) -->
-                            <!-- <div class="btn-sold">❌ UNIT TERJUAL (SOLD OUT)</div> -->
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-
-        <!-- ======================================================= -->
-        <!-- CONTOH UNIT TITIPAN 2 (Bisa Di-copy Paste buat item baru) -->
-        <!-- ======================================================= -->
-        <div class="product-slide">
-            <!-- Contoh Tampilan yang SUDAH SOLD OUT -->
-            <div class="container is-sold">
-                <div class="status-badge sold">SOLD OUT</div>
-
-                <div class="header">
-                    <div class="consign-tag">🤝 TITIP JUAL • UNIT CLIENT DOKTER KOMPUTER</div>
-                    <h1 class="main-title">PC EDITING & RENDERING I7 12700K + RTX 3070</h1>
-                    <p class="subtitle">Unit bekas pakai pemakaian kantor arsitek, sangat mulus.</p>
-                </div>
-
-                <div class="main-content-grid">
-                    <div class="left-col">
-                        <div class="build-image-wrapper">
-                            <span class="img-hint-badge">📷 1/1 Foto</span>
-                            <div class="img-slider">
-                                <div class="img-slide"><img src="images/titipan2-1.png" alt="Unit Sold"></div>
-                            </div>
-                            <div class="img-dots">
-                                <div class="img-dot active"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="section-title">KONDISI & GARANSI UNIT</div>
-                            <div class="condition-box">
-                                <div class="condition-item">
-                                    <span class="condition-icon">✖</span>
-                                    <span><strong>Status:</strong> Terjual ke Customer Bekasi.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="right-col">
-                        <div>
-                            <div class="section-title">SPESIFIKASI SINGKAT</div>
-                            <div class="spec-table-wrapper">
-                                <table>
-                                    <tr><td class="label">Processor</td><td class="val">Intel Core i7 12700K</td></tr>
-                                    <tr><td class="label">VGA</td><td class="val">RTX 3070 8GB GDDR6</td></tr>
-                                    <tr><td class="label">RAM</td><td class="val">32GB DDR4 3200MHz</td></tr>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="action-box">
-                            <div class="price-label">Harga Terjual</div>
-                            <div class="price-tag" style="color: #ff2a4b; text-decoration: line-through;">Rp 14.500.000</div>
-                            <div class="btn-sold">❌ UNIT TERJUAL (SOLD OUT)</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -606,11 +612,41 @@
     <!-- MAIN SLIDER DOTS NAVIGATION -->
     <div class="slider-dots">
         <div class="dot active" data-slide="0"></div>
-        <div class="dot" data-slide="1"></div>
+    </div>
+
+    <!-- LIGHTBOX MODAL FULLSCREEN -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-img" id="lightboxImage" src="" alt="Enlarged view">
     </div>
 
     <script>
-        // MAIN SLIDER NAVIGATION DOTS
+        // FUNCTION 1: OPEN & CLOSE LIGHTBOX FULLSCREEN
+        function openLightbox(src) {
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImage');
+            img.src = src;
+            modal.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('active');
+        }
+
+        // FUNCTION 2: MANUAL GESER SLIDE DENGAN TOMBOL PANAH (❮ / ❯)
+        function moveManualSlide(btn, direction) {
+            const wrapper = btn.closest('.build-image-wrapper');
+            const imgSlider = wrapper.querySelector('.img-slider');
+            const slideWidth = imgSlider.clientWidth;
+            
+            imgSlider.scrollBy({
+                left: direction * slideWidth,
+                behavior: 'smooth'
+            });
+        }
+
+        // FUNCTION 3: MAIN SLIDER NAVIGATION DOTS
         const mainSlider = document.getElementById('mainSlider');
         const mainDots = document.querySelectorAll('.slider-dots .dot');
 
@@ -628,7 +664,7 @@
             });
         });
 
-        // INNER IMAGE SLIDER DOTS & COUNTER
+        // FUNCTION 4: INNER IMAGE SLIDER DOTS & COUNTER UPDATE
         const imageWrappers = document.querySelectorAll('.build-image-wrapper');
 
         imageWrappers.forEach(wrapper => {
