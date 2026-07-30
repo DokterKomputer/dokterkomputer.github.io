@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Komputer Bekas Titipan - Dokter Komputer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sold-out {
+            filter: grayscale(80%);
+            opacity: 0.75;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
+
+    <!-- Header Section -->
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid font-bold text-2xl text-cyan-400 fa-desktop"></i>
+                <h1 class="text-xl font-bold tracking-wide text-white">Dokter Komputer <span class="text-xs bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded border border-cyan-500/20 ml-2">Marketplace Titipan</span></h1>
+            </div>
+            <a href="index.html" class="text-sm text-slate-400 hover:text-cyan-400 transition-colors">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke Utama
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- Banner Intro -->
+        <div class="bg-gradient-to-r from-slate-800 to-slate-800/40 p-6 rounded-2xl border border-slate-700/50 mb-8">
+            <h2 class="text-2xl font-bold text-white mb-2">Unit Komputer & PC Titipan Client</h2>
+            <p class="text-slate-400 text-sm max-w-2xl">
+                Semua unit yang dipajang di sini telah melalui proses pengecekan teknis (*quality check*) oleh tim Dokter Komputer untuk memastikan fungsi hardware, suhu, dan performa berjalan normal.
+            </p>
+        </div>
+
+        <!-- Grid Komputer Bekas -->
+        <div id="pc-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Item akan di-render otomatis oleh JavaScript di bawah -->
+        </div>
+
+    </main>
+
+    <!-- Script Data & Logic -->
+    <script>
+        // =========================================================================
+        // DATA UNIT TITIPAN
+        // =========================================================================
+        const pcData = [
+            {
+                id: "PC-003",
+                title: "1 SET FULL SETUP GAMING & STREAMING (Ryzen 5 7600 + RTX 4070 Super + Dual Monitor + Meja Elektrik)",
+                price: 0, // Isi harga kesepakatan / request seller di sini (misal: 35000000)
+                status: "available",
+                image: "753299037_2671147159996494_4103781981239067464_n.jpg", // Menggunakan foto dari unit customer
+                specs: {
+                    processor: "AMD Ryzen 5 7600 (Garansi Resmi, Dus & Cooler Ori Ada)",
+                    motherboard: "Asrock B650M Pro RS",
+                    ram: "64GB (4x16GB) XPG Lancer RGB DDR5 6000MHz (Lifetime)",
+                    gpu: "Gigabyte RTX 4070 Super Windforce 12GB GDDR6X",
+                    storage: "15TB (1TB + 2TB NVMe Gen4 + 12TB HDD WDC Blue)",
+                    psu: "FSP HV Pro 650W 80+ Bronze Certified",
+                    case: "Segotep Endura Pro + (AIO Deepcool LQ720 + 6 Fan FC120)"
+                },
+                extras: [
+                    "<strong>Monitor:</strong> Lenovo G34W-30 (34\" 2K 170Hz) + Lenovo R27Q-30 (27\" 2K 180Hz)",
+                    "<strong>Gear:</strong> Razer Ornata V3 X, Mouse Razer Basilisk V3, Cam 4K, Mic NYK, Controller Xbox & Gulikit",
+                    "<strong>Furniture:</strong> Meja Elektrik MxStark, Kursi Fantech OCA258, Footrest, Wooden Shelf",
+                    "<strong>Power:</strong> Dual UPS APC (BVX1200 650W + BVX700 360W)",
+                    "<strong>Lainnya:</strong> Full Lighting RGB, Pegboard Set, Docking HDD, Soundbar Pioneer SBX101"
+                ],
+                condition: "Full set borongan All-In (termasuk meja, lampu, pegboard, baut & dus lengkap rapi). Tinggal pakai!",
+                warranty: "Garansi part 1-2 tahun, SSD 4 tahun, RAM Lifetime",
+                location: "Bekasi Timur Regensi"
+            },
+            {
+                id: "PC-001",
+                title: "PC Gaming Core i5 Gen 10 + GTX 1660 Super",
+                price: 5800000,
+                status: "available",
+                image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80",
+                specs: {
+                    processor: "Intel Core i5-10400F",
+                    motherboard: "H410M Asrock",
+                    ram: "16GB (2x8GB) DDR4 3200MHz",
+                    gpu: "Nvidia GTX 1660 Super 6GB GDDR6",
+                    storage: "SSD NVMe 512GB",
+                    psu: "500W 80+ Bronze",
+                    case: "AeroCool RGB Acrylic Side"
+                },
+                condition: "Bekas pemakaian pribadi 1 tahun. Fungsi normal 100%, suhu adem, pemakaian bersih.",
+                warranty: "Garansi Toko 14 Hari"
+            },
+            {
+                id: "PC-002",
+                title: "PC Editing / Gaming Ryzen 5 3600 + RTX 2060",
+                price: 6500000,
+                status: "sold",
+                image: "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&auto=format&fit=crop&q=80",
+                specs: {
+                    processor: "AMD Ryzen 5 3600",
+                    motherboard: "B450M MSI Mortar",
+                    ram: "16GB (2x8GB) DDR4 3200MHz",
+                    gpu: "RTX 2060 6GB GDDR6",
+                    storage: "SSD NVMe 256GB + HDD 1TB",
+                    psu: "550W 80+ Bronze Corsair",
+                    case: "Montech x3 Mesh White"
+                },
+                condition: "Titipan pelanggan upgrade. Sudah dibersihkan & ganti thermal paste baru.",
+                warranty: "Garansi Toko 7 Hari"
+            }
+        ];
+
+        // Format Angka ke Rupiah
+        function formatRupiah(number) {
+            if (!number || number === 0) return "Hubungi Admin (Nego)";
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+        }
+
+        // Render Cards ke HTML
+        function renderCards() {
+            const container = document.getElementById('pc-container');
+            container.innerHTML = '';
+
+            pcData.forEach(item => {
+                const isSold = item.status.toLowerCase() === 'sold';
+                
+                // Badge Status
+                const statusBadge = isSold 
+                    ? `<span class="bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"><i class="fa-solid fa-circle-xmark mr-1"></i> Sold / Terjual</span>`
+                    : `<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"><i class="fa-solid fa-circle-check mr-1"></i> Available</span>`;
+
+                // Render Extras jika ada
+                let extrasHTML = '';
+                if (item.extras && item.extras.length > 0) {
+                    extrasHTML = `<div class="mt-3 pt-3 border-t border-slate-800 space-y-1 text-xs text-slate-300">`;
+                    item.extras.forEach(extra => {
+                        extrasHTML += `<div class="line-clamp-1"><i class="fa-solid fa-plus text-cyan-400 mr-1.5"></i>${extra}</div>`;
+                    });
+                    extrasHTML += `</div>`;
+                }
+
+                // Link Whatsapp
+                const waMessage = encodeURIComponent(`Halo Dokter Komputer, saya berminat dengan unit titipan: ${item.title} (${item.id}). Apakah unit ini masih ada?`);
+                const waUrl = `https://wa.me/6281234567890?text=${waMessage}`; // Ganti nomor WA kamu
+
+                const cardHTML = `
+                    <div class="bg-slate-800/60 rounded-xl border border-slate-700/60 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-slate-500 ${isSold ? 'sold-out' : ''}">
+                        <div>
+                            <!-- Gambar Unit & Badge -->
+                            <div class="relative h-56 bg-slate-900 overflow-hidden">
+                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                                <div class="absolute top-3 right-3">
+                                    ${statusBadge}
+                                </div>
+                                <div class="absolute bottom-2 left-3 bg-slate-950/80 px-2 py-0.5 rounded text-xs text-slate-400 border border-slate-800">
+                                    ID: ${item.id}
+                                </div>
+                            </div>
+
+                            <!-- Detail Konten -->
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-white mb-2 line-clamp-2">${item.title}</h3>
+                                <div class="text-xl font-extrabold text-cyan-400 mb-4">${formatRupiah(item.price)}</div>
+
+                                <!-- Spesifikasi Detail -->
+                                <div class="bg-slate-900/80 rounded-lg p-3 border border-slate-800 mb-4 text-xs space-y-1.5 text-slate-300">
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-microchip w-4 text-cyan-400"></i> <span class="font-medium">${item.specs.processor}</span></div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-memory w-4 text-cyan-400"></i> <span>${item.specs.ram}</span></div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-display w-4 text-cyan-400"></i> <span>${item.specs.gpu}</span></div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-hard-drive w-4 text-cyan-400"></i> <span>${item.specs.storage}</span></div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-plug w-4 text-cyan-400"></i> <span>${item.specs.psu}</span></div>
+                                    ${extrasHTML}
+                                </div>
+
+                                <!-- Info Kondisi -->
+                                <div class="text-xs text-slate-400 space-y-1">
+                                    <p><strong class="text-slate-200">Kondisi:</strong> ${item.condition}</p>
+                                    <p><strong class="text-slate-200">Garansi:</strong> <span class="text-emerald-400">${item.warranty}</span></p>
+                                    ${item.location ? `<p><strong class="text-slate-200">Lokasi:</strong> ${item.location}</p>` : ''}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="p-5 pt-0">
+                            ${isSold 
+                                ? `<button disabled class="w-full bg-slate-700/50 text-slate-500 py-2.5 rounded-lg text-sm font-semibold cursor-not-allowed">Unit Sudah Terjual</button>`
+                                : `<a href="${waUrl}" target="_blank" class="block text-center w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-lg text-sm font-semibold transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-lg align-middle mr-1"></i> Tanya Unit via WA
+                                   </a>`
+                            }
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
+            });
+        }
+
+        // Jalankan fungsi saat halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', renderCards);
+    </script>
+</body>
+</html>
