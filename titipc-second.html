@@ -3,209 +3,658 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Komputer Bekas Titipan - Dokter Komputer</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome untuk Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Katalog Titipan Komputer Bekas | Dokter Komputer</title>
     <style>
-        .sold-out {
-            filter: grayscale(80%);
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #07090c;
+            color: #e0e6ed;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* HINT SWIPE BANNER */
+        .swipe-hint {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: rgba(17, 22, 29, 0.95);
+            color: #38ef7d;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            text-transform: uppercase;
+        }
+
+        /* MAIN HORIZONTAL SLIDER */
+        .catalog-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            width: 100vw;
+            min-height: 100vh;
+            padding-top: 45px;
+            padding-bottom: 60px;
+        }
+
+        .catalog-slider::-webkit-scrollbar { display: none; }
+        .catalog-slider { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* PRODUCT CARD CONTAINER */
+        .product-slide {
+            flex: 0 0 100vw;
+            width: 100vw;
+            scroll-snap-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            background: #0d1117;
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        /* BADGE STATUS (AVAILABLE / SOLD) - EDITABLE & DYNAMIC */
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+        
+        /* State Available */
+        .status-badge.available {
+            background: rgba(56, 239, 125, 0.15);
+            color: #38ef7d;
+            border: 1px solid #38ef7d;
+            box-shadow: 0 0 10px rgba(56, 239, 125, 0.3);
+        }
+
+        /* State Sold (Kalau sudah laku, ganti class di HTML jadi status-badge sold) */
+        .status-badge.sold {
+            background: rgba(255, 42, 75, 0.15);
+            color: #ff2a4b;
+            border: 1px solid #ff2a4b;
+            box-shadow: 0 0 10px rgba(255, 42, 75, 0.3);
+        }
+
+        /* TAMPILAN JIKA TERJUAL (SOLDOUT OVERLAY STYLES) */
+        .container.is-sold {
             opacity: 0.75;
+            filter: grayscale(40%);
+        }
+
+        /* HEADER SECTION */
+        .header {
+            border-bottom: 2px dashed #1f2937;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            padding-right: 120px; /* Space for status badge */
+        }
+
+        .consign-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #11998e;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .main-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .subtitle {
+            color: #8b98a7;
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        /* GRID CONTENT */
+        .main-content-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .left-col, .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* IMAGE SLIDER AREA */
+        .build-image-wrapper {
+            position: relative;
+            background: #07090c;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            overflow: hidden;
+        }
+
+        .img-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            width: 100%;
+            height: 360px;
+        }
+
+        .img-slider::-webkit-scrollbar { display: none; }
+        .img-slider { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .img-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            scroll-snap-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .img-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .img-hint-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 5;
+        }
+
+        .img-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 5;
+            background: rgba(0,0,0,0.6);
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        .img-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: 0.3s;
+        }
+
+        .img-dot.active {
+            width: 16px;
+            border-radius: 6px;
+            background: #38ef7d;
+        }
+
+        /* SECTION TITLES */
+        .section-title {
+            background: linear-gradient(90deg, #161b22 0%, #0d1117 100%);
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            color: #38ef7d;
+            border-left: 3px solid #38ef7d;
+            text-transform: uppercase;
+        }
+
+        /* SPEK TABLE */
+        .spec-table-wrapper {
+            max-height: 480px;
+            overflow-y: auto;
+            border: 1px solid #161b22;
+            border-radius: 8px;
+            padding-right: 5px;
+        }
+
+        /* Custom Scrollbar for Spec Table */
+        .spec-table-wrapper::-webkit-scrollbar { width: 4px; }
+        .spec-table-wrapper::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #161b22;
+            vertical-align: top;
+        }
+        td.label {
+            color: #8b98a7;
+            font-weight: bold;
+            width: 28%;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+        }
+        td.val {
+            color: #ffffff;
+            font-weight: 500;
+        }
+        td.val ul {
+            list-style-type: disc;
+            margin-left: 15px;
+        }
+
+        /* KONDISI & CATATAN BOX */
+        .condition-box {
+            background: #11161d;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 0.82rem;
+        }
+        .condition-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .condition-item:last-child { margin-bottom: 0; }
+        .condition-icon { color: #38ef7d; font-weight: bold; }
+
+        /* ACTION & PRICE BOX */
+        .action-box {
+            background: linear-gradient(135deg, #131b24 0%, #0d1117 100%);
+            border: 1px solid #11998e;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .price-label { font-size: 0.75rem; color: #8b98a7; text-transform: uppercase; letter-spacing: 1px; }
+        .price-tag {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #38ef7d;
+            margin: 2px 0 10px 0;
+        }
+
+        .btn-wa {
+            display: block;
+            width: 100%;
+            background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+            color: #000000;
+            font-weight: 900;
+            font-size: 0.95rem;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.2s;
+            text-transform: uppercase;
+        }
+        .btn-wa:hover { opacity: 0.9; }
+
+        .btn-sold {
+            display: block;
+            width: 100%;
+            background: #2a2e37;
+            color: #8b98a7;
+            font-weight: 800;
+            font-size: 0.95rem;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: not-allowed;
+            text-transform: uppercase;
+        }
+
+        /* SLIDER NAV DOTS AT BOTTOM */
+        .slider-dots {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            background: rgba(13, 17, 23, 0.95);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #1f2937;
+            z-index: 100;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2a2e37;
+            transition: 0.3s;
+        }
+        .dot.active {
+            width: 26px;
+            border-radius: 10px;
+            background: #38ef7d;
+        }
+
+        /* RESPONSIVE DESAIN HP */
+        @media (max-width: 900px) {
+            .main-content-grid { grid-template-columns: 1fr; }
+            .header { padding-right: 0; margin-top: 25px; }
+            .status-badge { top: 15px; right: 15px; }
+            .main-title { font-size: 1.4rem; }
+            .price-tag { font-size: 1.8rem; }
+            .container { padding: 16px; }
+            .img-slider { height: 280px; }
         }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
+<body>
 
-    <!-- Header Section -->
-    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <i class="fa-solid font-bold text-2xl text-cyan-400 fa-desktop"></i>
-                <h1 class="text-xl font-bold tracking-wide text-white">Dokter Komputer <span class="text-xs bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded border border-cyan-500/20 ml-2">Marketplace Titipan</span></h1>
-            </div>
-            <a href="index.html" class="text-sm text-slate-400 hover:text-cyan-400 transition-colors">
-                <i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke Utama
-            </a>
-        </div>
-    </header>
+    <div class="swipe-hint">
+        👈 GESER KE KIRI UNTUK LIHAT UNIT TITIPAN LAINNYA 👉
+    </div>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
-        
-        <!-- Banner Intro -->
-        <div class="bg-gradient-to-r from-slate-800 to-slate-800/40 p-6 rounded-2xl border border-slate-700/50 mb-8">
-            <h2 class="text-2xl font-bold text-white mb-2">Unit Komputer & PC Titipan Client</h2>
-            <p class="text-slate-400 text-sm max-w-2xl">
-                Semua unit yang dipajang di sini telah melalui proses pengecekan teknis (*quality check*) oleh tim Dokter Komputer untuk memastikan fungsi hardware, suhu, dan performa berjalan normal.
-            </p>
-        </div>
+    <div class="catalog-slider" id="mainSlider">
 
-        <!-- Grid Komputer Bekas -->
-        <div id="pc-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Item akan di-render otomatis oleh JavaScript di bawah -->
-        </div>
-
-    </main>
-
-    <!-- Script Data & Logic -->
-    <script>
-        // =========================================================================
-        // DATA UNIT TITIPAN
-        // =========================================================================
-        const pcData = [
-            {
-                id: "PC-003",
-                title: "1 SET FULL SETUP GAMING & STREAMING (Ryzen 5 7600 + RTX 4070 Super + Dual Monitor + Meja Elektrik)",
-                price: 0, // Isi harga kesepakatan / request seller di sini (misal: 35000000)
-                status: "available",
-                image: "753299037_2671147159996494_4103781981239067464_n.jpg", // Menggunakan foto dari unit customer
-                specs: {
-                    processor: "AMD Ryzen 5 7600 (Garansi Resmi, Dus & Cooler Ori Ada)",
-                    motherboard: "Asrock B650M Pro RS",
-                    ram: "64GB (4x16GB) XPG Lancer RGB DDR5 6000MHz (Lifetime)",
-                    gpu: "Gigabyte RTX 4070 Super Windforce 12GB GDDR6X",
-                    storage: "15TB (1TB + 2TB NVMe Gen4 + 12TB HDD WDC Blue)",
-                    psu: "FSP HV Pro 650W 80+ Bronze Certified",
-                    case: "Segotep Endura Pro + (AIO Deepcool LQ720 + 6 Fan FC120)"
-                },
-                extras: [
-                    "<strong>Monitor:</strong> Lenovo G34W-30 (34\" 2K 170Hz) + Lenovo R27Q-30 (27\" 2K 180Hz)",
-                    "<strong>Gear:</strong> Razer Ornata V3 X, Mouse Razer Basilisk V3, Cam 4K, Mic NYK, Controller Xbox & Gulikit",
-                    "<strong>Furniture:</strong> Meja Elektrik MxStark, Kursi Fantech OCA258, Footrest, Wooden Shelf",
-                    "<strong>Power:</strong> Dual UPS APC (BVX1200 650W + BVX700 360W)",
-                    "<strong>Lainnya:</strong> Full Lighting RGB, Pegboard Set, Docking HDD, Soundbar Pioneer SBX101"
-                ],
-                condition: "Full set borongan All-In (termasuk meja, lampu, pegboard, baut & dus lengkap rapi). Tinggal pakai!",
-                warranty: "Garansi part 1-2 tahun, SSD 4 tahun, RAM Lifetime",
-                location: "Bekasi Timur Regensi"
-            },
-            {
-                id: "PC-001",
-                title: "PC Gaming Core i5 Gen 10 + GTX 1660 Super",
-                price: 5800000,
-                status: "available",
-                image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80",
-                specs: {
-                    processor: "Intel Core i5-10400F",
-                    motherboard: "H410M Asrock",
-                    ram: "16GB (2x8GB) DDR4 3200MHz",
-                    gpu: "Nvidia GTX 1660 Super 6GB GDDR6",
-                    storage: "SSD NVMe 512GB",
-                    psu: "500W 80+ Bronze",
-                    case: "AeroCool RGB Acrylic Side"
-                },
-                condition: "Bekas pemakaian pribadi 1 tahun. Fungsi normal 100%, suhu adem, pemakaian bersih.",
-                warranty: "Garansi Toko 14 Hari"
-            },
-            {
-                id: "PC-002",
-                title: "PC Editing / Gaming Ryzen 5 3600 + RTX 2060",
-                price: 6500000,
-                status: "sold",
-                image: "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&auto=format&fit=crop&q=80",
-                specs: {
-                    processor: "AMD Ryzen 5 3600",
-                    motherboard: "B450M MSI Mortar",
-                    ram: "16GB (2x8GB) DDR4 3200MHz",
-                    gpu: "RTX 2060 6GB GDDR6",
-                    storage: "SSD NVMe 256GB + HDD 1TB",
-                    psu: "550W 80+ Bronze Corsair",
-                    case: "Montech x3 Mesh White"
-                },
-                condition: "Titipan pelanggan upgrade. Sudah dibersihkan & ganti thermal paste baru.",
-                warranty: "Garansi Toko 7 Hari"
-            }
-        ];
-
-        // Format Angka ke Rupiah
-        function formatRupiah(number) {
-            if (!number || number === 0) return "Hubungi Admin (Nego)";
-            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
-        }
-
-        // Render Cards ke HTML
-        function renderCards() {
-            const container = document.getElementById('pc-container');
-            container.innerHTML = '';
-
-            pcData.forEach(item => {
-                const isSold = item.status.toLowerCase() === 'sold';
+        <!-- ======================================================= -->
+        <!-- UNIT TITIPAN 1 (DATA USER)                              -->
+        <!-- ======================================================= -->
+        <div class="product-slide">
+            <!-- CATATAN EDIT STATUS: 
+                 - Kalau Masih Ada: pakaikan class "container" & status-badge pake class "available"
+                 - Kalau Sudah Laku: pakaikan class "container is-sold" & status-badge pake class "sold"
+            -->
+            <div class="container">
                 
-                // Badge Status
-                const statusBadge = isSold 
-                    ? `<span class="bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"><i class="fa-solid fa-circle-xmark mr-1"></i> Sold / Terjual</span>`
-                    : `<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"><i class="fa-solid fa-circle-check mr-1"></i> Available</span>`;
+                <!-- BADGE STATUS (Ubah tulisan & class sesuai ketersediaan) -->
+                <div class="status-badge available">AVAILABLE</div>
 
-                // Render Extras jika ada
-                let extrasHTML = '';
-                if (item.extras && item.extras.length > 0) {
-                    extrasHTML = `<div class="mt-3 pt-3 border-t border-slate-800 space-y-1 text-xs text-slate-300">`;
-                    item.extras.forEach(extra => {
-                        extrasHTML += `<div class="line-clamp-1"><i class="fa-solid fa-plus text-cyan-400 mr-1.5"></i>${extra}</div>`;
-                    });
-                    extrasHTML += `</div>`;
-                }
+                <div class="header">
+                    <div class="consign-tag">🤝 TITIP JUAL • UNIT CLIENT DOKTER KOMPUTER</div>
+                    <h1 class="main-title">1 SET FULL SETUP GAMING & STREAMING DUAL MONITOR</h1>
+                    <p class="subtitle">Dijual borongan / 1 set all in (Tidak mengeteng). Siap pakai untuk Heavy Gaming & Production.</p>
+                </div>
 
-                // Link Whatsapp
-                const waMessage = encodeURIComponent(`Halo Dokter Komputer, saya berminat dengan unit titipan: ${item.title} (${item.id}). Apakah unit ini masih ada?`);
-                const waUrl = `https://wa.me/6281234567890?text=${waMessage}`; // Ganti nomor WA kamu
-
-                const cardHTML = `
-                    <div class="bg-slate-800/60 rounded-xl border border-slate-700/60 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-slate-500 ${isSold ? 'sold-out' : ''}">
-                        <div>
-                            <!-- Gambar Unit & Badge -->
-                            <div class="relative h-56 bg-slate-900 overflow-hidden">
-                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
-                                <div class="absolute top-3 right-3">
-                                    ${statusBadge}
-                                </div>
-                                <div class="absolute bottom-2 left-3 bg-slate-950/80 px-2 py-0.5 rounded text-xs text-slate-400 border border-slate-800">
-                                    ID: ${item.id}
-                                </div>
+                <div class="main-content-grid">
+                    
+                    <!-- LEFT COLUMN: FOTO SLIDER & KONDISI -->
+                    <div class="left-col">
+                        <!-- GALERI FOTO SLIDE -->
+                        <div class="build-image-wrapper">
+                            <span class="img-hint-badge">📷 1/3 Foto</span>
+                            <div class="img-slider">
+                                <!-- Ganti src sesuai nama file foto unit titipan -->
+                                <div class="img-slide"><img src="images/titipan1-1.png" alt="Setup Full View"></div>
+                                <div class="img-slide"><img src="images/titipan1-2.png" alt="PC Rig Detail"></div>
+                                <div class="img-slide"><img src="images/titipan1-3.png" alt="Dual Monitor & Peripherals"></div>
                             </div>
-
-                            <!-- Detail Konten -->
-                            <div class="p-5">
-                                <h3 class="text-lg font-bold text-white mb-2 line-clamp-2">${item.title}</h3>
-                                <div class="text-xl font-extrabold text-cyan-400 mb-4">${formatRupiah(item.price)}</div>
-
-                                <!-- Spesifikasi Detail -->
-                                <div class="bg-slate-900/80 rounded-lg p-3 border border-slate-800 mb-4 text-xs space-y-1.5 text-slate-300">
-                                    <div class="flex items-center gap-2"><i class="fa-solid fa-microchip w-4 text-cyan-400"></i> <span class="font-medium">${item.specs.processor}</span></div>
-                                    <div class="flex items-center gap-2"><i class="fa-solid fa-memory w-4 text-cyan-400"></i> <span>${item.specs.ram}</span></div>
-                                    <div class="flex items-center gap-2"><i class="fa-solid fa-display w-4 text-cyan-400"></i> <span>${item.specs.gpu}</span></div>
-                                    <div class="flex items-center gap-2"><i class="fa-solid fa-hard-drive w-4 text-cyan-400"></i> <span>${item.specs.storage}</span></div>
-                                    <div class="flex items-center gap-2"><i class="fa-solid fa-plug w-4 text-cyan-400"></i> <span>${item.specs.psu}</span></div>
-                                    ${extrasHTML}
-                                </div>
-
-                                <!-- Info Kondisi -->
-                                <div class="text-xs text-slate-400 space-y-1">
-                                    <p><strong class="text-slate-200">Kondisi:</strong> ${item.condition}</p>
-                                    <p><strong class="text-slate-200">Garansi:</strong> <span class="text-emerald-400">${item.warranty}</span></p>
-                                    ${item.location ? `<p><strong class="text-slate-200">Lokasi:</strong> ${item.location}</p>` : ''}
-                                </div>
+                            <div class="img-dots">
+                                <div class="img-dot active"></div>
+                                <div class="img-dot"></div>
+                                <div class="img-dot"></div>
                             </div>
                         </div>
 
-                        <!-- Action Button -->
-                        <div class="p-5 pt-0">
-                            ${isSold 
-                                ? `<button disabled class="w-full bg-slate-700/50 text-slate-500 py-2.5 rounded-lg text-sm font-semibold cursor-not-allowed">Unit Sudah Terjual</button>`
-                                : `<a href="${waUrl}" target="_blank" class="block text-center w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-lg text-sm font-semibold transition-colors">
-                                    <i class="fa-brands fa-whatsapp text-lg align-middle mr-1"></i> Tanya Unit via WA
-                                   </a>`
-                            }
+                        <!-- KONDISI & CATATAN -->
+                        <div>
+                            <div class="section-title">KONDISI & GARANSI UNIT</div>
+                            <div class="condition-box">
+                                <div class="condition-item">
+                                    <span class="condition-icon">✔</span>
+                                    <span><strong>Garansi Part Active:</strong> Mayoritas aktif 1–2 tahun, SSD up to 4 tahun, RAM Lifetime Warranty.</span>
+                                </div>
+                                <div class="condition-item">
+                                    <span class="condition-icon">✔</span>
+                                    <span><strong>Kelengkapan:</strong> Pembelian termasuk seluruh dus, baut, kabel, dan aksesoris ori bawaan.</span>
+                                </div>
+                                <div class="condition-item">
+                                    <span class="condition-icon">✔</span>
+                                    <span><strong>Kondisi Physical & Fungsi:</strong> Mulus, terawat, dites langsung oleh tim Dokter Komputer (Lolos QC).</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                `;
-                container.innerHTML += cardHTML;
-            });
-        }
 
-        // Jalankan fungsi saat halaman selesai dimuat
-        document.addEventListener('DOMContentLoaded', renderCards);
+                    <!-- RIGHT COLUMN: DETAIL SPEK & PRICING -->
+                    <div class="right-col">
+                        <div>
+                            <div class="section-title">SPESIFIKASI RIG & GEAR LENGKAP</div>
+                            <div class="spec-table-wrapper">
+                                <table>
+                                    <tr>
+                                        <td class="label">Processor</td>
+                                        <td class="val">AMD Ryzen 5 7600 (Lengkap dus + Stock Cooler belum dipakai)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Motherboard</td>
+                                        <td class="val">Asrock B650M Pro RS</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">RAM</td>
+                                        <td class="val">XPG Lancer RGB DDR5 64GB (4x16GB) 6000MHz (Garansi Lifetime)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">VGA / GPU</td>
+                                        <td class="val">Gigabyte RTX 4070 Super Windforce 12GB GDDR6X</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Storage (15TB)</td>
+                                        <td class="val">
+                                            • SSD NVMe XPG S70 Blade 1TB Gen4 (System)<br>
+                                            • SSD NVMe XPG S70 Blade 2TB Gen4 (Apps/Games)<br>
+                                            • HDD WDC Blue 2TB x2 (4TB)<br>
+                                            • HDD WDC Blue 4TB x2 (8TB)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Cooling & Fans</td>
+                                        <td class="val">Deepcool LQ720 AIO Water Cooling + Thermalright TR SSD Heatsink + Deepcool FC120 3in1 (2 Set / 6 Fans)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Case & PSU</td>
+                                        <td class="val">Segotep Endura Pro + | PSU FSP HV Pro 650W 80+ Bronze</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Dual Monitor</td>
+                                        <td class="val">
+                                            • <strong>Primary:</strong> Lenovo G34W-30 (34" UltraWide 2K 170Hz)<br>
+                                            • <strong>Secondary:</strong> Lenovo R27Q-30 (27" 2K 180Hz)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Peripherals</td>
+                                        <td class="val">Keyboard Razer Ornata V3 X, Mouse Razer Basilisk V3 + Darkflash FLEX800, Webcam Razer Kiyo X & EYD PC05 4K, Mic NYK Nemesis Lumos + Arm Stand, Controller Xbox Series S/X + Gulikit KK3 Max (+ Docking/Battery), Audio Soundbar Pioneer SBX101 Subwoofer.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Meja & Kursi</td>
+                                        <td class="val">MxStark Electric Standing Desk + Custom Wooden Desk Shelf | Kursi Fantech OCA258 + Rexus Angle Pedestal Footrest</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">UPS & Bracket</td>
+                                        <td class="val">APC BVX1200 650W (PC) + APC BVX700 360W (Monitor) | Bracket Oximus P100 Gas Spring & Oximus Z02</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Aksesoris & Lighting</td>
+                                        <td class="val">Intel AX210 WiFi 6E + BT 5.2, Orico HDD Docking 2 Bay, HLFEC Sensor Panel IPS 3.5", EZDIY FAB GPU Holder ARGB, Screenbar Lightbar, Pegboard Light, RGB Ambient, 2x Studio LED Light 11" + Stand, Jam Digital LED.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- ACTION / PRICING BOX -->
+                        <div class="action-box">
+                            <div class="price-label">Harga Titipan (Nego Tipis / All-In)</div>
+                            <!-- ISI HARGA YANG DISEPAKATI DENGAN OWNER UNIT -->
+                            <div class="price-tag">Rp [Isi Harga]</div>
+                            
+                            <!-- JIKA MASIH AVAILABLE -->
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Unit%20Titipan%201%20Set%20Setup%20Gaming%20Streaming%20Ryzen%205%207600%20RTX%204070%20Super" class="btn-wa" target="_blank">
+                                💬 Hubungi Dokter Komputer / Nego
+                            </a>
+
+                            <!-- JIKA SUDAH SOLD (Tinggal hilangkan komen di bawah dan hapus tombol WA) -->
+                            <!-- <div class="btn-sold">❌ UNIT TERJUAL (SOLD OUT)</div> -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ======================================================= -->
+        <!-- CONTOH UNIT TITIPAN 2 (Bisa Di-copy Paste buat item baru) -->
+        <!-- ======================================================= -->
+        <div class="product-slide">
+            <!-- Contoh Tampilan yang SUDAH SOLD OUT -->
+            <div class="container is-sold">
+                <div class="status-badge sold">SOLD OUT</div>
+
+                <div class="header">
+                    <div class="consign-tag">🤝 TITIP JUAL • UNIT CLIENT DOKTER KOMPUTER</div>
+                    <h1 class="main-title">PC EDITING & RENDERING I7 12700K + RTX 3070</h1>
+                    <p class="subtitle">Unit bekas pakai pemakaian kantor arsitek, sangat mulus.</p>
+                </div>
+
+                <div class="main-content-grid">
+                    <div class="left-col">
+                        <div class="build-image-wrapper">
+                            <span class="img-hint-badge">📷 1/1 Foto</span>
+                            <div class="img-slider">
+                                <div class="img-slide"><img src="images/titipan2-1.png" alt="Unit Sold"></div>
+                            </div>
+                            <div class="img-dots">
+                                <div class="img-dot active"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="section-title">KONDISI & GARANSI UNIT</div>
+                            <div class="condition-box">
+                                <div class="condition-item">
+                                    <span class="condition-icon">✖</span>
+                                    <span><strong>Status:</strong> Terjual ke Customer Bekasi.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-col">
+                        <div>
+                            <div class="section-title">SPESIFIKASI SINGKAT</div>
+                            <div class="spec-table-wrapper">
+                                <table>
+                                    <tr><td class="label">Processor</td><td class="val">Intel Core i7 12700K</td></tr>
+                                    <tr><td class="label">VGA</td><td class="val">RTX 3070 8GB GDDR6</td></tr>
+                                    <tr><td class="label">RAM</td><td class="val">32GB DDR4 3200MHz</td></tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="action-box">
+                            <div class="price-label">Harga Terjual</div>
+                            <div class="price-tag" style="color: #ff2a4b; text-decoration: line-through;">Rp 14.500.000</div>
+                            <div class="btn-sold">❌ UNIT TERJUAL (SOLD OUT)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MAIN SLIDER DOTS NAVIGATION -->
+    <div class="slider-dots">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+    </div>
+
+    <script>
+        // MAIN SLIDER NAVIGATION DOTS
+        const mainSlider = document.getElementById('mainSlider');
+        const mainDots = document.querySelectorAll('.slider-dots .dot');
+
+        mainSlider.addEventListener('scroll', () => {
+            const scrollPosition = mainSlider.scrollLeft;
+            const slideWidth = window.innerWidth;
+            const activeIndex = Math.round(scrollPosition / slideWidth);
+
+            mainDots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        });
+
+        // INNER IMAGE SLIDER DOTS & COUNTER
+        const imageWrappers = document.querySelectorAll('.build-image-wrapper');
+
+        imageWrappers.forEach(wrapper => {
+            const imgSlider = wrapper.querySelector('.img-slider');
+            const imgDots = wrapper.querySelectorAll('.img-dot');
+            const hintBadge = wrapper.querySelector('.img-hint-badge');
+            const totalImages = imgDots.length;
+
+            imgSlider.addEventListener('scroll', () => {
+                const scrollLeft = imgSlider.scrollLeft;
+                const width = imgSlider.clientWidth;
+                const activeIndex = Math.round(scrollLeft / width);
+
+                if (hintBadge) {
+                    hintBadge.innerText = `📷 ${activeIndex + 1}/${totalImages} Foto`;
+                }
+
+                imgDots.forEach((dot, index) => {
+                    if (index === activeIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
