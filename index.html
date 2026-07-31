@@ -22,27 +22,28 @@
       min-height: 100vh; 
     } 
 
-    /* Container Utama */ 
-    .container { 
-      max-width: 1200px; 
-      margin: 0 auto; 
-      padding: 30px 20px 50px 20px; 
-    } 
-
     /* STYLING HEADER LOGO */ 
     .brand-header { 
       text-align: center; 
-      margin-bottom: 25px; 
+      padding: 30px 20px 15px 20px; 
     } 
     
     .brand-logo { 
       max-width: 180px; 
       height: auto; 
       display: block; 
-      margin: 0 auto 15px auto; 
+      margin: 0 auto; 
       mix-blend-mode: screen;  
       filter: drop-shadow(0 0 12px rgba(223, 177, 91, 0.3)); 
     } 
+
+    /* WRAPPER HERO BANNER (FULL WIDTH / MAXIMUM BREAKPOINT) */
+    .hero-banner-wrapper {
+      width: 100%;
+      max-width: 1800px; /* Maksimal lebar ala Enterkomputer */
+      margin: 0 auto 40px auto;
+      padding: 0 15px; /* Padding minimal agar di layar HP tidak terlalu mepet ke border screen */
+    }
 
     /* STYLING BANNER CAROUSEL */ 
     .banner-slider-container { 
@@ -50,7 +51,6 @@
       width: 100%; 
       border-radius: 16px; 
       overflow: hidden; 
-      margin-bottom: 40px; 
       border: 1px solid #102636; 
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); 
       transition: border-color 0.3s ease; 
@@ -95,14 +95,14 @@
       background: rgba(3, 10, 16, 0.6);
       color: #dfb15b;
       border: 1px solid #dfb15b;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: bold;
       z-index: 12;
       backdrop-filter: blur(4px);
@@ -115,13 +115,13 @@
       box-shadow: 0 0 12px rgba(223, 177, 91, 0.6);
     }
 
-    .slider-arrow.prev { left: 15px; }
-    .slider-arrow.next { right: 15px; }
+    .slider-arrow.prev { left: 20px; }
+    .slider-arrow.next { right: 20px; }
 
     /* Dots Indicator Banner */ 
     .slider-dots { 
       position: absolute; 
-      bottom: 12px; 
+      bottom: 15px; 
       left: 50%; 
       transform: translateX(-50%); 
       display: flex; 
@@ -147,6 +147,13 @@
       background: #dfb15b; 
       width: 24px; 
       border-radius: 10px; 
+    } 
+
+    /* Container Utama untuk Konten Kategori (1200px) */ 
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 20px 50px 20px; 
     } 
 
     /* Header Kategori */ 
@@ -409,7 +416,11 @@
       .category-grid-4, .category-grid-3 { 
         grid-template-columns: repeat(2, 1fr); 
       } 
+      .hero-banner-wrapper {
+        padding: 0 10px;
+      }
     } 
+
     @media (max-width: 576px) { 
       .category-grid-4, .category-grid-3 { 
         grid-template-columns: 1fr; 
@@ -427,6 +438,22 @@
         height: 58px;
         padding: 8px;
       }
+      .hero-banner-wrapper {
+        padding: 0; /* Di HP benar-benar rapat sampai ujung layar */
+        margin-bottom: 30px;
+      }
+      .banner-slider-container {
+        border-radius: 0; /* Datar di seluler agar penuh seratus persen */
+        border-left: none;
+        border-right: none;
+      }
+      .slider-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+      }
+      .slider-arrow.prev { left: 8px; }
+      .slider-arrow.next { right: 8px; }
     } 
   </style> 
 </head> 
@@ -452,14 +479,13 @@
     </div> 
   </div> 
 
-  <div class="container"> 
+  <!-- LOGO UTAMA (DILUAR CONTAINER BANNER & KATEGORI) --> 
+  <header class="brand-header"> 
+    <img src="images/logo.png" alt="Logo Dokter Komputer" class="brand-logo"> 
+  </header> 
 
-    <!-- LOGO UTAMA --> 
-    <header class="brand-header"> 
-      <img src="images/logo.png" alt="Logo Dokter Komputer" class="brand-logo"> 
-    </header> 
-
-    <!-- BANNER SLIDER AUTOMATIS & MANUAL --> 
+  <!-- HERO BANNER WRAPPER (MAX-WIDTH 1800PX ATAU FULL VIEWPORT) -->
+  <div class="hero-banner-wrapper">
     <div class="banner-slider-container" id="bannerSlider"> 
       <button class="slider-arrow prev" onclick="prevSlide()">&#10094;</button>
       <button class="slider-arrow next" onclick="nextSlide()">&#10095;</button>
@@ -500,6 +526,10 @@
         <button class="dot-btn" onclick="goToSlide(4)"></button> 
       </div> 
     </div> 
+  </div>
+
+  <!-- CONTAINER KONTEN KATEGORI (MAX-WIDTH 1200PX) -->
+  <div class="container"> 
 
     <!-- 1. SECTION KATEGORI PC --> 
     <section class="category-section"> 
@@ -555,7 +585,7 @@
       </div> 
     </section> 
 
-    <!-- 2. SECTION KATEGORI LAPTOP (YANG BARU DITAMBAHKAN) --> 
+    <!-- 2. SECTION KATEGORI LAPTOP --> 
     <section class="category-section"> 
       <div class="category-header"> 
         <span class="category-badge">LAPTOP CATEGORY</span> 
