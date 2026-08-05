@@ -24,7 +24,6 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding-bottom: 80px; /* Space for sticky total bar */
     }
 
     /* Navbar */
@@ -56,7 +55,7 @@
     .brand-logo span { color: #dfb15b; }
 
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 30px auto;
       padding: 0 20px;
       width: 100%;
@@ -131,10 +130,22 @@
       font-weight: 600;
     }
 
-    /* Form Spec Grid */
+    /* Grid Table Headers & Rows */
+    .table-header {
+      display: grid;
+      grid-template-columns: 140px 1fr 130px 70px 140px;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 2px solid rgba(223, 177, 91, 0.3);
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #dfb15b;
+      text-transform: uppercase;
+    }
+
     .part-row {
       display: grid;
-      grid-template-columns: 140px 1fr 100px 70px;
+      grid-template-columns: 140px 1fr 130px 70px 140px;
       gap: 12px;
       align-items: center;
       padding: 12px 0;
@@ -145,9 +156,6 @@
       font-weight: 700;
       font-size: 0.9rem;
       color: #dfb15b;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .form-control {
@@ -172,45 +180,65 @@
     }
 
     .input-qty { text-align: center; }
+    
+    .unit-price, .subtotal-price {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      text-align: right;
+    }
 
-    /* Sticky Total Price Bar */
-    .total-price-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(13, 20, 32, 0.95);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(223, 177, 91, 0.3);
-      padding: 15px 8%;
+    .subtotal-price {
+      color: #dfb15b;
+    }
+
+    /* Summary & Total Section */
+    .summary-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 99;
-      box-shadow: 0 -10px 25px rgba(0,0,0,0.5);
+      padding: 20px 0 10px 0;
+      margin-top: 15px;
+      border-top: 2px solid rgba(223, 177, 91, 0.3);
     }
 
-    .total-title {
-      font-size: 0.85rem;
-      color: #94a3b8;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .total-label {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
     }
 
-    .total-amount {
+    .total-val {
       font-size: 1.5rem;
       font-weight: 800;
       color: #dfb15b;
     }
 
-    /* Additional Contact Section */
+    .disclaimer-box {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid #ef4444;
+      color: #fca5a5;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-align: center;
+      margin: 15px 0 25px 0;
+      letter-spacing: 0.5px;
+    }
+
+    /* Contact Details Form */
     .contact-section {
-      margin-top: 25px;
+      margin-top: 20px;
       padding-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 15px;
+    }
+
+    .full-width {
+      grid-column: span 2;
     }
 
     .btn-submit-wa {
@@ -286,7 +314,8 @@
       margin-top: 40px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 850px) {
+      .table-header { display: none; }
       .part-row {
         grid-template-columns: 1fr;
         gap: 8px;
@@ -295,8 +324,9 @@
         border-radius: 12px;
         margin-bottom: 10px;
       }
+      .unit-price, .subtotal-price { text-align: left; }
       .contact-section { grid-template-columns: 1fr; }
-      .total-price-bar { flex-direction: column; gap: 5px; text-align: center; }
+      .full-width { grid-column: span 1; }
     }
   </style>
 
@@ -347,175 +377,198 @@
 
       <form id="buildForm" onsubmit="submitBuildRequest(event)">
 
+        <div class="table-header">
+          <div>Komponen</div>
+          <div>List Pilihan</div>
+          <div style="text-align: right;">Harga</div>
+          <div style="text-align: center;">Qty</div>
+          <div style="text-align: right;">Price</div>
+        </div>
+
         <!-- PROCESSOR -->
         <div class="part-row">
           <div class="part-label">Processor</div>
-          <select id="proc_item" class="form-control spec-calc" onchange="onProcessorChange(); calculateTotal();" required>
-            <option value="" data-price="0">-- Pilih Processor AMD Ryzen --</option>
+          <select id="proc_item" class="form-control spec-calc" onchange="onProcessorChange(); updateCalculations();" required>
+            <option value="" data-price="0">-- Pilih Processor --</option>
             <optgroup label="Ryzen 3">
-              <option value="AM4|AMD Ryzen 3 3200G Tray" data-price="1100000">Ryzen 3 3200G Tray - Rp 1.100.000</option>
-              <option value="AM4|AMD Ryzen 3 3300X Tray" data-price="1600000">Ryzen 3 3300X Tray - Rp 1.600.000</option>
+              <option value="AMD Ryzen 3 3200G Tray" data-price="1100000">Ryzen 3 3200G Tray</option>
+              <option value="AMD Ryzen 3 3300X Tray" data-price="1600000">Ryzen 3 3300X Tray</option>
             </optgroup>
             <optgroup label="Ryzen 5">
-              <option value="AM4|AMD Ryzen 5 3600 Tray" data-price="1850000">Ryzen 5 3600 Tray - Rp 1.850.000</option>
-              <option value="AM4|AMD Ryzen 5 5500 Tray" data-price="1600000">Ryzen 5 5500 Tray - Rp 1.600.000</option>
-              <option value="AM4|AMD Ryzen 5 5600GT Tray" data-price="2900000">Ryzen 5 5600GT Tray - Rp 2.900.000</option>
-              <option value="AM4|AMD Ryzen 5 5600 Tray" data-price="2200000">Ryzen 5 5600 Tray - Rp 2.200.000</option>
-              <option value="AM4|AMD Ryzen 5 5600XT Tray" data-price="3500000">Ryzen 5 5600XT Tray - Rp 3.500.000</option>
+              <option value="AMD Ryzen 5 3600 Tray" data-price="1850000">Ryzen 5 3600 Tray</option>
+              <option value="AMD Ryzen 5 5500 Tray" data-price="1600000">Ryzen 5 5500 Tray</option>
+              <option value="AMD Ryzen 5 5600GT Tray" data-price="2900000">Ryzen 5 5600GT Tray</option>
+              <option value="AMD Ryzen 5 5600 Tray" data-price="2200000">Ryzen 5 5600 Tray</option>
+              <option value="AMD Ryzen 5 5600XT Tray" data-price="3500000">Ryzen 5 5600XT Tray</option>
             </optgroup>
             <optgroup label="Ryzen 7">
-              <option value="AM4|AMD Ryzen 7 5700X3D Tray" data-price="5500000">Ryzen 7 5700X3D Tray - Rp 5.500.000</option>
-              <option value="AM4|AMD Ryzen 7 5800X3D BOX" data-price="7800000">Ryzen 7 5800X3D BOX - Rp 7.800.000</option>
-              <option value="AM4|AMD Ryzen 7 5800XT BOX" data-price="5000000">Ryzen 7 5800XT BOX - Rp 5.000.000</option>
-              <option value="AM4|AMD Ryzen 7 5800X BOX" data-price="4500000">Ryzen 7 5800X BOX - Rp 4.500.000</option>
+              <option value="AMD Ryzen 7 5700X3D Tray" data-price="5500000">Ryzen 7 5700X3D Tray</option>
+              <option value="AMD Ryzen 7 5800X3D BOX" data-price="7800000">Ryzen 7 5800X3D BOX</option>
+              <option value="AMD Ryzen 7 5800XT BOX" data-price="5000000">Ryzen 7 5800XT BOX</option>
+              <option value="AMD Ryzen 7 5800X BOX" data-price="4500000">Ryzen 7 5800X BOX</option>
             </optgroup>
             <optgroup label="Ryzen 9">
-              <option value="AM4|AMD Ryzen 9 5900X BOX" data-price="7500000">Ryzen 9 5900X BOX - Rp 7.500.000</option>
+              <option value="AMD Ryzen 9 5900X BOX" data-price="7500000">Ryzen 9 5900X BOX</option>
             </optgroup>
           </select>
-          <select id="proc_condition" class="form-control">
-            <option value="New">New</option>
-            <option value="Second">Second</option>
-          </select>
-          <input type="number" id="proc_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="calculateTotal()" required>
+          <div class="unit-price" id="proc_unit">IDR 0</div>
+          <input type="number" id="proc_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()" required>
+          <div class="subtotal-price" id="proc_subtotal">IDR 0</div>
         </div>
 
         <!-- MOTHERBOARD -->
         <div class="part-row">
           <div class="part-label">Motherboard</div>
-          <select id="mobo_item" class="form-control spec-calc" onchange="calculateTotal()" required disabled>
+          <select id="mobo_item" class="form-control spec-calc" onchange="updateCalculations()" required disabled>
             <option value="" data-price="0">-- Pilih Processor Terlebih Dahulu --</option>
           </select>
-          <select id="mobo_condition" class="form-control">
-            <option value="New">New</option>
-            <option value="Second">Second</option>
-          </select>
-          <input type="number" id="mobo_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="calculateTotal()" required>
+          <div class="unit-price" id="mobo_unit">IDR 0</div>
+          <input type="number" id="mobo_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()" required>
+          <div class="subtotal-price" id="mobo_subtotal">IDR 0</div>
         </div>
 
         <!-- RAM -->
         <div class="part-row">
           <div class="part-label">RAM</div>
-          <select id="ram_item" class="form-control spec-calc" onchange="calculateTotal()" required>
+          <select id="ram_item" class="form-control spec-calc" onchange="updateCalculations()" required>
             <option value="" data-price="0">-- Pilih Kapasitas & Speed RAM --</option>
             <optgroup label="Single Channel">
-              <option value="8GB 2400Mhz Single BNIB" data-price="700000" data-type="ddr4">8GB 2400Mhz Single - Rp 700.000</option>
-              <option value="8GB 2666Mhz Single BNIB" data-price="1000000" data-type="ddr4">8GB 2666Mhz Single - Rp 1.000.000</option>
-              <option value="8GB 3200Mhz Single BNIB" data-price="1200000" data-type="ddr4">8GB 3200Mhz Single - Rp 1.200.000</option>
-              <option value="8GB 3600Mhz Single BNIB" data-price="2500000" data-type="ddr4">8GB 3600Mhz Single - Rp 2.500.000</option>
-              <option value="16GB 2666Mhz Single BNIB" data-price="2000000" data-type="ddr4">16GB 2666Mhz Single - Rp 2.000.000</option>
-              <option value="16GB 3200Mhz Single BNIB" data-price="2000000" data-type="ddr4">16GB 3200Mhz Single - Rp 2.000.000</option>
-              <option value="16GB 3600Mhz Single BNIB" data-price="2500000" data-type="ddr4">16GB 3600Mhz Single - Rp 2.500.000</option>
+              <option value="8GB 2400Mhz Single BNIB" data-price="700000">8GB 2400Mhz Single BNIB</option>
+              <option value="8GB 2666Mhz Single BNIB" data-price="1000000">8GB 2666Mhz Single BNIB</option>
+              <option value="8GB 3200Mhz Single BNIB" data-price="1200000">8GB 3200Mhz Single BNIB</option>
+              <option value="8GB 3600Mhz Single BNIB" data-price="2500000">8GB 3600Mhz Single BNIB</option>
+              <option value="16GB 2666Mhz Single BNIB" data-price="2000000">16GB 2666Mhz Single BNIB</option>
+              <option value="16GB 3200Mhz Single BNIB" data-price="2000000">16GB 3200Mhz Single BNIB</option>
+              <option value="16GB 3600Mhz Single BNIB" data-price="2500000">16GB 3600Mhz Single BNIB</option>
             </optgroup>
             <optgroup label="Dual Channel Kit">
-              <option value="16GB (2x8GB) 2666Mhz Kit BNIB" data-price="2600000" data-type="ddr4">16GB Kit (2x8GB) 2666Mhz - Rp 2.600.000</option>
-              <option value="16GB (2x8GB) 3200Mhz Kit BNIB" data-price="2600000" data-type="ddr4">16GB Kit (2x8GB) 3200Mhz - Rp 2.600.000</option>
-              <option value="16GB (2x8GB) 3600Mhz Kit BNIB" data-price="2600000" data-type="ddr4">16GB Kit (2x8GB) 3600Mhz - Rp 2.600.000</option>
+              <option value="16GB (2x8GB) 2666Mhz Kit BNIB" data-price="2600000">16GB (2x8GB) 2666Mhz Kit BNIB</option>
+              <option value="16GB (2x8GB) 3200Mhz Kit BNIB" data-price="2600000">16GB (2x8GB) 3200Mhz Kit BNIB</option>
+              <option value="16GB (2x8GB) 3600Mhz Kit BNIB" data-price="2600000">16GB (2x8GB) 3600Mhz Kit BNIB</option>
             </optgroup>
           </select>
-          <select id="ram_condition" class="form-control">
-            <option value="New">New</option>
-            <option value="Second">Second</option>
-          </select>
-          <input type="number" id="ram_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="calculateTotal()" required>
+          <div class="unit-price" id="ram_unit">IDR 0</div>
+          <input type="number" id="ram_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()" required>
+          <div class="subtotal-price" id="ram_subtotal">IDR 0</div>
         </div>
 
-        <!-- SSD -->
+        <!-- STORAGE -->
         <div class="part-row">
-          <div class="part-label">SSD NVMe</div>
-          <select id="ssd_item" class="form-control spec-calc" onchange="calculateTotal()" required>
-            <option value="" data-price="0">-- Pilih Kapasitas SSD NVMe --</option>
+          <div class="part-label">STORAGE</div>
+          <select id="storage_item" class="form-control spec-calc" onchange="updateCalculations()" required>
+            <option value="" data-price="0">-- Pilih SSD NVMe --</option>
             <optgroup label="Gen3">
-              <option value="128GB NVMe Gen3" data-price="750000">128GB Gen3 - Rp 750.000</option>
-              <option value="256GB NVMe Gen3" data-price="1450000">256GB Gen3 - Rp 1.450.000</option>
-              <option value="512GB NVMe Gen3" data-price="1750000">512GB Gen3 - Rp 1.750.000</option>
-              <option value="1TB NVMe Gen3" data-price="2900000">1TB Gen3 - Rp 2.900.000</option>
+              <option value="128GB NVMe Gen3" data-price="750000">128GB NVMe Gen3</option>
+              <option value="256GB NVMe Gen3" data-price="1450000">256GB NVMe Gen3</option>
+              <option value="512GB NVMe Gen3" data-price="1750000">512GB NVMe Gen3</option>
+              <option value="1TB NVMe Gen3" data-price="2900000">1TB NVMe Gen3</option>
             </optgroup>
             <optgroup label="Gen4">
-              <option value="256GB NVMe Gen4" data-price="1450000">256GB Gen4 - Rp 1.450.000</option>
-              <option value="512GB NVMe Gen4" data-price="1950000">512GB Gen4 - Rp 1.950.000</option>
-              <option value="1TB NVMe Gen4" data-price="3600000">1TB Gen4 - Rp 3.600.000</option>
+              <option value="256GB NVMe Gen4" data-price="1450000">256GB NVMe Gen4</option>
+              <option value="512GB NVMe Gen4" data-price="1950000">512GB NVMe Gen4</option>
+              <option value="1TB NVMe Gen4" data-price="3600000">1TB NVMe Gen4</option>
             </optgroup>
           </select>
-          <select id="ssd_condition" class="form-control">
-            <option value="New">New</option>
-            <option value="Second">Second</option>
-          </select>
-          <input type="number" id="ssd_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="calculateTotal()" required>
+          <div class="unit-price" id="storage_unit">IDR 0</div>
+          <input type="number" id="storage_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()" required>
+          <div class="subtotal-price" id="storage_subtotal">IDR 0</div>
         </div>
 
-        <!-- VGA -->
+        <!-- VGA CARD -->
         <div class="part-row">
-          <div class="part-label">VGA Card</div>
-          <select id="vga_item" class="form-control" required>
-            <option value="">-- Pilih Seri VGA / Graphic Card --</option>
-            <option value="Tanpa VGA (iGPU / Integrated)">Tanpa VGA (Pakai iGPU / Integrated)</option>
-            <optgroup label="NVIDIA GeForce">
-              <option value="NVIDIA GTX 1650 4GB">NVIDIA GTX 1650 4GB</option>
-              <option value="NVIDIA GTX 1660 Super 6GB">NVIDIA GTX 1660 Super 6GB</option>
-              <option value="NVIDIA RTX 3050 6GB / 8GB">NVIDIA RTX 3050 6GB / 8GB</option>
-              <option value="NVIDIA RTX 3060 12GB">NVIDIA RTX 3060 12GB</option>
-              <option value="NVIDIA RTX 4060 8GB">NVIDIA RTX 4060 8GB</option>
-            </optgroup>
-            <optgroup label="AMD Radeon">
-              <option value="AMD Radeon RX 580 8GB">AMD Radeon RX 580 8GB</option>
-              <option value="AMD Radeon RX 6600 8GB">AMD Radeon RX 6600 8GB</option>
-              <option value="AMD Radeon RX 6700 XT 12GB">AMD Radeon RX 6700 XT 12GB</option>
-            </optgroup>
+          <div class="part-label">VGA CARD</div>
+          <select id="vga_item" class="form-control spec-calc" onchange="updateCalculations()" required>
+            <option value="" data-price="0">-- Pilih Seri VGA --</option>
+            <option value="Tanpa VGA (Integrated)" data-price="0">Tanpa VGA (Integrated)</option>
+            <option value="NVIDIA GTX 1650 4GB" data-price="2100000">NVIDIA GTX 1650 4GB</option>
+            <option value="NVIDIA RTX 3060 12GB" data-price="4500000">NVIDIA RTX 3060 12GB</option>
+            <option value="AMD Radeon RX 6600 8GB" data-price="3100000">AMD Radeon RX 6600 8GB</option>
           </select>
-          <select id="vga_condition" class="form-control">
-            <option value="New">New</option>
-            <option value="Second">Second</option>
-          </select>
-          <input type="number" id="vga_qty" class="form-control input-qty" value="1" min="1" required>
+          <div class="unit-price" id="vga_unit">IDR 0</div>
+          <input type="number" id="vga_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()" required>
+          <div class="subtotal-price" id="vga_subtotal">IDR 0</div>
         </div>
 
         <!-- PSU -->
         <div class="part-row">
           <div class="part-label">PSU</div>
-          <select id="psu_item" class="form-control" required>
-            <option value="">-- Pilih Daya PSU (Power Supply) --</option>
-            <option value="450W 80+ Certified">450W 80+</option>
-            <option value="550W 80+ Certified">550W 80+</option>
-            <option value="650W 80+ Certified">650W 80+</option>
-            <option value="750W 80+ Certified">750W 80+</option>
+          <select id="psu_item" class="form-control spec-calc" onchange="updateCalculations()" required>
+            <option value="" data-price="0">-- Pilih PSU --</option>
+            <option value="450W 80+ Bronze" data-price="550000">450W 80+ Bronze</option>
+            <option value="550W 80+ Bronze" data-price="700000">550W 80+ Bronze</option>
+            <option value="650W 80+ Gold" data-price="1100000">650W 80+ Gold</option>
           </select>
-          <select id="psu_condition" class="form-control">
-            <option value="New">New</option>
-            <option value="Second">Second</option>
+          <div class="unit-price" id="psu_unit">IDR 0</div>
+          <input type="number" id="psu_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()" required>
+          <div class="subtotal-price" id="psu_subtotal">IDR 0</div>
+        </div>
+
+        <!-- MONITOR -->
+        <div class="part-row">
+          <div class="part-label">Monitor</div>
+          <select id="monitor_item" class="form-control spec-calc" onchange="updateCalculations()">
+            <option value="" data-price="0">-- Tanpa Monitor --</option>
+            <option value="22 Inch FHD 75Hz" data-price="1100000">22" FHD 75Hz</option>
+            <option value="24 Inch IPS 165Hz" data-price="1800000">24" IPS 165Hz</option>
+            <option value="27 Inch 2K IPS 180Hz" data-price="3200000">27" 2K IPS 180Hz</option>
           </select>
-          <input type="number" id="psu_qty" class="form-control input-qty" value="1" min="1" required>
+          <div class="unit-price" id="monitor_unit">IDR 0</div>
+          <input type="number" id="monitor_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()">
+          <div class="subtotal-price" id="monitor_subtotal">IDR 0</div>
         </div>
 
         <!-- COOLER CPU -->
         <div class="part-row">
           <div class="part-label">Cooler CPU</div>
-          <input type="text" id="cooler_item" class="form-control" placeholder="Ketik Cooler (misal: Stock Cooler / Liquid 240mm)" required style="grid-column: span 2;">
+          <input type="text" id="cooler_item" class="form-control" placeholder="Ketik Cooler (Stock / Air / Liquid Cooler)" required style="grid-column: span 1;">
+          <div class="unit-price">-</div>
           <input type="number" id="cooler_qty" class="form-control input-qty" value="1" min="1" required>
+          <div class="subtotal-price">-</div>
         </div>
 
         <!-- CASING -->
         <div class="part-row">
           <div class="part-label">Casing</div>
-          <input type="text" id="casing_item" class="form-control" placeholder="Ketik Tipe Casing (misal: Aquarium Panoramic Black)" required style="grid-column: span 2;">
+          <input type="text" id="casing_item" class="form-control" placeholder="Ketik Tipe Casing" required style="grid-column: span 1;">
+          <div class="unit-price">-</div>
           <input type="number" id="casing_qty" class="form-control input-qty" value="1" min="1" required>
+          <div class="subtotal-price">-</div>
         </div>
 
-        <!-- DATA DIRI -->
+        <!-- TOTAL DISPLAY -->
+        <div class="summary-row">
+          <div class="total-label">TOTAL ESTIMASI</div>
+          <div class="total-val" id="totalDisplay">IDR 0</div>
+        </div>
+
+        <!-- DISCLAIMER CLEARLY VISIBLE -->
+        <div class="disclaimer-box">
+          *BIAYA BELUM TERMASUK JASA DAN ONGKIR
+        </div>
+
+        <!-- CONTACT INFO -->
         <div class="contact-section">
           <div>
-            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Nomor WhatsApp Kontak</label>
-            <input type="tel" id="whatsapp_no" class="form-control" placeholder="0812xxxxxxxx" required>
+            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">No Whatsapp</label>
+            <input type="tel" id="whatsapp_no" class="form-control" placeholder="08xxxxxxxxxx" required>
           </div>
           <div>
-            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Catatan Tambahan (Opsional)</label>
-            <input type="text" id="user_notes" class="form-control" placeholder="Catatan kustomisasi lainnya...">
+            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Nama</label>
+            <input type="text" id="customer_name" class="form-control" placeholder="Nama Lengkap" required>
+          </div>
+          <div class="full-width">
+            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Alamat</label>
+            <input type="text" id="customer_address" class="form-control" placeholder="Alamat lengkap pengiriman" required>
+          </div>
+          <div class="full-width">
+            <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Catatan Tambahan</label>
+            <input type="text" id="user_notes" class="form-control" placeholder="Catatan kustom kustomisasi...">
           </div>
         </div>
 
         <!-- SUBMIT BUTTON -->
         <button type="submit" class="btn-submit-wa" id="btnSubmit">
-          <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Send Request Build via WhatsApp
+          <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Kirim Pesanan Ke DK
         </button>
 
       </form>
@@ -524,22 +577,13 @@
 
   </div>
 
-  <!-- FLOATING TOTAL PRICE BAR -->
-  <div class="total-price-bar">
-    <div>
-      <div class="total-title">Total Estimasi Komponen Terpilih</div>
-      <div style="font-size: 0.75rem; color: #64748b;">*Harga komponen belum termasuk VGA, PSU, Case, & Cooler</div>
-    </div>
-    <div class="total-amount" id="grandTotal">Rp 0</div>
-  </div>
-
   <!-- POP-UP MODAL -->
   <div id="successModal" class="modal-overlay hidden">
     <div class="modal-content">
       <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
-      <h3 style="color: #fff; margin-bottom: 12px;">Request Build Terkirim!</h3>
+      <h3 style="color: #fff; margin-bottom: 12px;">Pesanan Terkirim!</h3>
       <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">
-        Terima kasih, request build Anda sedang diproses. Mohon ditunggu, admin kami akan menghubungi Anda secara langsung.
+        Terima kasih, pesanan rakitan Anda sedang diproses. Admin Dokter Komputer akan segera menghubungi Anda via WhatsApp.
       </p>
       <button class="btn-close-modal" onclick="closeModal()">Selesai</button>
     </div>
@@ -550,7 +594,7 @@
   </footer>
 
   <script>
-    // Konfigurasi Firebase Project
+    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyABrpNZU5F1OqpEZnR12D4hP1mZEQrth8I",
       authDomain: "dokter-komputer2026.firebaseapp.com",
@@ -567,7 +611,6 @@
     const ADMIN_WA_NUMBER = "6285156553818"; 
     let currentUser = null;
 
-    // Login Google
     function loginWithGoogle() {
       const provider = new firebase.auth.GoogleAuthProvider();
       auth.signInWithPopup(provider).catch(error => alert("Gagal Login: " + error.message));
@@ -585,6 +628,7 @@
         document.getElementById('userName').textContent = user.displayName;
         document.getElementById('userEmail').textContent = user.email;
         document.getElementById('userPhoto').src = user.photoURL || 'https://via.placeholder.com/40';
+        document.getElementById('customer_name').value = user.displayName;
       } else {
         currentUser = null;
         document.getElementById('loginSection').classList.remove('hidden');
@@ -592,150 +636,108 @@
       }
     });
 
-    // Handler Processor Change
     function onProcessorChange() {
       const rawVal = document.getElementById('proc_item').value;
       const moboSelect = document.getElementById('mobo_item');
-      
       moboSelect.innerHTML = '';
 
       if (!rawVal) {
         moboSelect.innerHTML = `<option value="" data-price="0">-- Pilih Processor Terlebih Dahulu --</option>`;
         moboSelect.disabled = true;
-        filterRamOptions('');
         return;
       }
 
-      const socket = rawVal.split('|')[0];
-
-      if (socket === 'AM4') {
-        moboSelect.innerHTML = `
-          <option value="" data-price="0">-- Pilih Motherboard AM4 --</option>
-          <option value="A520 Chipset Motherboard" data-price="1000000">A520 Chipset AM4 - Rp 1.000.000</option>
-          <option value="B550 Chipset Motherboard" data-price="1500000">B550 Chipset AM4 - Rp 1.500.000</option>
-          <option value="X570 Chipset Motherboard" data-price="3000000">X570 Chipset AM4 - Rp 3.000.000</option>
-        `;
-        moboSelect.disabled = false;
-        filterRamOptions('AM4');
-      }
+      moboSelect.innerHTML = `
+        <option value="" data-price="0">-- Pilih Motherboard --</option>
+        <option value="A520 Chipset Motherboard" data-price="1000000">A520 Chipset</option>
+        <option value="B550 Chipset Motherboard" data-price="1500000">B550 Chipset</option>
+        <option value="X570 Chipset Motherboard" data-price="3000000">X570 Chipset</option>
+      `;
+      moboSelect.disabled = false;
     }
 
-    function filterRamOptions(socket) {
-      const ramSelect = document.getElementById('ram_item');
-      const options = ramSelect.querySelectorAll('option');
+    function updateCalculations() {
+      let grandTotal = 0;
+      const rows = document.querySelectorAll('.part-row');
 
-      let currentSelectedValid = false;
-
-      options.forEach(opt => {
-        const type = opt.getAttribute('data-type');
-        if (!type) return;
-
-        if (socket === 'AM4') {
-          if (type === 'ddr4') {
-            opt.hidden = false;
-            opt.disabled = false;
-          } else {
-            opt.hidden = true;
-            opt.disabled = true;
-          }
-        }
-
-        if (opt.selected && !opt.disabled) {
-          currentSelectedValid = true;
-        }
-      });
-
-      if (!currentSelectedValid) {
-        ramSelect.value = '';
-      }
-    }
-
-    // Hitung Total Otomatis
-    function calculateTotal() {
-      let total = 0;
-
-      const items = document.querySelectorAll('.spec-calc');
-      
-      items.forEach(item => {
-        const selectedOption = item.options[item.selectedIndex];
-        const price = parseInt(selectedOption ? selectedOption.getAttribute('data-price') || 0 : 0);
-        
-        // Cari input Qty di baris yang sama
-        const row = item.closest('.part-row');
+      rows.forEach(row => {
+        const select = row.querySelector('.spec-calc');
         const qtyInput = row.querySelector('.spec-qty');
-        const qty = qtyInput ? parseInt(qtyInput.value || 1) : 1;
+        const unitDisplay = row.querySelector('.unit-price');
+        const subtotalDisplay = row.querySelector('.subtotal-price');
 
-        total += (price * qty);
+        if (select && qtyInput) {
+          const selectedOption = select.options[select.selectedIndex];
+          const price = parseInt(selectedOption ? selectedOption.getAttribute('data-price') || 0 : 0);
+          const qty = parseInt(qtyInput.value || 1);
+          const subtotal = price * qty;
+
+          grandTotal += subtotal;
+
+          if (unitDisplay) unitDisplay.textContent = 'IDR ' + price.toLocaleString('id-ID');
+          if (subtotalDisplay) subtotalDisplay.textContent = 'IDR ' + subtotal.toLocaleString('id-ID');
+        }
       });
 
-      document.getElementById('grandTotal').textContent = 'Rp ' + total.toLocaleString('id-ID');
-      return total;
+      document.getElementById('totalDisplay').textContent = 'IDR ' + grandTotal.toLocaleString('id-ID');
+      return grandTotal;
     }
 
-    // Process & Send Build Request
     function submitBuildRequest(e) {
       e.preventDefault();
 
-      const rawProc = document.getElementById('proc_item').value;
-      const cleanProcName = rawProc.includes('|') ? rawProc.split('|')[1] : rawProc;
-      const calculatedGrandTotal = calculateTotal();
-
+      const calculatedTotal = updateCalculations();
+      
       const buildData = {
         uid: currentUser.uid,
-        customer_nama: currentUser.displayName,
-        customer_email: currentUser.email,
         customer_wa: document.getElementById('whatsapp_no').value,
+        customer_nama: document.getElementById('customer_name').value,
+        customer_alamat: document.getElementById('customer_address').value,
         notes: document.getElementById('user_notes').value,
-        total_estimasi: 'Rp ' + calculatedGrandTotal.toLocaleString('id-ID'),
+        total_harga: 'IDR ' + calculatedTotal.toLocaleString('id-ID'),
         specs: {
-          processor: `${cleanProcName} [${document.getElementById('proc_condition').value}] (Qty: ${document.getElementById('proc_qty').value})`,
-          motherboard: `${document.getElementById('mobo_item').value} [${document.getElementById('mobo_condition').value}] (Qty: ${document.getElementById('mobo_qty').value})`,
-          ram: `${document.getElementById('ram_item').value} [${document.getElementById('ram_condition').value}] (Qty: ${document.getElementById('ram_qty').value})`,
-          ssd: `${document.getElementById('ssd_item').value} [${document.getElementById('ssd_condition').value}] (Qty: ${document.getElementById('ssd_qty').value})`,
-          vga: `${document.getElementById('vga_item').value} [${document.getElementById('vga_condition').value}] (Qty: ${document.getElementById('vga_qty').value})`,
-          psu: `${document.getElementById('psu_item').value} [${document.getElementById('psu_condition').value}] (Qty: ${document.getElementById('psu_qty').value})`,
+          processor: `${document.getElementById('proc_item').value} (Qty: ${document.getElementById('proc_qty').value})`,
+          motherboard: `${document.getElementById('mobo_item').value} (Qty: ${document.getElementById('mobo_qty').value})`,
+          ram: `${document.getElementById('ram_item').value} (Qty: ${document.getElementById('ram_qty').value})`,
+          storage: `${document.getElementById('storage_item').value} (Qty: ${document.getElementById('storage_qty').value})`,
+          vga: `${document.getElementById('vga_item').value} (Qty: ${document.getElementById('vga_qty').value})`,
+          psu: `${document.getElementById('psu_item').value} (Qty: ${document.getElementById('psu_qty').value})`,
+          monitor: `${document.getElementById('monitor_item').value} (Qty: ${document.getElementById('monitor_qty').value})`,
           cooler: `${document.getElementById('cooler_item').value} (Qty: ${document.getElementById('cooler_qty').value})`,
           casing: `${document.getElementById('casing_item').value} (Qty: ${document.getElementById('casing_qty').value})`
         },
         created_at: firebase.firestore.FieldValue.serverTimestamp()
       };
 
-      // 1. Simpan ke Firestore
       db.collection('custom_builds').add(buildData)
       .then(() => {
-        // 2. Format Teks WhatsApp
         const waText = 
-`*REQUEST BUILD PC - DOKTER KOMPUTER*
+`*FORM PESANAN RAKIT PC - DOKTER KOMPUTER*
 ----------------------------------------
-*Nama Customer:* ${buildData.customer_nama}
-*Email:* ${buildData.customer_email}
-*WA:* ${buildData.customer_wa}
+*Processor:* ${buildData.specs.processor}
+*Motherboard:* ${buildData.specs.motherboard}
+*RAM:* ${buildData.specs.ram}
+*STORAGE:* ${buildData.specs.storage}
+*VGA CARD:* ${buildData.specs.vga}
+*PSU:* ${buildData.specs.psu}
+*Monitor:* ${buildData.specs.monitor}
+*Cooler CPU:* ${buildData.specs.cooler}
+*Casing:* ${buildData.specs.casing}
 
-*SPESIFIKASI RACIKAN:*
-• *Processor:* ${buildData.specs.processor}
-• *Motherboard:* ${buildData.specs.motherboard}
-• *RAM:* ${buildData.specs.ram}
-• *SSD:* ${buildData.specs.ssd}
-• *VGA:* ${buildData.specs.vga}
-• *PSU:* ${buildData.specs.psu}
-• *Cooler CPU:* ${buildData.specs.cooler}
-• *Casing:* ${buildData.specs.casing}
+*TOTAL:* ${buildData.total_harga}
+_*BIAYA BELUM TERMASUK JASA DAN ONGKIR_
 
-*TOTAL ESTIMASI HARGA:* ${buildData.total_estimasi}
-*Catatan:* ${buildData.notes || '-'}
 ----------------------------------------
-_Mohon konfirmasi estimasi harga & ketersediaan stoknya min!_`;
+*No Whatsapp:* ${buildData.customer_wa}
+*Nama:* ${buildData.customer_nama}
+*Alamat:* ${buildData.customer_alamat}
+*Catatan tambahan:* ${buildData.notes || '-'}`;
 
-        // 3. Buka WhatsApp
         const waUrl = `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(waText)}`;
         window.open(waUrl, '_blank');
-
-        // 4. Tampilkan Modal Pop-up
         document.getElementById('successModal').classList.remove('hidden');
       })
-      .catch(err => {
-        alert("Gagal menyimpan request: " + err.message);
-      });
+      .catch(err => alert("Gagal menyimpan pesanan: " + err.message));
     }
 
     function closeModal() {
@@ -743,8 +745,7 @@ _Mohon konfirmasi estimasi harga & ketersediaan stoknya min!_`;
       document.getElementById('buildForm').reset();
       document.getElementById('mobo_item').disabled = true;
       document.getElementById('mobo_item').innerHTML = `<option value="" data-price="0">-- Pilih Processor Terlebih Dahulu --</option>`;
-      filterRamOptions('');
-      calculateTotal();
+      updateCalculations();
     }
   </script>
 </body>
