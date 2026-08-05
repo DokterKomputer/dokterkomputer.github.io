@@ -155,6 +155,11 @@
             object-fit: contain;
             border-radius: 8px;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6));
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .build-image-container img:hover {
+            transform: scale(1.02);
         }
 
         .section-title {
@@ -321,6 +326,51 @@
         .dot-editor-white.active { background: #ffffff; }
         .dot-editor-black.active { background: #00ff66; }
 
+        /* STYLES FOR IMAGE MODAL / POPUP */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.3);
+            animation: zoomIn 0.25s ease-out;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #00d2ff;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
         /* RESPONSIVE DESIGN UNTUK HP */
         @media (max-width: 900px) {
             .main-content-grid {
@@ -344,9 +394,7 @@
 
     <div class="catalog-slider" id="slider">
 
-        <!-- ========================================== -->
-        <!-- KATALOG 1: PROFESSIONAL CREATOR PC         -->
-        <!-- ========================================== -->
+        <!-- KATALOG 1: PROFESSIONAL CREATOR PC -->
         <div class="product-slide">
             <div class="container">
                 <div class="header">
@@ -414,9 +462,7 @@
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- KATALOG 2: DK TIKTOK STREAMER             -->
-        <!-- ========================================== -->
+        <!-- KATALOG 2: DK TIKTOK STREAMER -->
         <div class="product-slide">
             <div class="container">
                 <div class="header">
@@ -483,9 +529,7 @@
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- KATALOG 3: PROJECT CANVAS                  -->
-        <!-- ========================================== -->
+        <!-- KATALOG 3: PROJECT CANVAS -->
         <div class="product-slide">
             <div class="container">
                 <div class="header">
@@ -551,9 +595,7 @@
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- KATALOG 4: DK EDITOR WHITE EDITION         -->
-        <!-- ========================================== -->
+        <!-- KATALOG 4: DK EDITOR WHITE EDITION -->
         <div class="product-slide">
             <div class="container">
                 <div class="header">
@@ -620,9 +662,7 @@
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- KATALOG 5: DK EDITOR BLACK EDITION         -->
-        <!-- ========================================== -->
+        <!-- KATALOG 5: DK EDITOR BLACK EDITION -->
         <div class="product-slide">
             <div class="container">
                 <div class="header">
@@ -700,7 +740,13 @@
         <div class="dot dot-editor-black"></div>
     </div>
 
-    <!-- JS UNTUK UPDATE DOTS -->
+    <!-- ELEMEN MODAL POPUP GAMBAR -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="imgFull">
+    </div>
+
+    <!-- JS UNTUK UPDATE DOTS & MODAL LIGHTBOX -->
     <script>
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
@@ -717,6 +763,32 @@
                     dot.classList.remove('active');
                 }
             });
+        });
+
+        // MODAL LIGHTBOX LOGIC
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('imgFull');
+        const closeBtn = document.querySelector('.close-modal');
+        const productImages = document.querySelectorAll('.build-image-container img');
+
+        // Buka Modal saat Gambar Produk Diklik
+        productImages.forEach(img => {
+            img.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalImg.src = img.src;
+            });
+        });
+
+        // Tutup Modal saat Tombol Close (X) Diklik
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Tutup Modal saat Area Luar Gambar Diklik
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
         });
     </script>
 </body>
