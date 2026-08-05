@@ -24,6 +24,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      padding-bottom: 80px; /* Space for sticky total bar */
     }
 
     /* Navbar */
@@ -133,7 +134,7 @@
     /* Form Spec Grid */
     .part-row {
       display: grid;
-      grid-template-columns: 160px 1fr 120px 80px;
+      grid-template-columns: 140px 1fr 100px 70px;
       gap: 12px;
       align-items: center;
       padding: 12px 0;
@@ -171,6 +172,36 @@
     }
 
     .input-qty { text-align: center; }
+
+    /* Sticky Total Price Bar */
+    .total-price-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(13, 20, 32, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(223, 177, 91, 0.3);
+      padding: 15px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 99;
+      box-shadow: 0 -10px 25px rgba(0,0,0,0.5);
+    }
+
+    .total-title {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .total-amount {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #dfb15b;
+    }
 
     /* Additional Contact Section */
     .contact-section {
@@ -265,6 +296,7 @@
         margin-bottom: 10px;
       }
       .contact-section { grid-template-columns: 1fr; }
+      .total-price-bar { flex-direction: column; gap: 5px; text-align: center; }
     }
   </style>
 
@@ -318,116 +350,117 @@
         <!-- PROCESSOR -->
         <div class="part-row">
           <div class="part-label">Processor</div>
-          <select id="proc_item" class="form-control" onchange="onProcessorChange()" required>
-            <option value="">-- Pilih Processor AMD Ryzen --</option>
-            <optgroup label="AM4 Series">
-              <option value="AM4|AMD Ryzen 3 3200G / 4100">Ryzen 3 Series (AM4)</option>
-              <option value="AM4|AMD Ryzen 5 3600 / 5500 / 5600 / 5600G">Ryzen 5 Series (AM4)</option>
-              <option value="AM4|AMD Ryzen 7 5700X / 5700X3D / 5800X">Ryzen 7 Series (AM4)</option>
-              <option value="AM4|AMD Ryzen 9 5900X / 5950X">Ryzen 9 Series (AM4)</option>
+          <select id="proc_item" class="form-control spec-calc" onchange="onProcessorChange(); calculateTotal();" required>
+            <option value="" data-price="0">-- Pilih Processor AMD Ryzen --</option>
+            <optgroup label="Ryzen 3">
+              <option value="AM4|AMD Ryzen 3 3200G Tray" data-price="1100000">Ryzen 3 3200G Tray - Rp 1.100.000</option>
+              <option value="AM4|AMD Ryzen 3 3300X Tray" data-price="1600000">Ryzen 3 3300X Tray - Rp 1.600.000</option>
             </optgroup>
-            <optgroup label="AM5 Series Next-Gen">
-              <option value="AM5|AMD Ryzen 5 7500F / 7600 / 7600X / 9600X">Ryzen 5 Series (AM5)</option>
-              <option value="AM5|AMD Ryzen 7 7700 / 7800X3D / 9700X">Ryzen 7 Series (AM5)</option>
-              <option value="AM5|AMD Ryzen 9 7900X / 7950X / 7950X3D">Ryzen 9 Series (AM5)</option>
+            <optgroup label="Ryzen 5">
+              <option value="AM4|AMD Ryzen 5 3600 Tray" data-price="1850000">Ryzen 5 3600 Tray - Rp 1.850.000</option>
+              <option value="AM4|AMD Ryzen 5 5500 Tray" data-price="1600000">Ryzen 5 5500 Tray - Rp 1.600.000</option>
+              <option value="AM4|AMD Ryzen 5 5600GT Tray" data-price="2900000">Ryzen 5 5600GT Tray - Rp 2.900.000</option>
+              <option value="AM4|AMD Ryzen 5 5600 Tray" data-price="2200000">Ryzen 5 5600 Tray - Rp 2.200.000</option>
+              <option value="AM4|AMD Ryzen 5 5600XT Tray" data-price="3500000">Ryzen 5 5600XT Tray - Rp 3.500.000</option>
+            </optgroup>
+            <optgroup label="Ryzen 7">
+              <option value="AM4|AMD Ryzen 7 5700X3D Tray" data-price="5500000">Ryzen 7 5700X3D Tray - Rp 5.500.000</option>
+              <option value="AM4|AMD Ryzen 7 5800X3D BOX" data-price="7800000">Ryzen 7 5800X3D BOX - Rp 7.800.000</option>
+              <option value="AM4|AMD Ryzen 7 5800XT BOX" data-price="5000000">Ryzen 7 5800XT BOX - Rp 5.000.000</option>
+              <option value="AM4|AMD Ryzen 7 5800X BOX" data-price="4500000">Ryzen 7 5800X BOX - Rp 4.500.000</option>
+            </optgroup>
+            <optgroup label="Ryzen 9">
+              <option value="AM4|AMD Ryzen 9 5900X BOX" data-price="7500000">Ryzen 9 5900X BOX - Rp 7.500.000</option>
             </optgroup>
           </select>
           <select id="proc_condition" class="form-control">
             <option value="New">New</option>
             <option value="Second">Second</option>
           </select>
-          <input type="number" id="proc_qty" class="form-control input-qty" value="1" min="1" required>
+          <input type="number" id="proc_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="calculateTotal()" required>
         </div>
 
         <!-- MOTHERBOARD -->
         <div class="part-row">
           <div class="part-label">Motherboard</div>
-          <select id="mobo_item" class="form-control" required disabled>
-            <option value="">-- Pilih Processor Terlebih Dahulu --</option>
+          <select id="mobo_item" class="form-control spec-calc" onchange="calculateTotal()" required disabled>
+            <option value="" data-price="0">-- Pilih Processor Terlebih Dahulu --</option>
           </select>
           <select id="mobo_condition" class="form-control">
             <option value="New">New</option>
             <option value="Second">Second</option>
           </select>
-          <input type="number" id="mobo_qty" class="form-control input-qty" value="1" min="1" required>
+          <input type="number" id="mobo_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="calculateTotal()" required>
         </div>
 
         <!-- RAM -->
         <div class="part-row">
           <div class="part-label">RAM</div>
-          <select id="ram_item" class="form-control" required>
-            <option value="">-- Pilih Kapasitas & Tipe RAM --</option>
-            <!-- DDR4 Options -->
-            <option value="8GB DDR4" data-type="ddr4">8 GB DDR4</option>
-            <option value="16GB (2x8GB) DDR4" data-type="ddr4">16 GB DDR4</option>
-            <option value="32GB (2x16GB) DDR4" data-type="ddr4">32 GB DDR4</option>
-            <option value="64GB (2x32GB) DDR4" data-type="ddr4">64 GB DDR4</option>
-            <!-- DDR5 Options -->
-            <option value="8GB DDR5" data-type="ddr5">8 GB DDR5</option>
-            <option value="16GB (2x8GB) DDR5" data-type="ddr5">16 GB DDR5</option>
-            <option value="32GB (2x16GB) DDR5" data-type="ddr5">32 GB DDR5</option>
-            <option value="64GB (2x32GB) DDR5" data-type="ddr5">64 GB DDR5</option>
+          <select id="ram_item" class="form-control spec-calc" onchange="calculateTotal()" required>
+            <option value="" data-price="0">-- Pilih Kapasitas & Speed RAM --</option>
+            <optgroup label="Single Channel">
+              <option value="8GB 2400Mhz Single BNIB" data-price="700000" data-type="ddr4">8GB 2400Mhz Single - Rp 700.000</option>
+              <option value="8GB 2666Mhz Single BNIB" data-price="1000000" data-type="ddr4">8GB 2666Mhz Single - Rp 1.000.000</option>
+              <option value="8GB 3200Mhz Single BNIB" data-price="1200000" data-type="ddr4">8GB 3200Mhz Single - Rp 1.200.000</option>
+              <option value="8GB 3600Mhz Single BNIB" data-price="2500000" data-type="ddr4">8GB 3600Mhz Single - Rp 2.500.000</option>
+              <option value="16GB 2666Mhz Single BNIB" data-price="2000000" data-type="ddr4">16GB 2666Mhz Single - Rp 2.000.000</option>
+              <option value="16GB 3200Mhz Single BNIB" data-price="2000000" data-type="ddr4">16GB 3200Mhz Single - Rp 2.000.000</option>
+              <option value="16GB 3600Mhz Single BNIB" data-price="2500000" data-type="ddr4">16GB 3600Mhz Single - Rp 2.500.000</option>
+            </optgroup>
+            <optgroup label="Dual Channel Kit">
+              <option value="16GB (2x8GB) 2666Mhz Kit BNIB" data-price="2600000" data-type="ddr4">16GB Kit (2x8GB) 2666Mhz - Rp 2.600.000</option>
+              <option value="16GB (2x8GB) 3200Mhz Kit BNIB" data-price="2600000" data-type="ddr4">16GB Kit (2x8GB) 3200Mhz - Rp 2.600.000</option>
+              <option value="16GB (2x8GB) 3600Mhz Kit BNIB" data-price="2600000" data-type="ddr4">16GB Kit (2x8GB) 3600Mhz - Rp 2.600.000</option>
+            </optgroup>
           </select>
           <select id="ram_condition" class="form-control">
             <option value="New">New</option>
             <option value="Second">Second</option>
           </select>
-          <input type="number" id="ram_qty" class="form-control input-qty" value="1" min="1" required>
+          <input type="number" id="ram_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="calculateTotal()" required>
         </div>
 
         <!-- SSD -->
         <div class="part-row">
-          <div class="part-label">SSD</div>
-          <select id="ssd_item" class="form-control" required>
-            <option value="">-- Pilih Kapasitas SSD --</option>
-            <option value="128 GB NVMe/SATA">128 GB</option>
-            <option value="256 GB NVMe">256 GB</option>
-            <option value="512 GB NVMe">512 GB</option>
-            <option value="1 TB NVMe">1 TB</option>
-            <option value="2 TB NVMe">2 TB</option>
-            <option value="4 TB NVMe">4 TB</option>
+          <div class="part-label">SSD NVMe</div>
+          <select id="ssd_item" class="form-control spec-calc" onchange="calculateTotal()" required>
+            <option value="" data-price="0">-- Pilih Kapasitas SSD NVMe --</option>
+            <optgroup label="Gen3">
+              <option value="128GB NVMe Gen3" data-price="750000">128GB Gen3 - Rp 750.000</option>
+              <option value="256GB NVMe Gen3" data-price="1450000">256GB Gen3 - Rp 1.450.000</option>
+              <option value="512GB NVMe Gen3" data-price="1750000">512GB Gen3 - Rp 1.750.000</option>
+              <option value="1TB NVMe Gen3" data-price="2900000">1TB Gen3 - Rp 2.900.000</option>
+            </optgroup>
+            <optgroup label="Gen4">
+              <option value="256GB NVMe Gen4" data-price="1450000">256GB Gen4 - Rp 1.450.000</option>
+              <option value="512GB NVMe Gen4" data-price="1950000">512GB Gen4 - Rp 1.950.000</option>
+              <option value="1TB NVMe Gen4" data-price="3600000">1TB Gen4 - Rp 3.600.000</option>
+            </optgroup>
           </select>
           <select id="ssd_condition" class="form-control">
             <option value="New">New</option>
             <option value="Second">Second</option>
           </select>
-          <input type="number" id="ssd_qty" class="form-control input-qty" value="1" min="1" required>
+          <input type="number" id="ssd_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="calculateTotal()" required>
         </div>
 
         <!-- VGA -->
         <div class="part-row">
-          <div class="part-label">VGA</div>
+          <div class="part-label">VGA Card</div>
           <select id="vga_item" class="form-control" required>
             <option value="">-- Pilih Seri VGA / Graphic Card --</option>
             <option value="Tanpa VGA (iGPU / Integrated)">Tanpa VGA (Pakai iGPU / Integrated)</option>
-
             <optgroup label="NVIDIA GeForce">
               <option value="NVIDIA GTX 1650 4GB">NVIDIA GTX 1650 4GB</option>
               <option value="NVIDIA GTX 1660 Super 6GB">NVIDIA GTX 1660 Super 6GB</option>
               <option value="NVIDIA RTX 3050 6GB / 8GB">NVIDIA RTX 3050 6GB / 8GB</option>
               <option value="NVIDIA RTX 3060 12GB">NVIDIA RTX 3060 12GB</option>
               <option value="NVIDIA RTX 4060 8GB">NVIDIA RTX 4060 8GB</option>
-              <option value="NVIDIA RTX 4060 Ti 8GB / 16GB">NVIDIA RTX 4060 Ti 8GB / 16GB</option>
-              <option value="NVIDIA RTX 4070 / 4070 Super">NVIDIA RTX 4070 / 4070 Super</option>
-              <option value="NVIDIA RTX 4070 Ti Super / 4080 Super">NVIDIA RTX 4070 Ti Super / 4080 Super</option>
-              <option value="NVIDIA RTX 5060">NVIDIA RTX 5060</option>
-              <option value="NVIDIA RTX 5070 / 5070 Ti">NVIDIA RTX 5070 / 5070 Ti</option>
-              <option value="NVIDIA RTX 5080 / 5090">NVIDIA RTX 5080 / 5090</option>
             </optgroup>
-
             <optgroup label="AMD Radeon">
               <option value="AMD Radeon RX 580 8GB">AMD Radeon RX 580 8GB</option>
               <option value="AMD Radeon RX 6600 8GB">AMD Radeon RX 6600 8GB</option>
-              <option value="AMD Radeon RX 6700 XT / 6750 XT">AMD Radeon RX 6700 XT / 6750 XT</option>
-              <option value="AMD Radeon RX 7600 8GB / 7600 XT 16GB">AMD Radeon RX 7600 / 7600 XT</option>
-              <option value="AMD Radeon RX 7700 XT / 7800 XT">AMD Radeon RX 7700 XT / 7800 XT</option>
-              <option value="AMD Radeon RX 7900 GRE / 7900 XT / XTX">AMD Radeon RX 7900 GRE / XT / XTX</option>
-            </optgroup>
-
-            <optgroup label="Intel Arc">
-              <option value="Intel Arc A580 8GB">Intel Arc A580 8GB</option>
-              <option value="Intel Arc A750 / A770 16GB">Intel Arc A750 / A770 16GB</option>
-              <option value="Intel Arc B570 / B580 (Battlemage)">Intel Arc B570 / B580 (Battlemage)</option>
+              <option value="AMD Radeon RX 6700 XT 12GB">AMD Radeon RX 6700 XT 12GB</option>
             </optgroup>
           </select>
           <select id="vga_condition" class="form-control">
@@ -446,8 +479,6 @@
             <option value="550W 80+ Certified">550W 80+</option>
             <option value="650W 80+ Certified">650W 80+</option>
             <option value="750W 80+ Certified">750W 80+</option>
-            <option value="850W 80+ Certified">850W 80+</option>
-            <option value="1000W 80+ Certified">1000W 80+</option>
           </select>
           <select id="psu_condition" class="form-control">
             <option value="New">New</option>
@@ -493,6 +524,15 @@
 
   </div>
 
+  <!-- FLOATING TOTAL PRICE BAR -->
+  <div class="total-price-bar">
+    <div>
+      <div class="total-title">Total Estimasi Komponen Terpilih</div>
+      <div style="font-size: 0.75rem; color: #64748b;">*Harga komponen belum termasuk VGA, PSU, Case, & Cooler</div>
+    </div>
+    <div class="total-amount" id="grandTotal">Rp 0</div>
+  </div>
+
   <!-- POP-UP MODAL -->
   <div id="successModal" class="modal-overlay hidden">
     <div class="modal-content">
@@ -510,7 +550,7 @@
   </footer>
 
   <script>
-    // Konfigurasi Firebase Project Baru (dokter-komputer2026)
+    // Konfigurasi Firebase Project
     const firebaseConfig = {
       apiKey: "AIzaSyABrpNZU5F1OqpEZnR12D4hP1mZEQrth8I",
       authDomain: "dokter-komputer2026.firebaseapp.com",
@@ -524,9 +564,7 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // TARGET NOMOR WHATSAPP DOKTER KOMPUTER
     const ADMIN_WA_NUMBER = "6285156553818"; 
-
     let currentUser = null;
 
     // Login Google
@@ -554,46 +592,34 @@
       }
     });
 
-    // Handler Terpadu saat Processor Berubah (Update Motherboard & Filter RAM)
+    // Handler Processor Change
     function onProcessorChange() {
       const rawVal = document.getElementById('proc_item').value;
       const moboSelect = document.getElementById('mobo_item');
-      const ramSelect = document.getElementById('ram_item');
       
       moboSelect.innerHTML = '';
 
       if (!rawVal) {
-        moboSelect.innerHTML = `<option value="">-- Pilih Processor Terlebih Dahulu --</option>`;
+        moboSelect.innerHTML = `<option value="" data-price="0">-- Pilih Processor Terlebih Dahulu --</option>`;
         moboSelect.disabled = true;
         filterRamOptions('');
         return;
       }
 
-      // Deteksi Socket berdasarkan prefix AM4| atau AM5|
       const socket = rawVal.split('|')[0];
 
       if (socket === 'AM4') {
         moboSelect.innerHTML = `
-          <option value="">-- Pilih Motherboard AM4 --</option>
-          <option value="A320 / A520 Chipset">A320 / A520 (Entry AM4)</option>
-          <option value="B450 / B550 Chipset">B450 / B550 (Mainstream AM4)</option>
-          <option value="X570 Chipset">X570 (High-End AM4)</option>
+          <option value="" data-price="0">-- Pilih Motherboard AM4 --</option>
+          <option value="A520 Chipset Motherboard" data-price="1000000">A520 Chipset AM4 - Rp 1.000.000</option>
+          <option value="B550 Chipset Motherboard" data-price="1500000">B550 Chipset AM4 - Rp 1.500.000</option>
+          <option value="X570 Chipset Motherboard" data-price="3000000">X570 Chipset AM4 - Rp 3.000.000</option>
         `;
         moboSelect.disabled = false;
         filterRamOptions('AM4');
-      } else if (socket === 'AM5') {
-        moboSelect.innerHTML = `
-          <option value="">-- Pilih Motherboard AM5 --</option>
-          <option value="A620 Chipset">A620 (Entry AM5)</option>
-          <option value="B650 / B650E Chipset">B650 / B650E (Mainstream AM5)</option>
-          <option value="X670 / X670E / X870 Chipset">X670 / X870 (High-End AM5)</option>
-        `;
-        moboSelect.disabled = false;
-        filterRamOptions('AM5');
       }
     }
 
-    // Filter RAM Otomatis berdasarkan Socket Processor
     function filterRamOptions(socket) {
       const ramSelect = document.getElementById('ram_item');
       const options = ramSelect.querySelectorAll('option');
@@ -602,7 +628,7 @@
 
       options.forEach(opt => {
         const type = opt.getAttribute('data-type');
-        if (!type) return; // Skip placeholder
+        if (!type) return;
 
         if (socket === 'AM4') {
           if (type === 'ddr4') {
@@ -612,17 +638,6 @@
             opt.hidden = true;
             opt.disabled = true;
           }
-        } else if (socket === 'AM5') {
-          if (type === 'ddr5') {
-            opt.hidden = false;
-            opt.disabled = false;
-          } else {
-            opt.hidden = true;
-            opt.disabled = true;
-          }
-        } else {
-          opt.hidden = false;
-          opt.disabled = false;
         }
 
         if (opt.selected && !opt.disabled) {
@@ -635,13 +650,35 @@
       }
     }
 
+    // Hitung Total Otomatis
+    function calculateTotal() {
+      let total = 0;
+
+      const items = document.querySelectorAll('.spec-calc');
+      
+      items.forEach(item => {
+        const selectedOption = item.options[item.selectedIndex];
+        const price = parseInt(selectedOption ? selectedOption.getAttribute('data-price') || 0 : 0);
+        
+        // Cari input Qty di baris yang sama
+        const row = item.closest('.part-row');
+        const qtyInput = row.querySelector('.spec-qty');
+        const qty = qtyInput ? parseInt(qtyInput.value || 1) : 1;
+
+        total += (price * qty);
+      });
+
+      document.getElementById('grandTotal').textContent = 'Rp ' + total.toLocaleString('id-ID');
+      return total;
+    }
+
     // Process & Send Build Request
     function submitBuildRequest(e) {
       e.preventDefault();
 
-      // Memisahkan tag socket dari nama processor agar bersih saat disimpan
       const rawProc = document.getElementById('proc_item').value;
       const cleanProcName = rawProc.includes('|') ? rawProc.split('|')[1] : rawProc;
+      const calculatedGrandTotal = calculateTotal();
 
       const buildData = {
         uid: currentUser.uid,
@@ -649,6 +686,7 @@
         customer_email: currentUser.email,
         customer_wa: document.getElementById('whatsapp_no').value,
         notes: document.getElementById('user_notes').value,
+        total_estimasi: 'Rp ' + calculatedGrandTotal.toLocaleString('id-ID'),
         specs: {
           processor: `${cleanProcName} [${document.getElementById('proc_condition').value}] (Qty: ${document.getElementById('proc_qty').value})`,
           motherboard: `${document.getElementById('mobo_item').value} [${document.getElementById('mobo_condition').value}] (Qty: ${document.getElementById('mobo_qty').value})`,
@@ -683,6 +721,7 @@
 • *Cooler CPU:* ${buildData.specs.cooler}
 • *Casing:* ${buildData.specs.casing}
 
+*TOTAL ESTIMASI HARGA:* ${buildData.total_estimasi}
 *Catatan:* ${buildData.notes || '-'}
 ----------------------------------------
 _Mohon konfirmasi estimasi harga & ketersediaan stoknya min!_`;
@@ -703,8 +742,9 @@ _Mohon konfirmasi estimasi harga & ketersediaan stoknya min!_`;
       document.getElementById('successModal').classList.add('hidden');
       document.getElementById('buildForm').reset();
       document.getElementById('mobo_item').disabled = true;
-      document.getElementById('mobo_item').innerHTML = `<option value="">-- Pilih Processor Terlebih Dahulu --</option>`;
+      document.getElementById('mobo_item').innerHTML = `<option value="" data-price="0">-- Pilih Processor Terlebih Dahulu --</option>`;
       filterRamOptions('');
+      calculateTotal();
     }
   </script>
 </body>
