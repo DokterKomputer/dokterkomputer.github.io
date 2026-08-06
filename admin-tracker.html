@@ -15,11 +15,13 @@
       min-height: 100vh;
     }
     .admin-container {
-      max-width: 900px;
+      max-width: 950px;
       margin: 0 auto;
     }
     .header {
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 30px;
       border-bottom: 2px solid #102636;
       padding-bottom: 15px;
@@ -42,9 +44,7 @@
       padding-bottom: 8px;
     }
     
-    .form-group {
-      margin-bottom: 15px;
-    }
+    .form-group { margin-bottom: 15px; }
     .form-group label {
       display: block;
       margin-bottom: 5px;
@@ -60,43 +60,42 @@
       color: #fff;
       font-size: 0.95rem;
     }
-    .form-control:focus {
-      outline: none;
-      border-color: #dfb15b;
-    }
+    .form-control:focus { outline: none; border-color: #dfb15b; }
     
     .btn {
       background: #dfb15b;
       color: #030a10;
       font-weight: bold;
-      padding: 10px 20px;
+      padding: 8px 16px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .btn:hover {
-      background: #d9232d;
-      color: #fff;
-    }
-    .btn-wa {
-      background: #25d366;
-      color: #fff;
-      padding: 6px 12px;
-      font-size: 0.8rem;
-      border-radius: 4px;
       text-decoration: none;
       display: inline-block;
+      transition: all 0.2s ease;
     }
-    .btn-wa:hover { background: #1ebd56; }
+    .btn:hover { background: #d9232d; color: #fff; }
     
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
+    .btn-action {
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
     }
+    .btn-wa { background: #25d366; color: #fff; }
+    .btn-wa:hover { background: #1ebd56; }
+    .btn-delete { background: #e74c3c; color: #fff; }
+    .btn-delete:hover { background: #c0392b; }
+    .btn-status { background: #3498db; color: #fff; }
+    .btn-status:hover { background: #2980b9; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     th, td {
-      padding: 12px 10px;
+      padding: 10px 8px;
       text-align: left;
       border-bottom: 1px solid #102636;
       font-size: 0.85rem;
@@ -111,7 +110,16 @@
       font-family: monospace;
       font-weight: bold;
     }
-    
+
+    .filter-bar {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
     /* Login Modal */
     .login-overlay {
       position: fixed;
@@ -145,9 +153,13 @@
   </div>
 
   <div class="admin-container">
+    <!-- 1. HEADER DENGAN TOMBOL KEMBALI -->
     <div class="header">
-      <h1>🛠️ Dashboard Admin Tracker</h1>
-      <p style="color: #7b93a4; font-size: 0.9rem;">Dokter Komputer - Progress Perakitan PC</p>
+      <div>
+        <h1>🛠️ Dashboard Admin Tracker</h1>
+        <p style="color: #7b93a4; font-size: 0.9rem;">Dokter Komputer - Progress Perakitan PC</p>
+      </div>
+      <a href="index.html" class="btn" style="background: #102636; color: #00e5ff; border: 1px solid #00e5ff;">🏠 Utama</a>
     </div>
 
     <!-- FORM INPUT ORDER BARU -->
@@ -163,8 +175,8 @@
           <input type="text" id="custWA" class="form-control" placeholder="Contoh: 08123456789">
         </div>
         <div class="form-group">
-          <label>Catatan Awal (Opsional)</label>
-          <input type="text" id="custNote" class="form-control" placeholder="Contoh: Rakit PC Gaming RTX 4060">
+          <label>Catatan Awal / Spesifikasi Part</label>
+          <input type="text" id="custNote" class="form-control" placeholder="Contoh: RTX 4060, i5 13400F, RAM 32GB">
         </div>
         <button type="submit" class="btn" id="btnSubmit">Generate Kode & Simpan</button>
       </form>
@@ -172,10 +184,19 @@
 
     <!-- TABEL LIST PESANAN -->
     <div class="card">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-        <h2>Daftar Progress Perakitan</h2>
-        <button class="btn" style="padding: 6px 12px; font-size: 0.8rem;" onclick="loadData()">🔄 Refresh Data</button>
+      <h2>Daftar Progress Perakitan</h2>
+      
+      <!-- 3 & 4. SEARCH BAR & FILTER ORDERAN SELESAI -->
+      <div class="filter-bar">
+        <input type="text" id="searchInput" class="form-control" style="max-width: 300px;" placeholder="🔍 Cari Kode Resi / Nama..." onkeyup="filterData()">
+        
+        <label style="font-size: 0.85rem; color: #7b93a4; cursor: pointer;">
+          <input type="checkbox" id="hideCompleted" onchange="filterData()"> Sembunyikan Pesanan Selesai
+        </label>
+        
+        <button class="btn" style="padding: 6px 12px; font-size: 0.8rem;" onclick="loadData()">🔄 Refresh</button>
       </div>
+
       <div style="overflow-x: auto;">
         <table>
           <thead>
@@ -183,7 +204,7 @@
               <th>Kode</th>
               <th>Nama</th>
               <th>Status Progress</th>
-              <th>Catatan / Note</th>
+              <th>Catatan / Part List</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -198,14 +219,13 @@
   </div>
 
   <script>
-    // URL API Google Apps Script Terbaru (Web App Execution URL)
     const API_URL = "https://script.google.com/macros/s/AKfycbzOA4WmZ8X3-5gs6SCy5hsdvr2dsoE9Tke4yFU_eNRMxM2xYNrgjqQJiuclLtmnBCAH/exec";
     let CURRENT_PIN = "";
+    let rawDataCache = [];
 
     function loginAdmin() {
       const pin = document.getElementById('pinInput').value;
       if (!pin) return alert("Masukkan PIN!");
-      
       CURRENT_PIN = pin;
       loadData();
     }
@@ -216,7 +236,8 @@
         .then(res => {
           if (res.success) {
             document.getElementById('loginOverlay').style.display = 'none';
-            renderTable(res.data);
+            rawDataCache = res.data;
+            filterData();
           } else {
             alert(res.message);
           }
@@ -224,23 +245,40 @@
         .catch(err => alert("Gagal mengambil data: " + err));
     }
 
+    // Filter berdasarkan Search (Kode/Nama) dan Checkbox Selesai
+    function filterData() {
+      const searchVal = document.getElementById('searchInput').value.toLowerCase();
+      const hideFinished = document.getElementById('hideCompleted').checked;
+
+      const filtered = rawDataCache.filter(item => {
+        const matchesSearch = item.kode.toLowerCase().includes(searchVal) || item.nama.toLowerCase().includes(searchVal);
+        const isFinished = ['Selesai', 'Self-Pickup', 'Delivery'].includes(item.progress);
+        
+        if (hideFinished && isFinished) return false;
+        return matchesSearch;
+      });
+
+      renderTable(filtered);
+    }
+
     function renderTable(data) {
       const tbody = document.getElementById('orderTableBody');
       tbody.innerHTML = '';
 
       if (data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Belum ada pesanan.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Tidak ada pesanan ditemukan.</td></tr>';
         return;
       }
 
       const progressOptions = [
+        "Pesanan Diterima",
         "Collecting Item",
         "Proses Perakitan",
         "Proses Instalasi",
         "Proses QC",
-        "Selesai",
+        "Pesanan Dikirim",
         "Self-Pickup",
-        "Delivery"
+        "Selesai"
       ];
 
       data.forEach(item => {
@@ -251,7 +289,7 @@
         let cleanWA = item.noWA ? item.noWA.toString().replace(/[^0-9]/g, '') : '';
         if (cleanWA.startsWith('0')) cleanWA = '62' + cleanWA.slice(1);
 
-        let waText = encodeURIComponent(`Halo Kak ${item.nama}, update status perakitan PC kamu dengan Kode: *${item.kode}* saat ini sudah masuk tahap: *${item.progress}*.\n\nCek detailnya di sini: https://dokterkomputer.github.io/track-build.html?code=${item.kode}`);
+        let waText = encodeURIComponent(`Halo Kak ${item.nama}, status perakitan PC kamu [Kode: *${item.kode}*] saat ini: *${item.progress}*.\n\nCek detail: https://dokterkomputer.github.io/track-build.html?code=${item.kode}`);
         let waLink = cleanWA ? `https://wa.me/${cleanWA}?text=${waText}` : '#';
 
         tbody.innerHTML += `
@@ -267,7 +305,11 @@
               <input type="text" class="form-control" value="${item.catatan || ''}" onblur="updateNote(${item.row}, '${item.progress}', this.value)">
             </td>
             <td>
-              ${cleanWA ? `<a href="${waLink}" target="_blank" class="btn-wa">💬 WA Status</a>` : '-'}
+              <!-- 2 & 5. OPSI AKSI LENGKAP -->
+              <button class="btn-action btn-status" onclick="updateProgress(${item.row}, 'Pesanan Diterima', '${item.catatan || ''}')">📥 Diterima</button>
+              <button class="btn-action btn-status" style="background:#f39c12;" onclick="updateProgress(${item.row}, 'Pesanan Dikirim', '${item.catatan || ''}')">🚚 Dikirim</button>
+              ${cleanWA ? `<a href="${waLink}" target="_blank" class="btn-action btn-wa" style="text-decoration:none;">💬 WA</a>` : ''}
+              <button class="btn-action btn-delete" onclick="deleteOrder(${item.row}, '${item.kode}')">🗑️ Hapus</button>
             </td>
           </tr>
         `;
@@ -321,11 +363,8 @@
       })
       .then(res => res.json())
       .then(res => {
-        if (res.success) {
-          loadData();
-        } else {
-          alert(res.message);
-        }
+        if (res.success) loadData();
+        else alert(res.message);
       });
     }
 
@@ -339,6 +378,29 @@
           progress: currentProgress,
           catatan: newNote
         })
+      });
+    }
+
+    // FITUR HAPUS PESANAN
+    function deleteOrder(row, kode) {
+      if (!confirm(`Apakah Anda yakin ingin menghapus pesanan dengan Kode ${kode}?`)) return;
+
+      fetch(API_URL, {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'delete',
+          pin: CURRENT_PIN,
+          row: row
+        })
+      })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          alert("Pesanan berhasil dihapus!");
+          loadData();
+        } else {
+          alert(res.message);
+        }
       });
     }
   </script>
