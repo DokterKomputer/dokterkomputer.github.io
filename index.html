@@ -292,7 +292,7 @@
       background-color: #1ebd56; 
     } 
 
-    /* FLOATING SIDE BUTTON (Pojok Kanan Atas) - TEXT BUBBLE ONLY */
+    /* FLOATING SIDE BUTTON - RGB PULSE EFEK */
     .floating-side-buttons {
       position: fixed;
       right: 25px;
@@ -303,28 +303,46 @@
       z-index: 9999;
     }
 
-    .floating-btn-text {
-      background: rgba(8, 18, 27, 0.9);
-      border: 2px solid #dfb15b;
+    .floating-btn-rgb {
+      background: rgba(8, 18, 27, 0.95);
+      border: 2px solid transparent;
       color: #ffffff;
-      padding: 12px 20px;
+      padding: 12px 22px;
       border-radius: 50px;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       letter-spacing: 0.5px;
       text-decoration: none;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-      transition: all 0.3s ease;
       backdrop-filter: blur(6px);
       display: inline-block;
       text-align: center;
+      position: relative;
+      animation: rgbPulse 3s infinite ease-in-out;
+      transition: transform 0.2s ease;
     }
 
-    .floating-btn-text:hover {
-      transform: scale(1.05);
-      border-color: #d9232d;
-      background: #d9232d;
-      box-shadow: 0 8px 25px rgba(217, 35, 45, 0.5);
+    .floating-btn-rgb:hover {
+      transform: scale(1.08);
+    }
+
+    /* KEYFRAMES EFEK PULSE RGB GLOWING */
+    @keyframes rgbPulse {
+      0% {
+        border-color: #ff0055;
+        box-shadow: 0 0 10px rgba(255, 0, 85, 0.6), 0 0 20px rgba(255, 0, 85, 0.3);
+      }
+      33% {
+        border-color: #00e5ff;
+        box-shadow: 0 0 10px rgba(0, 229, 255, 0.6), 0 0 20px rgba(0, 229, 255, 0.3);
+      }
+      66% {
+        border-color: #dfb15b;
+        box-shadow: 0 0 10px rgba(223, 177, 91, 0.6), 0 0 20px rgba(223, 177, 91, 0.3);
+      }
+      100% {
+        border-color: #ff0055;
+        box-shadow: 0 0 10px rgba(255, 0, 85, 0.6), 0 0 20px rgba(255, 0, 85, 0.3);
+      }
     }
 
     /* STYLING MODAL POPUP PROMO */ 
@@ -423,9 +441,9 @@
         right: 15px;
         top: 15px;
       }
-      .floating-btn-text {
-        padding: 8px 14px;
-        font-size: 0.8rem;
+      .floating-btn-rgb {
+        padding: 8px 16px;
+        font-size: 0.85rem;
       }
       .hero-banner-wrapper {
         padding: 0; 
@@ -448,10 +466,10 @@
 </head> 
 <body> 
 
-  <!-- FLOATING SIDE BUTTON (TEXT BUBBLE ONLY) -->
+  <!-- FLOATING SIDE BUTTON (RGB PULSE EFFECT) -->
   <div class="floating-side-buttons">
-    <a href="build-request.html" class="floating-btn-text">
-      Racik Pc Mu
+    <a href="build-request.html" class="floating-btn-rgb">
+      ⚡ Custom PC Build
     </a>
   </div>
 
