@@ -548,22 +548,61 @@
           <div class="subtotal-price" id="monitor_subtotal">IDR 0</div>
         </div>
 
-        <!-- COOLER CPU -->
+        <!-- COOLER CPU (DENGAN STRUKTUR BERTIATIH LENGKAP AIR & AIO) -->
         <div class="part-row">
           <div class="part-label">Cooler CPU</div>
-          <input type="text" id="cooler_item" class="form-control" placeholder="Ketik Cooler (Stock / Air / Liquid Cooler)" required style="grid-column: span 1;">
-          <div class="unit-price">-</div>
-          <input type="number" id="cooler_qty" class="form-control input-qty" value="1" min="1" required>
-          <div class="subtotal-price">-</div>
+          <select id="cooler_item" class="form-control spec-calc" onchange="updateCalculations()" required>
+            <option value="" data-price="0">-- Pilih CPU Cooler --</option>
+            <option value="Stock Cooler AMD (Bawaan Processor)" data-price="0">Stock Cooler AMD (Bawaan Processor)</option>
+            
+            <optgroup label="AIR COOLER">
+              <option value="Air Cooler Single Tower 120mm (Entry)" data-price="350000">Air Cooler Single Tower 120mm (Entry)</option>
+              <option value="Air Cooler Single Tower ARGB / Digital Screen" data-price="550000">Air Cooler Single Tower ARGB / Digital Screen</option>
+              <option value="Air Cooler Dual Tower Heavy Duty (Mid-Range)" data-price="750000">Air Cooler Dual Tower Heavy Duty (Mid-Range)</option>
+              <option value="Air Cooler Flagship Dual Tower (Noctua / BeQuiet Tier)" data-price="1800000">Air Cooler Flagship Dual Tower (High-End)</option>
+            </optgroup>
+
+            <optgroup label="AIO LIQUID COOLER">
+              <option value="AIO Liquid Cooler 120mm (Budget)" data-price="450000">AIO Liquid Cooler 120mm (Budget)</option>
+              <option value="AIO Liquid Cooler 240mm ARGB (Entry-Level)" data-price="650000">AIO Liquid Cooler 240mm ARGB (Entry-Level)</option>
+              <option value="AIO Liquid Cooler 240mm ARGB Digital Screen" data-price="1100000">AIO Liquid Cooler 240mm ARGB Digital Screen</option>
+              <option value="AIO Liquid Cooler 360mm ARGB (Performance)" data-price="1350000">AIO Liquid Cooler 360mm ARGB (Performance)</option>
+              <option value="AIO Liquid Cooler 360mm IPS LCD Display" data-price="1850000">AIO Liquid Cooler 360mm IPS LCD Display</option>
+              <option value="AIO Liquid Cooler Premium LCD 360mm (Lian Li / NZXT / ROG)" data-price="3800000">AIO Liquid Cooler Premium LCD 360mm (Flagship)</option>
+            </optgroup>
+          </select>
+          <div class="unit-price" id="cooler_unit">IDR 0</div>
+          <input type="number" id="cooler_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()" required>
+          <div class="subtotal-price" id="cooler_subtotal">IDR 0</div>
         </div>
 
-        <!-- CASING -->
+        <!-- CASING (DENGAN TIERED LEVEL SESUAI DRAFT KAMU) -->
         <div class="part-row">
           <div class="part-label">Casing</div>
-          <input type="text" id="casing_item" class="form-control" placeholder="Ketik Tipe Casing" required style="grid-column: span 1;">
-          <div class="unit-price">-</div>
-          <input type="number" id="casing_qty" class="form-control input-qty" value="1" min="1" required>
-          <div class="subtotal-price">-</div>
+          <select id="casing_item" class="form-control spec-calc" onchange="updateCalculations()" required>
+            <option value="" data-price="0">-- Pilih Tier Casing --</option>
+            
+            <optgroup label="LOW TIER">
+              <option value="Low Tier lvl 1 Case" data-price="450000">Low Tier lvl 1 Case</option>
+              <option value="Low Tier lvl 2 Case + Fan" data-price="650000">Low Tier lvl 2 Case + Fan</option>
+              <option value="Low Tier lvl 3 Case + Fan + Controller" data-price="850000">Low Tier lvl 3 Case + Fan + Controller</option>
+            </optgroup>
+
+            <optgroup label="MID TIER">
+              <option value="Mid Tier lvl 1 Case" data-price="900000">Mid Tier lvl 1 Case</option>
+              <option value="Mid Tier lvl 2 Case + Fan" data-price="1300000">Mid Tier lvl 2 Case + Fan</option>
+              <option value="Mid Tier lvl 3 Case + Fan + Controller" data-price="1850000">Mid Tier lvl 3 Case + Fan + Controller</option>
+            </optgroup>
+
+            <optgroup label="FLAGSHIP TIER">
+              <option value="Flagship Case lvl 1" data-price="3500000">Flagship Case lvl 1</option>
+              <option value="Flagship Case lvl 2" data-price="5000000">Flagship Case lvl 2</option>
+              <option value="Flagship Case lvl 3 (By Request)" data-price="0">Flagship Case lvl 3 (By Request)</option>
+            </optgroup>
+          </select>
+          <div class="unit-price" id="casing_unit">IDR 0</div>
+          <input type="number" id="casing_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()" required>
+          <div class="subtotal-price" id="casing_subtotal">IDR 0</div>
         </div>
 
         <!-- TOTAL DISPLAY -->
@@ -705,8 +744,16 @@
 
           grandTotal += subtotal;
 
-          if (unitDisplay) unitDisplay.textContent = 'IDR ' + price.toLocaleString('id-ID');
-          if (subtotalDisplay) subtotalDisplay.textContent = 'IDR ' + subtotal.toLocaleString('id-ID');
+          if (unitDisplay) {
+            unitDisplay.textContent = (price === 0 && selectedOption && selectedOption.value.includes('By Request')) 
+              ? 'By Request' 
+              : 'IDR ' + price.toLocaleString('id-ID');
+          }
+          if (subtotalDisplay) {
+            subtotalDisplay.textContent = (price === 0 && selectedOption && selectedOption.value.includes('By Request')) 
+              ? 'By Request' 
+              : 'IDR ' + subtotal.toLocaleString('id-ID');
+          }
         }
       });
 
