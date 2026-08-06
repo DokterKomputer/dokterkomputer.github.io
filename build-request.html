@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulasi Rakit PC AMD | Dokter Komputer</title>
+  <title>Simulasi Rakit PC | Dokter Komputer</title>
   
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -352,7 +352,7 @@
     <!-- LOGIN AREA -->
     <div id="loginSection" class="login-card">
       <i class="fa-solid fa-sliders" style="font-size: 3rem; color: #dfb15b; margin-bottom: 15px;"></i>
-      <h2 style="color: #fff; margin-bottom: 10px;">Simulasi Rakit PC AMD</h2>
+      <h2 style="color: #fff; margin-bottom: 10px;">Simulasi Rakit PC</h2>
       <p style="color: #64748b; font-size: 0.9rem;">Silakan masuk menggunakan Google untuk meracik komponen kustom milikmu.</p>
       
       <button class="btn-google" onclick="loginWithGoogle()">
@@ -385,30 +385,47 @@
           <div style="text-align: right;">Price</div>
         </div>
 
-        <!-- PROCESSOR -->
+        <!-- PROCESSOR (INTEL & AMD) -->
         <div class="part-row">
           <div class="part-label">Processor</div>
           <select id="proc_item" class="form-control spec-calc" onchange="onProcessorChange(); updateCalculations();" required>
             <option value="" data-price="0">-- Pilih Processor --</option>
-            <optgroup label="Ryzen 3">
-              <option value="AMD Ryzen 3 3200G Tray" data-price="1100000">Ryzen 3 3200G Tray</option>
-              <option value="AMD Ryzen 3 3300X Tray" data-price="1600000">Ryzen 3 3300X Tray</option>
+            
+            <optgroup label="--- INTEL ---"></optgroup>
+            <optgroup label="Intel LGA 1200 (Gen 10 & 11)">
+              <option value="Intel Core i3-10100F Tray" data-price="1050000" data-socket="LGA1200">Intel Core i3-10100F Tray</option>
+              <option value="Intel Core i5-10400F Tray" data-price="1650000" data-socket="LGA1200">Intel Core i5-10400F Tray</option>
+              <option value="Intel Core i5-11400F Tray" data-price="1850000" data-socket="LGA1200">Intel Core i5-11400F Tray</option>
+              <option value="Intel Core i7-10700K BOX" data-price="3800000" data-socket="LGA1200">Intel Core i7-10700K BOX</option>
             </optgroup>
-            <optgroup label="Ryzen 5">
-              <option value="AMD Ryzen 5 3600 Tray" data-price="1850000">Ryzen 5 3600 Tray</option>
-              <option value="AMD Ryzen 5 5500 Tray" data-price="1600000">Ryzen 5 5500 Tray</option>
-              <option value="AMD Ryzen 5 5600GT Tray" data-price="2900000">Ryzen 5 5600GT Tray</option>
-              <option value="AMD Ryzen 5 5600 Tray" data-price="2200000">Ryzen 5 5600 Tray</option>
-              <option value="AMD Ryzen 5 5600XT Tray" data-price="3500000">Ryzen 5 5600XT Tray</option>
+            <optgroup label="Intel LGA 1700 (Gen 12, 13, 14)">
+              <option value="Intel Core i3-12100F Tray" data-price="1350000" data-socket="LGA1700">Intel Core i3-12100F Tray</option>
+              <option value="Intel Core i5-12400F Tray" data-price="1950000" data-socket="LGA1700">Intel Core i5-12400F Tray</option>
+              <option value="Intel Core i5-13400F Tray" data-price="2950000" data-socket="LGA1700">Intel Core i5-13400F Tray</option>
+              <option value="Intel Core i5-14400F Tray" data-price="3250000" data-socket="LGA1700">Intel Core i5-14400F Tray</option>
+              <option value="Intel Core i7-13700F BOX" data-price="5800000" data-socket="LGA1700">Intel Core i7-13700F BOX</option>
+              <option value="Intel Core i7-14700F BOX" data-price="6200000" data-socket="LGA1700">Intel Core i7-14700F BOX</option>
             </optgroup>
-            <optgroup label="Ryzen 7">
-              <option value="AMD Ryzen 7 5700X3D Tray" data-price="5500000">Ryzen 7 5700X3D Tray</option>
-              <option value="AMD Ryzen 7 5800X3D BOX" data-price="7800000">Ryzen 7 5800X3D BOX</option>
-              <option value="AMD Ryzen 7 5800XT BOX" data-price="5000000">Ryzen 7 5800XT BOX</option>
-              <option value="AMD Ryzen 7 5800X BOX" data-price="4500000">Ryzen 7 5800X BOX</option>
+
+            <optgroup label="--- AMD ---"></optgroup>
+            <optgroup label="AMD Socket AM4">
+              <option value="AMD Ryzen 3 3200G Tray" data-price="1100000" data-socket="AM4">Ryzen 3 3200G Tray</option>
+              <option value="AMD Ryzen 3 3300X Tray" data-price="1600000" data-socket="AM4">Ryzen 3 3300X Tray</option>
+              <option value="AMD Ryzen 5 3600 Tray" data-price="1850000" data-socket="AM4">Ryzen 5 3600 Tray</option>
+              <option value="AMD Ryzen 5 5500 Tray" data-price="1600000" data-socket="AM4">Ryzen 5 5500 Tray</option>
+              <option value="AMD Ryzen 5 5600GT Tray" data-price="2900000" data-socket="AM4">Ryzen 5 5600GT Tray</option>
+              <option value="AMD Ryzen 5 5600 Tray" data-price="2200000" data-socket="AM4">Ryzen 5 5600 Tray</option>
+              <option value="AMD Ryzen 5 5600XT Tray" data-price="3500000" data-socket="AM4">Ryzen 5 5600XT Tray</option>
+              <option value="AMD Ryzen 7 5700X3D Tray" data-price="5500000" data-socket="AM4">Ryzen 7 5700X3D Tray</option>
+              <option value="AMD Ryzen 7 5800X3D BOX" data-price="7800000" data-socket="AM4">Ryzen 7 5800X3D BOX</option>
+              <option value="AMD Ryzen 7 5800XT BOX" data-price="5000000" data-socket="AM4">Ryzen 7 5800XT BOX</option>
+              <option value="AMD Ryzen 7 5800X BOX" data-price="4500000" data-socket="AM4">Ryzen 7 5800X BOX</option>
+              <option value="AMD Ryzen 9 5900X BOX" data-price="7500000" data-socket="AM4">Ryzen 9 5900X BOX</option>
             </optgroup>
-            <optgroup label="Ryzen 9">
-              <option value="AMD Ryzen 9 5900X BOX" data-price="7500000">Ryzen 9 5900X BOX</option>
+            <optgroup label="AMD Socket AM5">
+              <option value="AMD Ryzen 5 7500F Tray" data-price="2450000" data-socket="AM5">Ryzen 5 7500F Tray</option>
+              <option value="AMD Ryzen 5 7600 BOX" data-price="3100000" data-socket="AM5">Ryzen 5 7600 BOX</option>
+              <option value="AMD Ryzen 7 7800X3D BOX" data-price="6900000" data-socket="AM5">Ryzen 7 7800X3D BOX</option>
             </optgroup>
           </select>
           <div class="unit-price" id="proc_unit">IDR 0</div>
@@ -416,7 +433,7 @@
           <div class="subtotal-price" id="proc_subtotal">IDR 0</div>
         </div>
 
-        <!-- MOTHERBOARD -->
+        <!-- MOTHERBOARD (DINAMIS SESUAI SOCKET INTEL & AMD) -->
         <div class="part-row">
           <div class="part-label">Motherboard</div>
           <select id="mobo_item" class="form-control spec-calc" onchange="updateCalculations()" required disabled>
@@ -445,6 +462,10 @@
               <option value="16GB (2x8GB) 2666Mhz Kit BNIB" data-price="2600000">16GB (2x8GB) 2666Mhz Kit BNIB</option>
               <option value="16GB (2x8GB) 3200Mhz Kit BNIB" data-price="2600000">16GB (2x8GB) 3200Mhz Kit BNIB</option>
               <option value="16GB (2x8GB) 3600Mhz Kit BNIB" data-price="2600000">16GB (2x8GB) 3600Mhz Kit BNIB</option>
+            </optgroup>
+            <optgroup label="DDR5 High Speed">
+              <option value="16GB (2x8GB) DDR5 5600Mhz" data-price="1800000">16GB (2x8GB) DDR5 5600Mhz</option>
+              <option value="32GB (2x16GB) DDR5 6000Mhz" data-price="2900000">32GB (2x16GB) DDR5 6000Mhz</option>
             </optgroup>
           </select>
           <div class="unit-price" id="ram_unit">IDR 0</div>
@@ -548,12 +569,12 @@
           <div class="subtotal-price" id="monitor_subtotal">IDR 0</div>
         </div>
 
-        <!-- COOLER CPU (DENGAN STRUKTUR BERTIATIH LENGKAP AIR & AIO) -->
+        <!-- COOLER CPU -->
         <div class="part-row">
           <div class="part-label">Cooler CPU</div>
           <select id="cooler_item" class="form-control spec-calc" onchange="updateCalculations()" required>
             <option value="" data-price="0">-- Pilih CPU Cooler --</option>
-            <option value="Stock Cooler AMD (Bawaan Processor)" data-price="0">Stock Cooler AMD (Bawaan Processor)</option>
+            <option value="Stock Cooler (Bawaan Processor)" data-price="0">Stock Cooler (Bawaan Processor)</option>
             
             <optgroup label="AIR COOLER">
               <option value="Air Cooler Single Tower 120mm (Entry)" data-price="350000">Air Cooler Single Tower 120mm (Entry)</option>
@@ -576,7 +597,7 @@
           <div class="subtotal-price" id="cooler_subtotal">IDR 0</div>
         </div>
 
-        <!-- CASING (DENGAN TIERED LEVEL SESUAI DRAFT KAMU) -->
+        <!-- CASING -->
         <div class="part-row">
           <div class="part-label">Casing</div>
           <select id="casing_item" class="form-control spec-calc" onchange="updateCalculations()" required>
@@ -706,23 +727,49 @@
       }
     });
 
+    // LOGIKA DINAMIS MOTHERBOARD BERDASARKAN SOCKET (INTEL & AMD)
     function onProcessorChange() {
-      const rawVal = document.getElementById('proc_item').value;
+      const procSelect = document.getElementById('proc_item');
+      const selectedOption = procSelect.options[procSelect.selectedIndex];
+      const socket = selectedOption ? selectedOption.getAttribute('data-socket') : null;
       const moboSelect = document.getElementById('mobo_item');
+      
       moboSelect.innerHTML = '';
 
-      if (!rawVal) {
+      if (!socket) {
         moboSelect.innerHTML = `<option value="" data-price="0">-- Pilih Processor Terlebih Dahulu --</option>`;
         moboSelect.disabled = true;
         return;
       }
 
-      moboSelect.innerHTML = `
-        <option value="" data-price="0">-- Pilih Motherboard --</option>
-        <option value="A520 Chipset Motherboard" data-price="1000000">A520 Chipset</option>
-        <option value="B550 Chipset Motherboard" data-price="1500000">B550 Chipset</option>
-        <option value="X570 Chipset Motherboard" data-price="3000000">X570 Chipset</option>
-      `;
+      let optionsHTML = `<option value="" data-price="0">-- Pilih Motherboard --</option>`;
+
+      if (socket === 'LGA1200') {
+        optionsHTML += `
+          <option value="H510 Chipset Motherboard" data-price="950000">H510 Chipset</option>
+          <option value="B560 Chipset Motherboard" data-price="1450000">B560 Chipset</option>
+        `;
+      } else if (socket === 'LGA1700') {
+        optionsHTML += `
+          <option value="H610 Chipset Motherboard" data-price="1100000">H610 Chipset</option>
+          <option value="B660 DDR4 Chipset Motherboard" data-price="1650000">B660 DDR4 Chipset</option>
+          <option value="B760 DDR4 Chipset Motherboard" data-price="1950000">B760 DDR4 Chipset</option>
+        `;
+      } else if (socket === 'AM4') {
+        optionsHTML += `
+          <option value="A520 Chipset Motherboard" data-price="1000000">A520 Chipset</option>
+          <option value="B550 Chipset Motherboard" data-price="1500000">B550 Chipset</option>
+          <option value="X570 Chipset Motherboard" data-price="3000000">X570 Chipset</option>
+        `;
+      } else if (socket === 'AM5') {
+        optionsHTML += `
+          <option value="A620 Chipset Motherboard" data-price="1350000">A620 Chipset</option>
+          <option value="B650 DDR5 Chipset Motherboard" data-price="2200000">B650 DDR5 Chipset</option>
+          <option value="X670 DDR5 Chipset Motherboard" data-price="4100000">X670 DDR5 Chipset</option>
+        `;
+      }
+
+      moboSelect.innerHTML = optionsHTML;
       moboSelect.disabled = false;
     }
 
@@ -766,9 +813,15 @@
 
       const calculatedTotal = updateCalculations();
       
+      // Format Otomatis Sanitasi Nomor WA (08xx -> 628xx)
+      let inputWa = document.getElementById('whatsapp_no').value.trim();
+      if (inputWa.startsWith('0')) {
+        inputWa = '62' + inputWa.slice(1);
+      }
+      
       const buildData = {
         uid: currentUser.uid,
-        customer_wa: document.getElementById('whatsapp_no').value,
+        customer_wa: inputWa,
         customer_nama: document.getElementById('customer_name').value,
         customer_alamat: document.getElementById('customer_address').value,
         notes: document.getElementById('user_notes').value,
