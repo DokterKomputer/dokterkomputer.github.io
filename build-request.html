@@ -480,9 +480,40 @@
           <select id="vga_item" class="form-control spec-calc" onchange="updateCalculations()" required>
             <option value="" data-price="0">-- Pilih Seri VGA --</option>
             <option value="Tanpa VGA (Integrated)" data-price="0">Tanpa VGA (Integrated)</option>
-            <option value="NVIDIA GTX 1650 4GB" data-price="2100000">NVIDIA GTX 1650 4GB</option>
-            <option value="NVIDIA RTX 3060 12GB" data-price="4500000">NVIDIA RTX 3060 12GB</option>
-            <option value="AMD Radeon RX 6600 8GB" data-price="3100000">AMD Radeon RX 6600 8GB</option>
+            
+            <optgroup label="NVIDIA GEFORCE">
+              <option value="NVIDIA GTX 1650 4GB BNIB" data-price="2000000">NVIDIA GTX 1650 4GB BNIB</option>
+              <option value="NVIDIA GTX 1660 SUPER 6GB BNIB" data-price="2800000">NVIDIA GTX 1660 SUPER 6GB BNIB</option>
+              <option value="NVIDIA RTX 2060 6GB BNIB" data-price="3500000">NVIDIA RTX 2060 6GB BNIB</option>
+              <option value="NVIDIA RTX 2060 12GB BNIB" data-price="4500000">NVIDIA RTX 2060 12GB BNIB</option>
+              <option value="NVIDIA RTX 3060 8GB BNIB" data-price="7200000">NVIDIA RTX 3060 8GB BNIB</option>
+              <option value="NVIDIA RTX 3060 12GB BNIB" data-price="7800000">NVIDIA RTX 3060 12GB BNIB</option>
+              <option value="NVIDIA RTX 3060 12GB OEM" data-price="5000000">NVIDIA RTX 3060 12GB OEM</option>
+              <option value="NVIDIA RTX 4060 Ti 8GB BNIB" data-price="9000000">NVIDIA RTX 4060 Ti 8GB BNIB</option>
+              <option value="NVIDIA RTX 4060 Ti 16GB BNIB" data-price="16000000">NVIDIA RTX 4060 Ti 16GB BNIB</option>
+              <option value="NVIDIA RTX 4070 SUPER 12GB BNIB" data-price="12500000">NVIDIA RTX 4070 SUPER 12GB BNIB</option>
+              <option value="NVIDIA RTX 4070 Ti 16GB BNIB" data-price="18000000">NVIDIA RTX 4070 Ti 16GB BNIB</option>
+              <option value="NVIDIA RTX 5050 8GB BNIB" data-price="6900000">NVIDIA RTX 5050 8GB BNIB</option>
+              <option value="NVIDIA RTX 5060 8GB BNIB" data-price="8800000">NVIDIA RTX 5060 8GB BNIB</option>
+              <option value="NVIDIA RTX 5060 16GB BNIB" data-price="15000000">NVIDIA RTX 5060 16GB BNIB</option>
+              <option value="NVIDIA RTX 5070 DualFan 12GB BNIB" data-price="15500000">NVIDIA RTX 5070 DualFan 12GB BNIB</option>
+              <option value="NVIDIA RTX 5070 TripleFan 12GB BNIB" data-price="18500000">NVIDIA RTX 5070 TripleFan 12GB BNIB</option>
+              <option value="NVIDIA RTX 5080 16GB BNIB" data-price="35000000">NVIDIA RTX 5080 16GB BNIB</option>
+              <option value="NVIDIA RTX 5090 32GB BNIB" data-price="115000000">NVIDIA RTX 5090 32GB BNIB</option>
+            </optgroup>
+
+            <optgroup label="AMD RADEON">
+              <option value="AMD Radeon RX 5600 12GB BNIB" data-price="3800000">AMD Radeon RX 5600 12GB BNIB</option>
+              <option value="AMD Radeon RX 6600 XT 8GB OEM" data-price="4200000">AMD Radeon RX 6600 XT 8GB OEM</option>
+              <option value="AMD Radeon RX 7600 8GB BNIB" data-price="5500000">AMD Radeon RX 7600 8GB BNIB</option>
+              <option value="AMD Radeon RX 7600 XT 16GB BNIB" data-price="7500000">AMD Radeon RX 7600 XT 16GB BNIB</option>
+              <option value="AMD Radeon RX 7700 XT 12GB BNIB" data-price="7800000">AMD Radeon RX 7700 XT 12GB BNIB</option>
+              <option value="AMD Radeon RX 7800 XT 16GB BNIB" data-price="11500000">AMD Radeon RX 7800 XT 16GB BNIB</option>
+              <option value="AMD Radeon RX 7900 XT 20GB BNIB" data-price="17000000">AMD Radeon RX 7900 XT 20GB BNIB</option>
+              <option value="AMD Radeon RX 9060 XT 16GB BNIB" data-price="8800000">AMD Radeon RX 9060 XT 16GB BNIB</option>
+              <option value="AMD Radeon RX 9070 GRE 12GB BNIB" data-price="13000000">AMD Radeon RX 9070 GRE 12GB BNIB</option>
+              <option value="AMD Radeon RX 9070 XT 16GB BNIB" data-price="15500000">AMD Radeon RX 9070 XT 16GB BNIB</option>
+            </optgroup>
           </select>
           <div class="unit-price" id="vga_unit">IDR 0</div>
           <input type="number" id="vga_qty" class="form-control input-qty spec-qty" value="1" min="1" onchange="updateCalculations()" required>
