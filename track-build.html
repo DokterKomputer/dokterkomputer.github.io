@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lacak Progress Perakitan PC | Dokter Komputer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at center top, #071f2e 0%, #030a10 70%, #010407 100%);
+      background-attachment: fixed;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      margin-top: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header h1 { color: #dfb15b; font-size: 1.8rem; margin-bottom: 5px; }
+    .header p { color: #7b93a4; font-size: 0.9rem; }
+
+    /* Search Box */
+    .search-box {
+      background: rgba(8, 18, 27, 0.85);
+      border: 1px solid #102636;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(5px);
+    }
+    .search-input {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid #102636;
+      background: #030a10;
+      color: #00e5ff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .search-input:focus { outline: none; border-color: #dfb15b; }
+    .btn-search {
+      background: #dfb15b;
+      color: #030a10;
+      font-weight: bold;
+      border: none;
+      padding: 0 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+    .btn-search:hover { background: #d9232d; color: #fff; }
+
+    /* Result Card */
+    .result-card {
+      display: none;
+      background: rgba(8, 18, 27, 0.85);
+      border: 1px solid #102636;
+      border-radius: 12px;
+      padding: 25px;
+      backdrop-filter: blur(5px);
+    }
+    .info-header {
+      border-bottom: 1px dashed #1c3e56;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cust-name { font-size: 1.3rem; color: #fff; font-weight: bold; }
+    .build-code { background: #102636; color: #00e5ff; padding: 4px 10px; border-radius: 6px; font-family: monospace; }
+
+    /* Progress Tracker Steps */
+    .stepper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      margin-left: 15px;
+      border-left: 2px dashed #1c3e56;
+      padding-left: 25px;
+    }
+    .step-item {
+      position: relative;
+      opacity: 0.4;
+      transition: all 0.3s ease;
+    }
+    .step-item.active { opacity: 1; }
+    .step-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 3px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #1c3e56;
+      border: 2px solid #030a10;
+    }
+    .step-item.completed::before { background: #25d366; }
+    .step-item.current::before {
+      background: #dfb15b;
+      box-shadow: 0 0 10px rgba(223, 177, 91, 0.8);
+    }
+
+    .step-title { font-weight: bold; font-size: 1rem; color: #fff; }
+    .step-desc { font-size: 0.85rem; color: #7b93a4; margin-top: 2px; }
+
+    .note-box {
+      margin-top: 25px;
+      background: rgba(3, 10, 16, 0.6);
+      border: 1px solid #102636;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: #dfb15b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>⚡ Live Order Tracker</h1>
+      <p>Dokter Komputer - Pantau Progress Perakitan PC Kamu secara Real-Time</p>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="trackInput" class="search-input" placeholder="Masukkan Kode (Misal: DK-XXXX)" autocomplete="off">
+      <button class="btn-search" onclick="searchTrack()">Cek Progress</button>
+    </div>
+
+    <div class="result-card" id="resultCard">
+      <div class="info-header">
+        <div>
+          <span style="color: #7b93a4; font-size: 0.8rem; display: block;">Pemilik Pesanan</span>
+          <span class="cust-name" id="dispNama">-</span>
+        </div>
+        <div>
+          <span class="build-code" id="dispKode">DK-XXXX</span>
+        </div>
+      </div>
+
+      <div class="stepper" id="stepperList">
+        <!-- Steps akan dirender via JS -->
+      </div>
+
+      <div class="note-box" id="dispNoteWrapper">
+        <strong>📌 Catatan Admin:</strong> <span id="dispNote">-</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbyvd0S_5bq2OHhtLe6cTGLTTRgIR6tP_l-UsASVAw6ChMUREnfHKer3eq8X4VKJ3we9/exec";
+
+    const STEPS = [
+      { name: "Collecting Item", desc: "Pemeriksaan & pengumpulan komponen PC" },
+      { name: "Proses Perakitan", desc: "Perakitan hardware & penataan kabel (Cable Management)" },
+      { name: "Proses Instalasi", desc: "Instalasi OS, Driver, & Software pendukung" },
+      { name: "Proses QC", desc: "Pengujian performa, suhu, & kestabilan sistem (Stress Test)" },
+      { name: "Selesai", desc: "PC telah selesai diuji & siap diserahterimakan" },
+      { name: "Pickup / Delivery", desc: "Pesanan siap diambil / dalam proses pengiriman" }
+    ];
+
+    // Cek jika ada kode dari URL params (Contoh: track-build.html?code=DK-XXXX)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const codeParam = urlParams.get('code');
+      if (codeParam) {
+        document.getElementById('trackInput').value = codeParam;
+        searchTrack();
+      }
+    });
+
+    function searchTrack() {
+      const code = document.getElementById('trackInput').value.trim();
+      if (!code) return alert("Masukkan kode tracking!");
+
+      const card = document.getElementById('resultCard');
+      card.style.display = 'block';
+      document.getElementById('dispNama').innerText = "Memuat data...";
+      document.getElementById('stepperList').innerHTML = "";
+
+      fetch(`${API_URL}?action=track&code=${code}`)
+        .then(res => res.json())
+        .then(res => {
+          if (res.success) {
+            renderData(res.data);
+          } else {
+            alert(res.message);
+            card.style.display = 'none';
+          }
+        })
+        .catch(err => {
+          alert("Gagal mengambil data.");
+          card.style.display = 'none';
+        });
+    }
+
+    function renderData(data) {
+      document.getElementById('dispNama').innerText = data.nama;
+      document.getElementById('dispKode').innerText = data.kode;
+      document.getElementById('dispNote').innerText = data.catatan || 'Tidak ada catatan tambahan.';
+
+      const currentProgress = data.progress;
+      let currentIndex = STEPS.findIndex(s => s.name.toLowerCase() === currentProgress.toLowerCase());
+      if (currentIndex === -1) currentIndex = 0;
+
+      const stepperContainer = document.getElementById('stepperList');
+      stepperContainer.innerHTML = '';
+
+      STEPS.forEach((step, idx) => {
+        let statusClass = '';
+        if (idx < currentIndex) statusClass = 'completed active';
+        else if (idx === currentIndex) statusClass = 'current active';
+
+        stepperContainer.innerHTML += `
+          <div class="step-item ${statusClass}">
+            <div class="step-title">${step.name} ${idx < currentIndex ? '✓' : ''}</div>
+            <div class="step-desc">${step.desc}</div>
+          </div>
+        `;
+      });
+    }
+  </script>
+</body>
+</html>
