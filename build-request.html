@@ -26,7 +26,7 @@
       flex-direction: column;
     }
 
-    /* Navbar */
+    /* Navbar Header */
     header {
       width: 100%;
       padding: 16px 8%;
@@ -53,6 +53,43 @@
 
     .brand-logo i { color: #dfb15b; font-size: 1.5rem; }
     .brand-logo span { color: #dfb15b; }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Tombol Kembali ke Utama */
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(223, 177, 91, 0.15);
+      color: #dfb15b;
+      border: 1px solid rgba(223, 177, 91, 0.4);
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn-nav-home:hover {
+      background: #dfb15b;
+      color: #060a12;
+      transform: translateY(-1px);
+    }
+
+    .page-tag {
+      font-size: 0.85rem;
+      color: #10b981;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
     .container {
       max-width: 1100px;
@@ -315,6 +352,7 @@
     }
 
     @media (max-width: 850px) {
+      header { flex-direction: column; gap: 12px; }
       .table-header { display: none; }
       .part-row {
         grid-template-columns: 1fr;
@@ -337,13 +375,20 @@
 </head>
 <body>
 
+  <!-- HEADER DENGAN AKSES KEMBALI KE UTAMA -->
   <header>
-    <a href="#" class="brand-logo">
+    <a href="index.html" class="brand-logo">
       <i class="fa-solid fa-microchip"></i>
       Dokter <span>Komputer</span>
     </a>
-    <div style="font-size: 0.85rem; color: #10b981; font-weight: 600;">
-      <i class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> Form Request Build
+    <div class="header-actions">
+      <div class="page-tag">
+        <i class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> Form Request Build
+      </div>
+      <!-- Tombol Kembali ke Utama -->
+      <a href="index.html" class="btn-nav-home">
+        <i class="fa-solid fa-house"></i> Utama
+      </a>
     </div>
   </header>
 
@@ -433,7 +478,7 @@
           <div class="subtotal-price" id="proc_subtotal">IDR 0</div>
         </div>
 
-        <!-- MOTHERBOARD (DINAMIS SESUAI SOCKET INTEL & AMD) -->
+        <!-- MOTHERBOARD -->
         <div class="part-row">
           <div class="part-label">Motherboard</div>
           <select id="mobo_item" class="form-control spec-calc" onchange="updateCalculations()" required disabled>
@@ -632,7 +677,7 @@
           <div class="total-val" id="totalDisplay">IDR 0</div>
         </div>
 
-        <!-- DISCLAIMER CLEARLY VISIBLE -->
+        <!-- DISCLAIMER -->
         <div class="disclaimer-box">
           *BIAYA BELUM TERMASUK JASA DAN ONGKIR
         </div>
@@ -727,7 +772,6 @@
       }
     });
 
-    // LOGIKA DINAMIS MOTHERBOARD BERDASARKAN SOCKET (INTEL & AMD)
     function onProcessorChange() {
       const procSelect = document.getElementById('proc_item');
       const selectedOption = procSelect.options[procSelect.selectedIndex];
@@ -813,7 +857,6 @@
 
       const calculatedTotal = updateCalculations();
       
-      // Format Otomatis Sanitasi Nomor WA (08xx -> 628xx)
       let inputWa = document.getElementById('whatsapp_no').value.trim();
       if (inputWa.startsWith('0')) {
         inputWa = '62' + inputWa.slice(1);
