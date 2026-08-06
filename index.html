@@ -37,12 +37,12 @@
       filter: drop-shadow(0 0 12px rgba(223, 177, 91, 0.3)); 
     } 
 
-    /* WRAPPER HERO BANNER (FULL WIDTH / MAXIMUM BREAKPOINT) */
+    /* WRAPPER HERO BANNER */
     .hero-banner-wrapper {
       width: 100%;
-      max-width: 1800px; /* Maksimal lebar ala Enterkomputer */
+      max-width: 1800px; 
       margin: 0 auto 40px auto;
-      padding: 0 15px; /* Padding minimal agar di layar HP tidak terlalu mepet ke border screen */
+      padding: 0 15px; 
     }
 
     /* STYLING BANNER CAROUSEL */ 
@@ -149,7 +149,7 @@
       border-radius: 10px; 
     } 
 
-    /* Container Utama untuk Konten Kategori (1200px) */ 
+    /* Container Utama Konten (1200px) */ 
     .container { 
       max-width: 1200px; 
       margin: 0 auto; 
@@ -183,7 +183,7 @@
       letter-spacing: -0.5px; 
     } 
 
-    /* Grid Layout 4 Kolom (PC) & 3 Kolom (Laptop) */ 
+    /* Grid Layout */ 
     .category-grid-4 { 
       display: grid; 
       grid-template-columns: repeat(4, 1fr); 
@@ -216,7 +216,6 @@
       box-shadow: 0 10px 25px rgba(217, 35, 45, 0.25); 
     } 
 
-    /* Header Inside Card */ 
     .card-title-group h3 { 
       color: #ffffff; 
       font-size: 1.2rem; 
@@ -231,7 +230,6 @@
       margin-top: 4px; 
     } 
 
-    /* Lingkaran Background Gambar */ 
     .image-wrapper { 
       background: radial-gradient(circle, #0e2d42 0%, #05131f 70%); 
       width: 140px; 
@@ -257,7 +255,6 @@
       transform: scale(1.1); 
     } 
 
-    /* Tagline Tombol Bawah */ 
     .tagline { 
       background-color: #dfb15b; 
       color: #030a10; 
@@ -295,7 +292,7 @@
       background-color: #1ebd56; 
     } 
 
-    /* FLOATING SIDE BUTTONS (Pojok Kanan Atas) */
+    /* FLOATING SIDE BUTTON (Pojok Kanan Atas) - TEXT BUBBLE ONLY */
     .floating-side-buttons {
       position: fixed;
       right: 25px;
@@ -306,33 +303,27 @@
       z-index: 9999;
     }
 
-    .floating-btn {
-      width: 72px;
-      height: 72px;
+    .floating-btn-text {
       background: rgba(8, 18, 27, 0.9);
       border: 2px solid #dfb15b;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      text-decoration: none;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
       transition: all 0.3s ease;
-      overflow: hidden;
-      padding: 10px;
-      text-decoration: none;
       backdrop-filter: blur(6px);
+      display: inline-block;
+      text-align: center;
     }
 
-    .floating-btn img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
-
-    .floating-btn:hover {
-      transform: scale(1.12);
+    .floating-btn-text:hover {
+      transform: scale(1.05);
       border-color: #d9232d;
+      background: #d9232d;
       box-shadow: 0 8px 25px rgba(217, 35, 45, 0.5);
     }
 
@@ -431,19 +422,17 @@
       .floating-side-buttons {
         right: 15px;
         top: 15px;
-        gap: 10px;
       }
-      .floating-btn {
-        width: 58px;
-        height: 58px;
-        padding: 8px;
+      .floating-btn-text {
+        padding: 8px 14px;
+        font-size: 0.8rem;
       }
       .hero-banner-wrapper {
-        padding: 0; /* Di HP benar-benar rapat sampai ujung layar */
+        padding: 0; 
         margin-bottom: 30px;
       }
       .banner-slider-container {
-        border-radius: 0; /* Datar di seluler agar penuh seratus persen */
+        border-radius: 0; 
         border-left: none;
         border-right: none;
       }
@@ -459,13 +448,10 @@
 </head> 
 <body> 
 
-  <!-- FLOATING SIDE BUTTONS -->
+  <!-- FLOATING SIDE BUTTON (TEXT BUBBLE ONLY) -->
   <div class="floating-side-buttons">
-    <a href="dk2ndpartslist.html" class="floating-btn" title="DK Second Parts">
-      <img src="images/dk2ndparts.png" alt="DK Second Parts">
-    </a>
-    <a href="build-request.html" class="floating-btn" title="Request PC Impian">
-      <img src="images/icon-build.png" alt="Request PC Impian">
+    <a href="build-request.html" class="floating-btn-text">
+      Racik Pc Mu
     </a>
   </div>
 
@@ -479,12 +465,12 @@
     </div> 
   </div> 
 
-  <!-- LOGO UTAMA (DILUAR CONTAINER BANNER & KATEGORI) --> 
+  <!-- LOGO UTAMA --> 
   <header class="brand-header"> 
     <img src="images/logo.png" alt="Logo Dokter Komputer" class="brand-logo"> 
   </header> 
 
-  <!-- HERO BANNER WRAPPER (MAX-WIDTH 1800PX ATAU FULL VIEWPORT) -->
+  <!-- HERO BANNER WRAPPER -->
   <div class="hero-banner-wrapper">
     <div class="banner-slider-container" id="bannerSlider"> 
       <button class="slider-arrow prev" onclick="prevSlide()">&#10094;</button>
@@ -644,7 +630,7 @@
   <!-- SCRIPT BANNER SLIDER & POPUP --> 
   <script> 
     let currentSlide = 0; 
-    const totalSlides = 5; 
+    const totalSlides = 6; 
     const sliderTrack = document.getElementById('sliderTrack'); 
     const dots = document.querySelectorAll('.dot-btn'); 
     const sliderContainer = document.getElementById('bannerSlider'); 
