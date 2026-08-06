@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulasi Rakit PC AMD | Dokter Komputer</title>
+  <title>Simulasi Rakit PC Intel | Dokter Komputer</title>
   
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -343,7 +343,7 @@
       Dokter <span>Komputer</span>
     </a>
     <div style="font-size: 0.85rem; color: #10b981; font-weight: 600;">
-      <i class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> Form Request Build
+      <i class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> Form Request Build Intel
     </div>
   </header>
 
@@ -352,7 +352,7 @@
     <!-- LOGIN AREA -->
     <div id="loginSection" class="login-card">
       <i class="fa-solid fa-sliders" style="font-size: 3rem; color: #dfb15b; margin-bottom: 15px;"></i>
-      <h2 style="color: #fff; margin-bottom: 10px;">Simulasi Rakit PC AMD</h2>
+      <h2 style="color: #fff; margin-bottom: 10px;">Simulasi Rakit PC Intel</h2>
       <p style="color: #64748b; font-size: 0.9rem;">Silakan masuk menggunakan Google untuk meracik komponen kustom milikmu.</p>
       
       <button class="btn-google" onclick="loginWithGoogle()">
@@ -385,30 +385,47 @@
           <div style="text-align: right;">Price</div>
         </div>
 
-        <!-- PROCESSOR -->
+        <!-- PROCESSOR INTEL -->
         <div class="part-row">
           <div class="part-label">Processor</div>
           <select id="proc_item" class="form-control spec-calc" onchange="onProcessorChange(); updateCalculations();" required>
-            <option value="" data-price="0">-- Pilih Processor --</option>
-            <optgroup label="Ryzen 3">
-              <option value="AMD Ryzen 3 3200G Tray" data-price="1100000">Ryzen 3 3200G Tray</option>
-              <option value="AMD Ryzen 3 3300X Tray" data-price="1600000">Ryzen 3 3300X Tray</option>
+            <option value="" data-price="0" data-socket="">-- Pilih Processor Intel --</option>
+            
+            <optgroup label="SOCKET LGA 1200 (Gen 10 & Gen 11)">
+              <option value="Intel Core i3-10100F TRAY" data-price="1300000" data-socket="LGA1200">i3-10100F TRAY</option>
+              <option value="Intel Core i3-10105F TRAY" data-price="1500000" data-socket="LGA1200">i3-10105F TRAY</option>
+              <option value="Intel Core i5-10400F TRAY" data-price="2100000" data-socket="LGA1200">i5-10400F TRAY</option>
+              <option value="Intel Core i5-11400F TRAY" data-price="2700000" data-socket="LGA1200">i5-11400F TRAY</option>
+              <option value="Intel Core i7-10700F TRAY" data-price="3500000" data-socket="LGA1200">i7-10700F TRAY</option>
+              <option value="Intel Core i7-10700F BOX" data-price="5000000" data-socket="LGA1200">i7-10700F BOX</option>
+              <option value="Intel Core i7-11700F TRAY" data-price="3500000" data-socket="LGA1200">i7-11700F TRAY</option>
+              <option value="Intel Core i7-11700F BOX" data-price="5000000" data-socket="LGA1200">i7-11700F BOX</option>
+              <option value="Intel Core i9-11900K TRAY" data-price="5000000" data-socket="LGA1200">i9-11900K TRAY</option>
+              <option value="Intel Core i9-10900K TRAY" data-price="6000000" data-socket="LGA1200">i9-10900K TRAY</option>
+              <option value="Intel Core i9-10900K BOX" data-price="8500000" data-socket="LGA1200">i9-10900K BOX</option>
             </optgroup>
-            <optgroup label="Ryzen 5">
-              <option value="AMD Ryzen 5 3600 Tray" data-price="1850000">Ryzen 5 3600 Tray</option>
-              <option value="AMD Ryzen 5 5500 Tray" data-price="1600000">Ryzen 5 5500 Tray</option>
-              <option value="AMD Ryzen 5 5600GT Tray" data-price="2900000">Ryzen 5 5600GT Tray</option>
-              <option value="AMD Ryzen 5 5600 Tray" data-price="2200000">Ryzen 5 5600 Tray</option>
-              <option value="AMD Ryzen 5 5600XT Tray" data-price="3500000">Ryzen 5 5600XT Tray</option>
-            </optgroup>
-            <optgroup label="Ryzen 7">
-              <option value="AMD Ryzen 7 5700X3D Tray" data-price="5500000">Ryzen 7 5700X3D Tray</option>
-              <option value="AMD Ryzen 7 5800X3D BOX" data-price="7800000">Ryzen 7 5800X3D BOX</option>
-              <option value="AMD Ryzen 7 5800XT BOX" data-price="5000000">Ryzen 7 5800XT BOX</option>
-              <option value="AMD Ryzen 7 5800X BOX" data-price="4500000">Ryzen 7 5800X BOX</option>
-            </optgroup>
-            <optgroup label="Ryzen 9">
-              <option value="AMD Ryzen 9 5900X BOX" data-price="7500000">Ryzen 9 5900X BOX</option>
+
+            <optgroup label="SOCKET LGA 1700 (Gen 12, Gen 13, & Gen 14)">
+              <option value="Intel Core i3-12100F TRAY" data-price="2100000" data-socket="LGA1700">i3-12100F TRAY</option>
+              <option value="Intel Core i3-12100F BOX" data-price="2300000" data-socket="LGA1700">i3-12100F BOX</option>
+              <option value="Intel Core i3-14100F BOX" data-price="2300000" data-socket="LGA1700">i3-14100F BOX</option>
+              <option value="Intel Core i5-12400F TRAY" data-price="2600000" data-socket="LGA1700">i5-12400F TRAY</option>
+              <option value="Intel Core i5-13400F TRAY" data-price="2850000" data-socket="LGA1700">i5-13400F TRAY</option>
+              <option value="Intel Core i5-12400F BOX" data-price="3000000" data-socket="LGA1700">i5-12400F BOX</option>
+              <option value="Intel Core i5-14400F TRAY" data-price="3000000" data-socket="LGA1700">i5-14400F TRAY</option>
+              <option value="Intel Core i5-13400F BOX" data-price="3700000" data-socket="LGA1700">i5-13400F BOX</option>
+              <option value="Intel Core i5-12600KF BOX" data-price="3800000" data-socket="LGA1700">i5-12600KF BOX</option>
+              <option value="Intel Core i5-14400F BOX" data-price="4200000" data-socket="LGA1700">i5-14400F BOX</option>
+              <option value="Intel Core i5-12600K BOX" data-price="4550000" data-socket="LGA1700">i5-12600K BOX</option>
+              <option value="Intel Core i7-12700KF BOX" data-price="5300000" data-socket="LGA1700">i7-12700KF BOX</option>
+              <option value="Intel Core i7-12700F BOX" data-price="5600000" data-socket="LGA1700">i7-12700F BOX</option>
+              <option value="Intel Core i7-12700K BOX" data-price="5600000" data-socket="LGA1700">i7-12700K BOX</option>
+              <option value="Intel Core i7-13700F TRAY" data-price="5650000" data-socket="LGA1700">i7-13700F TRAY</option>
+              <option value="Intel Core i7-13700F BOX" data-price="5800000" data-socket="LGA1700">i7-13700F BOX</option>
+              <option value="Intel Core i7-12700 TRAY" data-price="6000000" data-socket="LGA1700">i7-12700 TRAY</option>
+              <option value="Intel Core i7-14700 TRAY" data-price="6000000" data-socket="LGA1700">i7-14700 TRAY</option>
+              <option value="Intel Core i7-14700F BOX" data-price="6200000" data-socket="LGA1700">i7-14700F BOX</option>
+              <option value="Intel Core i9-12900K BOX" data-price="8600000" data-socket="LGA1700">i9-12900K BOX</option>
             </optgroup>
           </select>
           <div class="unit-price" id="proc_unit">IDR 0</div>
@@ -416,7 +433,7 @@
           <div class="subtotal-price" id="proc_subtotal">IDR 0</div>
         </div>
 
-        <!-- MOTHERBOARD -->
+        <!-- MOTHERBOARD (DINAMIS SESUAI HARGA LATEST DARI KAMU) -->
         <div class="part-row">
           <div class="part-label">Motherboard</div>
           <select id="mobo_item" class="form-control spec-calc" onchange="updateCalculations()" required disabled>
@@ -548,12 +565,12 @@
           <div class="subtotal-price" id="monitor_subtotal">IDR 0</div>
         </div>
 
-        <!-- COOLER CPU (DENGAN STRUKTUR BERTIATIH LENGKAP AIR & AIO) -->
+        <!-- COOLER CPU -->
         <div class="part-row">
           <div class="part-label">Cooler CPU</div>
           <select id="cooler_item" class="form-control spec-calc" onchange="updateCalculations()" required>
             <option value="" data-price="0">-- Pilih CPU Cooler --</option>
-            <option value="Stock Cooler AMD (Bawaan Processor)" data-price="0">Stock Cooler AMD (Bawaan Processor)</option>
+            <option value="Stock Cooler Intel (Bawaan Processor)" data-price="0">Stock Cooler Intel (Bawaan Processor)</option>
             
             <optgroup label="AIR COOLER">
               <option value="Air Cooler Single Tower 120mm (Entry)" data-price="350000">Air Cooler Single Tower 120mm (Entry)</option>
@@ -576,7 +593,7 @@
           <div class="subtotal-price" id="cooler_subtotal">IDR 0</div>
         </div>
 
-        <!-- CASING (DENGAN TIERED LEVEL SESUAI DRAFT KAMU) -->
+        <!-- CASING -->
         <div class="part-row">
           <div class="part-label">Casing</div>
           <select id="casing_item" class="form-control spec-calc" onchange="updateCalculations()" required>
@@ -611,7 +628,7 @@
           <div class="total-val" id="totalDisplay">IDR 0</div>
         </div>
 
-        <!-- DISCLAIMER CLEARLY VISIBLE -->
+        <!-- DISCLAIMER -->
         <div class="disclaimer-box">
           *BIAYA BELUM TERMASUK JASA DAN ONGKIR
         </div>
@@ -632,7 +649,7 @@
           </div>
           <div class="full-width">
             <label style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; display: block; margin-bottom: 5px;">Catatan Tambahan</label>
-            <input type="text" id="user_notes" class="form-control" placeholder="Catatan kustom kustomisasi...">
+            <input type="text" id="user_notes" class="form-control" placeholder="Catatan kustomisasi...">
           </div>
         </div>
 
@@ -653,7 +670,7 @@
       <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
       <h3 style="color: #fff; margin-bottom: 12px;">Pesanan Terkirim!</h3>
       <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">
-        Terima kasih, pesanan rakitan Anda sedang diproses. Admin Dokter Komputer akan segera menghubungi Anda via WhatsApp.
+        Terima kasih, pesanan rakitan Intel Anda sedang diproses. Admin Dokter Komputer akan segera menghubungi Anda via WhatsApp.
       </p>
       <button class="btn-close-modal" onclick="closeModal()">Selesai</button>
     </div>
@@ -706,24 +723,39 @@
       }
     });
 
+    // DINAMIS MOTHERBOARD BERDASARKAN SOCKET INTEL (HARGA UPDATE DISTRIBUTOR)
     function onProcessorChange() {
-      const rawVal = document.getElementById('proc_item').value;
+      const procSelect = document.getElementById('proc_item');
+      const selectedOption = procSelect.options[procSelect.selectedIndex];
+      const socket = selectedOption ? selectedOption.getAttribute('data-socket') : '';
+      
       const moboSelect = document.getElementById('mobo_item');
       moboSelect.innerHTML = '';
 
-      if (!rawVal) {
+      if (!socket) {
         moboSelect.innerHTML = `<option value="" data-price="0">-- Pilih Processor Terlebih Dahulu --</option>`;
         moboSelect.disabled = true;
+        updateCalculations();
         return;
       }
 
-      moboSelect.innerHTML = `
-        <option value="" data-price="0">-- Pilih Motherboard --</option>
-        <option value="A520 Chipset Motherboard" data-price="1000000">A520 Chipset</option>
-        <option value="B550 Chipset Motherboard" data-price="1500000">B550 Chipset</option>
-        <option value="X570 Chipset Motherboard" data-price="3000000">X570 Chipset</option>
-      `;
+      if (socket === 'LGA1200') {
+        moboSelect.innerHTML = `
+          <option value="" data-price="0">-- Pilih Motherboard LGA 1200 --</option>
+          <option value="H510 Chipset Motherboard" data-price="1200000">H510 Chipset</option>
+          <option value="B560 Chipset Motherboard" data-price="2500000">B560 Chipset</option>
+        `;
+      } else if (socket === 'LGA1700') {
+        moboSelect.innerHTML = `
+          <option value="" data-price="0">-- Pilih Motherboard LGA 1700 --</option>
+          <option value="H610 Chipset Motherboard" data-price="1450000">H610 Chipset</option>
+          <option value="B660 Chipset DDR4 Motherboard" data-price="2400000">B660 Chipset DDR4</option>
+          <option value="B760 Chipset DDR4 Motherboard" data-price="2800000">B760 Chipset DDR4</option>
+        `;
+      }
+
       moboSelect.disabled = false;
+      updateCalculations();
     }
 
     function updateCalculations() {
@@ -773,6 +805,7 @@
         customer_alamat: document.getElementById('customer_address').value,
         notes: document.getElementById('user_notes').value,
         total_harga: 'IDR ' + calculatedTotal.toLocaleString('id-ID'),
+        platform: 'INTEL',
         specs: {
           processor: `${document.getElementById('proc_item').value} (Qty: ${document.getElementById('proc_qty').value})`,
           motherboard: `${document.getElementById('mobo_item').value} (Qty: ${document.getElementById('mobo_qty').value})`,
@@ -790,7 +823,7 @@
       db.collection('custom_builds').add(buildData)
       .then(() => {
         const waText = 
-`*FORM PESANAN RAKIT PC - DOKTER KOMPUTER*
+`*FORM PESANAN RAKIT PC INTEL - DOKTER KOMPUTER*
 ----------------------------------------
 *Processor:* ${buildData.specs.processor}
 *Motherboard:* ${buildData.specs.motherboard}
