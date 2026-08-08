@@ -258,6 +258,57 @@
             margin-top: 10px;
         }
 
+        /* TOMBOL HOME FIXED TOP RIGHT */
+        .btn-home {
+            position: fixed;
+            top: 6px;
+            right: 15px;
+            z-index: 101;
+            background: #1f2937;
+            color: #ffffff;
+            border: 1px solid #374151;
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.2s;
+        }
+        .btn-home:hover {
+            background: #ff2a4b;
+        }
+
+        /* DESKTOP NAV ARROWS */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(13, 17, 23, 0.85);
+            border: 1px solid #1f2937;
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+        .nav-arrow:hover {
+            background: #ff2a4b;
+            border-color: #ff2a4b;
+            scale: 1.1;
+        }
+        .nav-arrow.left { left: 20px; }
+        .nav-arrow.right { right: 20px; }
+
         /* DOTS NAVIGATION */
         .slider-dots {
             position: fixed;
@@ -278,6 +329,7 @@
             border-radius: 50%;
             background: #2a2e37;
             transition: 0.3s;
+            cursor: pointer;
         }
         .dot.active {
             width: 26px;
@@ -371,6 +423,7 @@
             .price-tag { font-size: 1.8rem; }
             .container { padding: 18px; }
             .features { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .nav-arrow { display: none; }
         }
     </style>
 </head>
@@ -380,16 +433,23 @@
         👈 GESER KE SAMPING UNTUK MELIHAT PAKET LAIN 👉
     </div>
 
+    <!-- TOMBOL HOME -->
+    <button class="btn-home" id="btnHome">🏠 Home</button>
+
+    <!-- ARROW NAVIGASI DESKTOP -->
+    <button class="nav-arrow left" id="arrowLeft">&#10094;</button>
+    <button class="nav-arrow right" id="arrowRight">&#10095;</button>
+
     <div class="catalog-slider" id="slider">
 
-        <!-- PRODUK 1 -->
+        <!-- PRODUK 1: THE LEGEND'S LAST BATTLE -->
         <div class="product-slide">
             <div class="container theme-legend">
                 <div class="header">
                     <div class="brand">Dokter Komputer Lab</div>
                     <h1 class="main-title">THE LEGEND'S LAST BATTLE</h1>
                     <span class="badge-edition">XEON EDITION • 2026</span>
-                    <p class="tagline">MASIH SANGGUP MENANTANG GAME AAA MODERN • 1080P OPTIMIZED</p>
+                    <p class="tagline">13 YEARS LATER • STILL FIGHTING</p>
                 </div>
 
                 <div class="main-content-grid">
@@ -399,13 +459,13 @@
                         </div>
 
                         <div>
-                            <div class="section-title">TESTED PERFORMANCE @1080P</div>
+                            <div class="section-title">FPS GAME 1080P</div>
                             <div class="info-card">
                                 <div class="info-item"><span class="info-label">Black Myth: Wukong </span><span class="info-val">55-65 FPS</span></div>
-                                <div class="info-item"><span class="info-label">Ghost of Tsushima </span><span class="info-val">70-80 FPS</span></div>
                                 <div class="info-item"><span class="info-label">Monster Hunter Wild </span><span class="info-val">60-70 FPS</span></div>
-                                <div class="info-item"><span class="info-label">Assasin Creed Shadows </span><span class="info-val">60-70 FPS</span></div>
-                                <div class="info-item"><span class="info-label">God Of War Ragnarok </span><span class="info-val">70-80 FPS</span></div>
+                                <div class="info-item"><span class="info-label">Ghost of Tsushima </span><span class="info-val">70-80 FPS</span></div>
+                                <div class="info-item"><span class="info-label">Assassin Creed Shadows </span><span class="info-val">60-70 FPS</span></div>
+                                <div class="info-item"><span class="info-label">God Of War Ragnarök </span><span class="info-val">70-80 FPS</span></div>
                                 <div class="info-item"><span class="info-label">Genshin Impact </span><span class="info-val">60-80 FPS</span></div>
                             </div>
                         </div>
@@ -413,16 +473,16 @@
 
                     <div class="right-col">
                         <div>
-                            <div class="section-title">FULL HARDWARE SPECIFICATIONS</div>
+                            <div class="section-title">SPESIFIKASI</div>
                             <table>
-                                <tr><td class="label">Processor</td><td class="val">Intel Xeon E3-1230 v3 (4 Cores / 8 Threads 3.30GHz)</td></tr>
-                                <tr><td class="label">Motherboard</td><td class="val">H81 LGA 1150</td></tr>
-                                <tr><td class="label">RAM</td><td class="val">16GB DDR3 1600MHz Dual Channel</td></tr>
-                                <tr><td class="label">VGA / GPU</td><td class="val">GeForce GTX 1660 SUPER 6GB 192-Bit</td></tr>
-                                <tr><td class="label">Storage</td><td class="val">SSD 256GB SATA III 256Gb/s</td></tr>
-                                <tr><td class="label">Power Supply</td><td class="val">PSU 550W 80+ Bronze</td></tr>
-                                <tr><td class="label">Case</td><td class="val">CASE + Fan</td></tr>
-                                <tr><td class="label">SUDAH TERMASUK BIASA </td><td class="val">Instalasi Windows 10, Optimasi OS, Free Cleaning 1x, Garansi Toko </td></tr>
+                                <tr><td class="label">Processor</td><td class="val">Intel Xeon E3-1230 v3</td></tr>
+                                <tr><td class="label">CPU Cooler</td><td class="val">CK-11508</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">H81</td></tr>
+                                <tr><td class="label">Memory</td><td class="val">DDR3 16GB Dual Channel</td></tr>
+                                <tr><td class="label">Storage</td><td class="val">SSD SATA 256GB</td></tr>
+                                <tr><td class="label">VGA</td><td class="val">GTX 1660S 6GB</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">550W 80+ Bronze</td></tr>
+                                <tr><td class="label">Case</td><td class="val">Case + 3 Fan</td></tr>
                             </table>
                         </div>
 
@@ -430,7 +490,7 @@
                             <div class="price-tag">IDR 5.999.999</div>
                             <div class="action-title">LEGENDS NEVER DIE, THEY JUST KEEP FIGHTING!</div>
                             <p class="action-sub"></p>
-                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20The%20Legend's%20Last%20Battle%20(4,9jt)" class="btn-wa" target="_blank">
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20The%20Legend's%20Last%20Battle" class="btn-wa" target="_blank">
                                 💬 Order / Konsultasi via WA
                             </a>
                         </div>
@@ -438,10 +498,10 @@
                 </div>
 
                 <div class="features">
-                    <div>🔥 Burn Test 2 Hours</div>
-                    <div>🛡️ Garansi 3 Thn Service</div>
-                    <div>💻 Win 11 + Office Lifetime</div>
-                    <div>🎧 Free Support & Consult</div>
+                    <div>🪟 Instalasi Windows</div>
+                    <div>🛠️ Jasa (Rakit + Optimasi OS)</div>
+                    <div>✨ Free 1x Jasa Deep Clean</div>
+                    <div>🛡️ Garansi Toko</div>
                 </div>
             </div>
         </div>
@@ -716,12 +776,15 @@
         <img class="lightbox-content" id="lightboxImg" alt="Enlarged Preview">
     </div>
 
-    <!-- JS UNTUK DOTS & LIGHTBOX -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Update Dots Navigasi saat Scroll
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
+        const arrowLeft = document.getElementById('arrowLeft');
+        const arrowRight = document.getElementById('arrowRight');
+        const btnHome = document.getElementById('btnHome');
 
+        // Update Dots Navigasi saat Scroll
         slider.addEventListener('scroll', () => {
             const scrollPosition = slider.scrollLeft;
             const slideWidth = window.innerWidth;
@@ -734,6 +797,30 @@
                     dot.classList.remove('active');
                 }
             });
+        });
+
+        // Click Event pada Dots Navigasi
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                slider.scrollTo({
+                    left: index * window.innerWidth,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Arrow Desktop Scroll Control
+        arrowLeft.addEventListener('click', () => {
+            slider.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+        });
+
+        arrowRight.addEventListener('click', () => {
+            slider.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+        });
+
+        // Tombol Home Logic (Kembali ke Slide Utama / Pertama)
+        btnHome.addEventListener('click', () => {
+            slider.scrollTo({ left: 0, behavior: 'smooth' });
         });
 
         // Lightbox Modal Logic
@@ -749,12 +836,10 @@
             });
         });
 
-        // Tutup Modal lewat Tombol 'X'
         closeBtn.addEventListener('click', () => {
             modal.classList.remove('active');
         });
 
-        // Tutup Modal jika area luar gambar diklik
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('active');
