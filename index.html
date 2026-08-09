@@ -22,10 +22,54 @@
       min-height: 100vh; 
     } 
 
+    /* TOP BAR NAVIGATION & ADMIN BUTTON */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: rgba(3, 10, 16, 0.8);
+      border-bottom: 1px solid #102636;
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .top-bar .brand-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #dfb15b;
+      letter-spacing: 1px;
+    }
+
+    .admin-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #102636;
+      color: #00e5ff;
+      border: 1px solid #00e5ff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+    }
+
+    .admin-btn:hover {
+      background: #00e5ff;
+      color: #030a10;
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+      transform: translateY(-2px);
+    }
+
     /* STYLING HEADER LOGO */ 
     .brand-header { 
       text-align: center; 
-      padding: 30px 20px 15px 20px; 
+      padding: 25px 20px 15px 20px; 
     } 
     
     .brand-logo { 
@@ -296,11 +340,11 @@
     .floating-side-buttons {
       position: fixed;
       right: 25px;
-      top: 25px;
+      top: 75px;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      z-index: 9999;
+      z-index: 999;
     }
 
     .floating-btn-rgb {
@@ -439,7 +483,7 @@
       } 
       .floating-side-buttons {
         right: 10px;
-        top: 10px;
+        top: 65px;
         gap: 8px;
       }
       .floating-btn-rgb {
@@ -467,17 +511,14 @@
 </head> 
 <body> 
 
-   <div class="admin-container">
-    <!-- 1. HEADER DENGAN TOMBOL KEMBALI -->
-    <div class="header">
-      <div>
-        <h1>🛠️ Dashboard Admin Tracker</h1>
-        <p style="color: #7b93a4; font-size: 0.9rem;">Dokter Komputer - Progress Perakitan PC</p>
-      </div>
-      <a href="index.html" class="btn" style="background: #102636; color: #00e5ff; border: 1px solid #00e5ff;">🏠 ADMIN</a>
-      <a href="https://dokterkomputer.github.io/admin-tracker.html" target="_blank"> 
-    </div>
-     
+  <!-- BAR NAVIGASI ATAS & TOMBOL ADMIN -->
+  <nav class="top-bar">
+    <span class="brand-title">DOKTER KOMPUTER</span>
+    <a href="https://dokterkomputer.github.io/admin-tracker.html" class="admin-btn" target="_blank">
+      🔒 Admin Tracker
+    </a>
+  </nav>
+
   <!-- FLOATING SIDE BUTTONS (RGB PULSE EFFECT) -->
   <div class="floating-side-buttons">
     <a href="build-request.html" class="floating-btn-rgb">
@@ -548,7 +589,7 @@
         <button class="dot-btn" onclick="goToSlide(2)"></button> 
         <button class="dot-btn" onclick="goToSlide(3)"></button> 
         <button class="dot-btn" onclick="goToSlide(4)"></button>
-        <button class="dot-btn" onclick="goToSlide(5)"></button 
+        <button class="dot-btn" onclick="goToSlide(5)"></button>
       </div> 
     </div> 
   </div>
