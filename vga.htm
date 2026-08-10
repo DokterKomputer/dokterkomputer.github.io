@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Katalog VGA Card - Dokter Komputer</title>
+  <style>
+    .vga-card { border: 1px solid #ccc; padding: 15px; margin: 10px; border-radius: 8px; }
+    .price { color: #e63946; font-weight: bold; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Daftar VGA Card (Beta Test Auto-Price)</h1>
+
+  <div class="vga-card">
+    <h3>NVIDIA GeForce RTX 5050</h3>
+    <p>Harga Live: <span id="price-rtx5050" class="price">Loading...</span></p>
+  </div>
+
+  <script>
+    // Ambil data harga dari Google Sheets (JSON)
+    const SHEET_URL = 'URL_GOOGLE_SHEETS_JSON_KAMU';
+
+    fetch(SHEET_URL)
+      .then(res => res.json())
+      .then(data => {
+        // Misal data RTX 5050 ada di indeks tertentu
+        const hargaRTX5050 = data.rtx5050_price; 
+        
+        // Update tampilan di halaman VGA
+        document.getElementById('price-rtx5050').innerText = 'Rp ' + Number(hargaRTX5050).toLocaleString('id-ID');
+        
+        // Simpan harga ke LocalStorage supaya bisa dibaca oleh Halaman Simulasi Build
+        localStorage.setItem('price_rtx5050', hargaRTX5050);
+      });
+  </script>
+</body>
+</html>
