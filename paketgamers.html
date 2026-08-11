@@ -9,14 +9,6 @@
 <style>
 /* =========================================================
    DOKTER KOMPUTER — GAMING CATALOG
-   Full UI refresh:
-   - Hero-first layout
-   - Premium ambient backgrounds
-   - Mobile-first controls
-   - Better price CTA hierarchy
-   - Visual FPS cards
-   - Expandable specifications
-   - Auto-hiding swipe hint
    ========================================================= */
 
 :root{
@@ -103,11 +95,17 @@ body::after{
 .brand-mark{
     width:30px;
     height:30px;
-    border-radius:9px;
+    border-radius:99px;
     display:grid;
     place-items:center;
     background:linear-gradient(135deg,var(--accent),rgba(var(--accent-rgb),.55));
     box-shadow:0 0 25px rgba(var(--accent-rgb),.25);
+}
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:16px;
 }
 
 .counter{
@@ -121,6 +119,27 @@ body::after{
 }
 
 .counter strong{color:#fff}
+
+/* ---------- HOME BUTTON ---------- */
+.btn-home{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:7px 12px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:rgba(255,255,255,.045);
+    color:#fff;
+    font-size:.67rem;
+    font-weight:850;
+    cursor:pointer;
+    transition:.2s ease;
+}
+
+.btn-home:hover{
+    background:var(--accent);
+    border-color:var(--accent);
+}
 
 /* ---------- SLIDER ---------- */
 .catalog-slider{
@@ -498,10 +517,6 @@ body::after{
     font-weight:700;
 }
 
-.spec-toggle{
-    display:none;
-}
-
 /* ---------- ACTION / PRICE ---------- */
 .action-box{
     position:relative;
@@ -680,26 +695,6 @@ body::after{
 @keyframes hintFloat{
     0%,100%{translate:0}
     50%{translate:8px}
-}
-
-/* ---------- HOME ---------- */
-.btn-home{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    padding:7px 11px;
-    border:1px solid var(--line);
-    border-radius:9px;
-    background:rgba(255,255,255,.045);
-    color:#fff;
-    font-size:.67rem;
-    font-weight:850;
-    cursor:pointer;
-}
-
-.btn-home:hover{
-    background:var(--accent);
-    border-color:var(--accent);
 }
 
 /* ---------- LIGHTBOX ---------- */
@@ -893,18 +888,15 @@ body::after{
         <span>DOKTER KOMPUTER</span>
     </div>
 
-    <div class="counter">
-        PAKET <strong id="currentNumber">01</strong> / <span id="totalNumber">05</span>
-    </div>
-
-     <div class="container">
-        <!-- TOP NAVIGATION WITH HOME LINK -->
-        <div class="top-nav">
-            <a href="index.html" class="btn-home">
-                <span>🏠</span> Kembali ke Home
-            </a>
-            <div class="brand">Dokter Komputer</div>
+    <div class="topbar-right">
+        <div class="counter">
+            PAKET <strong id="currentNumber">01</strong> / <span id="totalNumber">05</span>
         </div>
+        
+        <a href="index.html" class="btn-home" id="btnHome">
+            <span>🏠</span> Home
+        </a>
+    </div>
 </header>
 
 <div class="swipe-hint" id="swipeHint">
@@ -1532,7 +1524,13 @@ dots.forEach((dot,index)=>{
 arrowLeft.addEventListener("click",()=>goToSlide(activeIndex - 1));
 arrowRight.addEventListener("click",()=>goToSlide(activeIndex + 1));
 
-btnHome.addEventListener("click",()=>goToSlide(0));
+if (btnHome) {
+    btnHome.addEventListener("click", (e) => {
+        // Jika hanya ingin scroll ke slide pertama tanpa reload page:
+        // e.preventDefault();
+        // goToSlide(0);
+    });
+}
 
 document.addEventListener("keydown",(e)=>{
     if(e.key === "ArrowRight") goToSlide(activeIndex + 1);
