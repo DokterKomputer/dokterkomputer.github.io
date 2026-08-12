@@ -52,20 +52,32 @@ body:after {
     background: radial-gradient(circle at center, transparent 42%, rgba(0, 0, 0, .58));
 }
 
-.topbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 58px;
-    z-index: 200;
+.topbar-right {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 22px;
-    background: rgba(7, 9, 13, .78);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(18px);
+    gap: 15px;
+}
+
+.btn-home {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, .045);
+    color: #fff;
+    font-size: .67rem;
+    font-weight: 850;
+    cursor: pointer;
+    text-decoration: none; /* Menghapus garis bawah link */
+    transition: .2s ease;
+}
+
+.btn-home:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000; /* Warna teks saat hover agar kontras dengan warna accent */
 }
 
 .brand-mini {
@@ -683,9 +695,19 @@ td.val small {
 <div class="swipe-hint" id="swipeHint">← GESER / SWIPE UNTUK PAKET BERIKUTNYA →</div>
 
 <header class="topbar">
-  <div class="brand-mini"><div class="brand-mark">✚</div><span>DOKTER KOMPUTER</span></div>
-  <div class="counter">PAKET <strong id="currentNumber">01</strong> / 05</div>
-  <button id="homeBtn" style="display:flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.045);color:#fff;font-size:.65rem;font-weight:850;cursor:pointer">⌂ Home</button>
+  <div class="brand-mini">
+    <div class="brand-mark">✚</div>
+    <span>DOKTER KOMPUTER</span>
+  </div>
+  
+  <div class="topbar-right">
+    <div class="counter">
+      PAKET <strong id="currentNumber">01</strong> / <span id="totalNumber">05</span>
+    </div>
+    <a href="index.html" class="btn-home" id="btnHome">
+      <span>🏠</span> Home
+    </a>
+  </div>
 </header>
 
 <div class="nav-btn nav-prev" id="prevBtn">❮</div>
