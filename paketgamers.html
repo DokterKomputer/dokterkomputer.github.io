@@ -9,14 +9,6 @@
 <style>
 /* =========================================================
    DOKTER KOMPUTER — GAMING CATALOG
-   Full UI refresh:
-   - Hero-first layout
-   - Premium ambient backgrounds
-   - Mobile-first controls
-   - Better price CTA hierarchy
-   - Visual FPS cards
-   - Expandable specifications
-   - Auto-hiding swipe hint
    ========================================================= */
 
 :root{
@@ -110,6 +102,12 @@ body::after{
     box-shadow:0 0 25px rgba(var(--accent-rgb),.25);
 }
 
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
 .counter{
     display:flex;
     align-items:center;
@@ -121,6 +119,26 @@ body::after{
 }
 
 .counter strong{color:#fff}
+
+.btn-home{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:rgba(255,255,255,.045);
+    color:#fff;
+    font-size:.7rem;
+    font-weight:850;
+    cursor:pointer;
+    transition:.2s ease;
+}
+
+.btn-home:hover{
+    background:var(--accent);
+    border-color:var(--accent);
+}
 
 /* ---------- SLIDER ---------- */
 .catalog-slider{
@@ -305,45 +323,6 @@ body::after{
 
 .build-image-container:hover img{transform:scale(1.025)}
 
-/* ---------- QUICK SPECS ---------- */
-.quick-specs{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-}
-
-.quick-spec{
-    min-width:0;
-    padding:11px 8px;
-    border:1px solid var(--line);
-    border-radius:11px;
-    background:rgba(255,255,255,.025);
-    text-align:center;
-}
-
-.quick-spec .icon{
-    font-size:1rem;
-    margin-bottom:3px;
-}
-
-.quick-spec .label{
-    color:var(--muted);
-    font-size:.57rem;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-}
-
-.quick-spec .value{
-    margin-top:2px;
-    color:#fff;
-    font-size:.68rem;
-    font-weight:900;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
 /* ---------- SECTION ---------- */
 .section-title{
     display:flex;
@@ -498,10 +477,6 @@ body::after{
     font-weight:700;
 }
 
-.spec-toggle{
-    display:none;
-}
-
 /* ---------- ACTION / PRICE ---------- */
 .action-box{
     position:relative;
@@ -563,28 +538,6 @@ body::after{
 .btn-wa:hover{
     transform:translateY(-1px);
     filter:brightness(1.06);
-}
-
-/* ---------- FEATURES ---------- */
-.features{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-top:20px;
-    padding-top:17px;
-    border-top:1px solid var(--line);
-}
-
-.feature{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:5px;
-    min-height:30px;
-    color:var(--muted);
-    text-align:center;
-    font-size:.59rem;
-    font-weight:750;
 }
 
 /* ---------- NAVIGATION ---------- */
@@ -682,26 +635,6 @@ body::after{
     50%{translate:8px}
 }
 
-/* ---------- HOME ---------- */
-.btn-home{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    padding:7px 11px;
-    border:1px solid var(--line);
-    border-radius:9px;
-    background:rgba(255,255,255,.045);
-    color:#fff;
-    font-size:.67rem;
-    font-weight:850;
-    cursor:pointer;
-}
-
-.btn-home:hover{
-    background:var(--accent);
-    border-color:var(--accent);
-}
-
 /* ---------- LIGHTBOX ---------- */
 .lightbox-modal{
     position:fixed;
@@ -750,131 +683,36 @@ body::after{
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:900px){
-    .topbar{
-        height:52px;
-        padding:0 12px;
-    }
-
+    .topbar{height:52px;padding:0 12px}
     .catalog-slider{padding-top:52px}
-
-    .product-slide{
-        align-items:flex-start;
-        padding:12px 10px 55px;
-    }
-
-    .container{
-        padding:18px 14px;
-        border-radius:17px;
-    }
-
-    .main-content-grid{
-        grid-template-columns:1fr;
-        gap:17px;
-    }
-
+    .product-slide{align-items:flex-start;padding:12px 10px 55px}
+    .container{padding:18px 14px;border-radius:17px}
+    .main-content-grid{grid-template-columns:1fr;gap:17px}
     .left-col{gap:12px}
-
-    .build-image-container{
-        min-height:220px;
-    }
-
-    .build-image-container img{
-        height:220px;
-    }
-
-    .quick-specs{
-        grid-template-columns:repeat(4,1fr);
-    }
-
+    .build-image-container{min-height:220px}
+    .build-image-container img{height:220px}
     .right-col{gap:13px}
-
     .nav-arrow{display:none}
-
-    .features{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .swipe-hint{
-        top:60px;
-        font-size:.56rem;
-    }
-
-    .header{
-        margin-bottom:16px;
-        padding-bottom:15px;
-    }
-
-    .tagline{
-        font-size:.68rem;
-    }
+    .swipe-hint{top:60px;font-size:.56rem}
+    .header{margin-bottom:16px;padding-bottom:15px}
+    .tagline{font-size:.68rem}
 }
 
 @media(max-width:520px){
     .brand-mini span{display:none}
-
     .counter{font-size:.64rem}
-
-    .container{
-        max-height:calc(100vh - 68px);
-    }
-
-    .main-title{
-        font-size:1.42rem;
-    }
-
-    .badge-edition{
-        max-width:95%;
-        font-size:.56rem;
-    }
-
-    .build-image-container{
-        min-height:190px;
-    }
-
-    .build-image-container img{
-        height:190px;
-    }
-
-    .quick-spec{
-        padding:8px 4px;
-    }
-
-    .quick-spec .value{
-        font-size:.59rem;
-    }
-
-    .spec-table{
-        font-size:.65rem;
-    }
-
-    .spec-table td{
-        padding:7px 8px;
-    }
-
-    .spec-table td:first-child{
-        font-size:.53rem;
-    }
-
-    .price-tag{
-        font-size:1.75rem;
-    }
-
-    .features{
-        margin-top:15px;
-        padding-top:13px;
-    }
-
-    .feature{
-        font-size:.54rem;
-    }
-
-    .swipe-hint{
-        max-width:90vw;
-        overflow:hidden;
-    }
+    .container{max-height:calc(100vh - 68px)}
+    .main-title{font-size:1.42rem}
+    .badge-edition{max-width:95%;font-size:.56rem}
+    .build-image-container{min-height:190px}
+    .build-image-container img{height:190px}
+    .spec-table{font-size:.65rem}
+    .spec-table td{padding:7px 8px}
+    .spec-table td:first-child{font-size:.53rem}
+    .price-tag{font-size:1.75rem}
+    .swipe-hint{max-width:90vw;overflow:hidden}
 }
 
-/* ---------- REDUCED MOTION ---------- */
 @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{
         scroll-behavior:auto!important;
@@ -893,18 +731,14 @@ body::after{
         <span>DOKTER KOMPUTER</span>
     </div>
 
-    <div class="counter">
-        PAKET <strong id="currentNumber">01</strong> / <span id="totalNumber">05</span>
-    </div>
-
-     <div class="container">
-        <!-- TOP NAVIGATION WITH HOME LINK -->
-        <div class="top-nav">
-            <a href="index.html" class="btn-home">
-                <span>🏠</span> Kembali ke Home
-            </a>
-            <div class="brand">Dokter Komputer</div>
+    <div class="top-actions">
+        <a href="index.html" class="btn-home" id="btnHome">
+            <span>🏠</span> Home
+        </a>
+        <div class="counter">
+            PAKET <strong id="currentNumber">01</strong> / <span id="totalNumber">01</span>
         </div>
+    </div>
 </header>
 
 <div class="swipe-hint" id="swipeHint">
@@ -916,125 +750,113 @@ body::after{
 
 <main class="catalog-slider" id="slider">
 
-<!-- =========================================================
-     01 — LEGEND
-     ========================================================= -->
-<section class="product-slide">
-<div class="container theme-legend">
+    <!-- =========================================================
+         01 — LEGEND
+         ========================================================= -->
+    <section class="product-slide">
+        <div class="container theme-legend">
 
-    <div class="header">
-        <div class="eyebrow">Dokter Komputer Lab</div>
-        <h1 class="main-title">The Legend's Last Battle</h1>
-        <span class="badge-edition">XEON EDITION • 2026</span>
-        <p class="tagline">13 YEARS LATER • STILL FIGHTING</p>
-    </div>
-
-    <div class="main-content-grid">
-
-        <div class="left-col">
-
-            <div class="build-image-container zoomable-img-wrap">
-                <img src="images/legend.png"
-                     alt="The Legend's Last Battle Build"
-                     class="zoomable-img">
+            <div class="header">
+                <div class="eyebrow">Dokter Komputer Lab</div>
+                <h1 class="main-title">The Legend's Last Battle</h1>
+                <span class="badge-edition">XEON EDITION • 2026</span>
+                <p class="tagline">13 YEARS LATER • STILL FIGHTING</p>
             </div>
 
-          
-                <div class="section-title">Cocok Untuk</div>
-                <div class="audience">
-                    <span>🎮 Gaming 1080p</span>
-                    <span>🔥 AAA Gaming</span>
-                    <span>🖥️ Daily Use</span>
-                    <span>⚡ Budget Performance</span>
+            <div class="main-content-grid">
+
+                <div class="left-col">
+                    <div class="build-image-container zoomable-img-wrap">
+                        <img src="images/legend.png" alt="The Legend's Last Battle Build" class="zoomable-img">
+                    </div>
+
+                    <div>
+                        <div class="section-title">Cocok Untuk</div>
+                        <div class="audience">
+                            <span>🎮 Gaming 1080p</span>
+                            <span>🔥 AAA Gaming</span>
+                            <span>🖥️ Daily Use</span>
+                            <span>⚡ Budget BUILD</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="section-title">Performa Gaming 1080p</div>
+                        <div class="fps-card">
+                            <div class="fps-row">
+                                <div class="fps-head"><span class="fps-name">Black Myth: Wukong</span><span class="fps-value">55–65 FPS</span></div>
+                                <div class="fps-bar"><div class="fps-fill" style="--fps:72%"></div></div>
+                            </div>
+                            <div class="fps-row">
+                                <div class="fps-head"><span class="fps-name">Monster Hunter Wilds</span><span class="fps-value">60–70 FPS</span></div>
+                                <div class="fps-bar"><div class="fps-fill" style="--fps:78%"></div></div>
+                            </div>
+                            <div class="fps-row">
+                                <div class="fps-head"><span class="fps-name">Ghost of Tsushima</span><span class="fps-value">70–80 FPS</span></div>
+                                <div class="fps-bar"><div class="fps-fill" style="--fps:88%"></div></div>
+                            </div>
+                            <div class="fps-row">
+                                <div class="fps-head"><span class="fps-name">Assassin's Creed Shadows</span><span class="fps-value">60–70 FPS</span></div>
+                                <div class="fps-bar"><div class="fps-fill" style="--fps:78%"></div></div>
+                            </div>
+                            <div class="fps-row">
+                                <div class="fps-head"><span class="fps-name">God of War Ragnarök</span><span class="fps-value">70–80 FPS</span></div>
+                                <div class="fps-bar"><div class="fps-fill" style="--fps:88%"></div></div>
+                            </div>
+                            <div class="fps-row">
+                                <div class="fps-head"><span class="fps-name">Genshin Impact</span><span class="fps-value">60–80 FPS</span></div>
+                                <div class="fps-bar"><div class="fps-fill" style="--fps:88%"></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                <div class="section-title">Performa Gaming 1080p</div>
-                <div class="fps-card">
-                    <div class="fps-row">
-                        <div class="fps-head"><span class="fps-name">Black Myth: Wukong</span><span class="fps-value">55–65 FPS</span></div>
-                        <div class="fps-bar"><div class="fps-fill" style="--fps:72%"></div></div>
+                <div class="right-col">
+                    <div>
+                        <div class="section-title">Spesifikasi PC</div>
+                        <div class="spec-wrap">
+                            <table class="spec-table">
+                                <tr><td>Processor</td><td>Intel Xeon E3-1230 v3</td></tr>
+                                <tr><td>CPU Cooler</td><td>CK-11508</td></tr>
+                                <tr><td>Motherboard</td><td>H81</td></tr>
+                                <tr><td>Memory</td><td>DDR3 16GB Dual Channel</td></tr>
+                                <tr><td>Storage</td><td>SSD SATA 256GB</td></tr>
+                                <tr><td>VGA</td><td>GTX 1660S 6GB</td></tr>
+                                <tr><td>Power Supply</td><td>550W 80+ Bronze</td></tr>
+                                <tr><td>Case</td><td>Case + 3 Fan</td></tr>
+                            </table>
+                        </div>
                     </div>
-                    <div class="fps-row">
-                        <div class="fps-head"><span class="fps-name">Monster Hunter Wilds</span><span class="fps-value">60–70 FPS</span></div>
-                        <div class="fps-bar"><div class="fps-fill" style="--fps:78%"></div></div>
+
+                    <div>
+                        <div class="section-title">Keuntungan Paket</div>
+                        <div class="info-card">
+                            <div class="info-item"><span class="info-label">Instalasi</span><span class="info-val">Windows</span></div>
+                            <div class="info-item"><span class="info-label">Jasa</span><span class="info-val">Rakit + Optimasi OS</span></div>
+                            <div class="info-item"><span class="info-label">Cleaning</span><span class="info-val">Free 1x Deep Clean</span></div>
+                            <div class="info-item"><span class="info-label">Garansi</span><span class="info-val">Garansi Toko</span></div>
+                        </div>
                     </div>
-                    <div class="fps-row">
-                        <div class="fps-head"><span class="fps-name">Ghost of Tsushima</span><span class="fps-value">70–80 FPS</span></div>
-                        <div class="fps-bar"><div class="fps-fill" style="--fps:88%"></div></div>
-                    </div>
-                    <div class="fps-row">
-                        <div class="fps-head"><span class="fps-name">Assassin's Creed Shadows</span><span class="fps-value">60–70 FPS</span></div>
-                        <div class="fps-bar"><div class="fps-fill" style="--fps:78%"></div></div>
-                    </div>
-                    <div class="fps-row">
-                        <div class="fps-head"><span class="fps-name">God of War Ragnarök</span><span class="fps-value">70–80 FPS</span></div>
-                        <div class="fps-bar"><div class="fps-fill" style="--fps:88%"></div></div>
-                    </div>
-                    <div class="fps-row">
-                        <div class="fps-head"><span class="fps-name">Genshin Impact</span><span class="fps-value">60–80 FPS</span></div>
-                        <div class="fps-bar"><div class="fps-fill" style="--fps:88%"></div></div>
+
+                    <div class="action-box">
+                        <div class="price-label">Harga Paket</div>
+                        <div class="price-tag">Rp 5.999.999</div>
+                        <div class="action-title">LEGENDS NEVER DIE, THEY JUST KEEP FIGHTING!</div>
+                        <p class="action-sub">Rakit, optimasi OS, dan QC sebelum diserahkan ke customer.</p>
+                        <a class="btn-wa" target="_blank"
+                           href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20The%20Legend's%20Last%20Battle">
+                            💬 Tanya / Order via WhatsApp
+                        </a>
                     </div>
                 </div>
-            </div>
 
-        </div>
-
-        <div class="right-col">
-
-            <div>
-                <div class="section-title">Spesifikasi PC</div>
-                <div class="spec-wrap">
-                    <table class="spec-table">
-                        <tr><td>Processor</td><td>Intel Xeon E3-1230 v3</td></tr>
-                        <tr><td>CPU Cooler</td><td>CK-11508</td></tr>
-                        <tr><td>Motherboard</td><td>H81</td></tr>
-                        <tr><td>Memory</td><td>DDR3 16GB Dual Channel</td></tr>
-                        <tr><td>Storage</td><td>SSD SATA 256GB</td></tr>
-                        <tr><td>VGA</td><td>GTX 1660S 6GB</td></tr>
-                        <tr><td>Power Supply</td><td>550W 80+ Bronze</td></tr>
-                        <tr><td>Case</td><td>Case + 3 Fan</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <div>
-                <div class="section-title">Keuntungan Paket</div>
-                <div class="info-card">
-                    <div class="info-item"><span class="info-label">Instalasi</span><span class="info-val">Windows</span></div>
-                    <div class="info-item"><span class="info-label">Jasa</span><span class="info-val">Rakit + Optimasi OS</span></div>
-                    <div class="info-item"><span class="info-label">Cleaning</span><span class="info-val">Free 1x Deep Clean</span></div>
-                    <div class="info-item"><span class="info-label">Garansi</span><span class="info-val">Garansi Toko</span></div>
-                </div>
-            </div>
-
-           <div class="action-box">
-                <div class="price-label">Harga Paket</div>
-                <div class="price-tag">Rp 5.999.999</div>
-                <div class="action-title">LEGENDS NEVER DIE, THEY JUST KEEP FIGHTING!</div>
-                <p class="action-sub">Rakit, optimasi OS, dan QC sebelum diserahkan ke customer.</p>
-                <a class="btn-wa" target="_blank"
-                   href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20The%20Legend's%20Last%20Battle">
-                    💬 Tanya / Order via WhatsApp
-                </a>
             </div>
         </div>
-    </div>
-
-
-</div>
-</section>
+    </section>
 
 </main>
 
-<div class="slider-dots" id="dots">
-    <div class="dot active" data-slide="0"></div>
-    <div class="dot" data-slide="1"></div>
-    <div class="dot" data-slide="2"></div>
-    <div class="dot" data-slide="3"></div>
-    <div class="dot" data-slide="4"></div>
-</div>
+<div class="slider-dots" id="dots"></div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
@@ -1045,16 +867,19 @@ body::after{
 <script>
 const slider = document.getElementById("slider");
 const slides = [...document.querySelectorAll(".product-slide")];
-const dots = [...document.querySelectorAll(".dot")];
+const dotsContainer = document.getElementById("dots");
 const currentNumber = document.getElementById("currentNumber");
 const totalNumber = document.getElementById("totalNumber");
 const arrowLeft = document.getElementById("arrowLeft");
 const arrowRight = document.getElementById("arrowRight");
-const btnHome = document.getElementById("btnHome");
 const swipeHint = document.getElementById("swipeHint");
 
 let activeIndex = 0;
 let hintDismissed = false;
+
+// Render dynamic dots based on slide count
+dotsContainer.innerHTML = slides.map((_, i) => `<div class="dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></div>`).join('');
+const dots = [...document.querySelectorAll(".dot")];
 
 totalNumber.textContent = String(slides.length).padStart(2,"0");
 
@@ -1068,15 +893,16 @@ function updateUI(){
     activeIndex = Math.max(0, Math.min(index, slides.length - 1));
 
     dots.forEach((dot,i)=>{
-        dot.classList.toggle("active",i === activeIndex);
+        dot.classList.toggle("active", i === activeIndex);
     });
 
     currentNumber.textContent = String(activeIndex + 1).padStart(2,"0");
 
-    // Change browser theme color according to active package
     const activeContainer = slides[activeIndex].querySelector(".container");
-    const accent = getComputedStyle(activeContainer).getPropertyValue("--accent").trim();
-    document.querySelector('meta[name="theme-color"]').setAttribute("content", accent || "#080a0f");
+    if(activeContainer) {
+        const accent = getComputedStyle(activeContainer).getPropertyValue("--accent").trim();
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", accent || "#080a0f");
+    }
 }
 
 slider.addEventListener("scroll", ()=>{
@@ -1098,20 +924,17 @@ dots.forEach((dot,index)=>{
 arrowLeft.addEventListener("click",()=>goToSlide(activeIndex - 1));
 arrowRight.addEventListener("click",()=>goToSlide(activeIndex + 1));
 
-btnHome.addEventListener("click",()=>goToSlide(0));
-
 document.addEventListener("keydown",(e)=>{
     if(e.key === "ArrowRight") goToSlide(activeIndex + 1);
     if(e.key === "ArrowLeft") goToSlide(activeIndex - 1);
     if(e.key === "Home") goToSlide(0);
 });
 
-/* Auto-hide hint after first visit */
 setTimeout(()=>{
     if(!hintDismissed) swipeHint.classList.add("hidden");
 },5000);
 
-/* ---------- LIGHTBOX ---------- */
+/* LIGHTBOX */
 const modal = document.getElementById("lightboxModal");
 const modalImg = document.getElementById("lightboxImg");
 const closeBtn = document.getElementById("lightboxClose");
@@ -1131,43 +954,29 @@ function closeLightbox(){
 }
 
 closeBtn.addEventListener("click",closeLightbox);
+modal.addEventListener("click",(e)=>{ if(e.target === modal) closeLightbox(); });
+document.addEventListener("keydown",(e)=>{ if(e.key === "Escape") closeLightbox(); });
 
-modal.addEventListener("click",(e)=>{
-    if(e.target === modal) closeLightbox();
-});
-
-document.addEventListener("keydown",(e)=>{
-    if(e.key === "Escape") closeLightbox();
-});
-
-/* ---------- TOUCH / WHEEL ---------- */
+/* WHEEL NAVIGATION */
 let wheelLock = false;
-
 slider.addEventListener("wheel",(e)=>{
     if(Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
     if(window.innerWidth <= 900) return;
-
     if(wheelLock) return;
 
     const direction = e.deltaY > 0 ? 1 : -1;
-
-    // Only hijack wheel when the card is not internally scrollable.
     const activeContainer = slides[activeIndex].querySelector(".container");
     const atTop = activeContainer.scrollTop <= 0;
-    const atBottom =
-        Math.ceil(activeContainer.scrollTop + activeContainer.clientHeight)
-        >= activeContainer.scrollHeight;
+    const atBottom = Math.ceil(activeContainer.scrollTop + activeContainer.clientHeight) >= activeContainer.scrollHeight;
 
     if((direction < 0 && !atTop) || (direction > 0 && !atBottom)) return;
 
     wheelLock = true;
     goToSlide(activeIndex + direction);
-
     setTimeout(()=>wheelLock=false,550);
 },{passive:true});
 
 window.addEventListener("resize",updateUI);
-
 updateUI();
 </script>
 
