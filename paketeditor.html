@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Project DNA | Dokter Komputer Lab</title>
+    <title>Katalog Dokter Komputer | Gamers & Creators Edition</title>
     <style>
         * {
             box-sizing: border-box;
@@ -15,7 +15,7 @@
             background-color: #07090c;
             color: #e0e6ed;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            overflow: hidden; /* Mencegah scroll global body */
+            overflow: hidden;
             height: 100vh;
             width: 100vw;
         }
@@ -54,7 +54,7 @@
         .catalog-slider::-webkit-scrollbar { display: none; }
         .catalog-slider { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* EACH PRODUCT SLIDE (FIT SCREEN) */
+        /* EACH PRODUCT SLIDE */
         .product-slide {
             flex: 0 0 100vw;
             width: 100vw;
@@ -69,8 +69,8 @@
         .container {
             width: 100%;
             max-width: 1100px;
-            max-height: 88vh; /* Agar pas dalam satu layar */
-            overflow-y: auto; /* Scroll internal jika layar terlalu pendek */
+            max-height: 88vh;
+            overflow-y: auto;
             background: #0d1117;
             border: 1px solid #1f2937;
             border-radius: 16px;
@@ -79,11 +79,10 @@
             position: relative;
         }
 
-        /* Scrollbar custom halus untuk container */
         .container::-webkit-scrollbar { width: 4px; }
         .container::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
 
-        /* NAVIGASI PANAH DESKTOP (KIRI / KANAN) */
+        /* NAVIGASI PANAH DESKTOP */
         .nav-btn {
             position: fixed;
             top: 50%;
@@ -129,11 +128,9 @@
             letter-spacing: 3px;
             text-transform: uppercase;
         }
-        .brand-creator { color: #00d2ff; }
-        .brand-tiktok { color: #fe2c55; }
-        .brand-canvas { color: #00e5ff; }
-        .brand-editor-white { color: #ffffff; }
-        .brand-editor-black { color: #00ff66; }
+        .brand-intel { color: #00d2ff; }
+        .brand-amd { color: #ff4500; }
+        .brand-extreme { color: #fe2c55; }
 
         .sub-brand {
             font-size: 0.7rem;
@@ -158,11 +155,9 @@
             margin-top: 5px;
             letter-spacing: 1.5px;
         }
-        .badge-creator { border: 1px solid #00d2ff; color: #00d2ff; }
-        .badge-tiktok { border: 1px solid #fe2c55; color: #fe2c55; }
-        .badge-canvas { border: 1px solid #00e5ff; color: #00e5ff; }
-        .badge-editor-white { border: 1px solid #ffffff; color: #ffffff; }
-        .badge-editor-black { border: 1px solid #00ff66; color: #00ff66; }
+        .badge-intel { border: 1px solid #00d2ff; color: #00d2ff; }
+        .badge-amd { border: 1px solid #ff4500; color: #ff4500; }
+        .badge-extreme { border: 1px solid #fe2c55; color: #fe2c55; }
 
         .header-badges {
             display: flex;
@@ -174,13 +169,6 @@
             font-weight: 600;
         }
 
-        .tagline {
-            color: #8b98a7;
-            font-size: 0.8rem;
-            margin-top: 5px;
-            letter-spacing: 1px;
-        }
-
         /* MAIN CONTENT SPLIT GRID */
         .main-content-grid {
             display: grid;
@@ -189,7 +177,6 @@
             margin-bottom: 15px;
         }
 
-        /* KANAN/KIRI CONTENT BOXES */
         .left-col, .right-col {
             display: flex;
             flex-direction: column;
@@ -227,11 +214,9 @@
             margin-bottom: 8px;
             letter-spacing: 1.2px;
         }
-        .title-creator { color: #00d2ff; border-left: 3px solid #00d2ff; }
-        .title-tiktok { color: #fe2c55; border-left: 3px solid #fe2c55; }
-        .title-canvas { color: #00e5ff; border-left: 3px solid #00e5ff; }
-        .title-editor-white { color: #ffffff; border-left: 3px solid #ffffff; }
-        .title-editor-black { color: #00ff66; border-left: 3px solid #00ff66; }
+        .title-intel { color: #00d2ff; border-left: 3px solid #00d2ff; }
+        .title-amd { color: #ff4500; border-left: 3px solid #ff4500; }
+        .title-extreme { color: #fe2c55; border-left: 3px solid #fe2c55; }
 
         /* TABLE SPESIFIKASI */
         table {
@@ -255,48 +240,40 @@
             color: #ffffff;
             font-weight: 600;
         }
+        td.status {
+            text-align: right;
+            font-size: 0.65rem;
+            color: #00ff66;
+            font-weight: bold;
+        }
 
-        /* CARD CONTAINERS */
-        .lab-card, .performance-section, .streamer-features, .live-features, .package-includes {
+        /* CARD CONTAINERS & GRID STYLES */
+        .performance-section, .streamer-features, .package-includes {
             background: #11161d;
             border: 1px solid #1f2937;
             border-radius: 8px;
             padding: 12px;
         }
-        .sample-id {
-            font-size: 0.75rem;
-            color: #8b98a7;
+
+        .fps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
         }
-        .status-verified {
-            color: #00ff66;
-            font-size: 0.95rem;
-            font-weight: 900;
-            margin-bottom: 8px;
-        }
-        .report-item {
+        .fps-item {
+            background: #161b22;
+            padding: 6px;
+            border-radius: 6px;
             display: flex;
             justify-content: space-between;
-            font-size: 0.75rem;
-            margin-bottom: 6px;
-            border-bottom: 1px dashed #1a222d;
-            padding-bottom: 2px;
+            font-size: 0.72rem;
         }
-        .report-label { color: #8b98a7; }
-        .report-val { font-weight: 800; color: #00ff66; }
+        .game-title { color: #d1d5db; font-weight: 600; }
+        .fps-val { color: #00d2ff; font-weight: 800; }
+        .fps-val-amd { color: #ff4500; font-weight: 800; }
+        .fps-val-ext { color: #fe2c55; font-weight: 800; }
 
-        /* FPS & STREAMER GRID STYLES */
-        .fps-list { list-style: none; }
-        .fps-list li {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            padding: 3px 0;
-            border-bottom: 1px solid #161b22;
-        }
-        .fps-val { color: #fe2c55; font-weight: bold; }
-        .note { font-size: 0.65rem; color: #6b7280; display: block; margin-top: 5px; }
-
-        .feature-grid, .live-grid {
+        .feature-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
@@ -304,10 +281,10 @@
         }
         .feature-card {
             background: #161b22;
-            padding: 6px;
+            padding: 8px;
             border-radius: 6px;
         }
-        .feature-card strong { color: #fe2c55; display: block; }
+        .feature-card strong { color: #00ff66; display: block; margin-bottom: 2px; }
 
         .package-includes ul { list-style: none; font-size: 0.75rem; color: #d1d5db; }
         .package-includes li { margin-bottom: 4px; }
@@ -319,11 +296,9 @@
             padding: 15px;
             text-align: center;
         }
-        .box-creator { border: 1px solid #00d2ff; }
-        .box-tiktok { border: 1px solid #fe2c55; }
-        .box-canvas { border: 1px solid #00e5ff; }
-        .box-editor-white { border: 1px solid #ffffff; }
-        .box-editor-black { border: 1px solid #00ff66; }
+        .box-intel { border: 1px solid #00d2ff; }
+        .box-amd { border: 1px solid #ff4500; }
+        .box-extreme { border: 1px solid #fe2c55; }
 
         .price-label { font-size: 0.7rem; color: #8b98a7; }
         .price-tag {
@@ -331,11 +306,9 @@
             font-weight: 900;
             margin-bottom: 2px;
         }
-        .price-creator { color: #00d2ff; }
-        .price-tiktok { color: #fe2c55; }
-        .price-canvas { color: #00e5ff; }
-        .price-editor-white { color: #ffffff; }
-        .price-editor-black { color: #00ff66; }
+        .price-intel { color: #00d2ff; }
+        .price-amd { color: #ff4500; }
+        .price-extreme { color: #fe2c55; }
         .price-note { font-size: 0.65rem; color: #6b7280; margin-bottom: 8px; }
 
         .action-title {
@@ -343,7 +316,6 @@
             font-weight: 800;
             color: #ffffff;
         }
-        
         .action-sub {
             color: #a0aab8;
             font-size: 0.75rem;
@@ -405,11 +377,9 @@
             width: 26px;
             border-radius: 10px;
         }
-        .dot-creator.active { background: #00d2ff; }
-        .dot-tiktok.active { background: #fe2c55; }
-        .dot-canvas.active { background: #00e5ff; }
-        .dot-editor-white.active { background: #ffffff; }
-        .dot-editor-black.active { background: #00ff66; }
+        .dot-intel.active { background: #00d2ff; }
+        .dot-amd.active { background: #ff4500; }
+        .dot-extreme.active { background: #fe2c55; }
 
         /* MODAL POPUP */
         .modal {
@@ -457,7 +427,7 @@
             .main-title { font-size: 1.4rem; }
             .price-tag { font-size: 1.5rem; }
             .container { padding: 15px; max-height: 82vh; }
-            .nav-btn { display: none; } /* Sembunyikan panah di layar HP */
+            .nav-btn { display: none; }
             .footer-bar { flex-direction: column; gap: 5px; text-align: center; }
         }
     </style>
@@ -474,168 +444,69 @@
 
     <div class="catalog-slider" id="slider">
 
-        <!-- KATALOG 1: PROFESSIONAL CREATOR PC -->
+        <!-- SLIDE 1: INTEL STREAMER / EDITOR / GAMING (16.999.999) -->
         <div class="product-slide">
             <div class="container">
                 <div class="header">
-                    <div class="brand brand-creator">Dokter Komputer Lab</div>
-                    <h1 class="main-title">PROFESSIONAL CREATOR PC</h1>
-                    <span class="badge-edition badge-creator">STUDIO WORKSTATION EDITION</span>
-                    <p class="tagline">OPTIMIZED FOR EDITING • 3D RENDERING • HEAVY WORKLOAD</p>
-                </div>
-
-                <div class="main-content-grid">
-                    <div class="left-col">
-                        <div class="build-image-container">
-                            <img src="images/creator.png" alt="Professional Creator PC Build">
-                        </div>
-
-                        <div>
-                            <div class="section-title title-creator">LAB VERIFIED REPORT</div>
-                            <div class="lab-card">
-                                <div class="sample-id">SAMPLE ID: DK-CREATOR-01</div>
-                                <div class="status-verified">STATUS: VERIFIED ✔</div>
-                                <div class="report-item"><span class="report-label">4K/8K Video Editing</span><span class="report-val">100%</span></div>
-                                <div class="report-item"><span class="report-label">3D Rendering & VFX</span><span class="report-val">100%</span></div>
-                                <div class="report-item"><span class="report-label">Thermal Efficiency</span><span class="report-val">EXCELLENT</span></div>
-                                <div class="report-item"><span class="report-label">Noise Level</span><span class="report-val">SILENT</span></div>
-                                <div class="report-item"><span class="report-label">Multi-Tasking Workload</span><span class="report-val">STABLE</span></div>
-                                <div class="report-item"><span class="report-label">Stress Test</span><span class="report-val">PASSED</span></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="right-col">
-                        <div>
-                            <div class="section-title title-creator">FULL HARDWARE SPECIFICATIONS</div>
-                            <table>
-                                <tr><td class="label">Processor</td><td class="val">Intel Core i7-14700</td></tr>
-                                <tr><td class="label">Motherboard</td><td class="val">MSI B760 TOMAHAWK WIFI</td></tr>
-                                <tr><td class="label">RAM</td><td class="val">64GB (2x32GB) DDR5</td></tr>
-                                <tr><td class="label">VGA / GPU</td><td class="val">MSI GeForce RTX 5060 Ti 16GB GDDR7</td></tr>
-                                <tr><td class="label">Storage</td><td class="val">2TB NVMe SSD M.2 PCIe Gen4</td></tr>
-                                <tr><td class="label">Power Supply</td><td class="val">MSI MAG A850GL 850W 80+ Gold</td></tr>
-                                <tr><td class="label">Cooler</td><td class="val">MSI MPG CORELIQUID P13</td></tr>
-                                <tr><td class="label">Case & Cable</td><td class="val">LIAN LI O11 & LIAN LI STRIMER CABLE</td></tr>
-                                <tr><td class="label">Fan Case</td><td class="val">DARKFLASH DM8 (8 PCS)</td></tr>
-                                <tr><td class="label">OS & Tuning</td><td class="val">Windows 11 Custom (Optimized for Editing, Rendering & 3D)</td></tr>
-                            </table>
-                        </div>
-
-                        <div class="action-box box-creator">
-                            <div class="price-tag price-creator">IDR 58.000.000</div>
-                            <div class="action-title">HIGH-PERFORMANCE CREATOR WORKSTATION</div>
-                            <p class="action-sub">Performa render cepat, visual estetik Lian Li premium, dan racikan hardware paling stabil untuk kebutuhan kerja profesional.</p>
-                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Creator%2058jt" class="btn-wa" target="_blank">
-                                💬 Order / Tanya Creator PC via WA
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- KATALOG 2: DK TIKTOK STREAMER -->
-        <div class="product-slide">
-            <div class="container">
-                <div class="header">
-                    <div class="brand brand-tiktok">DOKTER KOMPUTER</div>
-                    <p class="sub-brand">RACIKAN TERBAIK, SOLUSI TEPAT</p>
-                    <h1 class="main-title">PC STREAMING</h1>
-                    <span class="badge-edition badge-tiktok">SIAP LIVE, KONTEN LANCAR!</span>
+                    <div class="brand brand-intel">DOKTER KOMPUTER</div>
+                    <p class="sub-brand">SOLUSI KOMPUTER TERPERCAYA</p>
+                    <h1 class="main-title">DK INTEL STREAMER / EDITOR / GAMING</h1>
+                    <span class="badge-edition badge-intel">12TH GEN PERFORMANCE EDITION</span>
                     <div class="header-badges">
-                        <span>📡 LIVE SMOOTH</span>
-                        <span>📊 STREAM STABIL</span>
-                        <span>🚀 PERFORMA MAKSIMAL</span>
+                        <span>🚀 1080P HIGH PERFORMANCE</span>
+                        <span>🎬 QUICK SYNC STREAMING</span>
+                        <span>💎 ALL IN ONE SOLUTION</span>
                     </div>
                 </div>
 
                 <div class="main-content-grid">
                     <div class="left-col">
-                        <div class="specs-section">
-                            <div class="section-title title-tiktok">SPESIFIKASI</div>
-                            <table>
-                                <tr><td class="label">PROCESSOR</td><td class="val">AMD RYZEN 5 5600 <br><small>6 CORE / 12 THREAD</small></td></tr>
-                                <tr><td class="label">COOLER</td><td class="val">AMD WRAITH COOLER</td></tr>
-                                <tr><td class="label">MOTHERBOARD</td><td class="val">MSI B550M PRO</td></tr>
-                                <tr><td class="label">MEMORY</td><td class="val">TEAM T-FORCE VULCAN <br><small>16GB KIT (2x8GB) DDR4</small></td></tr>
-                                <tr><td class="label">VGA</td><td class="val">RADEON RX 7600 8GB <br><small>GDDR6</small></td></tr>
-                                <tr><td class="label">STORAGE</td><td class="val">ADATA NVME M.2 <br><small>512GB</small></td></tr>
-                                <tr><td class="label">POWER SUPPLY</td><td class="val">FSP 650W <br><small>80+ BRONZE</small></td></tr>
-                                <tr><td class="label">CASE</td><td class="val">CASE + 3 FAN <br><small>(WHITE/BLACK)</small></td></tr>
-                            </table>
+                        <div class="build-image-container">
+                            <img src="images/intel-16m.png" alt="DK Intel Streamer PC Build">
                         </div>
 
-                        <div class="build-image-container">
-                            <img src="images/tiktok-streamer.png" alt="DK TikTok Streamer PC Build">
+                        <div class="performance-section">
+                            <div class="section-title title-intel">GAME TESTED (1080P HIGH)</div>
+                            <div class="fps-grid">
+                                <div class="fps-item"><span class="game-title">Cyberpunk 2077</span> <span class="fps-val">65-75 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Forza Horizon 5</span> <span class="fps-val">80-95 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">GTA V Roleplay</span> <span class="fps-val">70-90 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Monster Hunter World</span> <span class="fps-val">75-90 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Hogwarts Legacy</span> <span class="fps-val">55-70 FPS</span></div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="right-col">
-                        <div class="performance-section">
-                            <div class="section-title title-tiktok">PERFORMA GAMING 1080P</div>
-                            <ul class="fps-list">
-                                <li><span class="game-name">VALORANT</span> <span class="fps-val">200+ FPS</span></li>
-                                <li><span class="game-name">APEX LEGENDS</span> <span class="fps-val">110+ FPS</span></li>
-                                <li><span class="game-name">GTA V</span> <span class="fps-val">80+ FPS</span></li>
-                                <li><span class="game-name">CALL OF DUTY</span> <span class="fps-val">90+ FPS</span></li>
-                                <li><span class="game-name">PUBG</span> <span class="fps-val">100+ FPS</span></li>
-                                <li><span class="game-name">FORZA HORIZON 5</span> <span class="fps-val">90+ FPS</span></li>
-                            </ul>
-                            <small class="note">* SETTING MEDIUM - HIGH | HASIL DAPAT BERBEDA SESUAI UPDATE GAME</small>
-                        </div>
-
-                        <div class="streamer-features">
-                            <div class="section-title title-tiktok">KEUNGGULAN UNTUK STREAMER</div>
-                            <div class="feature-grid">
-                                <div class="feature-card">
-                                    <strong>ENCODE AV1</strong>
-                                    <p>Stream lebih ringan & jernih</p>
-                                </div>
-                                <div class="feature-card">
-                                    <strong>1080P</strong>
-                                    <p>Stream 1080p stabil tanpa drop FPS</p>
-                                </div>
-                                <div class="feature-card">
-                                    <strong>PERFORMA TINGGI</strong>
-                                    <p>Game & stream bersamaan</p>
-                                </div>
-                                <div class="feature-card">
-                                    <strong>MULTI TASKING</strong>
-                                    <p>Stream + game tanpa lag</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="live-features">
-                            <div class="section-title title-tiktok">SIAP LIVE 24/7</div>
-                            <div class="live-grid">
-                                <div><span>📶</span> Koneksi Stabil</div>
-                                <div><span>⚡</span> Render & Upload Lebih Cepat</div>
-                                <div><span>🎵</span> Algoritma Friendly</div>
-                                <div><span>⏰</span> Stream Non-Stop</div>
-                            </div>
+                        <div>
+                            <div class="section-title title-intel">SPESIFIKASI KOMPONEN</div>
+                            <table>
+                                <tr><td class="label">Processor</td><td class="val">Intel Core i5-12400 (6C/12T)</td><td class="status">TRAY</td></tr>
+                                <tr><td class="label">Cooler</td><td class="val">Thermalright TL-AX120</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">ASUS PRIME H610 DDR4</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">RAM</td><td class="val">Vulcan Z DDR4 16GB Dual Channel</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Storage</td><td class="val">T-Force SSD NVMe M.2 512GB Gen3</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">VGA / GPU</td><td class="val">Aisurix RTX 3060 12GB GDDR6</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">FSP HV PRO 650W 80+ Bronze</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Case</td><td class="val">Cube Gaming White + Fan Set</td><td class="status">BNIB</td></tr>
+                            </table>
                         </div>
 
                         <div class="package-includes">
-                            <div class="section-title title-tiktok">PAKET SUDAH TERMASUK</div>
+                            <div class="section-title title-intel">PAKET SUDAH TERMASUK</div>
                             <ul>
-                                <li>✔ JASA RAKIT & INSTALASI</li>
-                                <li>✔ JASA INSTALASI & OPTIMASI OS</li>
-                                <li>✔ 1x JASA CLEANING + REPASTA</li>
-                                <li>✔ GARANSI UNIT DARI TOKO 1 TAHUN</li>
-                                <li>✔ GARANSI PRODUCT SESUAI KETENTUAN BERLAKU</li>
-                                <li>✔ BIAYA PENGIRIMAN DI TANGUNG PEMBELI</li>
+                                <li>✔ Garansi Distributor Resmi</li>
+                                <li>✔ Jasa Instalasi & Optimasi OS Custom</li>
+                                <li>✔ Free 1x Jasa Cleaning PC & Repasta</li>
                             </ul>
                         </div>
 
-                        <div class="action-box box-tiktok">
+                        <div class="action-box box-intel">
                             <div class="price-label">HARGA PAKET</div>
-                            <div class="price-tag price-tiktok">Rp 16.999.999*</div>
-                            <p class="price-note">*HARGA SEWAKTU-WAKTU DAPAT BERUBAH</p>
-                            
-                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20PC%20Streaming%20(Rp%2016.999.999)" class="btn-wa" target="_blank">
-                                💬 Order / Tanya DK TikTok Streamer via WA
+                            <div class="price-tag price-intel">IDR 16.999.999</div>
+                            <p class="price-note">*Harga sewaktu-waktu dapat berubah</p>
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Intel%2016.999.999" class="btn-wa" target="_blank">
+                                💬 Order / Tanya Paket 17 Jt via WA
                             </a>
                         </div>
                     </div>
@@ -643,203 +514,167 @@
 
                 <div class="footer-bar">
                     <div class="footer-brand">➕ DOKTER KOMPUTER</div>
-                    <div class="footer-tagline">
-                        BUILD FOR STREAMERS. <br>
-                        PERFORM FOR WINNERS.
-                    </div>
-                    <div class="footer-hashtag">#RACIKANTERBAIKSOLUSITEPAT</div>
+                    <div class="footer-tagline">PERFORM. CREATE. STREAM.</div>
+                    <div class="footer-hashtag">#ALLINONEPCSOLUTION</div>
                 </div>
             </div>
         </div>
 
-        <!-- KATALOG 3: PROJECT CANVAS -->
+        <!-- SLIDE 2: AMD RYZEN 7 CREATE BEYOND LIMITS (19.999.999) -->
         <div class="product-slide">
             <div class="container">
                 <div class="header">
-                    <div class="brand brand-canvas">Dokter Komputer Lab</div>
-                    <h1 class="main-title">PROJECT CANVAS</h1>
-                    <span class="badge-edition badge-canvas">CREATOR EDITION</span>
-                    <p class="tagline">WHERE IDEAS BECOME REALITY • PC EDITING PERFORMA TINGGI</p>
+                    <div class="brand brand-amd">DOKTER KOMPUTER</div>
+                    <p class="sub-brand">SOLUSI KOMPUTER TERPERCAYA</p>
+                    <h1 class="main-title">CREATE BEYOND LIMITS</h1>
+                    <span class="badge-edition badge-amd">POWER YOUR CREATIVITY • DOMINATE EVERY GAME</span>
+                    <div class="header-badges">
+                        <span>🎬 CONTENT CREATION</span>
+                        <span>📡 LIVE STREAMING</span>
+                        <span>🎮 1440P GAMING</span>
+                    </div>
                 </div>
 
                 <div class="main-content-grid">
                     <div class="left-col">
                         <div class="build-image-container">
-                            <img src="images/1000033602.png" alt="Project Canvas Build">
+                            <img src="images/amd-20m.png" alt="DK Ryzen 7 PC Build">
                         </div>
 
-                        <div>
-                            <div class="section-title title-canvas">EDITING PERFORMANCE SCORE</div>
-                            <div class="lab-card">
-                                <div class="sample-id">RATING: CREATOR READY ★★★★★</div>
-                                <div class="status-verified">STATUS: VERIFIED ✔</div>
-                                <div class="report-item"><span class="report-label">4K Video Editing</span><span class="report-val">95%</span></div>
-                                <div class="report-item"><span class="report-label">Photo Editing</span><span class="report-val">100%</span></div>
-                                <div class="report-item"><span class="report-label">Color Grading</span><span class="report-val">95%</span></div>
-                                <div class="report-item"><span class="report-label">Motion Graphics</span><span class="report-val">90%</span></div>
-                                <div class="report-item"><span class="report-label">Live Streaming</span><span class="report-val">90%</span></div>
-                                <div class="report-item"><span class="report-label">AI Assisted Editing</span><span class="report-val">85%</span></div>
+                        <div class="performance-section">
+                            <div class="section-title title-amd">REAL GAME FPS TESTED</div>
+                            <div class="fps-grid">
+                                <div class="fps-item"><span class="game-title">Cyberpunk 2077</span> <span class="fps-val-amd">75-95 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Forza Horizon 5</span> <span class="fps-val-amd">95-120 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">GTA V Roleplay</span> <span class="fps-val-amd">90-120 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Red Dead Redemption 2</span> <span class="fps-val-amd">75-95 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Hogwarts Legacy</span> <span class="fps-val-amd">70-90 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Valorant</span> <span class="fps-val-amd">250-400 FPS</span></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="right-col">
                         <div>
-                            <div class="section-title title-canvas">FULL HARDWARE SPECIFICATIONS</div>
+                            <div class="section-title title-amd">SPESIFIKASI KOMPONEN</div>
                             <table>
-                                <tr><td class="label">Processor</td><td class="val">Intel Core i5-12400 (6 Cores 12 Threads)</td></tr>
-                                <tr><td class="label">VGA / GPU</td><td class="val">NVIDIA GeForce RTX 3060 12GB GDDR6</td></tr>
-                                <tr><td class="label">RAM</td><td class="val">32GB (2x16GB) DDR4 Dual Channel</td></tr>
-                                <tr><td class="label">Storage</td><td class="val">1TB NVMe M.2 PCIe Gen4</td></tr>
-                                <tr><td class="label">Cooling</td><td class="val">HSF Tower Air Cooler</td></tr>
-                                <tr><td class="label">Power Supply</td><td class="val">550W 80+ Bronze</td></tr>
-                                <tr><td class="label">Case</td><td class="val">M-ATX Mesh Airflow Edition + Fan Set</td></tr>
-                                <tr><td class="label">Optimization</td><td class="val">Optimized Drivers & Color Workflow Ready</td></tr>
+                                <tr><td class="label">Processor</td><td class="val">AMD Ryzen 7 5700X (8C/16T)</td><td class="status">TRAY</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">Gigabyte B550M K</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Cooler</td><td class="val">Thermalright TL-AX120</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">RAM</td><td class="val">T-Force DDR4 16GB (2x8GB) 3600MHz</td><td class="status" style="color: #ffaa00;">USED</td></tr>
+                                <tr><td class="label">Storage</td><td class="val">T-Force NVMe M.2 512GB Gen3</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">VGA / GPU</td><td class="val">Radeon RX 7600 XT 16GB GDDR6</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">FSP HQ 650W 80+ Bronze</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Case</td><td class="val">Casing Gaming + 3 Fan ARGB</td><td class="status">BNIB</td></tr>
                             </table>
                         </div>
 
-                        <div class="action-box box-canvas">
-                            <div class="price-tag price-canvas">Rp 18.500.000</div>
-                            <div class="action-title">BUILT FOR CREATORS</div>
-                            <p class="action-sub">Dirancang untuk editor video, desainer grafis, fotografer, dan content creator yang membutuhkan performa stabil. *Belum Termasuk Jasa Instalasi</p>
-                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Project%20Canvas%20(18,5jt)" class="btn-wa" target="_blank">
-                                💬 Order / Tanya Project Canvas via WA
+                        <div class="streamer-features">
+                            <div class="section-title title-amd">KEUNGGULAN UTAMA</div>
+                            <div class="feature-grid">
+                                <div class="feature-card"><strong>16GB VRAM</strong> Lebih pas untuk render 4K & game berat</div>
+                                <div class="feature-card"><strong>AMD RDNA 3</strong> Arsitektur grafis generasi terbaru</div>
+                            </div>
+                        </div>
+
+                        <div class="action-box box-amd">
+                            <div class="price-label">HARGA PAKET</div>
+                            <div class="price-tag price-amd">IDR 19.999.999</div>
+                            <p class="price-note">*Harga sewaktu-waktu dapat berubah</p>
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Ryzen%207%2019.999.999" class="btn-wa" target="_blank">
+                                💬 Order / Tanya Paket 20 Jt via WA
                             </a>
                         </div>
                     </div>
                 </div>
+
+                <div class="footer-bar">
+                    <div class="footer-brand">➕ DOKTER KOMPUTER</div>
+                    <div class="footer-tagline">PERFORM TODAY. CREATE TOMORROW.</div>
+                    <div class="footer-hashtag">#BUILDTOINSPIRE</div>
+                </div>
             </div>
         </div>
 
-        <!-- KATALOG 4: DK EDITOR WHITE EDITION -->
+        <!-- SLIDE 3: PREMIUM BUILD BEYOND LIMITS EXTREME (49.999.999) -->
         <div class="product-slide">
             <div class="container">
                 <div class="header">
-                    <div class="brand brand-editor-white">Dokter Komputer Lab</div>
-                    <h1 class="main-title">DK EDITOR WHITE</h1>
-                    <span class="badge-edition badge-editor-white">POWERFUL CREATOR EDITION</span>
-                    <p class="tagline">POWERFUL PERFORMANCE FOR CONTENT CREATORS • RYZEN 5 7500F</p>
+                    <div class="brand brand-extreme">DOKTER KOMPUTER</div>
+                    <p class="sub-brand">PREMIUM WORKSTATION & GAMING WORKSTATION</p>
+                    <h1 class="main-title">BEYOND LIMITS EXTREME</h1>
+                    <span class="badge-edition badge-extreme">KELAS ATAS • PERFORMA TANPA KOMPROMI</span>
+                    <div class="header-badges">
+                        <span>🔥 1440P / 4K ULTRA SETTINGS</span>
+                        <span>🖥️ 7" LCD DISPLAY AIO</span>
+                        <span>⚡ RTX 5070 ULTRA 12GB GDDR7</span>
+                    </div>
                 </div>
 
                 <div class="main-content-grid">
                     <div class="left-col">
                         <div class="build-image-container">
-                            <img src="images/1000033599.png" alt="DK Editor White Build">
+                            <img src="images/extreme-50m.png" alt="DK Extreme RTX 5070 Build">
                         </div>
 
-                        <div>
-                            <div class="section-title title-editor-white">COMPATIBILITY & USAGE</div>
-                            <div class="lab-card">
-                                <div class="sample-id">TARGET WORKLOAD</div>
-                                <div class="status-verified">STATUS: VERIFIED ✔</div>
-                                <div class="report-item"><span class="report-label">Video Editing (Pr)</span><span class="report-val">OPTIMAL</span></div>
-                                <div class="report-item"><span class="report-label">3D Rendering (Ae)</span><span class="report-val">FAST</span></div>
-                                <div class="report-item"><span class="report-label">Desain Grafis (Ps)</span><span class="report-val">SMOOTH</span></div>
-                                <div class="report-item"><span class="report-label">Streaming</span><span class="report-val">STABLE</span></div>
-                                <div class="report-item"><span class="report-label">Multitasking Berat</span><span class="report-val">LANCAR</span></div>
-                                <div class="report-item"><span class="report-label">Thermal System</span><span class="report-val">LIQUID 240</span></div>
+                        <div class="performance-section">
+                            <div class="section-title title-extreme">1440P ULTRA REAL GAME TESTED</div>
+                            <div class="fps-grid">
+                                <div class="fps-item"><span class="game-title">Ghost of Tsushima</span> <span class="fps-val-ext">120-150 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">GTA V Roleplay</span> <span class="fps-val-ext">100-140 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Black Myth Wukong</span> <span class="fps-val-ext">90-120 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Assassin's Creed Shadows</span> <span class="fps-val-ext">95-125 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Monster Hunter Wilds</span> <span class="fps-val-ext">100-140 FPS</span></div>
+                                <div class="fps-item"><span class="game-title">Hogwarts Legacy</span> <span class="fps-val-ext">100-130 FPS</span></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="right-col">
                         <div>
-                            <div class="section-title title-editor-white">FULL HARDWARE SPECIFICATIONS</div>
+                            <div class="section-title title-extreme">FULL HARDWARE SPECIFICATIONS</div>
                             <table>
-                                <tr><td class="label">Processor</td><td class="val">AMD Ryzen 5 7500F</td></tr>
-                                <tr><td class="label">Motherboard</td><td class="val">Asus PRIME B650EM-A WIFI (AM5, DDR5, USB3.2 Type-C)</td></tr>
-                                <tr><td class="label">VGA / GPU</td><td class="val">Inno3D GeForce RTX 5060 8GB GDDR7 TWIN X2 OC V2</td></tr>
-                                <tr><td class="label">RAM</td><td class="val">KLEVV FIT V Ceramic White DDR5 32GB (2x16GB) 6000MHz</td></tr>
-                                <tr><td class="label">Storage</td><td class="val">ADATA LEGEND 860 500GB NVMe PCIe Gen4x4 (5000MB/s)</td></tr>
-                                <tr><td class="label">Power Supply</td><td class="val">Antec CSK650DC 650W 80+ Bronze (Flat Cable)</td></tr>
-                                <tr><td class="label">Case</td><td class="val">Antec CX60M ARGB Mini Tower (Panoramic View White)</td></tr>
-                                <tr><td class="label">Cooler</td><td class="val">Antec Skeleton 240 ARGB Liquid Cooler</td></tr>
-                                <tr><td class="label">OS</td><td class="val">Windows 11 Home & Office (Unactivated)</td></tr>
+                                <tr><td class="label">Processor</td><td class="val">AMD Ryzen 7 7700X (8C/16T AM5)</td><td class="status">BOX</td></tr>
+                                <tr><td class="label">Motherboard</td><td class="val">ASRock Phantom B650 WiFi</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Cooling</td><td class="val">Jungle Leopard Pro Ultra Flow 360 SE ARGB White (7" LCD Display)</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">RAM</td><td class="val">Corsair Vengeance DDR5 32GB (2x16GB) 6000MHz</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">VGA / GPU</td><td class="val">Colorful iGame GeForce RTX 5070 Ultra OC 12GB GDDR7</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Power Supply</td><td class="val">PSU 850W 80+ Gold Fully Modular</td><td class="status">BNIB</td></tr>
+                                <tr><td class="label">Case</td><td class="val">Lian Li O11 White Panoramic View</td><td class="status">BNIB</td></tr>
                             </table>
                         </div>
 
-                        <div class="action-box box-editor-white">
-                            <div class="price-tag price-editor-white">IDR 24.990.000</div>
-                            <div class="action-title">PERFORMA MAKSIMAL KREATIVITAS TANPA BATAS</div>
-                            <p class="action-sub">Build putih estetik dengan dual-chamber panoramic glass dan pendingin liquid. *Belum Termasuk Jasa Instalasi</p>
-                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20DK%20Editor%20White%20(24,99jt)" class="btn-wa" target="_blank">
-                                💬 Order / Tanya DK Editor White via WA
+                        <div class="package-includes">
+                            <div class="section-title title-extreme">TESTED & OPTIMIZED FOR</div>
+                            <p style="font-size: 0.72rem; color: #a0aab8; margin-bottom: 5px;">Adobe Photoshop, Premiere Pro, After Effects, Illustrator, DaVinci Resolve, 3ds Max.</p>
+                        </div>
+
+                        <div class="action-box box-extreme">
+                            <div class="price-label">HARGA PAKET</div>
+                            <div class="price-tag price-extreme">IDR 49.999.999</div>
+                            <p class="price-note">*Harga sewaktu-waktu dapat berubah</p>
+                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20Paket%20Extreme%2049.999.999" class="btn-wa" target="_blank">
+                                💬 Order / Tanya Paket 50 Jt via WA
                             </a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- KATALOG 5: DK EDITOR BLACK EDITION -->
-        <div class="product-slide">
-            <div class="container">
-                <div class="header">
-                    <div class="brand brand-editor-black">Dokter Komputer Lab</div>
-                    <h1 class="main-title">DK EDITOR BLACK</h1>
-                    <span class="badge-edition badge-editor-black">GAMERS & CREATORS EDITION</span>
-                    <p class="tagline">POWERFUL PERFORMANCE FOR GAMERS & CREATORS • INTEL I5-14400F</p>
-                </div>
-
-                <div class="main-content-grid">
-                    <div class="left-col">
-                        <div class="build-image-container">
-                            <img src="images/1000033598.png" alt="DK Editor Black Build">
-                        </div>
-
-                        <div>
-                            <div class="section-title title-editor-black">CAPABILITY REPORT</div>
-                            <div class="lab-card">
-                                <div class="sample-id">SUITABLE FOR</div>
-                                <div class="status-verified">STATUS: VERIFIED ✔</div>
-                                <div class="report-item"><span class="report-label">Gaming AAA</span><span class="report-val">HIGH FPS</span></div>
-                                <div class="report-item"><span class="report-label">Video Editing</span><span class="report-val">FAST</span></div>
-                                <div class="report-item"><span class="report-label">3D Rendering</span><span class="report-val">SMOOTH</span></div>
-                                <div class="report-item"><span class="report-label">Streaming</span><span class="report-val">STABLE</span></div>
-                                <div class="report-item"><span class="report-label">Multitasking Berat</span><span class="report-val">LANCAR</span></div>
-                                <div class="report-item"><span class="report-label">Thermal Management</span><span class="report-val">LIQUID + FAN HUB</span></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="right-col">
-                        <div>
-                            <div class="section-title title-editor-black">FULL HARDWARE SPECIFICATIONS</div>
-                            <table>
-                                <tr><td class="label">Processor</td><td class="val">Intel Core i5-14400F</td></tr>
-                                <tr><td class="label">Motherboard</td><td class="val">MAXSUN B760M GAMING WIFI GANK (LGA1700, DDR5)</td></tr>
-                                <tr><td class="label">VGA / GPU</td><td class="val">Inno3D GeForce RTX 5060 8GB GDDR7 TWIN X2</td></tr>
-                                <tr><td class="label">RAM</td><td class="val">KLEVV FIT V Jet Black DDR5 16GB (1x16GB) 6000MHz</td></tr>
-                                <tr><td class="label">Storage</td><td class="val">ADATA LEGEND 860 500GB NVMe PCIe Gen4x4 (5000MB/s)</td></tr>
-                                <tr><td class="label">Power Supply</td><td class="val">1STPLAYER ACK 650W ATX3.1 HA-650AA2 80+ Bronze</td></tr>
-                                <tr><td class="label">Case</td><td class="val">Antec CX60M ARGB Mini Tower Black</td></tr>
-                                <tr><td class="label">Cooler & Extra</td><td class="val">Cube Gaming Nytrix 240 ARGB Liquid + Deepcool Fan Hub</td></tr>
-                                <tr><td class="label">OS</td><td class="val">Windows 11 Home & Office (Unactivated)</td></tr>
-                            </table>
-                        </div>
-
-                        <div class="action-box box-editor-black">
-                            <div class="price-tag price-editor-black">IDR 20.850.000</div>
-                            <div class="action-title">GAMING & CREATING TANPA BATAS</div>
-                            <p class="action-sub">Garansi Komponen Resmi, Support After Sales, Packing Aman & Amanah. *Belum Termasuk Jasa Instalasi</p>
-                            <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20tertarik%20dengan%20DK%20Editor%20Black%20(20,85jt)" class="btn-wa" target="_blank">
-                                💬 Order / Tanya DK Editor Black via WA
-                            </a>
-                        </div>
-                    </div>
+                <div class="footer-bar">
+                    <div class="footer-brand">➕ DOKTER KOMPUTER</div>
+                    <div class="footer-tagline">GAME READY. CREATOR READY. FUTURE READY.</div>
+                    <div class="footer-hashtag">#PREMIUMBUILD</div>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- DOTS NAVIGASI (5 PRODUK) -->
+    <!-- DOTS NAVIGASI (3 PRODUK) -->
     <div class="slider-dots">
-        <div class="dot dot-creator active"></div>
-        <div class="dot dot-tiktok"></div>
-        <div class="dot dot-canvas"></div>
-        <div class="dot dot-editor-white"></div>
-        <div class="dot dot-editor-black"></div>
+        <div class="dot dot-intel active"></div>
+        <div class="dot dot-amd"></div>
+        <div class="dot dot-extreme"></div>
     </div>
 
     <!-- ELEMEN MODAL POPUP GAMBAR -->
@@ -848,7 +683,6 @@
         <img class="modal-content" id="imgFull">
     </div>
 
-    <!-- JS UNTUK UPDATE DOTS, PANAH DESKTOP & LIGHTBOX -->
     <script>
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
