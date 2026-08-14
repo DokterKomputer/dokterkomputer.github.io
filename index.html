@@ -42,6 +42,20 @@
       letter-spacing: 1px;
     }
 
+    /* VISITOR COUNTER WIDGET */
+    .visitor-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #00e5ff;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      padding: 4px 10px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
     .nav-right-container {
       display: flex;
       align-items: center;
@@ -255,7 +269,7 @@
     .container { 
       max-width: 1200px; 
       margin: 0 auto; 
-      padding: 0 20px 20px 20px; 
+      padding: 0 20px 50px 20px; 
     } 
 
     .category-section {
@@ -370,35 +384,6 @@
       color: #ffffff; 
     } 
 
-    /* VISITOR COUNTER BAR */
-    .visitor-counter-container {
-      text-align: center;
-      padding: 10px 20px 40px 20px;
-      background: transparent;
-    }
-
-    .visitor-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(8, 18, 27, 0.85);
-      border: 1px solid #102636;
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #7b93a4;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    }
-
-    .visitor-badge #visitorCount {
-      color: #00e5ff;
-      font-size: 0.95rem;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-    }
-
     /* Floating WhatsApp Button */ 
     .wa-float { 
       position: fixed; 
@@ -419,58 +404,6 @@
     .wa-float:hover { 
       background-color: #1ebd56; 
     } 
-
-    /* FLOATING SIDE BUTTON (HANYA DITAMPILKAN DI DESKTOP/LAYAR BESAR) */
-    .floating-side-buttons {
-      position: fixed;
-      right: 25px;
-      top: 75px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      z-index: 999;
-    }
-
-    .floating-btn-rgb {
-      background: rgba(8, 18, 27, 0.95);
-      border: 2px solid transparent;
-      color: #ffffff;
-      padding: 12px 22px;
-      border-radius: 50px;
-      font-weight: 800;
-      font-size: 0.95rem;
-      letter-spacing: 0.5px;
-      text-decoration: none;
-      backdrop-filter: blur(6px);
-      display: inline-block;
-      text-align: center;
-      position: relative;
-      animation: rgbPulse 3s infinite ease-in-out;
-      transition: transform 0.2s ease;
-    }
-
-    .floating-btn-rgb:hover {
-      transform: scale(1.08);
-    }
-
-    @keyframes rgbPulse {
-      0% {
-        border-color: #ff0055;
-        box-shadow: 0 0 10px rgba(255, 0, 85, 0.6), 0 0 20px rgba(255, 0, 85, 0.3);
-      }
-      33% {
-        border-color: #00e5ff;
-        box-shadow: 0 0 10px rgba(0, 229, 255, 0.6), 0 0 20px rgba(0, 229, 255, 0.3);
-      }
-      66% {
-        border-color: #dfb15b;
-        box-shadow: 0 0 10px rgba(223, 177, 91, 0.6), 0 0 20px rgba(223, 177, 91, 0.3);
-      }
-      100% {
-        border-color: #ff0055;
-        box-shadow: 0 0 10px rgba(255, 0, 85, 0.6), 0 0 20px rgba(255, 0, 85, 0.3);
-      }
-    }
 
     /* POPUP PROMO */ 
     .popup-overlay { 
@@ -557,13 +490,6 @@
       }
     } 
 
-    @media (max-width: 768px) {
-      /* Sembunyikan Tombol Melayang Melayang di HP */
-      .floating-side-buttons {
-        display: none;
-      }
-    }
-
     @media (max-width: 576px) { 
       .category-grid-4, .category-grid-3 { 
         grid-template-columns: 1fr; 
@@ -587,6 +513,9 @@
       }
       .slider-arrow.prev { left: 8px; }
       .slider-arrow.next { right: 8px; }
+      .visitor-badge {
+        display: none; /* Sembunyikan badge pengunjung di layar HP yang terlalu kecil biar ga sesek */
+      }
     } 
   </style> 
 </head> 
@@ -595,6 +524,12 @@
   <!-- BAR NAVIGASI ATAS -->
   <nav class="top-bar">
     <span class="brand-title">DOKTER KOMPUTER</span>
+
+    <!-- VISITOR COUNTER -->
+    <div class="visitor-badge">
+      👁️ <span id="visitor-count">...</span>
+    </div>
+
     <div class="nav-right-container">
       <a href="https://dokterkomputer.github.io/admin-tracker.html" class="admin-btn" target="_blank">
         ⚙️ Admin
@@ -608,7 +543,7 @@
     <div class="mobile-dropdown" id="mobileMenu">
       <a href="build-request.html">🛠️ Custom PC Build</a>
       <a href="track-build.html">📦 Status Pesanan PC</a>
-      <a href="https://dokterkomputer.github.io/admin-tracker.html" target="_blank">⚙️ Dashboard Admin Tracker</a>
+      <a href="https://dokterkomputer.github.io/admin-tracker.html" target="_blank">📊 Dashboard Admin Tracker</a>
     </div>
   </nav>
 
@@ -779,13 +714,6 @@
 
   </div> 
 
-  <!-- TOTAL PENGUNJUNG BADGE -->
-  <div class="visitor-counter-container">
-    <div class="visitor-badge">
-      👁️ Total Pengunjung: <span id="visitorCount">Loading...</span>
-    </div>
-  </div>
-
   <!-- FLOATING WHATSAPP BUTTON --> 
   <a href="https://wa.me/6281238070329" class="wa-float" target="_blank"> 
     💬 Konsultasi WhatsApp 
@@ -793,6 +721,16 @@
 
   <!-- JAVASCRIPT --> 
   <script> 
+    // SCRIPT COUNTER PENGUNJUNG AUTOMATIS (API)
+    fetch('https://api.counterapi.dev/v1/dokterkomputer/visits/up')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('visitor-count').innerText = data.count + " Visits";
+      })
+      .catch(() => {
+        document.getElementById('visitor-count').innerText = "Active";
+      });
+
     // Toggle Dropdown Navigation
     function toggleMenu() {
       const menu = document.getElementById('mobileMenu');
@@ -905,26 +843,6 @@
         closePopup(); 
       } 
     }); 
-
-    // FETCH VISITOR COUNTER DATA (API)
-    window.addEventListener('DOMContentLoaded', () => {
-      const namespace = "dokterkomputer-official"; // ID Unik Website Dokter Komputer
-      const key = "total_visits";
-
-      fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
-        .then(res => res.json())
-        .then(data => {
-          const countElement = document.getElementById("visitorCount");
-          if (countElement && data.count) {
-            countElement.innerText = data.count.toLocaleString('id-ID') + " Orang";
-          }
-        })
-        .catch(err => {
-          console.error("Counter API Error:", err);
-          const countElement = document.getElementById("visitorCount");
-          if (countElement) countElement.innerText = "Online";
-        });
-    });
   </script> 
 </body> 
 </html>
