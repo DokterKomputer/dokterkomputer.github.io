@@ -141,40 +141,35 @@
       filter: drop-shadow(0 0 12px rgba(223, 177, 91, 0.3)); 
     } 
 
-    /* VISITOR STATS BOX (STYLE BARU) */
+    /* VISITOR STATS BOX (REALTIME COUNTER) */
     .visitor-stats-box {
       background: rgba(8, 18, 27, 0.85);
       border: 1px solid #102636;
       border-radius: 12px;
       padding: 15px 20px;
-      max-width: 400px;
+      max-width: 380px;
       margin: 0 auto 25px auto;
       text-align: center;
       backdrop-filter: blur(5px);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
     }
 
     .visitor-stats-box h4 {
       color: #dfb15b;
       font-size: 0.9rem;
       letter-spacing: 1px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       text-transform: uppercase;
       border-bottom: 1px solid rgba(223, 177, 91, 0.2);
       padding-bottom: 5px;
     }
 
-    .stats-row {
+    .counter-widget-wrapper {
       display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      margin: 6px 0;
-      color: #7b93a4;
-    }
-
-    .stats-row span.val {
-      color: #00e5ff;
-      font-weight: 800;
+      justify-content: center;
+      align-items: center;
+      filter: drop-shadow(0 0 5px rgba(0, 229, 255, 0.3));
     }
 
     /* HERO BANNER WRAPPER */
@@ -579,17 +574,10 @@
   <!-- VISITOR STATISTIK BOX -->
   <div class="visitor-stats-box">
     <h4>📊 Visitor Statistics</h4>
-    <div class="stats-row">
-      <span>Today visitor count :</span>
-      <span class="val" id="cnt-today">Loading...</span>
-    </div>
-    <div class="stats-row">
-      <span>This week visitor count :</span>
-      <span class="val" id="cnt-week">Loading...</span>
-    </div>
-    <div class="stats-row">
-      <span>This month visitor count :</span>
-      <span class="val" id="cnt-month">Loading...</span>
+    <div class="counter-widget-wrapper">
+      <!-- FreeVisitorCounters REALTIME API -->
+      <script type="text/javascript" src="https://www.freevisitorcounters.com/auth.php?id=a64e12c1409bbcb2737c6cb34a87c126d4be0a3b"></script>
+      <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1220456/t/2"></script>
     </div>
   </div>
 
@@ -752,30 +740,6 @@
 
   <!-- JAVASCRIPT --> 
   <script> 
-    // SYSTEM HITUNG VISITOR (TODAY, WEEK, MONTH)
-    const siteKey = "dokterkomputer_gh";
-    const todayKey = siteKey + "_" + new Date().toISOString().split('T')[0];
-    const weekKey = siteKey + "_w_" + getWeekNumber(new Date());
-    const monthKey = siteKey + "_m_" + new Date().getFullYear() + "_" + (new Date().getMonth()+1);
-
-    function getWeekNumber(d) {
-      d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-      d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-      var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-      return Math.ceil((((d - yearStart) / 86400000) + 1)/7);
-    }
-
-    // Panggil API hitungan secara paralel tanpa bikin loading stuck
-    Promise.all([
-      fetch(`https://api.counterapi.dev/v1/${todayKey}/visits/up`).then(r => r.json()).catch(() => ({count: 12})),
-      fetch(`https://api.counterapi.dev/v1/${weekKey}/visits/up`).then(r => r.json()).catch(() => ({count: 84})),
-      fetch(`https://api.counterapi.dev/v1/${monthKey}/visits/up`).then(r => r.json()).catch(() => ({count: 310}))
-    ]).then(([today, week, month]) => {
-      document.getElementById('cnt-today').innerText = (today.count || 1) + " visitors";
-      document.getElementById('cnt-week').innerText = (week.count || 1) + " visitors";
-      document.getElementById('cnt-month').innerText = (month.count || 1) + " visitors";
-    });
-
     // Toggle Dropdown Navigation
     function toggleMenu() {
       const menu = document.getElementById('mobileMenu');
