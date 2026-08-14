@@ -255,7 +255,7 @@
     .container { 
       max-width: 1200px; 
       margin: 0 auto; 
-      padding: 0 20px 50px 20px; 
+      padding: 0 20px 20px 20px; 
     } 
 
     .category-section {
@@ -369,6 +369,35 @@
       background-color: #d9232d; 
       color: #ffffff; 
     } 
+
+    /* VISITOR COUNTER BAR */
+    .visitor-counter-container {
+      text-align: center;
+      padding: 10px 20px 40px 20px;
+      background: transparent;
+    }
+
+    .visitor-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(8, 18, 27, 0.85);
+      border: 1px solid #102636;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #7b93a4;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .visitor-badge #visitorCount {
+      color: #00e5ff;
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
 
     /* Floating WhatsApp Button */ 
     .wa-float { 
@@ -568,7 +597,7 @@
     <span class="brand-title">DOKTER KOMPUTER</span>
     <div class="nav-right-container">
       <a href="https://dokterkomputer.github.io/admin-tracker.html" class="admin-btn" target="_blank">
-        🔒 Admin
+        ⚙️ Admin
       </a>
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
         ☰
@@ -577,13 +606,11 @@
 
     <!-- DROPDOWN MENU KETIKA DIBUKA DI HP/DESKTOP -->
     <div class="mobile-dropdown" id="mobileMenu">
-      <a href="build-request.html">⚡ Custom PC Build</a>
-      <a href="track-build.html">🔍 Status Pesanan PC</a>
-      <a href="https://dokterkomputer.github.io/admin-tracker.html" target="_blank">🔒 Dashboard Admin Tracker</a>
+      <a href="build-request.html">🛠️ Custom PC Build</a>
+      <a href="track-build.html">📦 Status Pesanan PC</a>
+      <a href="https://dokterkomputer.github.io/admin-tracker.html" target="_blank">⚙️ Dashboard Admin Tracker</a>
     </div>
   </nav>
-
-  
 
   <!-- POPUP PROMO CONTAINER --> 
   <div class="popup-overlay" id="promoPopup"> 
@@ -752,6 +779,13 @@
 
   </div> 
 
+  <!-- TOTAL PENGUNJUNG BADGE -->
+  <div class="visitor-counter-container">
+    <div class="visitor-badge">
+      👁️ Total Pengunjung: <span id="visitorCount">Loading...</span>
+    </div>
+  </div>
+
   <!-- FLOATING WHATSAPP BUTTON --> 
   <a href="https://wa.me/6281238070329" class="wa-float" target="_blank"> 
     💬 Konsultasi WhatsApp 
@@ -871,6 +905,26 @@
         closePopup(); 
       } 
     }); 
+
+    // FETCH VISITOR COUNTER DATA (API)
+    window.addEventListener('DOMContentLoaded', () => {
+      const namespace = "dokterkomputer-official"; // ID Unik Website Dokter Komputer
+      const key = "total_visits";
+
+      fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
+        .then(res => res.json())
+        .then(data => {
+          const countElement = document.getElementById("visitorCount");
+          if (countElement && data.count) {
+            countElement.innerText = data.count.toLocaleString('id-ID') + " Orang";
+          }
+        })
+        .catch(err => {
+          console.error("Counter API Error:", err);
+          const countElement = document.getElementById("visitorCount");
+          if (countElement) countElement.innerText = "Online";
+        });
+    });
   </script> 
 </body> 
 </html>
