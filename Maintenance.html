@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Development | Dokter Komputer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: #e0e6ed;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            background: #161b22;
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Accent Top Line */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #fe2c55, #00d2ff);
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .brand-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #00d2ff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #8b98a7;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0d1117;
+            border: 1px solid #1f2937;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #ffaa00;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ffaa00;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #ffaa00;
+        }
+
+        /* CTA Button */
+        .btn-wa {
+            display: inline-block;
+            background-color: #25d366;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-wa:hover {
+            background-color: #1ebd56;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="icon">🛠️</div>
+        <div class="brand-title">Dokter Komputer</div>
+        <h1>Halaman Sedang Dalam Pengembangan</h1>
+        
+        <div class="status-badge">
+            <span class="dot"></span> System Optimization in Progress
+        </div>
+
+        <p>
+            Page ini sedang mengalami peningkatan performa dan pembaruan sistem untuk memberikan pengalaman terbaik buat kamu. Kami akan segera kembali!
+        </p>
+
+        <!-- Hubungkan langsung ke WhatsApp kalau ada yang mau order/tanya -->
+        <a href="https://wa.me/6281238070329?text=Halo%20Dokter%20Komputer,%20saya%20mau%20tanya-tanya%20layanan%20atau%20rakit%20PC" class="btn-wa" target="_blank">
+            💬 Hubungi Kami via WhatsApp
+        </a>
+
+        <div class="footer">
+            &copy; 2026 Dokter Komputer. All rights reserved.
+        </div>
+    </div>
+
+</body>
+</html>
